@@ -27,22 +27,22 @@ import com.artal.capella.mapping.patch.CapellaQueryExecution;
  * @param <S>
  * @param <T>
  */
-public class RuleWrapper<S, T> implements IRule<S, T> {
-	private IRule<S, T> _realRule;
+public class RuleWrapper<S, TRS, T> implements IRule<S, TRS, T> {
+	private IRule<S,TRS, T> _realRule;
 
-	private IRuleIdentifier<S, T> _ruleIdWrapper;
+	private IRuleIdentifier<S,TRS, T> _ruleIdWrapper;
 
 	@SuppressWarnings("unchecked")
-	public RuleWrapper(IRule<S, T> rule_p, QueryExecution queryExecution_p) {
+	public RuleWrapper(IRule<S,TRS, T> rule_p, QueryExecution queryExecution_p) {
 		_realRule = rule_p;
 		if (queryExecution_p instanceof CapellaQueryExecution) {
-			_ruleIdWrapper = (IRuleIdentifier<S, T>) ((CapellaQueryExecution) queryExecution_p)
+			_ruleIdWrapper = (IRuleIdentifier<S,TRS, T>) ((CapellaQueryExecution) queryExecution_p)
 					.getCurrentIdentifierWrapper();
 		}
 	}
 
 	@Override
-	public IRuleIdentifier<S, T> getID() {
+	public IRuleIdentifier<S,TRS, T> getID() {
 		return _ruleIdWrapper;
 	}
 
@@ -67,7 +67,13 @@ public class RuleWrapper<S, T> implements IRule<S, T> {
 		return _realRule.getInputProvider();
 	}
 		
-	public IRule<S, T> getRealRule() {
+	public IRule<S,TRS, T> getRealRule() {
 		return _realRule;
+	}
+
+	@Override
+	public TRS traceSource(S source_p) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -16,6 +16,7 @@ import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
 
 import com.artal.capella.mapping.cheat.TraceCheat;
+import com.artal.capella.mapping.mix.AbstractMappingAlgoMix;
 
 /**
  * Abstract class to implement to manage the specific mapping.
@@ -29,6 +30,16 @@ public abstract class CapellaBridgeAlgo<SD> {
 
 	private List<EObject> _transientItems = new ArrayList<>();
 
+	private AbstractMappingAlgoMix<SD, CapellaBridgeAlgo<?>> _mix;
+
+	public CapellaBridgeAlgo() {
+		this(null);
+	}
+
+	public CapellaBridgeAlgo(AbstractMappingAlgoMix<SD, CapellaBridgeAlgo<?>> mix) {
+		_mix = mix;
+	}
+
 	/**
 	 * Launch the execution of the algorithm
 	 * 
@@ -36,7 +47,11 @@ public abstract class CapellaBridgeAlgo<SD> {
 	 * 
 	 * @param _capellaMappingExecution
 	 */
-	public abstract void launch(SD source_p, IMappingExecution _mappingExecution);
+	public void launch(SD source_p, IMappingExecution _mappingExecution) {
+		if (_mix != null) {
+			_mix.launch(this, source_p, _mappingExecution);
+		}
+	}
 
 	/**
 	 * Indicate that the given item was created during the algo
@@ -51,8 +66,8 @@ public abstract class CapellaBridgeAlgo<SD> {
 	}
 
 	/**
-	 * Indicate that the given item was created during the algo and is not
-	 * contained by any parent ("add" method automatically called)
+	 * Indicate that the given item was created during the algo and is not contained
+	 * by any parent ("add" method automatically called)
 	 * 
 	 * @param unique
 	 *            identifier of the created item (must be stable throw calls)
@@ -65,8 +80,8 @@ public abstract class CapellaBridgeAlgo<SD> {
 	}
 
 	/**
-	 * Just "attach" the given item. The method "add" must also be called on
-	 * this item.
+	 * Just "attach" the given item. The method "add" must also be called on this
+	 * item.
 	 * 
 	 * @param item
 	 *            EObject to attach
@@ -92,7 +107,5 @@ public abstract class CapellaBridgeAlgo<SD> {
 	public List<EObject> getTransientItems() {
 		return _transientItems;
 	}
-
-	
 
 }

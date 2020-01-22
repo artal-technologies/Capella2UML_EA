@@ -140,8 +140,8 @@ public class CapellaExtensionBridgeJob<SD> extends CapellaBridgeJob<SD> {
 		return _algo;
 	}
 
-	@Override
-	protected void setupLogger() {
-		// TODO Auto-generated method stub
-	}
+//	@Override
+//	protected void setupLogger() {
+//		// TODO Auto-generated method stub
+//	}
 }

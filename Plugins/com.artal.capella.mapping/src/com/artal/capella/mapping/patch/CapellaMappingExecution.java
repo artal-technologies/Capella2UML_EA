@@ -11,6 +11,7 @@ package com.artal.capella.mapping.patch;
 
 import java.util.Map.Entry;
 
+import org.apache.log4j.Logger;
 import org.eclipse.emf.diffmerge.bridge.api.ICause;
 import org.eclipse.emf.diffmerge.bridge.impl.emf.EMFSymbolFunction;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IRule;
@@ -29,13 +30,13 @@ import com.artal.capella.mapping.patch.wrappers.RuleIdentifierWrapper;
  * @author YBI
  */
 public class CapellaMappingExecution extends MappingExecution {
-	public CapellaMappingExecution(org.eclipse.emf.diffmerge.bridge.api.IBridgeTrace.Editable trace_p) {
-		super(trace_p);
+	public CapellaMappingExecution(org.eclipse.emf.diffmerge.bridge.api.IBridgeTrace.Editable trace_p, Logger logger) {
+		super(trace_p, logger);
 	}
 
 	/**
-	 * Bypass the Mapping bug. This method must return "false" but the variable
-	 * must be set to "true" (default value) to REALLY be tolerant to duplicates
+	 * Bypass the Mapping bug. This method must return "false" but the variable must
+	 * be set to "true" (default value) to REALLY be tolerant to duplicates
 	 */
 	public boolean isTolerantToDuplicates() {
 		return false;
@@ -43,20 +44,20 @@ public class CapellaMappingExecution extends MappingExecution {
 
 	@Override
 	@Deprecated
-	public <S, T> T get(S source_p, IRuleIdentifier<S, T> ruleID_p) {
+	public <TRS, T> T get(TRS source_p, IRuleIdentifier<?, TRS, T> ruleID_p) {
 		return super.get(source_p, ruleID_p);
 	}
 
 	@SuppressWarnings("rawtypes")
-	public <S, T> T getFirst(S source_p, IRuleIdentifier<S, T> realRuleId) {
+	public <TRS, T> T getFirst(TRS source_p, IRuleIdentifier<?, TRS, T> realRuleId) {
 		T result = null;
 
-		for (Entry<IRuleIdentifier<?, ?>, IRule<?, ?>> ruleMapEntry : _ruleMap.entrySet()) {
-			IRuleIdentifier<?, ?> ruleIdWrapper = ruleMapEntry.getKey();
+		for (Entry<IRuleIdentifier<?, ?, ?>, IRule<?, ?, ?>> ruleMapEntry : _ruleMap.entrySet()) {
+			IRuleIdentifier<?, ?, ?> ruleIdWrapper = ruleMapEntry.getKey();
 
 			if (ruleIdWrapper instanceof RuleIdentifierWrapper<?, ?>
 					&& ((RuleIdentifierWrapper) ruleIdWrapper).getRealIdentifier().equals(realRuleId)) {
-				result = get(source_p, (IRuleIdentifier<S, T>) ruleIdWrapper);
+				result = get(source_p, (IRuleIdentifier<?, TRS, T>) ruleIdWrapper);
 				if (result != null) {
 					return result;
 				}
