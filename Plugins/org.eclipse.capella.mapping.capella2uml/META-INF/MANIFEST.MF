@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Capella2uml
+Bundle-SymbolicName: org.eclipse.capella.mapping.capella2uml;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Automatic-Module-Name: org.eclipse.capella.mapping.capella2uml
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: org.eclipse.ui,
+ org.polarsys.capella.core.data.gen,
+ com.artal.capella.mapping,
+ org.eclipse.emf.diffmerge.bridge,
+ org.eclipse.emf.diffmerge.bridge.interactive,
+ org.eclipse.emf.diffmerge.bridge.capella.integration,
+ org.eclipse.uml2.uml,
+ org.eclipse.emf.diffmerge.bridge.uml,
+ org.polarsys.capella.core.model.helpers,
+ org.eclipse.capella.mapping.xmi.extension
