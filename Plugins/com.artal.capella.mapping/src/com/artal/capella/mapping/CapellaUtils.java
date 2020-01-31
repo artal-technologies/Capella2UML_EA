@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.eclipse.capella.mapping.capella2uml.toMove;
+package com.artal.capella.mapping;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;

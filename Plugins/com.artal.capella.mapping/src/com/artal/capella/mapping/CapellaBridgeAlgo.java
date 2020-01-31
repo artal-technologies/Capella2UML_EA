@@ -10,13 +10,16 @@
 package com.artal.capella.mapping;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
 
 import com.artal.capella.mapping.cheat.TraceCheat;
 import com.artal.capella.mapping.mix.AbstractMappingAlgoMix;
+import com.artal.capella.mapping.rules.AbstractDynamicMapping;
 
 /**
  * Abstract class to implement to manage the specific mapping.
@@ -30,6 +33,8 @@ public abstract class CapellaBridgeAlgo<SD> {
 
 	private List<EObject> _transientItems = new ArrayList<>();
 
+	ManageUIDs _manageUIDs = new ManageUIDs();
+
 	private AbstractMappingAlgoMix<SD, CapellaBridgeAlgo<?>> _mix;
 
 	public CapellaBridgeAlgo() {
@@ -38,6 +43,27 @@ public abstract class CapellaBridgeAlgo<SD> {
 
 	public CapellaBridgeAlgo(AbstractMappingAlgoMix<SD, CapellaBridgeAlgo<?>> mix) {
 		_mix = mix;
+		init();
+	}
+
+	private void init() {
+		_manageUIDs.setCreateUIDs(createUIDs());
+		_manageUIDs.setUseUIDs(useUIDs());
+
+	}
+
+	/**
+	 * @return
+	 */
+	public boolean useUIDs() {
+		return true;
+	}
+
+	/**
+	 * @return
+	 */
+	public boolean createUIDs() {
+		return false;
 	}
 
 	/**
@@ -48,9 +74,16 @@ public abstract class CapellaBridgeAlgo<SD> {
 	 * @param _capellaMappingExecution
 	 */
 	public void launch(SD source_p, IMappingExecution _mappingExecution) {
+		_manageUIDs.getUIds().clear();
 		if (_mix != null) {
 			_mix.launch(this, source_p, _mappingExecution);
 		}
+	}
+
+	public void putId(EObject key, AbstractDynamicMapping<?, ?, ?> rule, String id) {
+
+		String uid = rule.getUID(key, id);
+		_manageUIDs.getUIds().put(key, uid);
 	}
 
 	/**
@@ -106,6 +139,44 @@ public abstract class CapellaBridgeAlgo<SD> {
 	 */
 	public List<EObject> getTransientItems() {
 		return _transientItems;
+	}
+
+	public ManageUIDs getManageUIDs() {
+		return _manageUIDs;
+	}
+
+	public class ManageUIDs {
+
+		public Map<EObject, String> _UIds = new HashMap<>();
+
+		public boolean useUIDs = true;
+
+		public boolean createUIDs = false;
+
+		public Map<EObject, String> getUIds() {
+			return _UIds;
+		}
+
+		public boolean isCreateUIDs() {
+			return createUIDs;
+		}
+
+		public boolean isUseUIDs() {
+			return useUIDs;
+		}
+
+		public String getUId(EObject eObject) {
+			return _UIds.get(eObject);
+		}
+
+		public void setCreateUIDs(boolean createUIDs) {
+			this.createUIDs = createUIDs;
+		}
+
+		public void setUseUIDs(boolean useUIDs) {
+			this.useUIDs = useUIDs;
+		}
+
 	}
 
 }

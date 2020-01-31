@@ -6,21 +6,19 @@ package org.eclipse.capella.mapping.capella2uml.bridge.rules;
 import java.util.List;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
-import org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping;
-import org.eclipse.capella.mapping.capella2uml.toMove.MappingUtils;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.UMLFactory;
-import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.capellacore.Type;
 import org.polarsys.capella.core.data.information.ExchangeItem;
 import org.polarsys.capella.core.data.information.ExchangeItemElement;
 import org.polarsys.capella.core.data.information.ParameterDirection;
 
+import com.artal.capella.mapping.MappingUtils;
+import com.artal.capella.mapping.rules.AbstractDynamicMapping;
 import com.artal.capella.mapping.rules.MappingRulesManager;
 
 /**
@@ -38,7 +36,6 @@ public class OperationExchangeItemElementMapping
 	public OperationExchangeItemElementMapping(Capella2UMLAlgo algo, ExchangeItem parent,
 			IMappingExecution mappingExecution) {
 		super(algo, parent, mappingExecution);
-		// TODO Auto-generated constructor stub
 	}
 
 	/*
@@ -75,7 +72,7 @@ public class OperationExchangeItemElementMapping
 	public Object compute(Object eaContainer, ExchangeItemElement source) {
 		Parameter targetParameter = UMLFactory.eINSTANCE.createParameter();
 		targetParameter.setName(source.getName());
-		generateUID(source, targetParameter);
+		MappingUtils.generateUID(getAlgo(), source, targetParameter, this);
 
 		setDirection(targetParameter, source.getDirection());
 		Type type = source.getType();
@@ -111,12 +108,6 @@ public class OperationExchangeItemElementMapping
 		}
 	}
 
-	private void generateUID(CapellaElement source, EObject targetComponent) {
-		Resource eResource = source.eResource();
-		String sysMLID = MappingUtils.getSysMLID(eResource, source);
-		getAlgo().putId(targetComponent, this, sysMLID);
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -126,7 +117,6 @@ public class OperationExchangeItemElementMapping
 	 */
 	@Override
 	public void executeSubRules(List<ExchangeItemElement> _capellaSource, MappingRulesManager manager) {
-		// TODO Auto-generated method stub
 
 	}
 

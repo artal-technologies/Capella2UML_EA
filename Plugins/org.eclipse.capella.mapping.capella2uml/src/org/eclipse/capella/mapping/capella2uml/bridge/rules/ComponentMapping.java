@@ -6,14 +6,9 @@ package org.eclipse.capella.mapping.capella2uml.bridge.rules;
 import java.util.List;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
-import org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping;
-import org.eclipse.capella.mapping.capella2uml.toMove.CapellaUtils;
-import org.eclipse.capella.mapping.capella2uml.toMove.MappingUtils;
-import org.eclipse.capella.mapping.capella2uml.toMove.XMIExtensionsUtils;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.PackageableElement;
@@ -22,7 +17,12 @@ import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.la.LogicalComponent;
 import org.polarsys.capella.core.model.helpers.ProjectExt;
 
+import com.artal.capella.mapping.CapellaUtils;
+import com.artal.capella.mapping.MappingUtils;
+import com.artal.capella.mapping.rules.AbstractDynamicMapping;
 import com.artal.capella.mapping.rules.MappingRulesManager;
+
+import xmi.util.XMIExtensionsUtils;
 
 /**
  * @author binot
@@ -55,7 +55,9 @@ public class ComponentMapping extends AbstractDynamicMapping<LogicalComponent, L
 	@Override
 	public Object compute(Object eaContainer, LogicalComponent source) {
 		org.eclipse.uml2.uml.Component targetComponent = UMLFactory.eINSTANCE.createComponent();
-		generateUID(source, targetComponent);
+
+		MappingUtils.generateUID(getAlgo(), source, targetComponent, this);
+		XMIExtensionsUtils.createElement(targetComponent, getAlgo().getXMIExtension());
 
 		targetComponent.setName(source.getName());
 		if (eaContainer instanceof Model) {
@@ -72,13 +74,6 @@ public class ComponentMapping extends AbstractDynamicMapping<LogicalComponent, L
 		return targetComponent;
 	}
 
-	private void generateUID(LogicalComponent source, org.eclipse.uml2.uml.Component targetComponent) {
-		Resource eResource = source.eResource();
-		String sysMLID = MappingUtils.getSysMLID(eResource, source);
-		getAlgo().putId(targetComponent, this, sysMLID);
-		XMIExtensionsUtils.addElement(targetComponent, getAlgo().getXMIExtension());
-	}
-
 	@Override
 	public void executeSubRules(List<LogicalComponent> _capellaSource, MappingRulesManager manager) {
 		for (LogicalComponent logicalComponent : _capellaSource) {
@@ -86,11 +81,13 @@ public class ComponentMapping extends AbstractDynamicMapping<LogicalComponent, L
 					getMappingExucution());
 			PortMapping portMapping = new PortMapping(getAlgo(), logicalComponent, getMappingExucution());
 
-//			ExchangeMapping exchangeMapping = new ExchangeMapping(getAlgo(), logicalComponent, getMappingExucution());
+			// ExchangeMapping exchangeMapping = new ExchangeMapping(getAlgo(),
+			// logicalComponent, getMappingExucution());
 
 			manager.add(ComponentMapping.class.getName() + logicalComponent.getId(), componentMapping);
 			manager.add(PortMapping.class.getName() + logicalComponent.getId(), portMapping);
-//			manager.add(ExchangeMapping.class.getName() + logicalComponent.getId(), exchangeMapping);
+			// manager.add(ExchangeMapping.class.getName() + logicalComponent.getId(),
+			// exchangeMapping);
 		}
 	}
 

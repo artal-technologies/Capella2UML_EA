@@ -7,13 +7,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
-import org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping;
-import org.eclipse.capella.mapping.capella2uml.toMove.MappingUtils;
-import org.eclipse.capella.mapping.capella2uml.toMove.XMIExtensionsUtils;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Signal;
@@ -26,7 +22,11 @@ import org.polarsys.capella.core.data.information.InformationPackage;
 import org.polarsys.capella.core.data.la.LogicalArchitecture;
 import org.polarsys.capella.core.model.helpers.ProjectExt;
 
+import com.artal.capella.mapping.MappingUtils;
+import com.artal.capella.mapping.rules.AbstractDynamicMapping;
 import com.artal.capella.mapping.rules.MappingRulesManager;
+
+import xmi.util.XMIExtensionsUtils;
 
 /**
  * @author binot
@@ -43,7 +43,6 @@ public class EventExchangeItemMapping
 	public EventExchangeItemMapping(Capella2UMLAlgo algo, LogicalArchitecture parent,
 			IMappingExecution mappingExecution) {
 		super(algo, parent, mappingExecution);
-		// TODO Auto-generated constructor stub
 	}
 
 	/*
@@ -86,10 +85,8 @@ public class EventExchangeItemMapping
 	@Override
 	public Object compute(Object eaContainer, ExchangeItem source) {
 		Signal signalTarget = UMLFactory.eINSTANCE.createSignal();
-		Resource eResource = source.eResource();
-		String sysMLID = MappingUtils.getSysMLID(eResource, source);
-		getAlgo().putId(signalTarget, this, sysMLID);
-		XMIExtensionsUtils.addElement(signalTarget, getAlgo().getXMIExtension());
+		MappingUtils.generateUID(getAlgo(), source, signalTarget, this);
+		XMIExtensionsUtils.createElement(signalTarget, getAlgo().getXMIExtension());
 
 		signalTarget.setName(source.getName());
 		if (eaContainer instanceof Model) {

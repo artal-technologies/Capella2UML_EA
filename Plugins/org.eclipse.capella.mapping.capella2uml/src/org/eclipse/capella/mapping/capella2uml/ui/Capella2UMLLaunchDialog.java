@@ -5,6 +5,7 @@ package org.eclipse.capella.mapping.capella2uml.ui;
 
 import java.io.File;
 
+import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
 import org.eclipse.capella.mapping.capella2uml.bridge.mix.DefaultCapella2UMLMix;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
@@ -29,7 +30,9 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.polarsys.capella.core.data.capellamodeller.Project;
 
+import com.artal.capella.mapping.CapellaBridgeAlgo;
 import com.artal.capella.mapping.mix.AbstractMappingAlgoMix;
 
 /**
@@ -40,7 +43,7 @@ public class Capella2UMLLaunchDialog extends TitleAreaDialog {
 
 	private String _umlPath = "";
 
-	private AbstractMappingAlgoMix<?,?> _selectedMix = null;
+	private DefaultCapella2UMLMix _selectedMix = null;
 
 	public Capella2UMLLaunchDialog(Shell parentShell) {
 		super(parentShell);
@@ -170,7 +173,7 @@ public class Capella2UMLLaunchDialog extends TitleAreaDialog {
 		}
 	}
 
-	public AbstractMappingAlgoMix getMix() {
+	public DefaultCapella2UMLMix getMix() {
 		return _selectedMix;
 	}
 

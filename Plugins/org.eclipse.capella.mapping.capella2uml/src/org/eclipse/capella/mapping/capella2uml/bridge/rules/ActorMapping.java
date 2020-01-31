@@ -6,13 +6,9 @@ package org.eclipse.capella.mapping.capella2uml.bridge.rules;
 import java.util.List;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
-import org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping;
-import org.eclipse.capella.mapping.capella2uml.toMove.MappingUtils;
-import org.eclipse.capella.mapping.capella2uml.toMove.XMIExtensionsUtils;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.Actor;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
@@ -21,10 +17,13 @@ import org.eclipse.uml2.uml.UMLFactory;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.la.LogicalActor;
 import org.polarsys.capella.core.data.la.LogicalActorPkg;
-import org.polarsys.capella.core.data.la.LogicalComponent;
 import org.polarsys.capella.core.model.helpers.ProjectExt;
 
+import com.artal.capella.mapping.MappingUtils;
+import com.artal.capella.mapping.rules.AbstractDynamicMapping;
 import com.artal.capella.mapping.rules.MappingRulesManager;
+
+import xmi.util.XMIExtensionsUtils;
 
 /**
  * @author binot
@@ -72,10 +71,12 @@ public class ActorMapping extends AbstractDynamicMapping<LogicalActorPkg, Logica
 	@Override
 	public Object compute(Object eaContainer, LogicalActor source) {
 		Actor targetActor = UMLFactory.eINSTANCE.createActor();
-		Resource eResource = source.eResource();
-		String sysMLID = MappingUtils.getSysMLID(eResource, source);
-		getAlgo().putId(targetActor, this, sysMLID);
-		XMIExtensionsUtils.addElement(targetActor, getAlgo().getXMIExtension());
+
+		Capella2UMLAlgo algo = getAlgo();
+
+		MappingUtils.generateUID(algo, source, targetActor, this);
+		XMIExtensionsUtils.createElement(targetActor, algo.getXMIExtension());
+
 		targetActor.setName(source.getName());
 		if (eaContainer instanceof Model) {
 			EList<PackageableElement> packagedElements = ((Model) eaContainer).getPackagedElements();
@@ -102,15 +103,18 @@ public class ActorMapping extends AbstractDynamicMapping<LogicalActorPkg, Logica
 	@Override
 	public void executeSubRules(List<LogicalActor> _capellaSource, MappingRulesManager manager) {
 
-//		for (LogicalActor logicalComponent : _capellaSource) {
-//			PortMapping portMapping = new PortMapping(getAlgo(), logicalComponent, getMappingExucution());
-//
-//			ExchangeMapping exchangeMapping = new ExchangeMapping(getAlgo(), logicalComponent, getMappingExucution());
-//
-//			manager.add(PortMapping.class.getName() + logicalComponent.getId(), portMapping);
-//			manager.add(ExchangeMapping.class.getName() + logicalComponent.getId(), exchangeMapping);
-//		}
-	
+		// for (LogicalActor logicalComponent : _capellaSource) {
+		// PortMapping portMapping = new PortMapping(getAlgo(), logicalComponent,
+		// getMappingExucution());
+		//
+		// ExchangeMapping exchangeMapping = new ExchangeMapping(getAlgo(),
+		// logicalComponent, getMappingExucution());
+		//
+		// manager.add(PortMapping.class.getName() + logicalComponent.getId(),
+		// portMapping);
+		// manager.add(ExchangeMapping.class.getName() + logicalComponent.getId(),
+		// exchangeMapping);
+		// }
 
 	}
 

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.eclipse.capella.mapping.capella2uml.toMove;
+package com.artal.capella.mapping.rules;
 
 import java.util.List;
 
@@ -10,8 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
 import com.artal.capella.mapping.CapellaBridgeAlgo;
-import com.artal.capella.mapping.rules.AbstractMapping;
-import com.artal.capella.mapping.rules.MappingRulesManager;
+import com.artal.capella.mapping.MappingUtils;
 
 /**
  * @author binot

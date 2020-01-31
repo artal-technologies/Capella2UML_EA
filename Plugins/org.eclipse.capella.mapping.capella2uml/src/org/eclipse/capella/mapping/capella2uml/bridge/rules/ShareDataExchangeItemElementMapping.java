@@ -6,19 +6,16 @@ package org.eclipse.capella.mapping.capella2uml.bridge.rules;
 import java.util.List;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
-import org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping;
-import org.eclipse.capella.mapping.capella2uml.toMove.MappingUtils;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.Property;
-import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.VisibilityKind;
 import org.polarsys.capella.core.data.information.ExchangeItem;
 import org.polarsys.capella.core.data.information.ExchangeItemElement;
 
+import com.artal.capella.mapping.MappingUtils;
+import com.artal.capella.mapping.rules.AbstractDynamicMapping;
 import com.artal.capella.mapping.rules.MappingRulesManager;
 
 /**
@@ -36,7 +33,6 @@ public class ShareDataExchangeItemElementMapping
 	public ShareDataExchangeItemElementMapping(Capella2UMLAlgo algo, ExchangeItem parent,
 			IMappingExecution mappingExecution) {
 		super(algo, parent, mappingExecution);
-		// TODO Auto-generated constructor stub
 	}
 
 	/*
@@ -47,7 +43,6 @@ public class ShareDataExchangeItemElementMapping
 	 */
 	@Override
 	public Object computeEAContainer(ExchangeItem capellaContainer) {
-		// TODO Auto-generated method stub
 		return (org.eclipse.uml2.uml.Class) MappingRulesManager.getCapellaObjectFromAllRules(capellaContainer);
 	}
 
@@ -73,9 +68,7 @@ public class ShareDataExchangeItemElementMapping
 	@Override
 	public Object compute(Object eaContainer, ExchangeItemElement source) {
 		Property targetProperty = UMLFactory.eINSTANCE.createProperty();
-		Resource eResource = source.eResource();
-		String sysMLID = MappingUtils.getSysMLID(eResource, source);
-		getAlgo().putId(targetProperty, this, sysMLID);
+		MappingUtils.generateUID(getAlgo(), source, targetProperty, this);
 
 		targetProperty.setName(source.getName());
 
@@ -89,7 +82,6 @@ public class ShareDataExchangeItemElementMapping
 
 		if (eaContainer instanceof org.eclipse.uml2.uml.Class) {
 			((org.eclipse.uml2.uml.Class) eaContainer).getOwnedAttributes().add(targetProperty);
-			// TODO manage cardinality
 		}
 
 		return targetProperty;
@@ -104,7 +96,6 @@ public class ShareDataExchangeItemElementMapping
 	 */
 	@Override
 	public void executeSubRules(List<ExchangeItemElement> _capellaSource, MappingRulesManager manager) {
-		// TODO Auto-generated method stub
 
 	}
 

@@ -484,7 +484,7 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @not generated
 	 */
 	public void initializePackageContents() {
 		if (isInitialized) return;
@@ -520,7 +520,7 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 		initEAttribute(getelement_Name(), ecorePackage.getEString(), "name", null, 0, 1, element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getelement_Scope(), ecorePackage.getEString(), "scope", null, 0, 1, element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getelement_Xrefs(), this.getxrefs(), null, "xrefs", null, 0, 1, element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getelement_Xmiidref(), ecorePackage.getEObject(), null, "xmiidref", null, 0, 1, element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getelement_Xmiidref(), ecorePackage.getEObject(), null, "xmi:idref", null, 0, 1, element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getelement_Classifier(), ecorePackage.getEObject(), null, "classifier", null, 0, 1, element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getelement_Properties(), this.getproperties(), null, "properties", null, 0, 1, element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

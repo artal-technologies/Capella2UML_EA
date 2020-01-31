@@ -7,19 +7,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
-import org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping;
-import org.eclipse.capella.mapping.capella2uml.toMove.MappingUtils;
-import org.eclipse.capella.mapping.capella2uml.toMove.XMIExtensionsUtils;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.polarsys.capella.common.helpers.EObjectExt;
-import org.polarsys.capella.core.data.capellacore.CapellaElement;
-import org.polarsys.capella.core.data.capellacore.EnumerationPropertyLiteral;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.information.DataPkg;
 import org.polarsys.capella.core.data.information.datatype.DatatypePackage;
@@ -27,7 +21,12 @@ import org.polarsys.capella.core.data.information.datatype.Enumeration;
 import org.polarsys.capella.core.data.information.datavalue.EnumerationLiteral;
 import org.polarsys.capella.core.model.helpers.ProjectExt;
 
+import com.artal.capella.mapping.MappingUtils;
+import com.artal.capella.mapping.rules.AbstractDynamicMapping;
 import com.artal.capella.mapping.rules.MappingRulesManager;
+
+import xmi.element;
+import xmi.util.XMIExtensionsUtils;
 
 /**
  * @author binot
@@ -83,14 +82,19 @@ public class EnumerationMapping extends AbstractDynamicMapping<DataPkg, Enumerat
 	@Override
 	public Object compute(Object eaContainer, Enumeration source) {
 		org.eclipse.uml2.uml.Enumeration enumerationTarget = UMLFactory.eINSTANCE.createEnumeration();
-		generateUID(source, enumerationTarget);
+
+		MappingUtils.generateUID(getAlgo(), source, enumerationTarget, this);
+		
+		element addElement = XMIExtensionsUtils.createElement(enumerationTarget, getAlgo().getXMIExtension());
+		XMIExtensionsUtils.createProperties(addElement, false, false, "Enumeration", 0, "public", false, false);
+
 		enumerationTarget.setName(source.getName());
 
 		EList<EnumerationLiteral> ownedLiterals = source.getOwnedLiterals();
 		for (EnumerationLiteral enumerationLiteral : ownedLiterals) {
 			org.eclipse.uml2.uml.EnumerationLiteral createEnumerationLiteral = UMLFactory.eINSTANCE
 					.createEnumerationLiteral();
-			generateUID(enumerationLiteral, createEnumerationLiteral);
+			MappingUtils.generateUID(getAlgo(), enumerationLiteral, createEnumerationLiteral, this);
 			createEnumerationLiteral.setName(enumerationLiteral.getName());
 
 			enumerationTarget.getOwnedLiterals().add(createEnumerationLiteral);
@@ -106,13 +110,6 @@ public class EnumerationMapping extends AbstractDynamicMapping<DataPkg, Enumerat
 		}
 
 		return enumerationTarget;
-	}
-
-	private void generateUID(CapellaElement source, EObject targetComponent) {
-		Resource eResource = source.eResource();
-		String sysMLID = MappingUtils.getSysMLID(eResource, source);
-		getAlgo().putId(targetComponent, this, sysMLID);
-		XMIExtensionsUtils.addElement(targetComponent, getAlgo().getXMIExtension());
 	}
 
 	/*

@@ -7,26 +7,25 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
-import org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping;
-import org.eclipse.capella.mapping.capella2uml.toMove.MappingUtils;
-import org.eclipse.capella.mapping.capella2uml.toMove.XMIExtensionsUtils;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.polarsys.capella.common.helpers.EObjectExt;
-import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.information.Class;
 import org.polarsys.capella.core.data.information.DataPkg;
 import org.polarsys.capella.core.data.information.InformationPackage;
 import org.polarsys.capella.core.model.helpers.ProjectExt;
 
+import com.artal.capella.mapping.MappingUtils;
+import com.artal.capella.mapping.rules.AbstractDynamicMapping;
 import com.artal.capella.mapping.rules.MappingRulesManager;
+
+import xmi.util.XMIExtensionsUtils;
 
 /**
  * @author binot
@@ -41,7 +40,6 @@ public class ClassMapping extends AbstractDynamicMapping<DataPkg, Class, Capella
 	 */
 	public ClassMapping(Capella2UMLAlgo algo, DataPkg parent, IMappingExecution mappingExecution) {
 		super(algo, parent, mappingExecution);
-		// TODO Auto-generated constructor stub
 	}
 
 	/*
@@ -83,7 +81,10 @@ public class ClassMapping extends AbstractDynamicMapping<DataPkg, Class, Capella
 	public Object compute(Object eaContainer, Class source) {
 
 		DataType targetdataType = UMLFactory.eINSTANCE.createDataType();
-		generateUID(source, targetdataType);
+
+		MappingUtils.generateUID(getAlgo(), source, targetdataType, this);
+		XMIExtensionsUtils.createElement(targetdataType, getAlgo().getXMIExtension());
+		
 		targetdataType.setName(source.getName());
 		if (eaContainer instanceof Model) {
 			EList<PackageableElement> ownedMembers = ((Model) eaContainer).getPackagedElements();
@@ -94,13 +95,6 @@ public class ClassMapping extends AbstractDynamicMapping<DataPkg, Class, Capella
 		}
 
 		return targetdataType;
-	}
-
-	private void generateUID(CapellaElement source, EObject targetComponent) {
-		Resource eResource = source.eResource();
-		String sysMLID = MappingUtils.getSysMLID(eResource, source);
-		getAlgo().putId(targetComponent, this, sysMLID);
-		XMIExtensionsUtils.addElement(targetComponent, getAlgo().getXMIExtension());
 	}
 
 	/*

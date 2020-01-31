@@ -8,16 +8,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
-import org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping;
-import org.eclipse.capella.mapping.capella2uml.toMove.CapellaUtils;
-import org.eclipse.capella.mapping.capella2uml.toMove.MappingUtils;
-import org.eclipse.emf.diffmerge.api.scopes.IModelScope;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.diffmerge.impl.scopes.AbstractEditableModelScope;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -32,15 +26,14 @@ import org.polarsys.capella.core.data.la.LogicalActorPkg;
 import org.polarsys.capella.core.data.la.LogicalArchitecture;
 import org.polarsys.capella.core.data.la.LogicalComponent;
 
+import com.artal.capella.mapping.CapellaUtils;
+import com.artal.capella.mapping.MappingUtils;
+import com.artal.capella.mapping.rules.AbstractDynamicMapping;
 import com.artal.capella.mapping.rules.MappingRulesManager;
 
 import xmi.Documentation;
 import xmi.Extension;
-import xmi.XmiFactory;
-import xmi.XmiPackage;
-import xmi.element;
-import xmi.elements;
-import xmi.xrefs;
+import xmi.util.XMIExtensionsUtils;
 
 /**
  * @author binot
@@ -62,21 +55,10 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 	@Override
 	public Object computeEAContainer(Project capellaContainer) {
 
-		EStructuralFeature eStructuralFeature = XmiPackage.eINSTANCE.getelement().getEStructuralFeature("xmiidref");
-		if (eStructuralFeature != null) {
-			eStructuralFeature.setName("xmi:idref");
-		}
 
 		Object targetDataSet = getMappingExucution().getTargetDataSet();
 
-		// EPackage bookStoreEPackage = XMIExtensionsUtils.createXMIPackage();
-		// EObject documentationObject =
-		// XMIExtensionsUtils.createDocumentationXMITag(bookStoreEPackage,
-		// bookStoreEPackage.getEFactoryInstance());
-
-		Documentation documentationObject = XmiFactory.eINSTANCE.createDocumentation();
-		documentationObject.setExporter("Enterprise Architect");
-		documentationObject.setExporterVersion("6.5");
+		Documentation documentationObject = XMIExtensionsUtils.createEnterpriseArchitectDocumentation();
 
 		((AbstractEditableModelScope) targetDataSet).add(documentationObject);
 
@@ -94,55 +76,8 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 		getAlgo().putId(createPackage, this, sysMLID2);
 		model.getPackagedElements().add(createPackage);
 
-		ResourceSet targetResourceSet = MappingUtils.getTargetResourceSet((IModelScope) targetDataSet);
-
-		Extension extensionObject = XmiFactory.eINSTANCE.createExtension();
-		extensionObject.setExtender("Enterprise Architect");
-		extensionObject.setExtenderID("6.5");
+		Extension extensionObject = XMIExtensionsUtils.createEnterpriseArchitectExtension(model.getPackagedElements().get(0));
 		getAlgo().setXMIExtension(extensionObject);
-
-		elements createelements = XmiFactory.eINSTANCE.createelements();
-		extensionObject.getElements().add(createelements);
-
-		element createelement = XmiFactory.eINSTANCE.createelement();
-		createelement.setXmiidref(model.getPackagedElements().get(0));
-		createelements.getElement().add(createelement);
-
-		xrefs createxrefs = XmiFactory.eINSTANCE.createxrefs();
-		createelement.setXrefs(createxrefs);
-
-		// Profile customProfile = UMLFactory.eINSTANCE.createProfile();
-		// customProfile.setName("thecustomprofile");
-		//
-		// Model uml = UML2Util.load(targetResourceSet,
-		// URI.createURI(UMLResource.UML_METAMODEL_URI),
-		// UMLPackage.Literals.MODEL);
-		//
-		// customProfile.createMetamodelReference(uml);
-		//
-		// org.eclipse.uml2.uml.Extension createExtension =
-		// UMLFactory.eINSTANCE.createExtension();
-		// createExtension.setName("A_Class_entity");
-		//
-		// Stereotype entityStereotype = customProfile.createOwnedStereotype("entity",
-		// false);
-		// Property createOwnedAttribute =
-		// entityStereotype.createOwnedAttribute("base_Class",
-		// (org.eclipse.uml2.uml.Class) uml.getOwnedType("Classifier"),
-		// UMLPackage.eINSTANCE.getProperty());
-		//
-		// createOwnedAttribute.setAssociation(createExtension);
-		//
-		// customProfile.getPackagedElements().add(createExtension);
-		//
-		// customProfile.define();
-		// model.applyProfile(customProfile);
-		//
-		// extensionObject.setProfiles(XmiFactory.eINSTANCE.createprofiles());
-		// extensionObject.getProfiles().setProfile(customProfile);
-
-		// Profile loadProfile = XMIExtensionsUtils.loadProfile(targetResourceSet,
-		// extensionObject);
 
 		((AbstractEditableModelScope) targetDataSet).add(extensionObject);
 		return model;
@@ -172,9 +107,6 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 	 */
 	@Override
 	public Object compute(Object eaContainer, Project source) {
-		// Resource eResource = source.eResource();
-		// String sysMLID = MappingUtils.getSysMLID(eResource, source);
-		// getAlgo().putId(source, sysMLID);
 		return eaContainer;
 	}
 

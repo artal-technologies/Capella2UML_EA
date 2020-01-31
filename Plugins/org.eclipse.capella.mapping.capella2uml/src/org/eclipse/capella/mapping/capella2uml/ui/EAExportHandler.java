@@ -4,20 +4,11 @@
 package org.eclipse.capella.mapping.capella2uml.ui;
 
 import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-
+import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLBridgeJob;
+import org.eclipse.capella.mapping.capella2uml.bridge.mix.DefaultCapella2UMLMix;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -34,11 +25,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.la.LogicalArchitecture;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
+import com.artal.capella.mapping.CapellaBridgeAlgo;
 import com.artal.capella.mapping.mix.AbstractMappingAlgoMix;
 
 /**
@@ -60,7 +48,7 @@ public class EAExportHandler extends AbstractHandler {
 		int status = dialog.open();
 
 		String umlPath = null;
-		AbstractMappingAlgoMix<?,?> mix = null;
+		DefaultCapella2UMLMix mix = null;
 
 		if (status == IStatus.OK) {
 

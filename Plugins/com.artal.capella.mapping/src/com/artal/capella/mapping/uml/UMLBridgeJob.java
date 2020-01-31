@@ -9,11 +9,19 @@
  *******************************************************************************/
 package com.artal.capella.mapping.uml;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.diffmerge.api.scopes.IEditableModelScope;
 import org.eclipse.emf.diffmerge.bridge.api.IBridgeTrace.Editable;
+import org.eclipse.emf.diffmerge.bridge.api.incremental.IIncrementalBridgeExecution;
 import org.eclipse.emf.diffmerge.bridge.interactive.BridgeJob;
 import org.eclipse.emf.diffmerge.bridge.interactive.EMFInteractiveBridge;
+import org.eclipse.emf.diffmerge.bridge.interactive.Messages;
+import org.eclipse.emf.diffmerge.bridge.interactive.util.ResourceUtil;
 import org.eclipse.emf.diffmerge.bridge.traces.gen.bridgetraces.impl.TraceImpl;
 import org.eclipse.emf.diffmerge.bridge.uml.incremental.UMLMergePolicy;
 import org.eclipse.emf.diffmerge.gmf.GMFDiffPolicy;
@@ -21,7 +29,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.EMOFResourceFactoryImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.ui.progress.IProgressConstants;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -138,5 +149,121 @@ public class UMLBridgeJob<SD> extends BridgeJob<SD> {
 	public UMLBridge<SD, IEditableModelScope> getMappingBridge() {
 		return _mappingBridge;
 	}
+
+	@Override
+	protected Resource getCreateTargetResource(URI uri_p) {
+		Resource resource = null;
+		if (getAlgo().getManageUIDs().isCreateUIDs()) {
+			resource = (XMIResourceImpl) getTargetResourceSet().getResource(uri_p, false);
+			if (resource == null) {
+				resource = new XMIResourceImpl(uri_p) {
+					protected boolean useUUIDs() {
+						return getAlgo().getManageUIDs().isUseUIDs();
+					};
+
+					@Override
+					protected void attachedHelper(EObject eObject) {
+						if (isTrackingModification()) {
+							eObject.eAdapters().add(modificationTrackingAdapter);
+						}
+
+						Map<String, EObject> map = getIntrinsicIDToEObjectMap();
+						if (map != null) {
+							String id = EcoreUtil.getID(eObject);
+							if (id != null) {
+								map.put(id, eObject);
+							}
+						}
+
+						if (useIDs()) {
+							String id = getID(eObject);
+							if (useUUIDs() && id == null) {
+								if (assignIDsWhileLoading() || !isLoading()) {
+									id = DETACHED_EOBJECT_TO_ID_MAP.remove(eObject);
+									if (id == null) {
+										id = ((CapellaBridgeAlgo<?>) getAlgo()).getManageUIDs().getUId(eObject);
+									}
+									setID(eObject, id);
+								}
+							} else if (id != null) {
+								getIDToEObjectMap().put(id, eObject);
+							}
+						}
+					}
+				};
+				getTargetResourceSet().getResources().add(resource);
+				ResourceUtil.ensureLoaded(resource);
+			}
+		} else {
+			resource = super.getCreateTargetResource(uri_p);
+		}
+		if (resource instanceof XMIResource) {
+			((XMIResource) resource).setEncoding(getEncoding());
+			((XMIResource) resource).setXMIVersion(getXMIVersion());
+		}
+		return resource;
+	}
+
+	@Override
+	protected void saveAndClose(IIncrementalBridgeExecution execution_p, Resource targetResource_p,
+			Resource traceResource_p, IProgressMonitor monitor_p) {
+		// Save and unload
+		monitor_p.subTask(Messages.BridgeJob_Step_Completion);
+		monitor_p.worked(1);
+		if (!execution_p.isActuallyIncremental())
+			setTrace(traceResource_p, execution_p.getTrace());
+		if (!traceResource_p.getContents().isEmpty())
+			ResourceUtil.makePersistent(traceResource_p);
+		ResourceUtil.closeResource(traceResource_p);
+		if (isSaveAndCloseTarget()) {
+			makePersistent(targetResource_p);
+			ResourceUtil.closeResource(targetResource_p);
+		}
+	}
+
+	/**
+	 * Ensure that the given resource becomes persistent and save its contents
+	 * 
+	 * @param resource_p
+	 *            a non-null resource
+	 * @return whether the operation succeeded
+	 */
+	public boolean makePersistent(Resource resource_p) {
+		boolean result = false;
+		final Map<Object, Object> saveOptions = new HashMap<Object, Object>();
+		addOptions(saveOptions);
+
+		try {
+			resource_p.save(saveOptions);
+			result = true;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	/**
+	 * @param saveOptions
+	 */
+	public void addOptions(final Map<Object, Object> saveOptions) {
+		saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
+	}
+
+	/**
+	 * @return
+	 */
+	public String getXMIVersion() {
+		return XMIResource.VERSION_VALUE;
+	}
+
+	/**
+	 * @return
+	 */
+	public String getEncoding() {
+		return "ASCII";
+	}
+	
+	
+	
 
 }

@@ -6,27 +6,25 @@ package org.eclipse.capella.mapping.capella2uml.bridge.rules;
 import java.util.List;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
-import org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping;
-import org.eclipse.capella.mapping.capella2uml.toMove.MappingUtils;
-import org.eclipse.capella.mapping.capella2uml.toMove.XMIExtensionsUtils;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLFactory;
-import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.cs.Interface;
 import org.polarsys.capella.core.data.cs.InterfacePkg;
 import org.polarsys.capella.core.data.information.ExchangeItem;
 import org.polarsys.capella.core.model.helpers.ProjectExt;
 
+import com.artal.capella.mapping.MappingUtils;
+import com.artal.capella.mapping.rules.AbstractDynamicMapping;
 import com.artal.capella.mapping.rules.MappingRulesManager;
+
+import xmi.util.XMIExtensionsUtils;
 
 /**
  * @author binot
@@ -79,7 +77,8 @@ public class InterfaceMapping extends AbstractDynamicMapping<InterfacePkg, Inter
 	@Override
 	public Object compute(Object eaContainer, Interface source) {
 		org.eclipse.uml2.uml.Interface targetInterface = UMLFactory.eINSTANCE.createInterface();
-		generateUID(source, targetInterface, null);
+		MappingUtils.generateUID(getAlgo(), source, targetInterface, this);
+		XMIExtensionsUtils.createElement(targetInterface, getAlgo().getXMIExtension());
 		targetInterface.setName(source.getName());
 
 		EList<ExchangeItem> exchangeItems = source.getExchangeItems();
@@ -89,7 +88,8 @@ public class InterfaceMapping extends AbstractDynamicMapping<InterfacePkg, Inter
 			if (capellaObjectFromAllRules instanceof Classifier) {
 				Property createProperty = UMLFactory.eINSTANCE.createProperty();
 				createProperty.setName(exchangeItem.getName());
-				generateUID(exchangeItem, createProperty, "property");
+				MappingUtils.generateUID(getAlgo(), exchangeItem, createProperty, this, "property");
+				XMIExtensionsUtils.createElement(createProperty, getAlgo().getXMIExtension());
 				targetInterface.getOwnedAttributes().add(createProperty);
 				createProperty.setType((Classifier) capellaObjectFromAllRules);
 			}
@@ -105,16 +105,6 @@ public class InterfaceMapping extends AbstractDynamicMapping<InterfacePkg, Inter
 		}
 
 		return targetInterface;
-	}
-
-	private void generateUID(CapellaElement source, EObject targetComponent, String suffix) {
-		if (suffix == null) {
-			suffix = "";
-		}
-		Resource eResource = source.eResource();
-		String sysMLID = MappingUtils.getSysMLID(eResource, source);
-		getAlgo().putId(targetComponent, this, sysMLID + suffix);
-		XMIExtensionsUtils.addElement(targetComponent, getAlgo().getXMIExtension());
 	}
 
 	/*

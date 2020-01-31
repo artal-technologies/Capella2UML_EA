@@ -6,12 +6,8 @@ package org.eclipse.capella.mapping.capella2uml.bridge.rules;
 import java.util.List;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
-import org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping;
-import org.eclipse.capella.mapping.capella2uml.toMove.MappingUtils;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -20,6 +16,8 @@ import org.polarsys.capella.core.data.capellacore.Type;
 import org.polarsys.capella.core.data.information.ExchangeItem;
 import org.polarsys.capella.core.data.information.ExchangeItemElement;
 
+import com.artal.capella.mapping.MappingUtils;
+import com.artal.capella.mapping.rules.AbstractDynamicMapping;
 import com.artal.capella.mapping.rules.MappingRulesManager;
 
 /**
@@ -37,7 +35,6 @@ public class EventExchangeItemElementMapping
 	public EventExchangeItemElementMapping(Capella2UMLAlgo algo, ExchangeItem parent,
 			IMappingExecution mappingExecution) {
 		super(algo, parent, mappingExecution);
-		// TODO Auto-generated constructor stub
 	}
 
 	/*
@@ -73,9 +70,8 @@ public class EventExchangeItemElementMapping
 	@Override
 	public Object compute(Object eaContainer, ExchangeItemElement source) {
 		Property targetProperty = UMLFactory.eINSTANCE.createProperty();
-		Resource eResource = source.eResource();
-		String sysMLID = MappingUtils.getSysMLID(eResource, source);
-		getAlgo().putId(targetProperty, this, sysMLID);
+
+		MappingUtils.generateUID(getAlgo(), source, targetProperty, this);
 
 		targetProperty.setName(source.getName());
 

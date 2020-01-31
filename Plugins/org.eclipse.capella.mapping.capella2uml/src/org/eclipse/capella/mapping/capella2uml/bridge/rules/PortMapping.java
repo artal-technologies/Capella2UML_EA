@@ -7,22 +7,20 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
-import org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping;
-import org.eclipse.capella.mapping.capella2uml.toMove.MappingUtils;
-import org.eclipse.capella.mapping.capella2uml.toMove.XMIExtensionsUtils;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.uml2.uml.Actor;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.BehavioredClassifier;
-import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.EncapsulatedClassifier;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.polarsys.capella.core.data.fa.ComponentPort;
 
+import com.artal.capella.mapping.MappingUtils;
+import com.artal.capella.mapping.rules.AbstractDynamicMapping;
 import com.artal.capella.mapping.rules.MappingRulesManager;
+
+import xmi.util.XMIExtensionsUtils;
 
 /**
  * @author binot
@@ -75,10 +73,8 @@ public class PortMapping
 	@Override
 	public Object compute(Object eaContainer, ComponentPort source) {
 		Port targetPort = UMLFactory.eINSTANCE.createPort();
-		Resource eResource = source.eResource();
-		String sysMLID = MappingUtils.getSysMLID(eResource, source);
-		getAlgo().putId(targetPort, this, sysMLID);
-		XMIExtensionsUtils.addElement(targetPort, getAlgo().getXMIExtension());
+		MappingUtils.generateUID(getAlgo(), source, targetPort, this);
+		XMIExtensionsUtils.createElement(targetPort, getAlgo().getXMIExtension());
 		targetPort.setName(source.getName());
 		targetPort.setAggregation(AggregationKind.COMPOSITE_LITERAL);
 		targetPort.setIsUnique(false);
@@ -87,9 +83,9 @@ public class PortMapping
 			((EncapsulatedClassifier) eaContainer).getOwnedPorts().add(targetPort);
 
 		}
-//		if(eaContainer instanceof Actor) {
-//			((Actor)eaContainer).
-//		}
+		// if(eaContainer instanceof Actor) {
+		// ((Actor)eaContainer).
+		// }
 
 		return targetPort;
 	}
@@ -108,7 +104,6 @@ public class PortMapping
 	 */
 	@Override
 	public void executeSubRules(List<ComponentPort> _capellaSource, MappingRulesManager manager) {
-		// TODO Auto-generated method stub
 
 	}
 

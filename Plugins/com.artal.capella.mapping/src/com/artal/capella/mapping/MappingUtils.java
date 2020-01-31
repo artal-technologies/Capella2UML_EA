@@ -1,4 +1,4 @@
-package org.eclipse.capella.mapping.capella2uml.toMove;
+package com.artal.capella.mapping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 
+import com.artal.capella.mapping.rules.AbstractDynamicMapping;
 import com.artal.capella.mapping.rules.AbstractMapping;
 
 public class MappingUtils {
@@ -29,6 +30,7 @@ public class MappingUtils {
 	 * @param prefix
 	 *            a prefix to add for identification.
 	 */
+	@SuppressWarnings("unchecked")
 	static public void trace(AbstractMapping rule, Resource eResource, Object sourceElement, Object targetElement,
 			String prefix) {
 		String id = "";
@@ -85,5 +87,16 @@ public class MappingUtils {
 		return null;
 	}
 
+	static public void generateUID(CapellaBridgeAlgo<?> algo, EObject source, EObject element,
+			AbstractDynamicMapping<?, ?, ?> rule) {
+		generateUID(algo, source, element, rule, "");
+	}
+
+	static public void generateUID(CapellaBridgeAlgo<?> algo, EObject source, EObject element,
+			AbstractDynamicMapping<?, ?, ?> rule, String suffix) {
+		Resource eResource = source.eResource();
+		String sysMLID = MappingUtils.getSysMLID(eResource, source);
+		algo.putId(element, rule, sysMLID + suffix);
+	}
 
 }
