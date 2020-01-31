@@ -16,12 +16,12 @@ import com.artal.capella.mapping.MappingUtils;
  * @author binot
  *
  */
-public abstract class AbstractDynamicMapping<CAPELLA_CONTAINER, CAPELLA_SOURCE, ALGO extends CapellaBridgeAlgo<?>>
+public abstract class AbstractDynamicMapping<SOURCE_CONTAINER, SOURCE_ELEMENT, ALGO extends CapellaBridgeAlgo<?>>
 		extends AbstractMapping {
 
-	CAPELLA_CONTAINER _containerCapella;
+	SOURCE_CONTAINER _sourceContainer;
 
-	List<CAPELLA_SOURCE> _capellaSource;
+	List<SOURCE_ELEMENT> _sourceElements;
 
 	protected MappingRulesManager _manager = new MappingRulesManager();
 
@@ -29,18 +29,18 @@ public abstract class AbstractDynamicMapping<CAPELLA_CONTAINER, CAPELLA_SOURCE, 
 
 	private ALGO _algo;
 
-	public AbstractDynamicMapping(ALGO algo, CAPELLA_CONTAINER parent, IMappingExecution mappingExecution) {
+	public AbstractDynamicMapping(ALGO algo, SOURCE_CONTAINER parent, IMappingExecution mappingExecution) {
 		super(algo);
 		_algo = algo;
-		_containerCapella = parent;
+		_sourceContainer = parent;
 		_mappingExecution = mappingExecution;
 	}
 
-	public CAPELLA_CONTAINER getCapellaContainer() {
-		return _containerCapella;
+	public SOURCE_CONTAINER getSourceContainer() {
+		return _sourceContainer;
 	}
 
-	public List<CAPELLA_SOURCE> getChildren() {
+	public List<SOURCE_ELEMENT> getChildren() {
 		return null;
 	}
 
@@ -62,10 +62,10 @@ public abstract class AbstractDynamicMapping<CAPELLA_CONTAINER, CAPELLA_SOURCE, 
 		if (!isActivated()) {
 			return;
 		}
-		Object eaContainer = computeEAContainer(_containerCapella);
-		List<CAPELLA_SOURCE> capellaSource = computeCapellaSource(_containerCapella);
+		Object eaContainer = computeTargetContainer(_sourceContainer);
+		List<SOURCE_ELEMENT> capellaSource = findSourceElements(_sourceContainer);
 		if (eaContainer != null && capellaSource != null && !capellaSource.isEmpty()) {
-			for (CAPELLA_SOURCE capella_SOURCE : capellaSource) {
+			for (SOURCE_ELEMENT capella_SOURCE : capellaSource) {
 				Object object = compute(eaContainer, capella_SOURCE);
 				toTrace(capella_SOURCE, object);
 			}
@@ -88,13 +88,13 @@ public abstract class AbstractDynamicMapping<CAPELLA_CONTAINER, CAPELLA_SOURCE, 
 		MappingUtils.trace(this, eResource, sourceElement, targetElement, prefix);
 	}
 
-	abstract public Object computeEAContainer(CAPELLA_CONTAINER capellaContainer);
+	abstract public Object computeTargetContainer(SOURCE_CONTAINER capellaContainer);
 
-	abstract public List<CAPELLA_SOURCE> computeCapellaSource(CAPELLA_CONTAINER capellaContainer);
+	abstract public List<SOURCE_ELEMENT> findSourceElements(SOURCE_CONTAINER capellaContainer);
 
-	abstract public Object compute(Object eaContainer, CAPELLA_SOURCE source);
+	abstract public Object compute(Object eaContainer, SOURCE_ELEMENT source);
 
-	abstract public void executeSubRules(List<CAPELLA_SOURCE> _capellaSource, MappingRulesManager manager);
+	abstract public void executeSubRules(List<SOURCE_ELEMENT> _capellaSource, MappingRulesManager manager);
 
 	abstract public String getUID(EObject key, String id);
 
@@ -102,7 +102,5 @@ public abstract class AbstractDynamicMapping<CAPELLA_CONTAINER, CAPELLA_SOURCE, 
 	public ALGO getAlgo() {
 		return _algo;
 	}
-	
-	
-	
+
 }

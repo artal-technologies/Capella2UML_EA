@@ -46,7 +46,7 @@ public class PortMapping
 	 * computeEAContainer(java.lang.Object)
 	 */
 	@Override
-	public Object computeEAContainer(org.polarsys.capella.core.data.cs.Component capellaContainer) {
+	public Object computeTargetContainer(org.polarsys.capella.core.data.cs.Component capellaContainer) {
 		return (BehavioredClassifier) MappingRulesManager.getCapellaObjectFromAllRules(capellaContainer);
 	}
 
@@ -57,7 +57,7 @@ public class PortMapping
 	 * computeCapellaSource(java.lang.Object)
 	 */
 	@Override
-	public List<ComponentPort> computeCapellaSource(org.polarsys.capella.core.data.cs.Component capellaContainer) {
+	public List<ComponentPort> findSourceElements(org.polarsys.capella.core.data.cs.Component capellaContainer) {
 		List<ComponentPort> ports = capellaContainer.getOwnedFeatures().stream().filter(p -> p instanceof ComponentPort)
 				.map(ComponentPort.class::cast).collect(Collectors.toList());
 		return ports;

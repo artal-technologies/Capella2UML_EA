@@ -33,12 +33,12 @@ public class OperationExchangeItemMapping extends
 	}
 
 	@Override
-	public Object computeEAContainer(Interface capellaContainer) {
+	public Object computeTargetContainer(Interface capellaContainer) {
 		return (org.eclipse.uml2.uml.Interface) MappingRulesManager.getCapellaObjectFromAllRules(capellaContainer);
 	}
 
 	@Override
-	public List<ExchangeItem> computeCapellaSource(Interface capellaContainer) {
+	public List<ExchangeItem> findSourceElements(Interface capellaContainer) {
 		List<ExchangeItem> operations = capellaContainer.getExchangeItems().stream().map(ExchangeItem.class::cast)
 				.filter(ei -> (ei.getExchangeMechanism() == ExchangeMechanism.OPERATION)).collect(Collectors.toList());
 		return operations;

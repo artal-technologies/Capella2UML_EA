@@ -52,7 +52,7 @@ public class EventExchangeItemMapping
 	 * computeEAContainer(java.lang.Object)
 	 */
 	@Override
-	public Object computeEAContainer(LogicalArchitecture capellaContainer) {
+	public Object computeTargetContainer(LogicalArchitecture capellaContainer) {
 
 		Project capellaProject = ProjectExt.getProject(capellaContainer);
 		Model model = (Model) MappingRulesManager.getCapellaObjectFromAllRules(capellaProject);
@@ -66,7 +66,7 @@ public class EventExchangeItemMapping
 	 * computeCapellaSource(java.lang.Object)
 	 */
 	@Override
-	public List<ExchangeItem> computeCapellaSource(LogicalArchitecture capellaContainer) {
+	public List<ExchangeItem> findSourceElements(LogicalArchitecture capellaContainer) {
 
 		List<ExchangeItem> eventEIs = EObjectExt.getAll(capellaContainer, InformationPackage.Literals.EXCHANGE_ITEM)
 				.stream().map(ExchangeItem.class::cast)

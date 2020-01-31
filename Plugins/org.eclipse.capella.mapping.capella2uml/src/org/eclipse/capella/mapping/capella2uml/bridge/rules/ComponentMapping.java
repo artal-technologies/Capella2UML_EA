@@ -35,7 +35,7 @@ public class ComponentMapping extends AbstractDynamicMapping<LogicalComponent, L
 	}
 
 	@Override
-	public Object computeEAContainer(LogicalComponent capellaContainer) {
+	public Object computeTargetContainer(LogicalComponent capellaContainer) {
 		if (CapellaUtils.isLogicalSystem(capellaContainer)) {
 
 			Project capellaProject = ProjectExt.getProject(capellaContainer);
@@ -47,7 +47,7 @@ public class ComponentMapping extends AbstractDynamicMapping<LogicalComponent, L
 	}
 
 	@Override
-	public List<LogicalComponent> computeCapellaSource(LogicalComponent capellaContainer) {
+	public List<LogicalComponent> findSourceElements(LogicalComponent capellaContainer) {
 		List<LogicalComponent> ownedLogicalComponents = capellaContainer.getOwnedLogicalComponents();
 		return ownedLogicalComponents;
 	}

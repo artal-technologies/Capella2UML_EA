@@ -51,7 +51,7 @@ public class EnumerationMapping extends AbstractDynamicMapping<DataPkg, Enumerat
 	 * computeEAContainer(java.lang.Object)
 	 */
 	@Override
-	public Object computeEAContainer(DataPkg capellaContainer) {
+	public Object computeTargetContainer(DataPkg capellaContainer) {
 
 		Project capellaProject = ProjectExt.getProject(capellaContainer);
 		Model model = (Model) MappingRulesManager.getCapellaObjectFromAllRules(capellaProject);
@@ -65,7 +65,7 @@ public class EnumerationMapping extends AbstractDynamicMapping<DataPkg, Enumerat
 	 * computeCapellaSource(java.lang.Object)
 	 */
 	@Override
-	public List<Enumeration> computeCapellaSource(DataPkg capellaContainer) {
+	public List<Enumeration> findSourceElements(DataPkg capellaContainer) {
 
 		List<Enumeration> enumerations = EObjectExt.getAll(capellaContainer, DatatypePackage.Literals.ENUMERATION)
 				.stream().map(Enumeration.class::cast).collect(Collectors.toList());

@@ -44,7 +44,7 @@ public class EventExchangeItemElementMapping
 	 * computeEAContainer(java.lang.Object)
 	 */
 	@Override
-	public Object computeEAContainer(ExchangeItem capellaContainer) {
+	public Object computeTargetContainer(ExchangeItem capellaContainer) {
 		return (Signal) MappingRulesManager.getCapellaObjectFromAllRules(capellaContainer);
 	}
 
@@ -55,7 +55,7 @@ public class EventExchangeItemElementMapping
 	 * computeCapellaSource(java.lang.Object)
 	 */
 	@Override
-	public List<ExchangeItemElement> computeCapellaSource(ExchangeItem capellaContainer) {
+	public List<ExchangeItemElement> findSourceElements(ExchangeItem capellaContainer) {
 		List<ExchangeItemElement> ownedElements = capellaContainer.getOwnedElements();
 		return ownedElements;
 	}

@@ -53,7 +53,7 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 	 * getEAContainer(java.lang.Object)
 	 */
 	@Override
-	public Object computeEAContainer(Project capellaContainer) {
+	public Object computeTargetContainer(Project capellaContainer) {
 
 
 		Object targetDataSet = getMappingExucution().getTargetDataSet();
@@ -92,7 +92,7 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 	 * getCapellaSource(java.lang.Object)
 	 */
 	@Override
-	public List<Project> computeCapellaSource(Project capellaContainer) {
+	public List<Project> findSourceElements(Project capellaContainer) {
 		List<Project> results = new ArrayList<Project>();
 		results.add(capellaContainer);
 		return results;

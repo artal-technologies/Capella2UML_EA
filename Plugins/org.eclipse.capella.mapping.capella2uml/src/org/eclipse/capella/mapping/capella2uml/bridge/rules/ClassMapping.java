@@ -49,7 +49,7 @@ public class ClassMapping extends AbstractDynamicMapping<DataPkg, Class, Capella
 	 * computeEAContainer(java.lang.Object)
 	 */
 	@Override
-	public Object computeEAContainer(DataPkg capellaContainer) {
+	public Object computeTargetContainer(DataPkg capellaContainer) {
 
 		Project capellaProject = ProjectExt.getProject(capellaContainer);
 		Model model = (Model) MappingRulesManager.getCapellaObjectFromAllRules(capellaProject);
@@ -63,7 +63,7 @@ public class ClassMapping extends AbstractDynamicMapping<DataPkg, Class, Capella
 	 * computeCapellaSource(java.lang.Object)
 	 */
 	@Override
-	public List<Class> computeCapellaSource(DataPkg capellaContainer) {
+	public List<Class> findSourceElements(DataPkg capellaContainer) {
 
 		List<Class> classes = EObjectExt.getAll(capellaContainer, InformationPackage.Literals.CLASS).stream()
 				.map(Class.class::cast).collect(Collectors.toList());

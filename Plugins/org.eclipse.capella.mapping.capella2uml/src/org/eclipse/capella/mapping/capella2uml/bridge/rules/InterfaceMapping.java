@@ -48,7 +48,7 @@ public class InterfaceMapping extends AbstractDynamicMapping<InterfacePkg, Inter
 	 * computeEAContainer(java.lang.Object)
 	 */
 	@Override
-	public Object computeEAContainer(InterfacePkg capellaContainer) {
+	public Object computeTargetContainer(InterfacePkg capellaContainer) {
 
 		Project capellaProject = ProjectExt.getProject(capellaContainer);
 		Model model = (Model) MappingRulesManager.getCapellaObjectFromAllRules(capellaProject);
@@ -62,7 +62,7 @@ public class InterfaceMapping extends AbstractDynamicMapping<InterfacePkg, Inter
 	 * computeCapellaSource(java.lang.Object)
 	 */
 	@Override
-	public List<Interface> computeCapellaSource(InterfacePkg capellaContainer) {
+	public List<Interface> findSourceElements(InterfacePkg capellaContainer) {
 		List<Interface> ownedInterfaces = capellaContainer.getOwnedInterfaces();
 		return ownedInterfaces;
 	}

@@ -56,7 +56,7 @@ public class ExchangeMapping extends
 	 * computeEAContainer(java.lang.Object)
 	 */
 	@Override
-	public Object computeEAContainer(org.polarsys.capella.core.data.cs.Component capellaContainer) {
+	public Object computeTargetContainer(org.polarsys.capella.core.data.cs.Component capellaContainer) {
 
 		BehavioredClassifier container = (BehavioredClassifier) MappingRulesManager
 				.getCapellaObjectFromAllRules(capellaContainer);
@@ -75,7 +75,7 @@ public class ExchangeMapping extends
 	 * computeCapellaSource(java.lang.Object)
 	 */
 	@Override
-	public List<ComponentExchange> computeCapellaSource(org.polarsys.capella.core.data.cs.Component capellaContainer) {
+	public List<ComponentExchange> findSourceElements(org.polarsys.capella.core.data.cs.Component capellaContainer) {
 		List<ComponentExchange> ownedComponentExchanges = capellaContainer.getOwnedComponentExchanges();
 		return ownedComponentExchanges;
 	}

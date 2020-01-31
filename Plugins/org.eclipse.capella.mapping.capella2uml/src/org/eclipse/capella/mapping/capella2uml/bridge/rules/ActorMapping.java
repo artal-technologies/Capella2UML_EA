@@ -42,7 +42,7 @@ public class ActorMapping extends AbstractDynamicMapping<LogicalActorPkg, Logica
 	 * computeEAContainer(java.lang.Object)
 	 */
 	@Override
-	public Object computeEAContainer(LogicalActorPkg capellaContainer) {
+	public Object computeTargetContainer(LogicalActorPkg capellaContainer) {
 
 		Project capellaProject = ProjectExt.getProject(capellaContainer);
 		Model model = (Model) MappingRulesManager.getCapellaObjectFromAllRules(capellaProject);
@@ -56,7 +56,7 @@ public class ActorMapping extends AbstractDynamicMapping<LogicalActorPkg, Logica
 	 * computeCapellaSource(java.lang.Object)
 	 */
 	@Override
-	public List<LogicalActor> computeCapellaSource(LogicalActorPkg capellaContainer) {
+	public List<LogicalActor> findSourceElements(LogicalActorPkg capellaContainer) {
 		List<LogicalActor> ownedLogicalActors = capellaContainer.getOwnedLogicalActors();
 		return ownedLogicalActors;
 	}
