@@ -24,4 +24,8 @@ abstract public class AbstractMappingAlgoMix<SOURCE, ALGO extends CapellaBridgeA
 		return _mixName;
 	}
 
+	public MappingRulesManager getManagerRules() {
+		return _managerRules;
+	}
+	
 }

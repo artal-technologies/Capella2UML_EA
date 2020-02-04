@@ -21,7 +21,9 @@ import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.cs.Component;
 import org.polarsys.capella.core.data.cs.CsPackage;
 import org.polarsys.capella.core.data.cs.InterfacePkg;
+import org.polarsys.capella.core.data.information.Class;
 import org.polarsys.capella.core.data.information.DataPkg;
+import org.polarsys.capella.core.data.information.InformationPackage;
 import org.polarsys.capella.core.data.la.LogicalActorPkg;
 import org.polarsys.capella.core.data.la.LogicalArchitecture;
 import org.polarsys.capella.core.data.la.LogicalComponent;
@@ -55,7 +57,6 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 	@Override
 	public Object computeTargetContainer(Project capellaContainer) {
 
-
 		Object targetDataSet = getMappingExucution().getTargetDataSet();
 
 		Documentation documentationObject = XMIExtensionsUtils.createEnterpriseArchitectDocumentation();
@@ -76,7 +77,8 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 		getAlgo().putId(createPackage, this, sysMLID2);
 		model.getPackagedElements().add(createPackage);
 
-		Extension extensionObject = XMIExtensionsUtils.createEnterpriseArchitectExtension(model.getPackagedElements().get(0));
+		Extension extensionObject = XMIExtensionsUtils
+				.createEnterpriseArchitectExtension(model.getPackagedElements().get(0));
 		getAlgo().setXMIExtension(extensionObject);
 
 		((AbstractEditableModelScope) targetDataSet).add(extensionObject);
@@ -127,8 +129,18 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 		EnumerationMapping enumerationMapping = new EnumerationMapping(getAlgo(), dataPkgRoot, getMappingExucution());
 		manager.add(EnumerationMapping.class.getName() + dataPkgRoot.getId(), enumerationMapping);
 
+		PrimitiveMapping primitiveMapping = new PrimitiveMapping(getAlgo(), dataPkgRoot, getMappingExucution());
+		manager.add(primitiveMapping.getClass().getName() + dataPkgRoot.getId(), primitiveMapping);
+
 		ClassMapping classMapping = new ClassMapping(getAlgo(), dataPkgRoot, getMappingExucution());
 		manager.add(ClassMapping.class.getName() + dataPkgRoot.getId(), classMapping);
+
+		List<Class> classes = EObjectExt.getAll(dataPkgRoot, InformationPackage.Literals.CLASS).stream()
+				.map(Class.class::cast).collect(Collectors.toList());
+		for (Class class1 : classes) {
+			PropertyMapping propertyMapping = new PropertyMapping(getAlgo(), class1, getMappingExucution());
+			manager.add(propertyMapping.getClass().getName() + class1.getId(), propertyMapping);
+		}
 
 		LogicalArchitecture logicalArchitecture = CapellaUtils.getLogicalArchitecture(project);
 

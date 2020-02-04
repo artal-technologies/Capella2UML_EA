@@ -4,17 +4,13 @@
 package org.eclipse.capella.mapping.capella2uml.bridge;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Profile;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 
 import com.artal.capella.mapping.mix.AbstractMappingAlgoMix;
-import com.artal.capella.mapping.rules.AbstractDynamicMapping;
 import com.artal.capella.mapping.rules.MappingRulesManager;
 import com.artal.capella.mapping.uml.UMLBridgeAlgo;
 

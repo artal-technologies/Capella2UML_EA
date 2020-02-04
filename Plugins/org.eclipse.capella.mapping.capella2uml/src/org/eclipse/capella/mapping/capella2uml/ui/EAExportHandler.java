@@ -6,7 +6,6 @@ package org.eclipse.capella.mapping.capella2uml.ui;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 
-import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLBridgeJob;
 import org.eclipse.capella.mapping.capella2uml.bridge.mix.DefaultCapella2UMLMix;
 import org.eclipse.core.commands.AbstractHandler;
@@ -25,9 +24,6 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.la.LogicalArchitecture;
-
-import com.artal.capella.mapping.CapellaBridgeAlgo;
-import com.artal.capella.mapping.mix.AbstractMappingAlgoMix;
 
 /**
  * @author binot

@@ -84,7 +84,7 @@ public class ClassMapping extends AbstractDynamicMapping<DataPkg, Class, Capella
 
 		MappingUtils.generateUID(getAlgo(), source, targetdataType, this);
 		XMIExtensionsUtils.createElement(targetdataType, getAlgo().getXMIExtension());
-		
+
 		targetdataType.setName(source.getName());
 		if (eaContainer instanceof Model) {
 			EList<PackageableElement> ownedMembers = ((Model) eaContainer).getPackagedElements();
@@ -106,8 +106,7 @@ public class ClassMapping extends AbstractDynamicMapping<DataPkg, Class, Capella
 	 */
 	@Override
 	public void executeSubRules(List<Class> _capellaSource, MappingRulesManager manager) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	/*
