@@ -17,6 +17,7 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.VisibilityKind;
 import org.polarsys.capella.common.helpers.EObjectExt;
+import org.polarsys.capella.core.data.capellacore.PropertyValuePkg;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.cs.Component;
 import org.polarsys.capella.core.data.cs.CsPackage;
@@ -174,6 +175,8 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 		ActorMapping actorMapping = new ActorMapping(getAlgo(), logicalActorPkg, getMappingExucution());
 		manager.add(logicalActorPkg.getClass().getName() + logicalActorPkg.getId(), actorMapping);
 
+		RootPropertyValuePkgMapping pvpMapping = new RootPropertyValuePkgMapping(getAlgo(), project, getMappingExucution());
+		manager.add(RootPropertyValuePkgMapping.class.getName() + project.getId(), pvpMapping);
 	}
 
 	@Override

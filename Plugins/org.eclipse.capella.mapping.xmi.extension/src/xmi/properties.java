@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link xmi.properties#isIsRoot <em>Is Root</em>}</li>
  *   <li>{@link xmi.properties#isIsLeaf <em>Is Leaf</em>}</li>
  *   <li>{@link xmi.properties#isIsAbstract <em>Is Abstract</em>}</li>
+ *   <li>{@link xmi.properties#getStereotype <em>Stereotype</em>}</li>
  * </ul>
  *
  * @see xmi.XmiPackage#getproperties()
@@ -208,5 +209,31 @@ public interface properties extends EObject {
 	 * @generated
 	 */
 	void setIsAbstract(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Stereotype</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Stereotype</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Stereotype</em>' attribute.
+	 * @see #setStereotype(String)
+	 * @see xmi.XmiPackage#getproperties_Stereotype()
+	 * @model
+	 * @generated
+	 */
+	String getStereotype();
+
+	/**
+	 * Sets the value of the '{@link xmi.properties#getStereotype <em>Stereotype</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Stereotype</em>' attribute.
+	 * @see #getStereotype()
+	 * @generated
+	 */
+	void setStereotype(String value);
 
 } // properties

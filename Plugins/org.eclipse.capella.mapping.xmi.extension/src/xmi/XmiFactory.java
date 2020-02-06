@@ -85,6 +85,96 @@ public interface XmiFactory extends EFactory {
 	properties createproperties();
 
 	/**
+	 * Returns a new object of class '<em>Packaged Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Packaged Element</em>'.
+	 * @generated
+	 */
+	PackagedElement createPackagedElement();
+
+	/**
+	 * Returns a new object of class '<em>uml Profile</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>uml Profile</em>'.
+	 * @generated
+	 */
+	umlProfile createumlProfile();
+
+	/**
+	 * Returns a new object of class '<em>owned End</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>owned End</em>'.
+	 * @generated
+	 */
+	ownedEnd createownedEnd();
+
+	/**
+	 * Returns a new object of class '<em>package Import</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>package Import</em>'.
+	 * @generated
+	 */
+	packageImport createpackageImport();
+
+	/**
+	 * Returns a new object of class '<em>imported Package</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>imported Package</em>'.
+	 * @generated
+	 */
+	importedPackage createimportedPackage();
+
+	/**
+	 * Returns a new object of class '<em>owned Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>owned Attribute</em>'.
+	 * @generated
+	 */
+	ownedAttribute createownedAttribute();
+
+	/**
+	 * Returns a new object of class '<em>type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>type</em>'.
+	 * @generated
+	 */
+	type createtype();
+
+	/**
+	 * Returns a new object of class '<em>attributes</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>attributes</em>'.
+	 * @generated
+	 */
+	attributes createattributes();
+
+	/**
+	 * Returns a new object of class '<em>attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>attribute</em>'.
+	 * @generated
+	 */
+	attribute createattribute();
+
+	/**
+	 * Returns a new object of class '<em>extended Properties</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>extended Properties</em>'.
+	 * @generated
+	 */
+	extendedProperties createextendedProperties();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

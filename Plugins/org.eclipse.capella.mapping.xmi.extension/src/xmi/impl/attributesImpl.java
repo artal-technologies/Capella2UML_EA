@@ -3,48 +3,51 @@
 package xmi.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import xmi.XmiPackage;
-import xmi.profiles;
+import xmi.attribute;
+import xmi.attributes;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>profiles</b></em>'.
+ * An implementation of the model object '<em><b>attributes</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link xmi.impl.profilesImpl#getProfile <em>Profile</em>}</li>
+ *   <li>{@link xmi.impl.attributesImpl#getAttribute <em>Attribute</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class profilesImpl extends MinimalEObjectImpl.Container implements profiles {
+public class attributesImpl extends MinimalEObjectImpl.Container implements attributes {
 	/**
-	 * The cached value of the '{@link #getProfile() <em>Profile</em>}' containment reference list.
+	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getProfile()
+	 * @see #getAttribute()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<EObject> profile;
+	protected EList<attribute> attribute;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected profilesImpl() {
+	protected attributesImpl() {
 		super();
 	}
 
@@ -55,7 +58,7 @@ public class profilesImpl extends MinimalEObjectImpl.Container implements profil
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return XmiPackage.Literals.PROFILES;
+		return XmiPackage.Literals.ATTRIBUTES;
 	}
 
 	/**
@@ -63,11 +66,11 @@ public class profilesImpl extends MinimalEObjectImpl.Container implements profil
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<EObject> getProfile() {
-		if (profile == null) {
-			profile = new EObjectContainmentEList<EObject>(EObject.class, this, XmiPackage.PROFILES__PROFILE);
+	public EList<attribute> getAttribute() {
+		if (attribute == null) {
+			attribute = new EObjectContainmentEList<attribute>(attribute.class, this, XmiPackage.ATTRIBUTES__ATTRIBUTE);
 		}
-		return profile;
+		return attribute;
 	}
 
 	/**
@@ -78,8 +81,8 @@ public class profilesImpl extends MinimalEObjectImpl.Container implements profil
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case XmiPackage.PROFILES__PROFILE:
-				return ((InternalEList<?>)getProfile()).basicRemove(otherEnd, msgs);
+			case XmiPackage.ATTRIBUTES__ATTRIBUTE:
+				return ((InternalEList<?>)getAttribute()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -92,8 +95,8 @@ public class profilesImpl extends MinimalEObjectImpl.Container implements profil
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case XmiPackage.PROFILES__PROFILE:
-				return getProfile();
+			case XmiPackage.ATTRIBUTES__ATTRIBUTE:
+				return getAttribute();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -107,9 +110,9 @@ public class profilesImpl extends MinimalEObjectImpl.Container implements profil
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case XmiPackage.PROFILES__PROFILE:
-				getProfile().clear();
-				getProfile().addAll((Collection<? extends EObject>)newValue);
+			case XmiPackage.ATTRIBUTES__ATTRIBUTE:
+				getAttribute().clear();
+				getAttribute().addAll((Collection<? extends attribute>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -123,8 +126,8 @@ public class profilesImpl extends MinimalEObjectImpl.Container implements profil
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case XmiPackage.PROFILES__PROFILE:
-				getProfile().clear();
+			case XmiPackage.ATTRIBUTES__ATTRIBUTE:
+				getAttribute().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -138,10 +141,10 @@ public class profilesImpl extends MinimalEObjectImpl.Container implements profil
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case XmiPackage.PROFILES__PROFILE:
-				return profile != null && !profile.isEmpty();
+			case XmiPackage.ATTRIBUTES__ATTRIBUTE:
+				return attribute != null && !attribute.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //profilesImpl
+} //attributesImpl

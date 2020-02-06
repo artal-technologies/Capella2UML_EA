@@ -27,6 +27,7 @@ import xmi.properties;
  *   <li>{@link xmi.impl.propertiesImpl#isIsRoot <em>Is Root</em>}</li>
  *   <li>{@link xmi.impl.propertiesImpl#isIsLeaf <em>Is Leaf</em>}</li>
  *   <li>{@link xmi.impl.propertiesImpl#isIsAbstract <em>Is Abstract</em>}</li>
+ *   <li>{@link xmi.impl.propertiesImpl#getStereotype <em>Stereotype</em>}</li>
  * </ul>
  *
  * @generated
@@ -171,6 +172,26 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 	 * @ordered
 	 */
 	protected boolean isAbstract = IS_ABSTRACT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getStereotype() <em>Stereotype</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStereotype()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String STEREOTYPE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getStereotype() <em>Stereotype</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStereotype()
+	 * @generated
+	 * @ordered
+	 */
+	protected String stereotype = STEREOTYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -343,6 +364,27 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getStereotype() {
+		return stereotype;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStereotype(String newStereotype) {
+		String oldStereotype = stereotype;
+		stereotype = newStereotype;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, XmiPackage.PROPERTIES__STEREOTYPE, oldStereotype, stereotype));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -360,6 +402,8 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 				return isIsLeaf();
 			case XmiPackage.PROPERTIES__IS_ABSTRACT:
 				return isIsAbstract();
+			case XmiPackage.PROPERTIES__STEREOTYPE:
+				return getStereotype();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -392,6 +436,9 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 				return;
 			case XmiPackage.PROPERTIES__IS_ABSTRACT:
 				setIsAbstract((Boolean)newValue);
+				return;
+			case XmiPackage.PROPERTIES__STEREOTYPE:
+				setStereotype((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -426,6 +473,9 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 			case XmiPackage.PROPERTIES__IS_ABSTRACT:
 				setIsAbstract(IS_ABSTRACT_EDEFAULT);
 				return;
+			case XmiPackage.PROPERTIES__STEREOTYPE:
+				setStereotype(STEREOTYPE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -452,6 +502,8 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 				return isLeaf != IS_LEAF_EDEFAULT;
 			case XmiPackage.PROPERTIES__IS_ABSTRACT:
 				return isAbstract != IS_ABSTRACT_EDEFAULT;
+			case XmiPackage.PROPERTIES__STEREOTYPE:
+				return STEREOTYPE_EDEFAULT == null ? stereotype != null : !STEREOTYPE_EDEFAULT.equals(stereotype);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -480,6 +532,8 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 		result.append(isLeaf);
 		result.append(", isAbstract: ");
 		result.append(isAbstract);
+		result.append(", stereotype: ");
+		result.append(stereotype);
 		result.append(')');
 		return result.toString();
 	}
