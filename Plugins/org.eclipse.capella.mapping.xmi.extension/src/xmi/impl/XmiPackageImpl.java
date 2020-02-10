@@ -5,7 +5,6 @@ package xmi.impl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
@@ -13,10 +12,15 @@ import xmi.Documentation;
 import xmi.Extension;
 import xmi.XmiFactory;
 import xmi.XmiPackage;
+import xmi.attribute;
+import xmi.attributes;
+import xmi.constraint;
+import xmi.constraints;
 import xmi.element;
 import xmi.elements;
 import xmi.profiles;
 import xmi.properties;
+import xmi.stereotype;
 import xmi.xrefs;
 
 /**
@@ -74,6 +78,41 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 	 * @generated
 	 */
 	private EClass propertiesEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass attributesEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass attributeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass stereotypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass constraintsEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass constraintEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -303,6 +342,24 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getelement_Attributes() {
+		return (EReference)elementEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getelement_Constraints() {
+		return (EReference)elementEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getxrefs() {
 		return xrefsEClass;
 	}
@@ -411,6 +468,150 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getattributes() {
+		return attributesEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getattributes_Attribute() {
+		return (EReference)attributesEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getattribute() {
+		return attributeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getattribute_Stereotype() {
+		return (EReference)attributeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getattribute_Xmiidref() {
+		return (EReference)attributeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getattribute_Name() {
+		return (EAttribute)attributeEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getattribute_Scope() {
+		return (EAttribute)attributeEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getstereotype() {
+		return stereotypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getstereotype_Stereotype() {
+		return (EAttribute)stereotypeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getconstraints() {
+		return constraintsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getconstraints_Constraint() {
+		return (EReference)constraintsEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getconstraint() {
+		return constraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getconstraint_Name() {
+		return (EAttribute)constraintEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getconstraint_Type() {
+		return (EAttribute)constraintEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getconstraint_Weight() {
+		return (EAttribute)constraintEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getconstraint_Status() {
+		return (EAttribute)constraintEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public XmiFactory getXmiFactory() {
 		return (XmiFactory)getEFactoryInstance();
 	}
@@ -455,6 +656,8 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 		createEReference(elementEClass, ELEMENT__XMIIDREF);
 		createEReference(elementEClass, ELEMENT__CLASSIFIER);
 		createEReference(elementEClass, ELEMENT__PROPERTIES);
+		createEReference(elementEClass, ELEMENT__ATTRIBUTES);
+		createEReference(elementEClass, ELEMENT__CONSTRAINTS);
 
 		xrefsEClass = createEClass(XREFS);
 		createEAttribute(xrefsEClass, XREFS__VALUE);
@@ -470,6 +673,27 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 		createEAttribute(propertiesEClass, PROPERTIES__IS_ROOT);
 		createEAttribute(propertiesEClass, PROPERTIES__IS_LEAF);
 		createEAttribute(propertiesEClass, PROPERTIES__IS_ABSTRACT);
+
+		attributesEClass = createEClass(ATTRIBUTES);
+		createEReference(attributesEClass, ATTRIBUTES__ATTRIBUTE);
+
+		attributeEClass = createEClass(ATTRIBUTE);
+		createEReference(attributeEClass, ATTRIBUTE__STEREOTYPE);
+		createEReference(attributeEClass, ATTRIBUTE__XMIIDREF);
+		createEAttribute(attributeEClass, ATTRIBUTE__NAME);
+		createEAttribute(attributeEClass, ATTRIBUTE__SCOPE);
+
+		stereotypeEClass = createEClass(STEREOTYPE);
+		createEAttribute(stereotypeEClass, STEREOTYPE__STEREOTYPE);
+
+		constraintsEClass = createEClass(CONSTRAINTS);
+		createEReference(constraintsEClass, CONSTRAINTS__CONSTRAINT);
+
+		constraintEClass = createEClass(CONSTRAINT);
+		createEAttribute(constraintEClass, CONSTRAINT__NAME);
+		createEAttribute(constraintEClass, CONSTRAINT__TYPE);
+		createEAttribute(constraintEClass, CONSTRAINT__WEIGHT);
+		createEAttribute(constraintEClass, CONSTRAINT__STATUS);
 	}
 
 	/**
@@ -523,6 +747,8 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 		initEReference(getelement_Xmiidref(), ecorePackage.getEObject(), null, "xmi:idref", null, 0, 1, element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getelement_Classifier(), ecorePackage.getEObject(), null, "classifier", null, 0, 1, element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getelement_Properties(), this.getproperties(), null, "properties", null, 0, 1, element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getelement_Attributes(), this.getattributes(), null, "attributes", null, 0, 1, element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getelement_Constraints(), this.getconstraints(), null, "constraints", null, 0, 1, element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(xrefsEClass, xrefs.class, "xrefs", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getxrefs_Value(), ecorePackage.getEString(), "value", null, 0, 1, xrefs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -538,6 +764,27 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 		initEAttribute(getproperties_IsRoot(), ecorePackage.getEBoolean(), "isRoot", null, 0, 1, properties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getproperties_IsLeaf(), ecorePackage.getEBoolean(), "isLeaf", null, 0, 1, properties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getproperties_IsAbstract(), ecorePackage.getEBoolean(), "isAbstract", null, 0, 1, properties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(attributesEClass, attributes.class, "attributes", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getattributes_Attribute(), this.getattribute(), null, "attribute", null, 0, -1, attributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(attributeEClass, attribute.class, "attribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getattribute_Stereotype(), this.getstereotype(), null, "stereotype", null, 0, 1, attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getattribute_Xmiidref(), ecorePackage.getEObject(), null, "xmi:idref", null, 0, 1, attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getattribute_Name(), ecorePackage.getEString(), "name", null, 0, 1, attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getattribute_Scope(), ecorePackage.getEString(), "scope", null, 0, 1, attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(stereotypeEClass, stereotype.class, "stereotype", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getstereotype_Stereotype(), ecorePackage.getEString(), "stereotype", null, 0, 1, stereotype.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(constraintsEClass, constraints.class, "constraints", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getconstraints_Constraint(), this.getconstraint(), null, "constraint", null, 0, -1, constraints.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(constraintEClass, constraint.class, "constraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getconstraint_Name(), ecorePackage.getEString(), "name", null, 0, 1, constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getconstraint_Type(), ecorePackage.getEString(), "type", null, 0, 1, constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getconstraint_Weight(), ecorePackage.getEString(), "weight", null, 0, 1, constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getconstraint_Status(), ecorePackage.getEString(), "status", null, 0, 1, constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

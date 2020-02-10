@@ -25,6 +25,8 @@ import com.artal.capella.mapping.MappingUtils;
 import com.artal.capella.mapping.rules.AbstractDynamicMapping;
 import com.artal.capella.mapping.rules.MappingRulesManager;
 
+import xmi.attribute;
+import xmi.attributes;
 import xmi.element;
 import xmi.util.XMIExtensionsUtils;
 
@@ -84,13 +86,14 @@ public class EnumerationMapping extends AbstractDynamicMapping<DataPkg, Enumerat
 		org.eclipse.uml2.uml.Enumeration enumerationTarget = UMLFactory.eINSTANCE.createEnumeration();
 
 		MappingUtils.generateUID(getAlgo(), source, enumerationTarget, this);
-		
+
 		element addElement = XMIExtensionsUtils.createElement(enumerationTarget, getAlgo().getXMIExtension());
 		XMIExtensionsUtils.createProperties(addElement, false, false, "Enumeration", 0, "public", false, false);
 
 		enumerationTarget.setName(source.getName());
 
 		EList<EnumerationLiteral> ownedLiterals = source.getOwnedLiterals();
+		attributes createAttributes = XMIExtensionsUtils.createAttributes(addElement);
 		for (EnumerationLiteral enumerationLiteral : ownedLiterals) {
 			org.eclipse.uml2.uml.EnumerationLiteral createEnumerationLiteral = UMLFactory.eINSTANCE
 					.createEnumerationLiteral();
@@ -99,6 +102,11 @@ public class EnumerationMapping extends AbstractDynamicMapping<DataPkg, Enumerat
 
 			enumerationTarget.getOwnedLiterals().add(createEnumerationLiteral);
 			toTrace(enumerationLiteral, createEnumerationLiteral);
+			
+			attribute createAttribute = XMIExtensionsUtils.createAttribute(createAttributes, createEnumerationLiteral,
+					enumerationLiteral.getName());
+			XMIExtensionsUtils.createStereotypeAttr(createAttribute, "enum");
+
 		}
 
 		if (eaContainer instanceof Model) {

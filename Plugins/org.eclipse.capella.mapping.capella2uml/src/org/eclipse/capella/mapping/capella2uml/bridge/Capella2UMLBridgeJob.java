@@ -9,6 +9,7 @@ import org.eclipse.capella.mapping.capella2uml.bridge.mix.DefaultCapella2UMLMix;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 
 import com.artal.capella.mapping.uml.UMLBridgeJob;
@@ -40,6 +41,7 @@ public class Capella2UMLBridgeJob extends UMLBridgeJob<Project> {
 		saveOptions.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
 		saveOptions.put(XMIResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.TRUE);
 		saveOptions.put(XMIResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
+		saveOptions.put(XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.FALSE);
 	}
 
 	/**

@@ -6,11 +6,15 @@ package org.eclipse.capella.mapping.capella2uml.bridge.rules;
 import java.util.List;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.uml2.uml.DataType;
+import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.Usage;
 import org.eclipse.uml2.uml.VisibilityKind;
 import org.polarsys.capella.core.data.capellacore.Type;
 import org.polarsys.capella.core.data.information.ExchangeItem;
@@ -91,7 +95,21 @@ public class EventExchangeItemElementMapping
 
 		if (eaContainer instanceof Signal) {
 			((Signal) eaContainer).getOwnedAttributes().add(targetProperty);
-			// TODO manage cardinality
+			if (capellaObjectFromAllRules != null) {
+				Usage createUsage = UMLFactory.eINSTANCE.createUsage();
+				MappingUtils.generateUID(getAlgo(), source, createUsage, this, "us");
+
+				createUsage.getClients().add((Signal) eaContainer);
+				createUsage.getSuppliers().add((org.eclipse.uml2.uml.Type) capellaObjectFromAllRules);
+
+				EList<PackageableElement> packagedElements = ((Signal) eaContainer).getModel()
+						.getPackagedElements();
+				for (PackageableElement ownedMember : packagedElements) {
+					if (ownedMember.getName().equals("Import Capella"))
+						((org.eclipse.uml2.uml.Package) ownedMember).getPackagedElements().add(createUsage);
+				}
+
+			}
 		}
 
 		return targetProperty;

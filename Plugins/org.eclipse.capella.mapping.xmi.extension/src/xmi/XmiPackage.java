@@ -278,13 +278,31 @@ public interface XmiPackage extends EPackage {
 	int ELEMENT__PROPERTIES = 5;
 
 	/**
+	 * The feature id for the '<em><b>Attributes</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT__ATTRIBUTES = 6;
+
+	/**
+	 * The feature id for the '<em><b>Constraints</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT__CONSTRAINTS = 7;
+
+	/**
 	 * The number of structural features of the '<em>element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_FEATURE_COUNT = 6;
+	int ELEMENT_FEATURE_COUNT = 8;
 
 	/**
 	 * The number of operations of the '<em>element</em>' class.
@@ -461,6 +479,247 @@ public interface XmiPackage extends EPackage {
 	 * @ordered
 	 */
 	int PROPERTIES_OPERATION_COUNT = 0;
+
+
+	/**
+	 * The meta object id for the '{@link xmi.impl.attributesImpl <em>attributes</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see xmi.impl.attributesImpl
+	 * @see xmi.impl.XmiPackageImpl#getattributes()
+	 * @generated
+	 */
+	int ATTRIBUTES = 7;
+
+	/**
+	 * The feature id for the '<em><b>Attribute</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTES__ATTRIBUTE = 0;
+
+	/**
+	 * The number of structural features of the '<em>attributes</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTES_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>attributes</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTES_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link xmi.impl.attributeImpl <em>attribute</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see xmi.impl.attributeImpl
+	 * @see xmi.impl.XmiPackageImpl#getattribute()
+	 * @generated
+	 */
+	int ATTRIBUTE = 8;
+
+	/**
+	 * The feature id for the '<em><b>Stereotype</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__STEREOTYPE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Xmiidref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__XMIIDREF = 1;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__NAME = 2;
+
+	/**
+	 * The feature id for the '<em><b>Scope</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__SCOPE = 3;
+
+	/**
+	 * The number of structural features of the '<em>attribute</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_FEATURE_COUNT = 4;
+
+	/**
+	 * The number of operations of the '<em>attribute</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link xmi.impl.stereotypeImpl <em>stereotype</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see xmi.impl.stereotypeImpl
+	 * @see xmi.impl.XmiPackageImpl#getstereotype()
+	 * @generated
+	 */
+	int STEREOTYPE = 9;
+
+	/**
+	 * The feature id for the '<em><b>Stereotype</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE__STEREOTYPE = 0;
+
+	/**
+	 * The number of structural features of the '<em>stereotype</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>stereotype</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_OPERATION_COUNT = 0;
+
+
+	/**
+	 * The meta object id for the '{@link xmi.impl.constraintsImpl <em>constraints</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see xmi.impl.constraintsImpl
+	 * @see xmi.impl.XmiPackageImpl#getconstraints()
+	 * @generated
+	 */
+	int CONSTRAINTS = 10;
+
+	/**
+	 * The feature id for the '<em><b>Constraint</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINTS__CONSTRAINT = 0;
+
+	/**
+	 * The number of structural features of the '<em>constraints</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINTS_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>constraints</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINTS_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link xmi.impl.constraintImpl <em>constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see xmi.impl.constraintImpl
+	 * @see xmi.impl.XmiPackageImpl#getconstraint()
+	 * @generated
+	 */
+	int CONSTRAINT = 11;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__TYPE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Weight</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__WEIGHT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Status</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__STATUS = 3;
+
+	/**
+	 * The number of structural features of the '<em>constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT_FEATURE_COUNT = 4;
+
+	/**
+	 * The number of operations of the '<em>constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT_OPERATION_COUNT = 0;
 
 
 	/**
@@ -658,6 +917,28 @@ public interface XmiPackage extends EPackage {
 	EReference getelement_Properties();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link xmi.element#getAttributes <em>Attributes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Attributes</em>'.
+	 * @see xmi.element#getAttributes()
+	 * @see #getelement()
+	 * @generated
+	 */
+	EReference getelement_Attributes();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link xmi.element#getConstraints <em>Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Constraints</em>'.
+	 * @see xmi.element#getConstraints()
+	 * @see #getelement()
+	 * @generated
+	 */
+	EReference getelement_Constraints();
+
+	/**
 	 * Returns the meta object for class '{@link xmi.xrefs <em>xrefs</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -785,6 +1066,177 @@ public interface XmiPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getproperties_IsAbstract();
+
+	/**
+	 * Returns the meta object for class '{@link xmi.attributes <em>attributes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>attributes</em>'.
+	 * @see xmi.attributes
+	 * @generated
+	 */
+	EClass getattributes();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link xmi.attributes#getAttribute <em>Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Attribute</em>'.
+	 * @see xmi.attributes#getAttribute()
+	 * @see #getattributes()
+	 * @generated
+	 */
+	EReference getattributes_Attribute();
+
+	/**
+	 * Returns the meta object for class '{@link xmi.attribute <em>attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>attribute</em>'.
+	 * @see xmi.attribute
+	 * @generated
+	 */
+	EClass getattribute();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link xmi.attribute#getStereotype <em>Stereotype</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Stereotype</em>'.
+	 * @see xmi.attribute#getStereotype()
+	 * @see #getattribute()
+	 * @generated
+	 */
+	EReference getattribute_Stereotype();
+
+	/**
+	 * Returns the meta object for the reference '{@link xmi.attribute#getXmiidref <em>Xmiidref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Xmiidref</em>'.
+	 * @see xmi.attribute#getXmiidref()
+	 * @see #getattribute()
+	 * @generated
+	 */
+	EReference getattribute_Xmiidref();
+
+	/**
+	 * Returns the meta object for the attribute '{@link xmi.attribute#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see xmi.attribute#getName()
+	 * @see #getattribute()
+	 * @generated
+	 */
+	EAttribute getattribute_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link xmi.attribute#getScope <em>Scope</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Scope</em>'.
+	 * @see xmi.attribute#getScope()
+	 * @see #getattribute()
+	 * @generated
+	 */
+	EAttribute getattribute_Scope();
+
+	/**
+	 * Returns the meta object for class '{@link xmi.stereotype <em>stereotype</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>stereotype</em>'.
+	 * @see xmi.stereotype
+	 * @generated
+	 */
+	EClass getstereotype();
+
+	/**
+	 * Returns the meta object for the attribute '{@link xmi.stereotype#getStereotype <em>Stereotype</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Stereotype</em>'.
+	 * @see xmi.stereotype#getStereotype()
+	 * @see #getstereotype()
+	 * @generated
+	 */
+	EAttribute getstereotype_Stereotype();
+
+	/**
+	 * Returns the meta object for class '{@link xmi.constraints <em>constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>constraints</em>'.
+	 * @see xmi.constraints
+	 * @generated
+	 */
+	EClass getconstraints();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link xmi.constraints#getConstraint <em>Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Constraint</em>'.
+	 * @see xmi.constraints#getConstraint()
+	 * @see #getconstraints()
+	 * @generated
+	 */
+	EReference getconstraints_Constraint();
+
+	/**
+	 * Returns the meta object for class '{@link xmi.constraint <em>constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>constraint</em>'.
+	 * @see xmi.constraint
+	 * @generated
+	 */
+	EClass getconstraint();
+
+	/**
+	 * Returns the meta object for the attribute '{@link xmi.constraint#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see xmi.constraint#getName()
+	 * @see #getconstraint()
+	 * @generated
+	 */
+	EAttribute getconstraint_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link xmi.constraint#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see xmi.constraint#getType()
+	 * @see #getconstraint()
+	 * @generated
+	 */
+	EAttribute getconstraint_Type();
+
+	/**
+	 * Returns the meta object for the attribute '{@link xmi.constraint#getWeight <em>Weight</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Weight</em>'.
+	 * @see xmi.constraint#getWeight()
+	 * @see #getconstraint()
+	 * @generated
+	 */
+	EAttribute getconstraint_Weight();
+
+	/**
+	 * Returns the meta object for the attribute '{@link xmi.constraint#getStatus <em>Status</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Status</em>'.
+	 * @see xmi.constraint#getStatus()
+	 * @see #getconstraint()
+	 * @generated
+	 */
+	EAttribute getconstraint_Status();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -962,6 +1414,22 @@ public interface XmiPackage extends EPackage {
 		EReference ELEMENT__PROPERTIES = eINSTANCE.getelement_Properties();
 
 		/**
+		 * The meta object literal for the '<em><b>Attributes</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ELEMENT__ATTRIBUTES = eINSTANCE.getelement_Attributes();
+
+		/**
+		 * The meta object literal for the '<em><b>Constraints</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ELEMENT__CONSTRAINTS = eINSTANCE.getelement_Constraints();
+
+		/**
 		 * The meta object literal for the '{@link xmi.impl.xrefsImpl <em>xrefs</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1062,6 +1530,144 @@ public interface XmiPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PROPERTIES__IS_ABSTRACT = eINSTANCE.getproperties_IsAbstract();
+
+		/**
+		 * The meta object literal for the '{@link xmi.impl.attributesImpl <em>attributes</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see xmi.impl.attributesImpl
+		 * @see xmi.impl.XmiPackageImpl#getattributes()
+		 * @generated
+		 */
+		EClass ATTRIBUTES = eINSTANCE.getattributes();
+
+		/**
+		 * The meta object literal for the '<em><b>Attribute</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ATTRIBUTES__ATTRIBUTE = eINSTANCE.getattributes_Attribute();
+
+		/**
+		 * The meta object literal for the '{@link xmi.impl.attributeImpl <em>attribute</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see xmi.impl.attributeImpl
+		 * @see xmi.impl.XmiPackageImpl#getattribute()
+		 * @generated
+		 */
+		EClass ATTRIBUTE = eINSTANCE.getattribute();
+
+		/**
+		 * The meta object literal for the '<em><b>Stereotype</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ATTRIBUTE__STEREOTYPE = eINSTANCE.getattribute_Stereotype();
+
+		/**
+		 * The meta object literal for the '<em><b>Xmiidref</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ATTRIBUTE__XMIIDREF = eINSTANCE.getattribute_Xmiidref();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ATTRIBUTE__NAME = eINSTANCE.getattribute_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Scope</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ATTRIBUTE__SCOPE = eINSTANCE.getattribute_Scope();
+
+		/**
+		 * The meta object literal for the '{@link xmi.impl.stereotypeImpl <em>stereotype</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see xmi.impl.stereotypeImpl
+		 * @see xmi.impl.XmiPackageImpl#getstereotype()
+		 * @generated
+		 */
+		EClass STEREOTYPE = eINSTANCE.getstereotype();
+
+		/**
+		 * The meta object literal for the '<em><b>Stereotype</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STEREOTYPE__STEREOTYPE = eINSTANCE.getstereotype_Stereotype();
+
+		/**
+		 * The meta object literal for the '{@link xmi.impl.constraintsImpl <em>constraints</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see xmi.impl.constraintsImpl
+		 * @see xmi.impl.XmiPackageImpl#getconstraints()
+		 * @generated
+		 */
+		EClass CONSTRAINTS = eINSTANCE.getconstraints();
+
+		/**
+		 * The meta object literal for the '<em><b>Constraint</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONSTRAINTS__CONSTRAINT = eINSTANCE.getconstraints_Constraint();
+
+		/**
+		 * The meta object literal for the '{@link xmi.impl.constraintImpl <em>constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see xmi.impl.constraintImpl
+		 * @see xmi.impl.XmiPackageImpl#getconstraint()
+		 * @generated
+		 */
+		EClass CONSTRAINT = eINSTANCE.getconstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTRAINT__NAME = eINSTANCE.getconstraint_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTRAINT__TYPE = eINSTANCE.getconstraint_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Weight</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTRAINT__WEIGHT = eINSTANCE.getconstraint_Weight();
+
+		/**
+		 * The meta object literal for the '<em><b>Status</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTRAINT__STATUS = eINSTANCE.getconstraint_Status();
 
 	}
 

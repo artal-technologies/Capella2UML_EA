@@ -85,6 +85,51 @@ public interface XmiFactory extends EFactory {
 	properties createproperties();
 
 	/**
+	 * Returns a new object of class '<em>attributes</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>attributes</em>'.
+	 * @generated
+	 */
+	attributes createattributes();
+
+	/**
+	 * Returns a new object of class '<em>attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>attribute</em>'.
+	 * @generated
+	 */
+	attribute createattribute();
+
+	/**
+	 * Returns a new object of class '<em>stereotype</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>stereotype</em>'.
+	 * @generated
+	 */
+	stereotype createstereotype();
+
+	/**
+	 * Returns a new object of class '<em>constraints</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>constraints</em>'.
+	 * @generated
+	 */
+	constraints createconstraints();
+
+	/**
+	 * Returns a new object of class '<em>constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>constraint</em>'.
+	 * @generated
+	 */
+	constraint createconstraint();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

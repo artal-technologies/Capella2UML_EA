@@ -89,7 +89,7 @@ public class ShareDataExchangeItemMapping
 		MappingUtils.generateUID(getAlgo(), source, classTarget, this);
 		Resource eResource = source.eResource();
 		String sysMLID = MappingUtils.getSysMLID(eResource, source);
-		XMIExtensionsUtils.addElement(classTarget, getAlgo().getXMIExtension(), sysMLID + "entity");
+		XMIExtensionsUtils.addElement(classTarget, getAlgo().getXMIExtension(), sysMLID ,"entity");
 		classTarget.setName(source.getName());
 
 		if (eaContainer instanceof Model) {

@@ -19,6 +19,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link xmi.element#getXmiidref <em>Xmiidref</em>}</li>
  *   <li>{@link xmi.element#getClassifier <em>Classifier</em>}</li>
  *   <li>{@link xmi.element#getProperties <em>Properties</em>}</li>
+ *   <li>{@link xmi.element#getAttributes <em>Attributes</em>}</li>
+ *   <li>{@link xmi.element#getConstraints <em>Constraints</em>}</li>
  * </ul>
  *
  * @see xmi.XmiPackage#getelement()
@@ -181,5 +183,57 @@ public interface element extends EObject {
 	 * @generated
 	 */
 	void setProperties(properties value);
+
+	/**
+	 * Returns the value of the '<em><b>Attributes</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Attributes</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Attributes</em>' containment reference.
+	 * @see #setAttributes(attributes)
+	 * @see xmi.XmiPackage#getelement_Attributes()
+	 * @model containment="true"
+	 * @generated
+	 */
+	attributes getAttributes();
+
+	/**
+	 * Sets the value of the '{@link xmi.element#getAttributes <em>Attributes</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Attributes</em>' containment reference.
+	 * @see #getAttributes()
+	 * @generated
+	 */
+	void setAttributes(attributes value);
+
+	/**
+	 * Returns the value of the '<em><b>Constraints</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Constraints</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Constraints</em>' containment reference.
+	 * @see #setConstraints(constraints)
+	 * @see xmi.XmiPackage#getelement_Constraints()
+	 * @model containment="true"
+	 * @generated
+	 */
+	constraints getConstraints();
+
+	/**
+	 * Sets the value of the '{@link xmi.element#getConstraints <em>Constraints</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Constraints</em>' containment reference.
+	 * @see #getConstraints()
+	 * @generated
+	 */
+	void setConstraints(constraints value);
 
 } // element

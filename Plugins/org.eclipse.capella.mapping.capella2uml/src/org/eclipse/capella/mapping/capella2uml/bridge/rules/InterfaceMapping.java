@@ -10,10 +10,12 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.Usage;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.cs.Interface;
 import org.polarsys.capella.core.data.cs.InterfacePkg;
@@ -92,6 +94,22 @@ public class InterfaceMapping extends AbstractDynamicMapping<InterfacePkg, Inter
 				XMIExtensionsUtils.createElement(createProperty, getAlgo().getXMIExtension());
 				targetInterface.getOwnedAttributes().add(createProperty);
 				createProperty.setType((Classifier) capellaObjectFromAllRules);
+
+				if (capellaObjectFromAllRules != null) {
+					Usage createUsage = UMLFactory.eINSTANCE.createUsage();
+					MappingUtils.generateUID(getAlgo(), exchangeItem, createUsage, this, "us");
+
+					createUsage.getClients().add((org.eclipse.uml2.uml.Interface) targetInterface);
+					createUsage.getSuppliers().add((org.eclipse.uml2.uml.Type) capellaObjectFromAllRules);
+
+					EList<PackageableElement> packagedElements = ((Model) eaContainer).getPackagedElements();
+					for (PackageableElement ownedMember : packagedElements) {
+						if (ownedMember.getName().equals("Import Capella"))
+							((org.eclipse.uml2.uml.Package) ownedMember).getPackagedElements().add(createUsage);
+					}
+
+				}
+
 			}
 		}
 

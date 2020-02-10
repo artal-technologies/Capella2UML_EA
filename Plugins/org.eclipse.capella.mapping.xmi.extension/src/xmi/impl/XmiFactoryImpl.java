@@ -63,6 +63,11 @@ public class XmiFactoryImpl extends EFactoryImpl implements XmiFactory {
 			case XmiPackage.XREFS: return createxrefs();
 			case XmiPackage.PROFILES: return createprofiles();
 			case XmiPackage.PROPERTIES: return createproperties();
+			case XmiPackage.ATTRIBUTES: return createattributes();
+			case XmiPackage.ATTRIBUTE: return createattribute();
+			case XmiPackage.STEREOTYPE: return createstereotype();
+			case XmiPackage.CONSTRAINTS: return createconstraints();
+			case XmiPackage.CONSTRAINT: return createconstraint();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -136,6 +141,56 @@ public class XmiFactoryImpl extends EFactoryImpl implements XmiFactory {
 	public properties createproperties() {
 		propertiesImpl properties = new propertiesImpl();
 		return properties;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public attributes createattributes() {
+		attributesImpl attributes = new attributesImpl();
+		return attributes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public attribute createattribute() {
+		attributeImpl attribute = new attributeImpl();
+		return attribute;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public stereotype createstereotype() {
+		stereotypeImpl stereotype = new stereotypeImpl();
+		return stereotype;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public constraints createconstraints() {
+		constraintsImpl constraints = new constraintsImpl();
+		return constraints;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public constraint createconstraint() {
+		constraintImpl constraint = new constraintImpl();
+		return constraint;
 	}
 
 	/**

@@ -26,7 +26,6 @@ import org.polarsys.capella.core.data.information.DataPkg;
 import org.polarsys.capella.core.data.information.InformationPackage;
 import org.polarsys.capella.core.data.la.LogicalActorPkg;
 import org.polarsys.capella.core.data.la.LogicalArchitecture;
-import org.polarsys.capella.core.data.la.LogicalComponent;
 
 import com.artal.capella.mapping.CapellaUtils;
 import com.artal.capella.mapping.MappingUtils;
@@ -158,10 +157,10 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 		InterfaceMapping interfaceMapping = new InterfaceMapping(getAlgo(), interfacePkg, getMappingExucution());
 		manager.add(InterfaceMapping.class.getName() + interfacePkg.getId(), interfaceMapping);
 
-		LogicalComponent logicalSystem = CapellaUtils.getLogicalSystemRoot(project);
+//		LogicalComponent logicalSystem = CapellaUtils.getLogicalSystemRoot(project);
 
-		ComponentMapping componentMapping = new ComponentMapping(getAlgo(), logicalSystem, getMappingExucution());
-		manager.add(componentMapping.getClass().getName() + logicalSystem.getId(), componentMapping);
+		ComponentMapping componentMapping = new ComponentMapping(getAlgo(), logicalArchitecture, getMappingExucution());
+		manager.add(componentMapping.getClass().getName() + logicalArchitecture.getId(), componentMapping);
 
 		List<Component> collect = EObjectExt.getAll(logicalArchitecture, CsPackage.Literals.COMPONENT).stream()
 				.map(Component.class::cast).collect(Collectors.toList());

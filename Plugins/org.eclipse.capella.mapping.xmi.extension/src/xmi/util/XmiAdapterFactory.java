@@ -96,6 +96,26 @@ public class XmiAdapterFactory extends AdapterFactoryImpl {
 				return createpropertiesAdapter();
 			}
 			@Override
+			public Adapter caseattributes(attributes object) {
+				return createattributesAdapter();
+			}
+			@Override
+			public Adapter caseattribute(attribute object) {
+				return createattributeAdapter();
+			}
+			@Override
+			public Adapter casestereotype(stereotype object) {
+				return createstereotypeAdapter();
+			}
+			@Override
+			public Adapter caseconstraints(constraints object) {
+				return createconstraintsAdapter();
+			}
+			@Override
+			public Adapter caseconstraint(constraint object) {
+				return createconstraintAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -210,6 +230,76 @@ public class XmiAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createpropertiesAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link xmi.attributes <em>attributes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see xmi.attributes
+	 * @generated
+	 */
+	public Adapter createattributesAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link xmi.attribute <em>attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see xmi.attribute
+	 * @generated
+	 */
+	public Adapter createattributeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link xmi.stereotype <em>stereotype</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see xmi.stereotype
+	 * @generated
+	 */
+	public Adapter createstereotypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link xmi.constraints <em>constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see xmi.constraints
+	 * @generated
+	 */
+	public Adapter createconstraintsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link xmi.constraint <em>constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see xmi.constraint
+	 * @generated
+	 */
+	public Adapter createconstraintAdapter() {
 		return null;
 	}
 

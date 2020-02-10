@@ -13,6 +13,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import xmi.XmiPackage;
+import xmi.attributes;
+import xmi.constraints;
 import xmi.element;
 import xmi.properties;
 import xmi.xrefs;
@@ -31,6 +33,8 @@ import xmi.xrefs;
  *   <li>{@link xmi.impl.elementImpl#getXmiidref <em>Xmiidref</em>}</li>
  *   <li>{@link xmi.impl.elementImpl#getClassifier <em>Classifier</em>}</li>
  *   <li>{@link xmi.impl.elementImpl#getProperties <em>Properties</em>}</li>
+ *   <li>{@link xmi.impl.elementImpl#getAttributes <em>Attributes</em>}</li>
+ *   <li>{@link xmi.impl.elementImpl#getConstraints <em>Constraints</em>}</li>
  * </ul>
  *
  * @generated
@@ -115,6 +119,26 @@ public class elementImpl extends MinimalEObjectImpl.Container implements element
 	 * @ordered
 	 */
 	protected properties properties;
+
+	/**
+	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAttributes()
+	 * @generated
+	 * @ordered
+	 */
+	protected attributes attributes;
+
+	/**
+	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConstraints()
+	 * @generated
+	 * @ordered
+	 */
+	protected constraints constraints;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -344,6 +368,92 @@ public class elementImpl extends MinimalEObjectImpl.Container implements element
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public attributes getAttributes() {
+		return attributes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetAttributes(attributes newAttributes, NotificationChain msgs) {
+		attributes oldAttributes = attributes;
+		attributes = newAttributes;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XmiPackage.ELEMENT__ATTRIBUTES, oldAttributes, newAttributes);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAttributes(attributes newAttributes) {
+		if (newAttributes != attributes) {
+			NotificationChain msgs = null;
+			if (attributes != null)
+				msgs = ((InternalEObject)attributes).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XmiPackage.ELEMENT__ATTRIBUTES, null, msgs);
+			if (newAttributes != null)
+				msgs = ((InternalEObject)newAttributes).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XmiPackage.ELEMENT__ATTRIBUTES, null, msgs);
+			msgs = basicSetAttributes(newAttributes, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, XmiPackage.ELEMENT__ATTRIBUTES, newAttributes, newAttributes));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public constraints getConstraints() {
+		return constraints;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetConstraints(constraints newConstraints, NotificationChain msgs) {
+		constraints oldConstraints = constraints;
+		constraints = newConstraints;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XmiPackage.ELEMENT__CONSTRAINTS, oldConstraints, newConstraints);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setConstraints(constraints newConstraints) {
+		if (newConstraints != constraints) {
+			NotificationChain msgs = null;
+			if (constraints != null)
+				msgs = ((InternalEObject)constraints).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XmiPackage.ELEMENT__CONSTRAINTS, null, msgs);
+			if (newConstraints != null)
+				msgs = ((InternalEObject)newConstraints).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XmiPackage.ELEMENT__CONSTRAINTS, null, msgs);
+			msgs = basicSetConstraints(newConstraints, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, XmiPackage.ELEMENT__CONSTRAINTS, newConstraints, newConstraints));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -351,6 +461,10 @@ public class elementImpl extends MinimalEObjectImpl.Container implements element
 				return basicSetXrefs(null, msgs);
 			case XmiPackage.ELEMENT__PROPERTIES:
 				return basicSetProperties(null, msgs);
+			case XmiPackage.ELEMENT__ATTRIBUTES:
+				return basicSetAttributes(null, msgs);
+			case XmiPackage.ELEMENT__CONSTRAINTS:
+				return basicSetConstraints(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -377,6 +491,10 @@ public class elementImpl extends MinimalEObjectImpl.Container implements element
 				return basicGetClassifier();
 			case XmiPackage.ELEMENT__PROPERTIES:
 				return getProperties();
+			case XmiPackage.ELEMENT__ATTRIBUTES:
+				return getAttributes();
+			case XmiPackage.ELEMENT__CONSTRAINTS:
+				return getConstraints();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -406,6 +524,12 @@ public class elementImpl extends MinimalEObjectImpl.Container implements element
 				return;
 			case XmiPackage.ELEMENT__PROPERTIES:
 				setProperties((properties)newValue);
+				return;
+			case XmiPackage.ELEMENT__ATTRIBUTES:
+				setAttributes((attributes)newValue);
+				return;
+			case XmiPackage.ELEMENT__CONSTRAINTS:
+				setConstraints((constraints)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -437,6 +561,12 @@ public class elementImpl extends MinimalEObjectImpl.Container implements element
 			case XmiPackage.ELEMENT__PROPERTIES:
 				setProperties((properties)null);
 				return;
+			case XmiPackage.ELEMENT__ATTRIBUTES:
+				setAttributes((attributes)null);
+				return;
+			case XmiPackage.ELEMENT__CONSTRAINTS:
+				setConstraints((constraints)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -461,6 +591,10 @@ public class elementImpl extends MinimalEObjectImpl.Container implements element
 				return classifier != null;
 			case XmiPackage.ELEMENT__PROPERTIES:
 				return properties != null;
+			case XmiPackage.ELEMENT__ATTRIBUTES:
+				return attributes != null;
+			case XmiPackage.ELEMENT__CONSTRAINTS:
+				return constraints != null;
 		}
 		return super.eIsSet(featureID);
 	}

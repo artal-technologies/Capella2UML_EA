@@ -10,6 +10,7 @@ import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Signal;
@@ -86,7 +87,9 @@ public class EventExchangeItemMapping
 	public Object compute(Object eaContainer, ExchangeItem source) {
 		Signal signalTarget = UMLFactory.eINSTANCE.createSignal();
 		MappingUtils.generateUID(getAlgo(), source, signalTarget, this);
-		XMIExtensionsUtils.createElement(signalTarget, getAlgo().getXMIExtension());
+		Resource eResource = source.eResource();
+		String sysMLID = MappingUtils.getSysMLID(eResource, source);
+		XMIExtensionsUtils.addElement(signalTarget, getAlgo().getXMIExtension(), sysMLID,"sign");
 
 		signalTarget.setName(source.getName());
 		if (eaContainer instanceof Model) {
