@@ -14,4 +14,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.uml2.uml,
  org.eclipse.emf.diffmerge.bridge.uml,
  org.polarsys.capella.core.model.helpers,
- org.eclipse.capella.mapping.xmi.extension
+ org.eclipse.capella.mapping.xmi.extension,
+ org.eclipse.osgi.services
+Service-Component: OSGI-INF/org.eclipse.capella.mapping.capella2uml.bridge.EAMappingService.xml
+Bundle-ActivationPolicy: lazy

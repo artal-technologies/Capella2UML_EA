@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 
+import com.artal.capella.mapping.mix.AbstractMappingAlgoMix;
 import com.artal.capella.mapping.uml.UMLBridgeJob;
 
 /**
@@ -20,7 +21,7 @@ import com.artal.capella.mapping.uml.UMLBridgeJob;
  */
 public class Capella2UMLBridgeJob extends UMLBridgeJob<Project> {
 
-	public Capella2UMLBridgeJob(String jobName_p, Project sourceDataSet_p, URI targetURI_p, DefaultCapella2UMLMix mix) {
+	public Capella2UMLBridgeJob(String jobName_p, Project sourceDataSet_p, URI targetURI_p, AbstractMappingAlgoMix<?, ?> mix) {
 		super(sourceDataSet_p, targetURI_p, new Capella2UMLAlgo(mix));
 	}
 

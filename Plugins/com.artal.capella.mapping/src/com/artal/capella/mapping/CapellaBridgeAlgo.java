@@ -178,5 +178,9 @@ public abstract class CapellaBridgeAlgo<SD> {
 		}
 
 	}
+	
+	public void setMix(AbstractMappingAlgoMix<SD, CapellaBridgeAlgo<?>> _mix) {
+		this._mix = _mix;
+	}
 
 }
