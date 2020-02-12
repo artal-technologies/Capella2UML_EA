@@ -157,7 +157,6 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 		InterfaceMapping interfaceMapping = new InterfaceMapping(getAlgo(), interfacePkg, getMappingExucution());
 		manager.add(InterfaceMapping.class.getName() + interfacePkg.getId(), interfaceMapping);
 
-//		LogicalComponent logicalSystem = CapellaUtils.getLogicalSystemRoot(project);
 
 		ComponentMapping componentMapping = new ComponentMapping(getAlgo(), logicalArchitecture, getMappingExucution());
 		manager.add(componentMapping.getClass().getName() + logicalArchitecture.getId(), componentMapping);
@@ -172,6 +171,10 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 		LogicalActorPkg logicalActorPkg = CapellaUtils.getLogicalActorPkg(project);
 		ActorMapping actorMapping = new ActorMapping(getAlgo(), logicalActorPkg, getMappingExucution());
 		manager.add(logicalActorPkg.getClass().getName() + logicalActorPkg.getId(), actorMapping);
+
+		DescriptionMapping descriptionMapping = new DescriptionMapping(getAlgo(), logicalArchitecture,
+				getMappingExucution());
+		manager.add(descriptionMapping.getClass().getName() + logicalArchitecture.getId(), descriptionMapping);
 
 	}
 
