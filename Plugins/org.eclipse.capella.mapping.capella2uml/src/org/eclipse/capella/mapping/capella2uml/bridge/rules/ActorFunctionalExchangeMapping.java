@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Actor;
@@ -17,11 +16,9 @@ import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
-import org.polarsys.capella.common.data.modellingcore.TraceableElement;
 import org.polarsys.capella.common.helpers.EObjectExt;
 import org.polarsys.capella.core.data.cs.Component;
 import org.polarsys.capella.core.data.fa.AbstractFunction;
-import org.polarsys.capella.core.data.fa.ComponentFunctionalAllocation;
 import org.polarsys.capella.core.data.fa.FaPackage;
 import org.polarsys.capella.core.data.fa.FunctionInputPort;
 import org.polarsys.capella.core.data.fa.FunctionOutputPort;
@@ -71,25 +68,15 @@ public class ActorFunctionalExchangeMapping
 		AbstractFunction sourceFunction = (AbstractFunction) sourceFunctionOutputPort.eContainer();
 		AbstractFunction targetFunction = (AbstractFunction) targetFunctionInputPort.eContainer();
 
-		
 		Component sourceComponent = CapellaUtils.getInverseComponent(sourceFunction);
 		Component targetComponent = CapellaUtils.getInverseComponent(targetFunction);
-		
-		if(capellaContainer.equals(sourceComponent) && capellaContainer.equals(targetComponent)) {
+
+		if (capellaContainer.equals(sourceComponent) && capellaContainer.equals(targetComponent)) {
 			return false;
 		}
-		if(capellaContainer.equals(sourceComponent) || capellaContainer.equals(targetComponent)) {
+		if (capellaContainer.equals(sourceComponent) || capellaContainer.equals(targetComponent)) {
 			return true;
 		}
-		
-//		EList<ComponentFunctionalAllocation> ownedFunctionalAllocation = capellaContainer
-//				.getOwnedFunctionalAllocation();
-//		for (ComponentFunctionalAllocation componentFunctionalAllocation : ownedFunctionalAllocation) {
-//			TraceableElement targetElement = componentFunctionalAllocation.getTargetElement();
-//			if (targetElement.equals(sourceFunction) || targetElement.equals(targetFunction)) {
-//				return true;
-//			}
-//		}
 
 		return false;
 	}

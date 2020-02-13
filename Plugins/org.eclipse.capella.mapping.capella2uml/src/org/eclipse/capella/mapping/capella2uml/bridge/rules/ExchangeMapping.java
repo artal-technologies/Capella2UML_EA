@@ -22,6 +22,8 @@ import org.eclipse.uml2.uml.UMLFactory;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.cs.Interface;
 import org.polarsys.capella.core.data.fa.ComponentExchange;
+import org.polarsys.capella.core.data.fa.ComponentPort;
+import org.polarsys.capella.core.data.fa.OrientationPortKind;
 import org.polarsys.capella.core.data.information.Port;
 import org.polarsys.capella.core.model.helpers.ProjectExt;
 
@@ -110,8 +112,15 @@ public class ExchangeMapping extends
 			MappingUtils.generateUID(getAlgo(), source, sourceConnectorEnd, this, "sourcePort");
 			MappingUtils.generateUID(getAlgo(), source, targetConnectorEnd, this, "targetPort");
 
-			targetConnector.getEnds().add(sourceConnectorEnd);
-			targetConnector.getEnds().add(targetConnectorEnd);
+			OrientationPortKind sourceorientation = ((ComponentPort) sourcePort).getOrientation();
+
+			if (sourceorientation == OrientationPortKind.OUT) {
+				targetConnector.getEnds().add(sourceConnectorEnd);
+				targetConnector.getEnds().add(targetConnectorEnd);
+			} else {
+				targetConnector.getEnds().add(targetConnectorEnd);
+				targetConnector.getEnds().add(sourceConnectorEnd);
+			}
 
 			Component eContainer = (Component) sourceUMLPort.eContainer();
 			eContainer.getOwnedConnectors().add(targetConnector);

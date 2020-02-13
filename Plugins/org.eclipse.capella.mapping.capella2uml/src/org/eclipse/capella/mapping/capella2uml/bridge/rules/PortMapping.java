@@ -79,6 +79,7 @@ public class PortMapping
 		targetPort.setAggregation(AggregationKind.COMPOSITE_LITERAL);
 		targetPort.setIsUnique(false);
 		targetPort.setIsService(false);
+		targetPort.setIsBehavior(true);
 		if (eaContainer instanceof EncapsulatedClassifier) {
 			((EncapsulatedClassifier) eaContainer).getOwnedPorts().add(targetPort);
 
