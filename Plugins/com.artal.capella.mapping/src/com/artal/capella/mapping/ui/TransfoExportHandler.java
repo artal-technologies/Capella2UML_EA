@@ -70,10 +70,6 @@ public class TransfoExportHandler extends AbstractHandler {
 			} else {
 				file.delete();
 			}
-			File f = new File(umlPath + ".bridgetraces");
-			if (f.exists()) {
-				f.delete();
-			}
 
 		}
 
@@ -120,6 +116,11 @@ public class TransfoExportHandler extends AbstractHandler {
 				}
 
 			}
+		}
+		// for this moment the bridge trace is not saved
+		File f = new File(umlPath + ".bridgetraces");
+		if (f.exists()) {
+			f.delete();
 		}
 		return null;
 	}

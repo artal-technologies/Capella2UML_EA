@@ -78,11 +78,11 @@ public class CapellaMappingDialog extends TitleAreaDialog {
 		setTitle("Select a target file");
 		Group selectGroup = createSelectedGroup(container);
 
-		createBrowseButton(selectGroup);
-
 		ComboViewer comboTransitions = createTransfoCombo(selectGroup, listServices);
 		// blob
 		new Label(selectGroup, SWT.NONE);
+		createBrowseButton(selectGroup);
+
 		ComboViewer combo = createMixCombo(selectGroup);
 
 		Composite specificGroup = new Composite(container, SWT.NONE);
