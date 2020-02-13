@@ -130,6 +130,24 @@ public interface XmiFactory extends EFactory {
 	constraint createconstraint();
 
 	/**
+	 * Returns a new object of class '<em>connectors</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>connectors</em>'.
+	 * @generated
+	 */
+	connectors createconnectors();
+
+	/**
+	 * Returns a new object of class '<em>connector</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>connector</em>'.
+	 * @generated
+	 */
+	connector createconnector();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

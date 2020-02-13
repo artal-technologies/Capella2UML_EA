@@ -31,8 +31,12 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.ecore.xmi.XMLHelper;
+import org.eclipse.emf.ecore.xmi.XMLSave;
 import org.eclipse.emf.ecore.xmi.impl.EMOFResourceFactoryImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIHelperImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMISaveImpl;
 import org.eclipse.ui.progress.IProgressConstants;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -150,6 +154,14 @@ public class UMLBridgeJob<SD> extends BridgeJob<SD> {
 		return _mappingBridge;
 	}
 
+	public XMLSave createOwnXMLSave(XMLHelper xmlHelper) {
+		return new XMISaveImpl(xmlHelper);
+	}
+
+	protected XMLHelper createOwnedXMLHelper(XMIResource resource) {
+		return new XMIHelperImpl(resource);
+	}
+
 	@Override
 	protected Resource getCreateTargetResource(URI uri_p) {
 		Resource resource = null;
@@ -157,6 +169,11 @@ public class UMLBridgeJob<SD> extends BridgeJob<SD> {
 			resource = (XMIResourceImpl) getTargetResourceSet().getResource(uri_p, false);
 			if (resource == null) {
 				resource = new XMIResourceImpl(uri_p) {
+					@Override
+					protected XMLSave createXMLSave() {
+						return createOwnXMLSave(createOwnedXMLHelper(this));
+					}
+
 					protected boolean useUUIDs() {
 						return getAlgo().getManageUIDs().isUseUIDs();
 					};
@@ -262,8 +279,5 @@ public class UMLBridgeJob<SD> extends BridgeJob<SD> {
 	public String getEncoding() {
 		return "ASCII";
 	}
-	
-	
-	
 
 }

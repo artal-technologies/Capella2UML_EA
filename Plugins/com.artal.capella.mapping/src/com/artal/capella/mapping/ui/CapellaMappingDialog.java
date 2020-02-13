@@ -4,10 +4,8 @@
 package com.artal.capella.mapping.ui;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.internal.registry.osgi.OSGIUtils;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.diffmerge.bridge.interactive.BridgeJob;
 import org.eclipse.jface.dialogs.IDialogConstants;

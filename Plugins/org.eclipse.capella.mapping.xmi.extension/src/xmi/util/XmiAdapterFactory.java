@@ -116,6 +116,14 @@ public class XmiAdapterFactory extends AdapterFactoryImpl {
 				return createconstraintAdapter();
 			}
 			@Override
+			public Adapter caseconnectors(connectors object) {
+				return createconnectorsAdapter();
+			}
+			@Override
+			public Adapter caseconnector(connector object) {
+				return createconnectorAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -300,6 +308,34 @@ public class XmiAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createconstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link xmi.connectors <em>connectors</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see xmi.connectors
+	 * @generated
+	 */
+	public Adapter createconnectorsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link xmi.connector <em>connector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see xmi.connector
+	 * @generated
+	 */
+	public Adapter createconnectorAdapter() {
 		return null;
 	}
 

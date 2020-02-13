@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import xmi.Extension;
 import xmi.XmiPackage;
+import xmi.connectors;
 import xmi.elements;
 import xmi.profiles;
 
@@ -32,6 +33,7 @@ import xmi.profiles;
  *   <li>{@link xmi.impl.ExtensionImpl#getExtenderID <em>Extender ID</em>}</li>
  *   <li>{@link xmi.impl.ExtensionImpl#getElements <em>Elements</em>}</li>
  *   <li>{@link xmi.impl.ExtensionImpl#getProfiles <em>Profiles</em>}</li>
+ *   <li>{@link xmi.impl.ExtensionImpl#getConnectors <em>Connectors</em>}</li>
  * </ul>
  *
  * @generated
@@ -96,6 +98,16 @@ public class ExtensionImpl extends MinimalEObjectImpl.Container implements Exten
 	 * @ordered
 	 */
 	protected profiles profiles;
+
+	/**
+	 * The cached value of the '{@link #getConnectors() <em>Connectors</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConnectors()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<connectors> connectors;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -218,6 +230,18 @@ public class ExtensionImpl extends MinimalEObjectImpl.Container implements Exten
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<connectors> getConnectors() {
+		if (connectors == null) {
+			connectors = new EObjectContainmentEList<connectors>(connectors.class, this, XmiPackage.EXTENSION__CONNECTORS);
+		}
+		return connectors;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -225,6 +249,8 @@ public class ExtensionImpl extends MinimalEObjectImpl.Container implements Exten
 				return ((InternalEList<?>)getElements()).basicRemove(otherEnd, msgs);
 			case XmiPackage.EXTENSION__PROFILES:
 				return basicSetProfiles(null, msgs);
+			case XmiPackage.EXTENSION__CONNECTORS:
+				return ((InternalEList<?>)getConnectors()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -245,6 +271,8 @@ public class ExtensionImpl extends MinimalEObjectImpl.Container implements Exten
 				return getElements();
 			case XmiPackage.EXTENSION__PROFILES:
 				return getProfiles();
+			case XmiPackage.EXTENSION__CONNECTORS:
+				return getConnectors();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -271,6 +299,10 @@ public class ExtensionImpl extends MinimalEObjectImpl.Container implements Exten
 			case XmiPackage.EXTENSION__PROFILES:
 				setProfiles((profiles)newValue);
 				return;
+			case XmiPackage.EXTENSION__CONNECTORS:
+				getConnectors().clear();
+				getConnectors().addAll((Collection<? extends connectors>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -295,6 +327,9 @@ public class ExtensionImpl extends MinimalEObjectImpl.Container implements Exten
 			case XmiPackage.EXTENSION__PROFILES:
 				setProfiles((profiles)null);
 				return;
+			case XmiPackage.EXTENSION__CONNECTORS:
+				getConnectors().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -315,6 +350,8 @@ public class ExtensionImpl extends MinimalEObjectImpl.Container implements Exten
 				return elements != null && !elements.isEmpty();
 			case XmiPackage.EXTENSION__PROFILES:
 				return profiles != null;
+			case XmiPackage.EXTENSION__CONNECTORS:
+				return connectors != null && !connectors.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

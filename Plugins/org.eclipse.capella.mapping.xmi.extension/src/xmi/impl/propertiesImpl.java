@@ -27,6 +27,8 @@ import xmi.properties;
  *   <li>{@link xmi.impl.propertiesImpl#isIsRoot <em>Is Root</em>}</li>
  *   <li>{@link xmi.impl.propertiesImpl#isIsLeaf <em>Is Leaf</em>}</li>
  *   <li>{@link xmi.impl.propertiesImpl#isIsAbstract <em>Is Abstract</em>}</li>
+ *   <li>{@link xmi.impl.propertiesImpl#getEa_type <em>Ea type</em>}</li>
+ *   <li>{@link xmi.impl.propertiesImpl#getDirection <em>Direction</em>}</li>
  * </ul>
  *
  * @generated
@@ -171,6 +173,46 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 	 * @ordered
 	 */
 	protected boolean isAbstract = IS_ABSTRACT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getEa_type() <em>Ea type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEa_type()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String EA_TYPE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getEa_type() <em>Ea type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEa_type()
+	 * @generated
+	 * @ordered
+	 */
+	protected String ea_type = EA_TYPE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDirection() <em>Direction</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDirection()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DIRECTION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDirection() <em>Direction</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDirection()
+	 * @generated
+	 * @ordered
+	 */
+	protected String direction = DIRECTION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -343,6 +385,48 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getEa_type() {
+		return ea_type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEa_type(String newEa_type) {
+		String oldEa_type = ea_type;
+		ea_type = newEa_type;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, XmiPackage.PROPERTIES__EA_TYPE, oldEa_type, ea_type));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getDirection() {
+		return direction;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDirection(String newDirection) {
+		String oldDirection = direction;
+		direction = newDirection;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, XmiPackage.PROPERTIES__DIRECTION, oldDirection, direction));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -360,6 +444,10 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 				return isIsLeaf();
 			case XmiPackage.PROPERTIES__IS_ABSTRACT:
 				return isIsAbstract();
+			case XmiPackage.PROPERTIES__EA_TYPE:
+				return getEa_type();
+			case XmiPackage.PROPERTIES__DIRECTION:
+				return getDirection();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -392,6 +480,12 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 				return;
 			case XmiPackage.PROPERTIES__IS_ABSTRACT:
 				setIsAbstract((Boolean)newValue);
+				return;
+			case XmiPackage.PROPERTIES__EA_TYPE:
+				setEa_type((String)newValue);
+				return;
+			case XmiPackage.PROPERTIES__DIRECTION:
+				setDirection((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -426,6 +520,12 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 			case XmiPackage.PROPERTIES__IS_ABSTRACT:
 				setIsAbstract(IS_ABSTRACT_EDEFAULT);
 				return;
+			case XmiPackage.PROPERTIES__EA_TYPE:
+				setEa_type(EA_TYPE_EDEFAULT);
+				return;
+			case XmiPackage.PROPERTIES__DIRECTION:
+				setDirection(DIRECTION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -452,6 +552,10 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 				return isLeaf != IS_LEAF_EDEFAULT;
 			case XmiPackage.PROPERTIES__IS_ABSTRACT:
 				return isAbstract != IS_ABSTRACT_EDEFAULT;
+			case XmiPackage.PROPERTIES__EA_TYPE:
+				return EA_TYPE_EDEFAULT == null ? ea_type != null : !EA_TYPE_EDEFAULT.equals(ea_type);
+			case XmiPackage.PROPERTIES__DIRECTION:
+				return DIRECTION_EDEFAULT == null ? direction != null : !DIRECTION_EDEFAULT.equals(direction);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -480,6 +584,10 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 		result.append(isLeaf);
 		result.append(", isAbstract: ");
 		result.append(isAbstract);
+		result.append(", ea_type: ");
+		result.append(ea_type);
+		result.append(", direction: ");
+		result.append(direction);
 		result.append(')');
 		return result.toString();
 	}

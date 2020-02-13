@@ -3,29 +3,31 @@
  */
 package com.artal.capella.mapping;
 
+import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.polarsys.capella.core.data.capellacore.ModellingArchitecture;
 import org.polarsys.capella.core.data.capellamodeller.ModelRoot;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.capellamodeller.SystemEngineering;
 import org.polarsys.capella.core.data.cs.Component;
 import org.polarsys.capella.core.data.cs.InterfacePkg;
+import org.polarsys.capella.core.data.cs.Part;
+import org.polarsys.capella.core.data.fa.AbstractFunction;
+import org.polarsys.capella.core.data.fa.FunctionPkg;
 import org.polarsys.capella.core.data.information.DataPkg;
-import org.polarsys.capella.core.data.information.datatype.BooleanType;
-import org.polarsys.capella.core.data.information.datatype.DataType;
-import org.polarsys.capella.core.data.information.datatype.NumericType;
-import org.polarsys.capella.core.data.information.datatype.StringType;
-import org.polarsys.capella.core.data.information.datavalue.DataValue;
-import org.polarsys.capella.core.data.information.datavalue.LiteralBooleanValue;
 import org.polarsys.capella.core.data.la.LogicalActorPkg;
 import org.polarsys.capella.core.data.la.LogicalArchitecture;
 import org.polarsys.capella.core.data.la.LogicalComponent;
+import org.polarsys.capella.core.data.la.LogicalFunctionPkg;
 
 /**
  * @author binot
@@ -194,8 +196,85 @@ public class CapellaUtils {
 		}
 		return null;
 	}
-	
-	
-	
+
+	/**
+	 * Returns the logical function package of a Capella model
+	 * 
+	 * @param source_p
+	 *            a (non-null) Capella semantic object
+	 * @return the physical function package.
+	 */
+	public static LogicalFunctionPkg getLogicalFunctionPackage(EObject source_p) {
+		ResourceSet resourceSet = source_p.eResource().getResourceSet();
+		URI semanticResourceURI = source_p.eResource().getURI().trimFileExtension()
+				.appendFileExtension("melodymodeller");
+		Resource semanticResource = resourceSet.getResource(semanticResourceURI, false);
+		LogicalFunctionPkg logicalFunctionPkgTmp = null;
+		if (semanticResource != null) {
+			EObject root = semanticResource.getContents().get(0);
+			if (root instanceof Project) {
+				EList<ModelRoot> ownedModelRoots = ((Project) root).getOwnedModelRoots();
+				for (ModelRoot modelRoot : ownedModelRoots) {
+					if (modelRoot instanceof SystemEngineering) {
+						EList<ModellingArchitecture> containedPhysicalArchitectures = ((SystemEngineering) modelRoot)
+								.getOwnedArchitectures();
+						for (ModellingArchitecture arch : containedPhysicalArchitectures) {
+							if (arch instanceof LogicalArchitecture) {
+								FunctionPkg ownedFunctionPkg = ((LogicalArchitecture) arch).getOwnedFunctionPkg();
+								if (ownedFunctionPkg instanceof LogicalFunctionPkg) {
+									logicalFunctionPkgTmp = (LogicalFunctionPkg) ownedFunctionPkg;
+									break;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		return logicalFunctionPkgTmp;
+	}
+
+	static public Component getInverseComponent(AbstractFunction function) {
+		Collection<Setting> referencingInverse = getReferencingInverse(function);
+		for (Setting setting : referencingInverse) {
+			EObject eObject = setting.getEObject();
+			if (eObject instanceof Component) {
+				return (Component) eObject;
+			}
+		}
+		return null;
+	}
+
+	static public Part getInversePart(Component component) {
+		Collection<Setting> referencingInverse = getReferencingInverse(component);
+		for (Setting setting : referencingInverse) {
+			EObject eObject = setting.getEObject();
+			if (eObject instanceof Part) {
+				return (Part) eObject;
+			}
+		}
+		return null;
+	}
+
+	static public Collection<Setting> getReferencingInverse(EObject referenceTarget) {
+		Resource res = referenceTarget.eResource();
+		ResourceSet rs = res.getResourceSet();
+		ECrossReferenceAdapter crossReferencer = null;
+		List<Adapter> adapters = rs.eAdapters();
+		for (Adapter adapter : adapters) {
+			if (adapter instanceof ECrossReferenceAdapter) {
+				crossReferencer = (ECrossReferenceAdapter) adapter;
+				break;
+			}
+		}
+		if (crossReferencer == null) {
+			crossReferencer = new ECrossReferenceAdapter();
+			rs.eAdapters().add(crossReferencer);
+		}
+		Collection<Setting> referencers = crossReferencer.getInverseReferences(referenceTarget, true);
+
+		return referencers;
+
+	}
 
 }

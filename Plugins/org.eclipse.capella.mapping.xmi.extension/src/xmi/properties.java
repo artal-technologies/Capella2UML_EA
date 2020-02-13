@@ -20,6 +20,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link xmi.properties#isIsRoot <em>Is Root</em>}</li>
  *   <li>{@link xmi.properties#isIsLeaf <em>Is Leaf</em>}</li>
  *   <li>{@link xmi.properties#isIsAbstract <em>Is Abstract</em>}</li>
+ *   <li>{@link xmi.properties#getEa_type <em>Ea type</em>}</li>
+ *   <li>{@link xmi.properties#getDirection <em>Direction</em>}</li>
  * </ul>
  *
  * @see xmi.XmiPackage#getproperties()
@@ -208,5 +210,57 @@ public interface properties extends EObject {
 	 * @generated
 	 */
 	void setIsAbstract(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Ea type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Ea type</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Ea type</em>' attribute.
+	 * @see #setEa_type(String)
+	 * @see xmi.XmiPackage#getproperties_Ea_type()
+	 * @model
+	 * @generated
+	 */
+	String getEa_type();
+
+	/**
+	 * Sets the value of the '{@link xmi.properties#getEa_type <em>Ea type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Ea type</em>' attribute.
+	 * @see #getEa_type()
+	 * @generated
+	 */
+	void setEa_type(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Direction</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Direction</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Direction</em>' attribute.
+	 * @see #setDirection(String)
+	 * @see xmi.XmiPackage#getproperties_Direction()
+	 * @model
+	 * @generated
+	 */
+	String getDirection();
+
+	/**
+	 * Sets the value of the '{@link xmi.properties#getDirection <em>Direction</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Direction</em>' attribute.
+	 * @see #getDirection()
+	 * @generated
+	 */
+	void setDirection(String value);
 
 } // properties

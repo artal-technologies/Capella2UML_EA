@@ -11,6 +11,7 @@ import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.Property;
@@ -20,6 +21,8 @@ import org.polarsys.capella.core.data.la.LogicalComponent;
 import com.artal.capella.mapping.MappingUtils;
 import com.artal.capella.mapping.rules.AbstractDynamicMapping;
 import com.artal.capella.mapping.rules.MappingRulesManager;
+
+import xmi.util.XMIExtensionsUtils;
 
 /**
  * @author binot
@@ -71,17 +74,20 @@ public class AggregationMapping extends AbstractDynamicMapping<LogicalComponent,
 	 */
 	@Override
 	public Object compute(Object eaContainer, LogicalComponent source) {
-		LogicalComponent sourceContainer = getSourceContainer();
+//		LogicalComponent sourceContainer = getSourceContainer();
 		Association targetAssociation = UMLFactory.eINSTANCE.createAssociation();
-		MappingUtils.generateUID(getAlgo(), sourceContainer, targetAssociation, this, "a");
-
+		MappingUtils.generateUID(getAlgo(), source, targetAssociation, this, "a");
+		Resource eResource = source.eResource();
+		String sysMLID = MappingUtils.getSysMLID(eResource, source);
+		XMIExtensionsUtils.addConnector(targetAssociation, getAlgo().getXMIExtension(),sysMLID , "Unspecified", "Association");
+		
 		Component parent = (Component) eaContainer;
 		((org.eclipse.uml2.uml.Package) parent.getModel().getPackagedElements().get(0)).getPackagedElements()
 				.add(targetAssociation);
 
 		Property targetProperty = UMLFactory.eINSTANCE.createProperty();
-		MappingUtils.generateUID(getAlgo(), sourceContainer, targetProperty, this, "p");
-		targetProperty.setIsComposite(true);
+		MappingUtils.generateUID(getAlgo(), source, targetProperty, this, "tp");
+		targetProperty.setIsComposite(false);
 		targetAssociation.getOwnedEnds().add(targetProperty);
 
 		Component targetC = (Component) MappingRulesManager.getCapellaObjectFromAllRules(source);
@@ -90,11 +96,8 @@ public class AggregationMapping extends AbstractDynamicMapping<LogicalComponent,
 
 		targetProperty.setType(parent);
 		subProp.setType(targetC);
+		subProp.setIsComposite(true);
 
-//		EClass typeClass = getAlgo().getTypeClass();
-//		EObject create = getAlgo().getBookFactoryInstance().create(typeClass);
-//		EReference typeRef = getAlgo().getTypeRef();
-//		subProp.eSet(typeRef, create);
 
 		subProp.setAssociation(targetAssociation);
 		targetProperty.setAssociation(targetAssociation);

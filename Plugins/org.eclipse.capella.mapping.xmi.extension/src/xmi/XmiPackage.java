@@ -103,13 +103,22 @@ public interface XmiPackage extends EPackage {
 	int EXTENSION__PROFILES = 3;
 
 	/**
+	 * The feature id for the '<em><b>Connectors</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENSION__CONNECTORS = 4;
+
+	/**
 	 * The number of structural features of the '<em>Extension</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENSION_FEATURE_COUNT = 4;
+	int EXTENSION_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Extension</em>' class.
@@ -463,13 +472,31 @@ public interface XmiPackage extends EPackage {
 	int PROPERTIES__IS_ABSTRACT = 6;
 
 	/**
+	 * The feature id for the '<em><b>Ea type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTIES__EA_TYPE = 7;
+
+	/**
+	 * The feature id for the '<em><b>Direction</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTIES__DIRECTION = 8;
+
+	/**
 	 * The number of structural features of the '<em>properties</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTIES_FEATURE_COUNT = 7;
+	int PROPERTIES_FEATURE_COUNT = 9;
 
 	/**
 	 * The number of operations of the '<em>properties</em>' class.
@@ -723,6 +750,99 @@ public interface XmiPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link xmi.impl.connectorsImpl <em>connectors</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see xmi.impl.connectorsImpl
+	 * @see xmi.impl.XmiPackageImpl#getconnectors()
+	 * @generated
+	 */
+	int CONNECTORS = 12;
+
+	/**
+	 * The feature id for the '<em><b>Connector</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONNECTORS__CONNECTOR = 0;
+
+	/**
+	 * The feature id for the '<em><b>Test</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONNECTORS__TEST = 1;
+
+	/**
+	 * The number of structural features of the '<em>connectors</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONNECTORS_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>connectors</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONNECTORS_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link xmi.impl.connectorImpl <em>connector</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see xmi.impl.connectorImpl
+	 * @see xmi.impl.XmiPackageImpl#getconnector()
+	 * @generated
+	 */
+	int CONNECTOR = 13;
+
+	/**
+	 * The feature id for the '<em><b>Properties</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONNECTOR__PROPERTIES = 0;
+
+	/**
+	 * The feature id for the '<em><b>Xmiidref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONNECTOR__XMIIDREF = 1;
+
+	/**
+	 * The number of structural features of the '<em>connector</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONNECTOR_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>connector</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONNECTOR_OPERATION_COUNT = 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link xmi.Extension <em>Extension</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -775,6 +895,17 @@ public interface XmiPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getExtension_Profiles();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link xmi.Extension#getConnectors <em>Connectors</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Connectors</em>'.
+	 * @see xmi.Extension#getConnectors()
+	 * @see #getExtension()
+	 * @generated
+	 */
+	EReference getExtension_Connectors();
 
 	/**
 	 * Returns the meta object for class '{@link xmi.Documentation <em>Documentation</em>}'.
@@ -1068,6 +1199,28 @@ public interface XmiPackage extends EPackage {
 	EAttribute getproperties_IsAbstract();
 
 	/**
+	 * Returns the meta object for the attribute '{@link xmi.properties#getEa_type <em>Ea type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Ea type</em>'.
+	 * @see xmi.properties#getEa_type()
+	 * @see #getproperties()
+	 * @generated
+	 */
+	EAttribute getproperties_Ea_type();
+
+	/**
+	 * Returns the meta object for the attribute '{@link xmi.properties#getDirection <em>Direction</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Direction</em>'.
+	 * @see xmi.properties#getDirection()
+	 * @see #getproperties()
+	 * @generated
+	 */
+	EAttribute getproperties_Direction();
+
+	/**
 	 * Returns the meta object for class '{@link xmi.attributes <em>attributes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1239,6 +1392,70 @@ public interface XmiPackage extends EPackage {
 	EAttribute getconstraint_Status();
 
 	/**
+	 * Returns the meta object for class '{@link xmi.connectors <em>connectors</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>connectors</em>'.
+	 * @see xmi.connectors
+	 * @generated
+	 */
+	EClass getconnectors();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link xmi.connectors#getConnector <em>Connector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Connector</em>'.
+	 * @see xmi.connectors#getConnector()
+	 * @see #getconnectors()
+	 * @generated
+	 */
+	EReference getconnectors_Connector();
+
+	/**
+	 * Returns the meta object for the reference list '{@link xmi.connectors#getTest <em>Test</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Test</em>'.
+	 * @see xmi.connectors#getTest()
+	 * @see #getconnectors()
+	 * @generated
+	 */
+	EReference getconnectors_Test();
+
+	/**
+	 * Returns the meta object for class '{@link xmi.connector <em>connector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>connector</em>'.
+	 * @see xmi.connector
+	 * @generated
+	 */
+	EClass getconnector();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link xmi.connector#getProperties <em>Properties</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Properties</em>'.
+	 * @see xmi.connector#getProperties()
+	 * @see #getconnector()
+	 * @generated
+	 */
+	EReference getconnector_Properties();
+
+	/**
+	 * Returns the meta object for the reference '{@link xmi.connector#getXmiidref <em>Xmiidref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Xmiidref</em>'.
+	 * @see xmi.connector#getXmiidref()
+	 * @see #getconnector()
+	 * @generated
+	 */
+	EReference getconnector_Xmiidref();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1302,6 +1519,14 @@ public interface XmiPackage extends EPackage {
 		 * @generated
 		 */
 		EReference EXTENSION__PROFILES = eINSTANCE.getExtension_Profiles();
+
+		/**
+		 * The meta object literal for the '<em><b>Connectors</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXTENSION__CONNECTORS = eINSTANCE.getExtension_Connectors();
 
 		/**
 		 * The meta object literal for the '{@link xmi.impl.DocumentationImpl <em>Documentation</em>}' class.
@@ -1532,6 +1757,22 @@ public interface XmiPackage extends EPackage {
 		EAttribute PROPERTIES__IS_ABSTRACT = eINSTANCE.getproperties_IsAbstract();
 
 		/**
+		 * The meta object literal for the '<em><b>Ea type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROPERTIES__EA_TYPE = eINSTANCE.getproperties_Ea_type();
+
+		/**
+		 * The meta object literal for the '<em><b>Direction</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROPERTIES__DIRECTION = eINSTANCE.getproperties_Direction();
+
+		/**
 		 * The meta object literal for the '{@link xmi.impl.attributesImpl <em>attributes</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1668,6 +1909,58 @@ public interface XmiPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CONSTRAINT__STATUS = eINSTANCE.getconstraint_Status();
+
+		/**
+		 * The meta object literal for the '{@link xmi.impl.connectorsImpl <em>connectors</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see xmi.impl.connectorsImpl
+		 * @see xmi.impl.XmiPackageImpl#getconnectors()
+		 * @generated
+		 */
+		EClass CONNECTORS = eINSTANCE.getconnectors();
+
+		/**
+		 * The meta object literal for the '<em><b>Connector</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONNECTORS__CONNECTOR = eINSTANCE.getconnectors_Connector();
+
+		/**
+		 * The meta object literal for the '<em><b>Test</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONNECTORS__TEST = eINSTANCE.getconnectors_Test();
+
+		/**
+		 * The meta object literal for the '{@link xmi.impl.connectorImpl <em>connector</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see xmi.impl.connectorImpl
+		 * @see xmi.impl.XmiPackageImpl#getconnector()
+		 * @generated
+		 */
+		EClass CONNECTOR = eINSTANCE.getconnector();
+
+		/**
+		 * The meta object literal for the '<em><b>Properties</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONNECTOR__PROPERTIES = eINSTANCE.getconnector_Properties();
+
+		/**
+		 * The meta object literal for the '<em><b>Xmiidref</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONNECTOR__XMIIDREF = eINSTANCE.getconnector_Xmiidref();
 
 	}
 

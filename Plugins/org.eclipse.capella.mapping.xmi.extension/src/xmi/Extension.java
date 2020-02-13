@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link xmi.Extension#getExtenderID <em>Extender ID</em>}</li>
  *   <li>{@link xmi.Extension#getElements <em>Elements</em>}</li>
  *   <li>{@link xmi.Extension#getProfiles <em>Profiles</em>}</li>
+ *   <li>{@link xmi.Extension#getConnectors <em>Connectors</em>}</li>
  * </ul>
  *
  * @see xmi.XmiPackage#getExtension()
@@ -119,5 +120,21 @@ public interface Extension extends EObject {
 	 * @generated
 	 */
 	void setProfiles(profiles value);
+
+	/**
+	 * Returns the value of the '<em><b>Connectors</b></em>' containment reference list.
+	 * The list contents are of type {@link xmi.connectors}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Connectors</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Connectors</em>' containment reference list.
+	 * @see xmi.XmiPackage#getExtension_Connectors()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<connectors> getConnectors();
 
 } // Extension

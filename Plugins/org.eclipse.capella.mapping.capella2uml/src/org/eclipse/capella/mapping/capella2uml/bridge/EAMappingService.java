@@ -9,13 +9,8 @@ import java.util.List;
 import org.eclipse.capella.mapping.capella2uml.bridge.mix.DefaultCapella2UMLMix;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.diffmerge.bridge.interactive.BridgeJob;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.Label;
 import org.osgi.service.component.annotations.Component;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 
@@ -29,7 +24,6 @@ import com.artal.capella.mapping.services.MappingService;
 @Component
 public class EAMappingService implements MappingService {
 
-	private Composite _comp;
 
 	/**
 	 * 

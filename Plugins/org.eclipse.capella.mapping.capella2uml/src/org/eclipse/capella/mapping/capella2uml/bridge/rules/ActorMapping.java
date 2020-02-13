@@ -103,18 +103,12 @@ public class ActorMapping extends AbstractDynamicMapping<LogicalActorPkg, Logica
 	@Override
 	public void executeSubRules(List<LogicalActor> _capellaSource, MappingRulesManager manager) {
 
-		// for (LogicalActor logicalComponent : _capellaSource) {
-		// PortMapping portMapping = new PortMapping(getAlgo(), logicalComponent,
-		// getMappingExucution());
-		//
-		// ExchangeMapping exchangeMapping = new ExchangeMapping(getAlgo(),
-		// logicalComponent, getMappingExucution());
-		//
-		// manager.add(PortMapping.class.getName() + logicalComponent.getId(),
-		// portMapping);
-		// manager.add(ExchangeMapping.class.getName() + logicalComponent.getId(),
-		// exchangeMapping);
-		// }
+		for (LogicalActor logicalActor : _capellaSource) {
+			ActorFunctionalExchangeMapping functionalExchangeMapping = new ActorFunctionalExchangeMapping(getAlgo(),
+					logicalActor, getMappingExucution());
+			manager.add(functionalExchangeMapping.getClass().getName() + logicalActor.getId(),
+					functionalExchangeMapping);
+		}
 
 	}
 

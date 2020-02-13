@@ -14,6 +14,8 @@ import xmi.XmiFactory;
 import xmi.XmiPackage;
 import xmi.attribute;
 import xmi.attributes;
+import xmi.connector;
+import xmi.connectors;
 import xmi.constraint;
 import xmi.constraints;
 import xmi.element;
@@ -113,6 +115,20 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 	 * @generated
 	 */
 	private EClass constraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass connectorsEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass connectorEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -218,6 +234,15 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 	 */
 	public EReference getExtension_Profiles() {
 		return (EReference)extensionEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExtension_Connectors() {
+		return (EReference)extensionEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -468,6 +493,24 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getproperties_Ea_type() {
+		return (EAttribute)propertiesEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getproperties_Direction() {
+		return (EAttribute)propertiesEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getattributes() {
 		return attributesEClass;
 	}
@@ -612,6 +655,60 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getconnectors() {
+		return connectorsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getconnectors_Connector() {
+		return (EReference)connectorsEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getconnectors_Test() {
+		return (EReference)connectorsEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getconnector() {
+		return connectorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getconnector_Properties() {
+		return (EReference)connectorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getconnector_Xmiidref() {
+		return (EReference)connectorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public XmiFactory getXmiFactory() {
 		return (XmiFactory)getEFactoryInstance();
 	}
@@ -640,6 +737,7 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 		createEAttribute(extensionEClass, EXTENSION__EXTENDER_ID);
 		createEReference(extensionEClass, EXTENSION__ELEMENTS);
 		createEReference(extensionEClass, EXTENSION__PROFILES);
+		createEReference(extensionEClass, EXTENSION__CONNECTORS);
 
 		documentationEClass = createEClass(DOCUMENTATION);
 		createEAttribute(documentationEClass, DOCUMENTATION__EXPORTER);
@@ -673,6 +771,8 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 		createEAttribute(propertiesEClass, PROPERTIES__IS_ROOT);
 		createEAttribute(propertiesEClass, PROPERTIES__IS_LEAF);
 		createEAttribute(propertiesEClass, PROPERTIES__IS_ABSTRACT);
+		createEAttribute(propertiesEClass, PROPERTIES__EA_TYPE);
+		createEAttribute(propertiesEClass, PROPERTIES__DIRECTION);
 
 		attributesEClass = createEClass(ATTRIBUTES);
 		createEReference(attributesEClass, ATTRIBUTES__ATTRIBUTE);
@@ -694,6 +794,14 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 		createEAttribute(constraintEClass, CONSTRAINT__TYPE);
 		createEAttribute(constraintEClass, CONSTRAINT__WEIGHT);
 		createEAttribute(constraintEClass, CONSTRAINT__STATUS);
+
+		connectorsEClass = createEClass(CONNECTORS);
+		createEReference(connectorsEClass, CONNECTORS__CONNECTOR);
+		createEReference(connectorsEClass, CONNECTORS__TEST);
+
+		connectorEClass = createEClass(CONNECTOR);
+		createEReference(connectorEClass, CONNECTOR__PROPERTIES);
+		createEReference(connectorEClass, CONNECTOR__XMIIDREF);
 	}
 
 	/**
@@ -731,6 +839,7 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 		initEAttribute(getExtension_ExtenderID(), ecorePackage.getEString(), "extenderID", null, 0, 1, Extension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExtension_Elements(), this.getelements(), null, "elements", null, 0, -1, Extension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExtension_Profiles(), this.getprofiles(), null, "profiles", null, 0, 1, Extension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExtension_Connectors(), this.getconnectors(), null, "connectors", null, 0, -1, Extension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(documentationEClass, Documentation.class, "Documentation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDocumentation_Exporter(), ecorePackage.getEString(), "exporter", null, 0, 1, Documentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -764,6 +873,8 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 		initEAttribute(getproperties_IsRoot(), ecorePackage.getEBoolean(), "isRoot", null, 0, 1, properties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getproperties_IsLeaf(), ecorePackage.getEBoolean(), "isLeaf", null, 0, 1, properties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getproperties_IsAbstract(), ecorePackage.getEBoolean(), "isAbstract", null, 0, 1, properties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getproperties_Ea_type(), ecorePackage.getEString(), "ea_type", null, 0, 1, properties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getproperties_Direction(), ecorePackage.getEString(), "direction", null, 0, 1, properties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(attributesEClass, attributes.class, "attributes", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getattributes_Attribute(), this.getattribute(), null, "attribute", null, 0, -1, attributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -785,6 +896,14 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 		initEAttribute(getconstraint_Type(), ecorePackage.getEString(), "type", null, 0, 1, constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getconstraint_Weight(), ecorePackage.getEString(), "weight", null, 0, 1, constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getconstraint_Status(), ecorePackage.getEString(), "status", null, 0, 1, constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(connectorsEClass, connectors.class, "connectors", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getconnectors_Connector(), this.getconnector(), null, "connector", null, 0, -1, connectors.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getconnectors_Test(), ecorePackage.getEObject(), null, "test", null, 0, -1, connectors.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+		initEClass(connectorEClass, connector.class, "connector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getconnector_Properties(), this.getproperties(), null, "properties", null, 0, 1, connector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getconnector_Xmiidref(), ecorePackage.getEObject(), null, "xmi:idref", null, 0, 1, connector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

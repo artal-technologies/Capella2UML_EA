@@ -11,6 +11,7 @@ import xmi.Extension;
 import xmi.XmiFactory;
 import xmi.attribute;
 import xmi.attributes;
+import xmi.connectors;
 import xmi.constraint;
 import xmi.constraints;
 import xmi.element;
@@ -46,6 +47,23 @@ public class XMIExtensionsUtils {
 			setXRefsValue(xrefs, ids + name, name);
 		}
 		return xmielement;
+	}
+
+	public static void addConnector(EObject connector, Extension extension, String ids, String direction, String type) {
+		EList<connectors> connectors = extension.getConnectors();
+		if (connectors.size() == 0) {
+			xmi.connectors xmiconnectors = XmiFactory.eINSTANCE.createconnectors();
+			extension.getConnectors().add(xmiconnectors);
+		}
+		xmi.connectors xmiConnectors = extension.getConnectors().get(0);
+		xmi.connector xmiconnector = XmiFactory.eINSTANCE.createconnector();
+		xmiconnector.setXmiidref(connector);
+		xmiConnectors.getConnector().add(xmiconnector);
+		xmi.properties xmiproperties = XmiFactory.eINSTANCE.createproperties();
+		xmiproperties.setEa_type(type);
+		xmiproperties.setDirection(direction);
+		xmiconnector.setProperties(xmiproperties);
+
 	}
 
 	// public static void addCustomProfile(Model model) {

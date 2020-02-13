@@ -68,6 +68,8 @@ public class XmiFactoryImpl extends EFactoryImpl implements XmiFactory {
 			case XmiPackage.STEREOTYPE: return createstereotype();
 			case XmiPackage.CONSTRAINTS: return createconstraints();
 			case XmiPackage.CONSTRAINT: return createconstraint();
+			case XmiPackage.CONNECTORS: return createconnectors();
+			case XmiPackage.CONNECTOR: return createconnector();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -191,6 +193,26 @@ public class XmiFactoryImpl extends EFactoryImpl implements XmiFactory {
 	public constraint createconstraint() {
 		constraintImpl constraint = new constraintImpl();
 		return constraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public connectors createconnectors() {
+		connectorsImpl connectors = new connectorsImpl();
+		return connectors;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public connector createconnector() {
+		connectorImpl connector = new connectorImpl();
+		return connector;
 	}
 
 	/**

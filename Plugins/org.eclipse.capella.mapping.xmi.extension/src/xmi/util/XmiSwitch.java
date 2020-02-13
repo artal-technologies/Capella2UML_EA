@@ -138,6 +138,18 @@ public class XmiSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case XmiPackage.CONNECTORS: {
+				connectors connectors = (connectors)theEObject;
+				T result = caseconnectors(connectors);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case XmiPackage.CONNECTOR: {
+				connector connector = (connector)theEObject;
+				T result = caseconnector(connector);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -319,6 +331,36 @@ public class XmiSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseconstraint(constraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>connectors</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>connectors</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseconnectors(connectors object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>connector</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>connector</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseconnector(connector object) {
 		return null;
 	}
 
