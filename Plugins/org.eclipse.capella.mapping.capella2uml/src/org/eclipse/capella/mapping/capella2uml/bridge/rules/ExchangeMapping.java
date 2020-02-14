@@ -28,8 +28,8 @@ import org.polarsys.capella.core.data.information.Port;
 import org.polarsys.capella.core.model.helpers.ProjectExt;
 
 import com.artal.capella.mapping.MappingUtils;
-import com.artal.capella.mapping.rules.AbstractDynamicMapping;
 import com.artal.capella.mapping.rules.MappingRulesManager;
+import com.artal.capella.mapping.rules.commons.CommonComponentExchangeMapping;
 
 import xmi.element;
 import xmi.util.XMIExtensionsUtils;
@@ -38,8 +38,7 @@ import xmi.util.XMIExtensionsUtils;
  * @author binot
  *
  */
-public class ExchangeMapping extends
-		AbstractDynamicMapping<org.polarsys.capella.core.data.cs.Component, ComponentExchange, Capella2UMLAlgo> {
+public class ExchangeMapping extends CommonComponentExchangeMapping<Capella2UMLAlgo> {
 
 	/**
 	 * @param algo
@@ -49,37 +48,6 @@ public class ExchangeMapping extends
 	public ExchangeMapping(Capella2UMLAlgo algo, org.polarsys.capella.core.data.cs.Component parent,
 			IMappingExecution mappingExecution) {
 		super(algo, parent, mappingExecution);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * computeEAContainer(java.lang.Object)
-	 */
-	@Override
-	public Object computeTargetContainer(org.polarsys.capella.core.data.cs.Component capellaContainer) {
-
-		BehavioredClassifier container = (BehavioredClassifier) MappingRulesManager
-				.getCapellaObjectFromAllRules(capellaContainer);
-		if (container != null) {
-			return container;
-		}
-		Project project = ProjectExt.getProject(capellaContainer);
-
-		return (Model) MappingRulesManager.getCapellaObjectFromAllRules(project);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * computeCapellaSource(java.lang.Object)
-	 */
-	@Override
-	public List<ComponentExchange> findSourceElements(org.polarsys.capella.core.data.cs.Component capellaContainer) {
-		List<ComponentExchange> ownedComponentExchanges = capellaContainer.getOwnedComponentExchanges();
-		return ownedComponentExchanges;
 	}
 
 	/*

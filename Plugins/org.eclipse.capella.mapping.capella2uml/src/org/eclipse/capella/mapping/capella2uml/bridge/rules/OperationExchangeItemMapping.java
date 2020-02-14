@@ -16,8 +16,8 @@ import org.polarsys.capella.core.data.information.ExchangeItem;
 import org.polarsys.capella.core.data.information.ExchangeMechanism;
 
 import com.artal.capella.mapping.MappingUtils;
-import com.artal.capella.mapping.rules.AbstractDynamicMapping;
 import com.artal.capella.mapping.rules.MappingRulesManager;
+import com.artal.capella.mapping.rules.commons.CommonExchangeItemMapping;
 
 import xmi.util.XMIExtensionsUtils;
 
@@ -26,7 +26,7 @@ import xmi.util.XMIExtensionsUtils;
  *
  */
 public class OperationExchangeItemMapping extends
-		AbstractDynamicMapping<org.polarsys.capella.core.data.cs.Interface, ExchangeItem, org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo> {
+		CommonExchangeItemMapping<org.polarsys.capella.core.data.cs.Interface, org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo> {
 
 	public OperationExchangeItemMapping(Capella2UMLAlgo algo, Interface parent, IMappingExecution mappingExecution) {
 		super(algo, parent, mappingExecution);
@@ -34,7 +34,7 @@ public class OperationExchangeItemMapping extends
 
 	@Override
 	public Object computeTargetContainer(Interface capellaContainer) {
-		return (org.eclipse.uml2.uml.Interface) MappingRulesManager.getCapellaObjectFromAllRules(capellaContainer);
+		return  MappingRulesManager.getCapellaObjectFromAllRules(capellaContainer);
 	}
 
 	@Override

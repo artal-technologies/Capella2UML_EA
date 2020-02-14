@@ -15,17 +15,13 @@ import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.UMLFactory;
-import org.polarsys.capella.common.helpers.EObjectExt;
-import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.information.ExchangeItem;
 import org.polarsys.capella.core.data.information.ExchangeMechanism;
-import org.polarsys.capella.core.data.information.InformationPackage;
 import org.polarsys.capella.core.data.la.LogicalArchitecture;
-import org.polarsys.capella.core.model.helpers.ProjectExt;
 
 import com.artal.capella.mapping.MappingUtils;
-import com.artal.capella.mapping.rules.AbstractDynamicMapping;
 import com.artal.capella.mapping.rules.MappingRulesManager;
+import com.artal.capella.mapping.rules.commons.CommonExchangeItemMapping;
 
 import xmi.util.XMIExtensionsUtils;
 
@@ -33,8 +29,7 @@ import xmi.util.XMIExtensionsUtils;
  * @author binot
  *
  */
-public class ShareDataExchangeItemMapping
-		extends AbstractDynamicMapping<LogicalArchitecture, ExchangeItem, Capella2UMLAlgo> {
+public class ShareDataExchangeItemMapping extends CommonExchangeItemMapping<LogicalArchitecture, Capella2UMLAlgo> {
 
 	/**
 	 * @param algo
@@ -50,26 +45,14 @@ public class ShareDataExchangeItemMapping
 	 * (non-Javadoc)
 	 * 
 	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * computeEAContainer(java.lang.Object)
-	 */
-	@Override
-	public Object computeTargetContainer(LogicalArchitecture capellaContainer) {
-		Project capellaProject = ProjectExt.getProject(capellaContainer);
-		Model model = (Model) MappingRulesManager.getCapellaObjectFromAllRules(capellaProject);
-		return model;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
 	 * computeCapellaSource(java.lang.Object)
 	 */
 	@Override
 	public List<ExchangeItem> findSourceElements(LogicalArchitecture capellaContainer) {
 
-		List<ExchangeItem> eventEIs = EObjectExt.getAll(capellaContainer, InformationPackage.Literals.EXCHANGE_ITEM)
-				.stream().map(ExchangeItem.class::cast)
+		List<ExchangeItem> findSourceElements = super.findSourceElements(capellaContainer);
+
+		List<ExchangeItem> eventEIs = findSourceElements.stream()
 				.filter(ei -> (ei.getExchangeMechanism() == ExchangeMechanism.SHARED_DATA))
 				.collect(Collectors.toList());
 
@@ -89,7 +72,7 @@ public class ShareDataExchangeItemMapping
 		MappingUtils.generateUID(getAlgo(), source, classTarget, this);
 		Resource eResource = source.eResource();
 		String sysMLID = MappingUtils.getSysMLID(eResource, source);
-		XMIExtensionsUtils.addElement(classTarget, getAlgo().getXMIExtension(), sysMLID ,"entity");
+		XMIExtensionsUtils.addElement(classTarget, getAlgo().getXMIExtension(), sysMLID, "entity");
 		classTarget.setName(source.getName());
 
 		if (eaContainer instanceof Model) {

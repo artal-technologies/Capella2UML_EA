@@ -13,26 +13,23 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.LiteralInteger;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.PackageableElement;
-import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.polarsys.capella.common.helpers.EObjectExt;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.information.DataPkg;
-import org.polarsys.capella.core.data.information.InformationPackage;
 import org.polarsys.capella.core.data.information.datatype.BooleanType;
 import org.polarsys.capella.core.data.information.datatype.DataType;
 import org.polarsys.capella.core.data.information.datatype.DatatypePackage;
 import org.polarsys.capella.core.data.information.datatype.NumericType;
 import org.polarsys.capella.core.data.information.datatype.PhysicalQuantity;
 import org.polarsys.capella.core.data.information.datatype.StringType;
-import org.polarsys.capella.core.data.information.datavalue.LiteralBooleanValue;
 import org.polarsys.capella.core.data.information.datavalue.LiteralNumericValue;
 import org.polarsys.capella.core.data.information.datavalue.NumericValue;
 import org.polarsys.capella.core.model.helpers.ProjectExt;
 
 import com.artal.capella.mapping.MappingUtils;
-import com.artal.capella.mapping.rules.AbstractDynamicMapping;
 import com.artal.capella.mapping.rules.MappingRulesManager;
+import com.artal.capella.mapping.rules.commons.CommonDatatypeMapping;
 
 import xmi.constraints;
 import xmi.element;
@@ -42,7 +39,7 @@ import xmi.util.XMIExtensionsUtils;
  * @author binot
  *
  */
-public class PrimitiveMapping extends AbstractDynamicMapping<DataPkg, DataType, Capella2UMLAlgo> {
+public class PrimitiveMapping extends CommonDatatypeMapping<DataPkg, Capella2UMLAlgo> {
 
 	/**
 	 * @param algo
@@ -51,21 +48,6 @@ public class PrimitiveMapping extends AbstractDynamicMapping<DataPkg, DataType, 
 	 */
 	public PrimitiveMapping(Capella2UMLAlgo algo, DataPkg parent, IMappingExecution mappingExecution) {
 		super(algo, parent, mappingExecution);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#computeTargetContainer
-	 * (java.lang.Object)
-	 */
-	@Override
-	public Object computeTargetContainer(DataPkg capellaContainer) {
-
-		Project capellaProject = ProjectExt.getProject(capellaContainer);
-		Model model = (Model) MappingRulesManager.getCapellaObjectFromAllRules(capellaProject);
-		return model;
 	}
 
 	public boolean isPrimitiveType(DataType type) {
@@ -82,9 +64,9 @@ public class PrimitiveMapping extends AbstractDynamicMapping<DataPkg, DataType, 
 	@Override
 	public List<DataType> findSourceElements(DataPkg capellaContainer) {
 
-		List<DataType> primitives = EObjectExt.getAll(capellaContainer, DatatypePackage.Literals.DATA_TYPE).stream()
-				.map(DataType.class::cast).filter(dt -> isPrimitiveType(dt)).collect(Collectors.toList());
-
+		List<DataType> findSourceElements = super.findSourceElements(capellaContainer);
+		List<DataType> primitives = findSourceElements.stream().filter(dt -> isPrimitiveType(dt))
+				.collect(Collectors.toList());
 		return primitives;
 
 	}
@@ -132,8 +114,8 @@ public class PrimitiveMapping extends AbstractDynamicMapping<DataPkg, DataType, 
 				XMIExtensionsUtils.addConstraint(createConstraints, "min = " + label, "Invariant", "0,00", "Approved");
 			}
 		}
-		if(source instanceof BooleanType) {
-//			UMLFactory.eINSTANCE.create
+		if (source instanceof BooleanType) {
+			// UMLFactory.eINSTANCE.create
 		}
 
 		if (eaContainer instanceof Model) {

@@ -15,7 +15,7 @@
                <iterate
                      operator="or">
                   <instanceof
-                        value="org.polarsys.capella.core.data.la.LogicalArchitecture">
+                        value="org.polarsys.capella.core.data.capellacore.CapellaElement">
                   </instanceof>
                </iterate>
             </visibleWhen>

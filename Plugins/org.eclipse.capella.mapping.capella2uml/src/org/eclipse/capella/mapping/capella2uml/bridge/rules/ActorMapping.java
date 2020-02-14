@@ -20,8 +20,8 @@ import org.polarsys.capella.core.data.la.LogicalActorPkg;
 import org.polarsys.capella.core.model.helpers.ProjectExt;
 
 import com.artal.capella.mapping.MappingUtils;
-import com.artal.capella.mapping.rules.AbstractDynamicMapping;
 import com.artal.capella.mapping.rules.MappingRulesManager;
+import com.artal.capella.mapping.rules.commons.CommonsActorMapping;
 
 import xmi.util.XMIExtensionsUtils;
 
@@ -29,37 +29,13 @@ import xmi.util.XMIExtensionsUtils;
  * @author binot
  *
  */
-public class ActorMapping extends AbstractDynamicMapping<LogicalActorPkg, LogicalActor, Capella2UMLAlgo> {
+public class ActorMapping extends CommonsActorMapping< Capella2UMLAlgo> {
 
 	public ActorMapping(Capella2UMLAlgo algo, LogicalActorPkg parent, IMappingExecution mappingExecution) {
 		super(algo, parent, mappingExecution);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * computeEAContainer(java.lang.Object)
-	 */
-	@Override
-	public Object computeTargetContainer(LogicalActorPkg capellaContainer) {
 
-		Project capellaProject = ProjectExt.getProject(capellaContainer);
-		Model model = (Model) MappingRulesManager.getCapellaObjectFromAllRules(capellaProject);
-		return model;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * computeCapellaSource(java.lang.Object)
-	 */
-	@Override
-	public List<LogicalActor> findSourceElements(LogicalActorPkg capellaContainer) {
-		List<LogicalActor> ownedLogicalActors = capellaContainer.getOwnedLogicalActors();
-		return ownedLogicalActors;
-	}
 
 	/*
 	 * (non-Javadoc)
@@ -88,10 +64,6 @@ public class ActorMapping extends AbstractDynamicMapping<LogicalActorPkg, Logica
 		return targetActor;
 	}
 
-	@Override
-	public String getUID(EObject key, String id) {
-		return "EAID_" + id;
-	}
 
 	/*
 	 * (non-Javadoc)

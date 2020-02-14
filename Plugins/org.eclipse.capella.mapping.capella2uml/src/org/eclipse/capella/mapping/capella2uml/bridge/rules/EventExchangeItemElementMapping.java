@@ -9,7 +9,6 @@ import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Signal;
@@ -21,15 +20,14 @@ import org.polarsys.capella.core.data.information.ExchangeItem;
 import org.polarsys.capella.core.data.information.ExchangeItemElement;
 
 import com.artal.capella.mapping.MappingUtils;
-import com.artal.capella.mapping.rules.AbstractDynamicMapping;
 import com.artal.capella.mapping.rules.MappingRulesManager;
+import com.artal.capella.mapping.rules.commons.CommonExchangeItemElement;
 
 /**
  * @author binot
  *
  */
-public class EventExchangeItemElementMapping
-		extends AbstractDynamicMapping<ExchangeItem, ExchangeItemElement, Capella2UMLAlgo> {
+public class EventExchangeItemElementMapping extends CommonExchangeItemElement<Capella2UMLAlgo> {
 
 	/**
 	 * @param algo
@@ -39,29 +37,6 @@ public class EventExchangeItemElementMapping
 	public EventExchangeItemElementMapping(Capella2UMLAlgo algo, ExchangeItem parent,
 			IMappingExecution mappingExecution) {
 		super(algo, parent, mappingExecution);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * computeEAContainer(java.lang.Object)
-	 */
-	@Override
-	public Object computeTargetContainer(ExchangeItem capellaContainer) {
-		return (Signal) MappingRulesManager.getCapellaObjectFromAllRules(capellaContainer);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * computeCapellaSource(java.lang.Object)
-	 */
-	@Override
-	public List<ExchangeItemElement> findSourceElements(ExchangeItem capellaContainer) {
-		List<ExchangeItemElement> ownedElements = capellaContainer.getOwnedElements();
-		return ownedElements;
 	}
 
 	/*
@@ -102,8 +77,7 @@ public class EventExchangeItemElementMapping
 				createUsage.getClients().add((Signal) eaContainer);
 				createUsage.getSuppliers().add((org.eclipse.uml2.uml.Type) capellaObjectFromAllRules);
 
-				EList<PackageableElement> packagedElements = ((Signal) eaContainer).getModel()
-						.getPackagedElements();
+				EList<PackageableElement> packagedElements = ((Signal) eaContainer).getModel().getPackagedElements();
 				for (PackageableElement ownedMember : packagedElements) {
 					if (ownedMember.getName().equals("Import Capella"))
 						((org.eclipse.uml2.uml.Package) ownedMember).getPackagedElements().add(createUsage);

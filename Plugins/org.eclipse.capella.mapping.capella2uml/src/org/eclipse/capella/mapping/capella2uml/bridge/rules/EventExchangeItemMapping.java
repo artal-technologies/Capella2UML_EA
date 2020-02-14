@@ -24,8 +24,8 @@ import org.polarsys.capella.core.data.la.LogicalArchitecture;
 import org.polarsys.capella.core.model.helpers.ProjectExt;
 
 import com.artal.capella.mapping.MappingUtils;
-import com.artal.capella.mapping.rules.AbstractDynamicMapping;
 import com.artal.capella.mapping.rules.MappingRulesManager;
+import com.artal.capella.mapping.rules.commons.CommonExchangeItemMapping;
 
 import xmi.util.XMIExtensionsUtils;
 
@@ -33,8 +33,7 @@ import xmi.util.XMIExtensionsUtils;
  * @author binot
  *
  */
-public class EventExchangeItemMapping
-		extends AbstractDynamicMapping<LogicalArchitecture, ExchangeItem, Capella2UMLAlgo> {
+public class EventExchangeItemMapping extends CommonExchangeItemMapping<LogicalArchitecture, Capella2UMLAlgo> {
 
 	/**
 	 * @param algo
@@ -50,29 +49,13 @@ public class EventExchangeItemMapping
 	 * (non-Javadoc)
 	 * 
 	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * computeEAContainer(java.lang.Object)
-	 */
-	@Override
-	public Object computeTargetContainer(LogicalArchitecture capellaContainer) {
-
-		Project capellaProject = ProjectExt.getProject(capellaContainer);
-		Model model = (Model) MappingRulesManager.getCapellaObjectFromAllRules(capellaProject);
-		return model;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
 	 * computeCapellaSource(java.lang.Object)
 	 */
 	@Override
 	public List<ExchangeItem> findSourceElements(LogicalArchitecture capellaContainer) {
-
-		List<ExchangeItem> eventEIs = EObjectExt.getAll(capellaContainer, InformationPackage.Literals.EXCHANGE_ITEM)
-				.stream().map(ExchangeItem.class::cast)
+		List<ExchangeItem> findSourceElements = super.findSourceElements(capellaContainer);
+		List<ExchangeItem> eventEIs = findSourceElements.stream()
 				.filter(ei -> (ei.getExchangeMechanism() == ExchangeMechanism.EVENT)).collect(Collectors.toList());
-
 		return eventEIs;
 	}
 
@@ -89,7 +72,7 @@ public class EventExchangeItemMapping
 		MappingUtils.generateUID(getAlgo(), source, signalTarget, this);
 		Resource eResource = source.eResource();
 		String sysMLID = MappingUtils.getSysMLID(eResource, source);
-		XMIExtensionsUtils.addElement(signalTarget, getAlgo().getXMIExtension(), sysMLID,"sign");
+		XMIExtensionsUtils.addElement(signalTarget, getAlgo().getXMIExtension(), sysMLID, "sign");
 
 		signalTarget.setName(source.getName());
 		if (eaContainer instanceof Model) {
@@ -114,8 +97,8 @@ public class EventExchangeItemMapping
 	@Override
 	public void executeSubRules(List<ExchangeItem> _capellaSource, MappingRulesManager manager) {
 		for (ExchangeItem exchangeItem : _capellaSource) {
-			EventExchangeItemElementMapping elementMapping = new EventExchangeItemElementMapping(getAlgo(), exchangeItem,
-					getMappingExucution());
+			EventExchangeItemElementMapping elementMapping = new EventExchangeItemElementMapping(getAlgo(),
+					exchangeItem, getMappingExucution());
 			manager.add(EventExchangeItemElementMapping.class.getName() + exchangeItem.getId(), elementMapping);
 		}
 
