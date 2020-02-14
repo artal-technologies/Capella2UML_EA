@@ -60,9 +60,11 @@ public class ActorMapping extends AbstractDynamicMapping<LogicalComponentPkg, Lo
 	 */
 	@Override
 	public List<LogicalComponent> findSourceElements(LogicalComponentPkg capellaContainer) {
-		
-		List<LogicalComponent> actors = EObjectExt.getAll(capellaContainer, LaPackage.Literals.LOGICAL_COMPONENT).stream().map(LogicalComponent.class::cast).filter(act -> act.isActor()).collect(Collectors.toList());
-		
+
+		List<LogicalComponent> actors = EObjectExt.getAll(capellaContainer, LaPackage.Literals.LOGICAL_COMPONENT)
+				.stream().map(LogicalComponent.class::cast).filter(act -> act.isActor()).filter(act -> act.isHuman())
+				.collect(Collectors.toList());
+
 		return actors;
 	}
 
