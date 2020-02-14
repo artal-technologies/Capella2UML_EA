@@ -24,9 +24,9 @@ import org.polarsys.capella.core.data.cs.Part;
 import org.polarsys.capella.core.data.fa.AbstractFunction;
 import org.polarsys.capella.core.data.fa.FunctionPkg;
 import org.polarsys.capella.core.data.information.DataPkg;
-import org.polarsys.capella.core.data.la.LogicalActorPkg;
 import org.polarsys.capella.core.data.la.LogicalArchitecture;
 import org.polarsys.capella.core.data.la.LogicalComponent;
+import org.polarsys.capella.core.data.la.LogicalComponentPkg;
 import org.polarsys.capella.core.data.la.LogicalFunctionPkg;
 
 /**
@@ -64,7 +64,7 @@ public class CapellaUtils {
 								.getOwnedArchitectures();
 						for (ModellingArchitecture arch : containedLogicalArchitecture) {
 							if (arch instanceof LogicalArchitecture)
-								return ((LogicalArchitecture) arch).getOwnedLogicalComponent();
+								return (LogicalComponent)((LogicalArchitecture) arch).getSystem();
 						}
 					}
 				}
@@ -76,11 +76,10 @@ public class CapellaUtils {
 	/**
 	 * Returns the logical component system root given a semantic object
 	 * 
-	 * @param source_p
-	 *            the semantic object
+	 * @param source_p the semantic object
 	 * @return the logical component root
 	 */
-	public static LogicalActorPkg getLogicalActorPkg(EObject source_p) {
+	public static LogicalComponentPkg getLogicalComponentPkg(EObject source_p) {
 		ResourceSet resourceSet = source_p.eResource().getResourceSet();
 		URI semanticResourceURI = source_p.eResource().getURI().trimFileExtension()
 				.appendFileExtension("melodymodeller");
@@ -95,7 +94,7 @@ public class CapellaUtils {
 								.getOwnedArchitectures();
 						for (ModellingArchitecture arch : containedLogicalArchitecture) {
 							if (arch instanceof LogicalArchitecture)
-								return ((LogicalArchitecture) arch).getOwnedLogicalActorPkg();
+								return ((LogicalArchitecture) arch).getOwnedLogicalComponentPkg();
 						}
 					}
 				}

@@ -24,8 +24,8 @@ import org.polarsys.capella.core.data.cs.InterfacePkg;
 import org.polarsys.capella.core.data.information.Class;
 import org.polarsys.capella.core.data.information.DataPkg;
 import org.polarsys.capella.core.data.information.InformationPackage;
-import org.polarsys.capella.core.data.la.LogicalActorPkg;
 import org.polarsys.capella.core.data.la.LogicalArchitecture;
+import org.polarsys.capella.core.data.la.LogicalComponentPkg;
 
 import com.artal.capella.mapping.CapellaUtils;
 import com.artal.capella.mapping.MappingUtils;
@@ -157,7 +157,6 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 		InterfaceMapping interfaceMapping = new InterfaceMapping(getAlgo(), interfacePkg, getMappingExucution());
 		manager.add(InterfaceMapping.class.getName() + interfacePkg.getId(), interfaceMapping);
 
-
 		ComponentMapping componentMapping = new ComponentMapping(getAlgo(), logicalArchitecture, getMappingExucution());
 		manager.add(componentMapping.getClass().getName() + logicalArchitecture.getId(), componentMapping);
 
@@ -168,9 +167,9 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 			manager.add(mapping.getClass().getName() + component.getId(), mapping);
 		}
 
-		LogicalActorPkg logicalActorPkg = CapellaUtils.getLogicalActorPkg(project);
-		ActorMapping actorMapping = new ActorMapping(getAlgo(), logicalActorPkg, getMappingExucution());
-		manager.add(logicalActorPkg.getClass().getName() + logicalActorPkg.getId(), actorMapping);
+		LogicalComponentPkg logicalComponentPkg = CapellaUtils.getLogicalComponentPkg(project);
+		ActorMapping actorMapping = new ActorMapping(getAlgo(), logicalComponentPkg, getMappingExucution());
+		manager.add(logicalComponentPkg.getClass().getName() + logicalComponentPkg.getId(), actorMapping);
 
 		DescriptionMapping descriptionMapping = new DescriptionMapping(getAlgo(), logicalArchitecture,
 				getMappingExucution());

@@ -26,18 +26,19 @@
 		<repository>
 			<id>capella</id>
 			<layout>p2</layout>
-			<url>https://hudson.polarsys.org/capella/job/capella-master/1567/artifact/releng/plugins/org.polarsys.capella.rcp.site/target/repository/
+			<url>https://download.eclipse.org/capella/core/updates/releases/1.4.0-R20191121-173601/org.polarsys.capella.rcp.site/
 			</url>
 		</repository>
 		<repository>
 			<id>kitalpha</id>
 			<layout>p2</layout>
-			<url>https://ci.polarsys.org/kitalpha/job/Kitalpha_master/1069/artifact/releng/plugins/org.polarsys.kitalpha.releng.runtime.core.updatesite/target/repository/
+			<url>https://download.eclipse.org/kitalpha/updates/release/runtimecore/1.4.0/
 			</url>
 		</repository>
 		<repository>
 			<id>kitalpha-sdk</id>
-			<url>https://ci.polarsys.org/kitalpha/job/Kitalpha_master/1069/artifact/releng/plugins/org.polarsys.kitalpha.releng.sdk.updatesite/target/repository</url>
+			<url>https://download.eclipse.org/kitalpha/updates/release/sdk/1.4.0/
+			</url>
 			<layout>p2</layout>
 		</repository>
 		<repository>
@@ -58,13 +59,13 @@
 		<repository>
 			<id>diffmerge</id>
 			<layout>p2</layout>
-			<url>https://download.eclipse.org/diffmerge/releases/0.11.0/emf-diffmerge-site/
+			<url>https://download.eclipse.org/diffmerge/releases/0.12.0/emf-diffmerge-site/
 			</url>
 		</repository>
 		<repository>
 			<id>coevolution</id>
 			<layout>p2</layout>
-			<url>https://download.eclipse.org/diffmerge/releases/0.11.0/edm-coevolution-site/
+			<url>https://download.eclipse.org/diffmerge/releases/0.12.0/edm-coevolution-site/
 			</url>
 		</repository>
 

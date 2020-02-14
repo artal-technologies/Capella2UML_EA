@@ -23,7 +23,7 @@ import org.polarsys.capella.core.data.fa.FaPackage;
 import org.polarsys.capella.core.data.fa.FunctionInputPort;
 import org.polarsys.capella.core.data.fa.FunctionOutputPort;
 import org.polarsys.capella.core.data.fa.FunctionalExchange;
-import org.polarsys.capella.core.data.la.LogicalActor;
+import org.polarsys.capella.core.data.la.LogicalComponent;
 import org.polarsys.capella.core.data.la.LogicalFunctionPkg;
 
 import com.artal.capella.mapping.CapellaUtils;
@@ -36,21 +36,21 @@ import com.artal.capella.mapping.rules.MappingRulesManager;
  *
  */
 public class ActorFunctionalExchangeMapping
-		extends AbstractDynamicMapping<LogicalActor, FunctionalExchange, Capella2UMLAlgo> {
+		extends AbstractDynamicMapping<LogicalComponent, FunctionalExchange, Capella2UMLAlgo> {
 
-	public ActorFunctionalExchangeMapping(Capella2UMLAlgo algo, LogicalActor parent,
+	public ActorFunctionalExchangeMapping(Capella2UMLAlgo algo, LogicalComponent parent,
 			IMappingExecution mappingExecution) {
 		super(algo, parent, mappingExecution);
 	}
 
 	@Override
-	public Object computeTargetContainer(LogicalActor capellaContainer) {
+	public Object computeTargetContainer(LogicalComponent capellaContainer) {
 		Actor actor = (Actor) MappingRulesManager.getCapellaObjectFromAllRules(capellaContainer);
 		return actor;
 	}
 
 	@Override
-	public List<FunctionalExchange> findSourceElements(LogicalActor capellaContainer) {
+	public List<FunctionalExchange> findSourceElements(LogicalComponent capellaContainer) {
 
 		LogicalFunctionPkg logicalFunctionPackage = CapellaUtils.getLogicalFunctionPackage(capellaContainer);
 		List<FunctionalExchange> collect = EObjectExt
@@ -61,7 +61,7 @@ public class ActorFunctionalExchangeMapping
 		return collect;
 	}
 
-	public boolean isInActor(FunctionalExchange lf, LogicalActor capellaContainer) {
+	public boolean isInActor(FunctionalExchange lf, LogicalComponent capellaContainer) {
 		FunctionOutputPort sourceFunctionOutputPort = lf.getSourceFunctionOutputPort();
 		FunctionInputPort targetFunctionInputPort = lf.getTargetFunctionInputPort();
 
