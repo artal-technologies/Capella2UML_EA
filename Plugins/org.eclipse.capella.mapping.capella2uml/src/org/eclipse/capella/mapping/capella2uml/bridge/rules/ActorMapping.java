@@ -4,7 +4,6 @@
 package org.eclipse.capella.mapping.capella2uml.bridge.rules;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
 import org.eclipse.emf.common.util.EList;
@@ -15,16 +14,12 @@ import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.UMLFactory;
-import org.polarsys.capella.common.helpers.EObjectExt;
-import org.polarsys.capella.core.data.capellamodeller.Project;
-import org.polarsys.capella.core.data.la.LaPackage;
 import org.polarsys.capella.core.data.la.LogicalComponent;
 import org.polarsys.capella.core.data.la.LogicalComponentPkg;
-import org.polarsys.capella.core.model.helpers.ProjectExt;
 
 import com.artal.capella.mapping.MappingUtils;
-import com.artal.capella.mapping.rules.AbstractDynamicMapping;
 import com.artal.capella.mapping.rules.MappingRulesManager;
+import com.artal.capella.mapping.rules.commons.CommonsActorMapping;
 
 import xmi.util.XMIExtensionsUtils;
 
@@ -32,41 +27,15 @@ import xmi.util.XMIExtensionsUtils;
  * @author binot
  *
  */
-public class ActorMapping extends AbstractDynamicMapping<LogicalComponentPkg, LogicalComponent, Capella2UMLAlgo> {
+public class ActorMapping extends CommonsActorMapping< Capella2UMLAlgo> {
 
 	public ActorMapping(Capella2UMLAlgo algo, LogicalComponentPkg parent, IMappingExecution mappingExecution) {
 		super(algo, parent, mappingExecution);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * computeEAContainer(java.lang.Object)
-	 */
-	@Override
-	public Object computeTargetContainer(LogicalComponentPkg capellaContainer) {
 
-		Project capellaProject = ProjectExt.getProject(capellaContainer);
-		Model model = (Model) MappingRulesManager.getCapellaObjectFromAllRules(capellaProject);
-		return model;
-	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * computeCapellaSource(java.lang.Object)
-	 */
-	@Override
-	public List<LogicalComponent> findSourceElements(LogicalComponentPkg capellaContainer) {
 
-		List<LogicalComponent> actors = EObjectExt.getAll(capellaContainer, LaPackage.Literals.LOGICAL_COMPONENT)
-				.stream().map(LogicalComponent.class::cast).filter(act -> act.isActor()).filter(act -> act.isHuman())
-				.collect(Collectors.toList());
-
-		return actors;
-	}
 
 	/*
 	 * (non-Javadoc)
@@ -118,5 +87,8 @@ public class ActorMapping extends AbstractDynamicMapping<LogicalComponentPkg, Lo
 		}
 
 	}
+
+
+
 
 }

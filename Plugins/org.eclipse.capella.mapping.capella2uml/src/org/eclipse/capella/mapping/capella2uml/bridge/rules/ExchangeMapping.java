@@ -25,11 +25,13 @@ import org.polarsys.capella.core.data.fa.ComponentExchange;
 import org.polarsys.capella.core.data.fa.ComponentPort;
 import org.polarsys.capella.core.data.fa.OrientationPortKind;
 import org.polarsys.capella.core.data.information.Port;
+import org.polarsys.capella.core.data.la.LogicalComponent;
 import org.polarsys.capella.core.model.helpers.ProjectExt;
 
+import com.artal.capella.mapping.CapellaUtils;
 import com.artal.capella.mapping.MappingUtils;
-import com.artal.capella.mapping.rules.AbstractDynamicMapping;
 import com.artal.capella.mapping.rules.MappingRulesManager;
+import com.artal.capella.mapping.rules.commons.CommonComponentExchangeMapping;
 
 import xmi.element;
 import xmi.util.XMIExtensionsUtils;
@@ -38,8 +40,7 @@ import xmi.util.XMIExtensionsUtils;
  * @author binot
  *
  */
-public class ExchangeMapping extends
-		AbstractDynamicMapping<org.polarsys.capella.core.data.cs.Component, ComponentExchange, Capella2UMLAlgo> {
+public class ExchangeMapping extends CommonComponentExchangeMapping<Capella2UMLAlgo> {
 
 	/**
 	 * @param algo
@@ -54,43 +55,16 @@ public class ExchangeMapping extends
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * computeEAContainer(java.lang.Object)
-	 */
-	@Override
-	public Object computeTargetContainer(org.polarsys.capella.core.data.cs.Component capellaContainer) {
-
-		BehavioredClassifier container = (BehavioredClassifier) MappingRulesManager
-				.getCapellaObjectFromAllRules(capellaContainer);
-		if (container != null) {
-			return container;
-		}
-		Project project = ProjectExt.getProject(capellaContainer);
-
-		return (Model) MappingRulesManager.getCapellaObjectFromAllRules(project);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * computeCapellaSource(java.lang.Object)
-	 */
-	@Override
-	public List<ComponentExchange> findSourceElements(org.polarsys.capella.core.data.cs.Component capellaContainer) {
-		List<ComponentExchange> ownedComponentExchanges = capellaContainer.getOwnedComponentExchanges();
-		return ownedComponentExchanges;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#compute
 	 * (java.lang.Object, java.lang.Object)
 	 */
 	@Override
 	public Object compute(Object eaContainer, ComponentExchange source) {
+
+		LogicalComponent logicalSystemRoot = CapellaUtils.getLogicalSystemRoot(source);
+		Component container = (Component) MappingRulesManager.getCapellaObjectFromAllRules(logicalSystemRoot);
+
 		Connector targetConnector = UMLFactory.eINSTANCE.createConnector();
 		MappingUtils.generateUID(getAlgo(), source, targetConnector, this);
 		targetConnector.setName(source.getName());
@@ -122,9 +96,12 @@ public class ExchangeMapping extends
 				targetConnector.getEnds().add(sourceConnectorEnd);
 			}
 
-			Component eContainer = (Component) sourceUMLPort.eContainer();
-			eContainer.getOwnedConnectors().add(targetConnector);
-
+			if (container != null) {
+				container.getOwnedConnectors().add(targetConnector);
+			} else {
+				Component eContainer = (Component) sourceUMLPort.eContainer();
+				eContainer.getOwnedConnectors().add(targetConnector);
+			}
 			Set<Interface> providedInterface = new HashSet<>();
 			if (!sourcePort.getProvidedInterfaces().isEmpty()) {
 				providedInterface.addAll(sourcePort.getProvidedInterfaces());

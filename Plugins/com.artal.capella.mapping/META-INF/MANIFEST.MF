@@ -10,10 +10,12 @@ Require-Bundle: org.eclipse.emf.diffmerge.bridge.interactive,
  org.polarsys.capella.core.data.gen,
  org.eclipse.emf.diffmerge.bridge.capella.integration,
  org.eclipse.emf.diffmerge.bridge.uml,
- org.eclipse.osgi.services
+ org.eclipse.osgi.services,
+ org.polarsys.capella.core.model.helpers
 Export-Package: com.artal.capella.mapping,
  com.artal.capella.mapping.mix,
  com.artal.capella.mapping.rules,
+ com.artal.capella.mapping.rules.commons,
  com.artal.capella.mapping.services,
  com.artal.capella.mapping.uml
 Bundle-Activator: com.artal.capella.mapping.MappingActivator

@@ -18,15 +18,14 @@ import org.polarsys.capella.core.data.information.ExchangeItemElement;
 import org.polarsys.capella.core.data.information.ParameterDirection;
 
 import com.artal.capella.mapping.MappingUtils;
-import com.artal.capella.mapping.rules.AbstractDynamicMapping;
 import com.artal.capella.mapping.rules.MappingRulesManager;
+import com.artal.capella.mapping.rules.commons.CommonExchangeItemElement;
 
 /**
  * @author binot
  *
  */
-public class OperationExchangeItemElementMapping
-		extends AbstractDynamicMapping<ExchangeItem, ExchangeItemElement, Capella2UMLAlgo> {
+public class OperationExchangeItemElementMapping extends CommonExchangeItemElement<Capella2UMLAlgo> {
 
 	/**
 	 * @param algo
@@ -36,29 +35,6 @@ public class OperationExchangeItemElementMapping
 	public OperationExchangeItemElementMapping(Capella2UMLAlgo algo, ExchangeItem parent,
 			IMappingExecution mappingExecution) {
 		super(algo, parent, mappingExecution);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * computeEAContainer(java.lang.Object)
-	 */
-	@Override
-	public Object computeTargetContainer(ExchangeItem capellaContainer) {
-		return (Operation) MappingRulesManager.getCapellaObjectFromAllRules(capellaContainer);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * computeCapellaSource(java.lang.Object)
-	 */
-	@Override
-	public List<ExchangeItemElement> findSourceElements(ExchangeItem capellaContainer) {
-		List<ExchangeItemElement> ownedElements = capellaContainer.getOwnedElements();
-		return ownedElements;
 	}
 
 	/*

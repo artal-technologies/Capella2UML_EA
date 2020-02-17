@@ -148,6 +148,15 @@ public interface XmiFactory extends EFactory {
 	connector createconnector();
 
 	/**
+	 * Returns a new object of class '<em>model</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>model</em>'.
+	 * @generated
+	 */
+	model createmodel();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

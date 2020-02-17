@@ -8,54 +8,41 @@ import java.util.stream.Collectors;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.uml2.uml.Actor;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
-import org.polarsys.capella.common.helpers.EObjectExt;
 import org.polarsys.capella.core.data.cs.Component;
 import org.polarsys.capella.core.data.fa.AbstractFunction;
-import org.polarsys.capella.core.data.fa.FaPackage;
 import org.polarsys.capella.core.data.fa.FunctionInputPort;
 import org.polarsys.capella.core.data.fa.FunctionOutputPort;
 import org.polarsys.capella.core.data.fa.FunctionalExchange;
 import org.polarsys.capella.core.data.la.LogicalComponent;
-import org.polarsys.capella.core.data.la.LogicalFunctionPkg;
 
 import com.artal.capella.mapping.CapellaUtils;
 import com.artal.capella.mapping.MappingUtils;
-import com.artal.capella.mapping.rules.AbstractDynamicMapping;
 import com.artal.capella.mapping.rules.MappingRulesManager;
+import com.artal.capella.mapping.rules.commons.CommonFunctionalExchangeMapping;
 
 /**
  * @author binot
  *
  */
-public class ActorFunctionalExchangeMapping
-		extends AbstractDynamicMapping<LogicalComponent, FunctionalExchange, Capella2UMLAlgo> {
+public class ActorFunctionalExchangeMapping extends CommonFunctionalExchangeMapping<LogicalComponent, Capella2UMLAlgo> {
 
 	public ActorFunctionalExchangeMapping(Capella2UMLAlgo algo, LogicalComponent parent,
 			IMappingExecution mappingExecution) {
 		super(algo, parent, mappingExecution);
 	}
 
-	@Override
-	public Object computeTargetContainer(LogicalComponent capellaContainer) {
-		Actor actor = (Actor) MappingRulesManager.getCapellaObjectFromAllRules(capellaContainer);
-		return actor;
-	}
 
 	@Override
 	public List<FunctionalExchange> findSourceElements(LogicalComponent capellaContainer) {
 
-		LogicalFunctionPkg logicalFunctionPackage = CapellaUtils.getLogicalFunctionPackage(capellaContainer);
-		List<FunctionalExchange> collect = EObjectExt
-				.getAll(logicalFunctionPackage, FaPackage.eINSTANCE.getFunctionalExchange()).stream()
-				.map(FunctionalExchange.class::cast).filter(lf -> isInActor(lf, capellaContainer))
+		List<FunctionalExchange> findSourceElements = super.findSourceElements(capellaContainer);
+		List<FunctionalExchange> collect = findSourceElements.stream().filter(lf -> isInActor(lf, capellaContainer))
 				.collect(Collectors.toList());
 
 		return collect;
@@ -124,13 +111,6 @@ public class ActorFunctionalExchangeMapping
 
 	@Override
 	public void executeSubRules(List<FunctionalExchange> _capellaSource, MappingRulesManager manager) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public String getUID(EObject key, String id) {
-		return "EAID_" + id;
 	}
 
 }

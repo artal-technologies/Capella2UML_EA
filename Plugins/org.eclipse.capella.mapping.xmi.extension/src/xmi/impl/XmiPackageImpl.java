@@ -20,6 +20,7 @@ import xmi.constraint;
 import xmi.constraints;
 import xmi.element;
 import xmi.elements;
+import xmi.model;
 import xmi.profiles;
 import xmi.properties;
 import xmi.stereotype;
@@ -129,6 +130,13 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 	 * @generated
 	 */
 	private EClass connectorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass modelEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -378,6 +386,15 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 	 */
 	public EReference getelement_Constraints() {
 		return (EReference)elementEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getelement_Model() {
+		return (EReference)elementEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -709,6 +726,60 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getmodel() {
+		return modelEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getmodel_Package() {
+		return (EReference)modelEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getmodel_Owner() {
+		return (EReference)modelEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getmodel_Tpos() {
+		return (EAttribute)modelEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getmodel_Ea_localid() {
+		return (EAttribute)modelEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getmodel_Ea_eletype() {
+		return (EAttribute)modelEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public XmiFactory getXmiFactory() {
 		return (XmiFactory)getEFactoryInstance();
 	}
@@ -756,6 +827,7 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 		createEReference(elementEClass, ELEMENT__PROPERTIES);
 		createEReference(elementEClass, ELEMENT__ATTRIBUTES);
 		createEReference(elementEClass, ELEMENT__CONSTRAINTS);
+		createEReference(elementEClass, ELEMENT__MODEL);
 
 		xrefsEClass = createEClass(XREFS);
 		createEAttribute(xrefsEClass, XREFS__VALUE);
@@ -802,6 +874,13 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 		connectorEClass = createEClass(CONNECTOR);
 		createEReference(connectorEClass, CONNECTOR__PROPERTIES);
 		createEReference(connectorEClass, CONNECTOR__XMIIDREF);
+
+		modelEClass = createEClass(MODEL);
+		createEReference(modelEClass, MODEL__PACKAGE);
+		createEReference(modelEClass, MODEL__OWNER);
+		createEAttribute(modelEClass, MODEL__TPOS);
+		createEAttribute(modelEClass, MODEL__EA_LOCALID);
+		createEAttribute(modelEClass, MODEL__EA_ELETYPE);
 	}
 
 	/**
@@ -858,6 +937,7 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 		initEReference(getelement_Properties(), this.getproperties(), null, "properties", null, 0, 1, element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getelement_Attributes(), this.getattributes(), null, "attributes", null, 0, 1, element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getelement_Constraints(), this.getconstraints(), null, "constraints", null, 0, 1, element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getelement_Model(), this.getmodel(), null, "model", null, 0, 1, element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(xrefsEClass, xrefs.class, "xrefs", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getxrefs_Value(), ecorePackage.getEString(), "value", null, 0, 1, xrefs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -904,6 +984,13 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 		initEClass(connectorEClass, connector.class, "connector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getconnector_Properties(), this.getproperties(), null, "properties", null, 0, 1, connector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getconnector_Xmiidref(), ecorePackage.getEObject(), null, "xmi:idref", null, 0, 1, connector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(modelEClass, model.class, "model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getmodel_Package(), ecorePackage.getEObject(), null, "package", null, 0, 1, model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getmodel_Owner(), ecorePackage.getEObject(), null, "owner", null, 0, 1, model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getmodel_Tpos(), ecorePackage.getEString(), "tpos", null, 0, 1, model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getmodel_Ea_localid(), ecorePackage.getEString(), "ea_localid", null, 0, 1, model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getmodel_Ea_eletype(), ecorePackage.getEString(), "ea_eletype", null, 0, 1, model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

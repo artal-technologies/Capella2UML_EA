@@ -10,7 +10,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Property;
@@ -23,8 +22,8 @@ import org.polarsys.capella.core.data.information.ExchangeItem;
 import org.polarsys.capella.core.model.helpers.ProjectExt;
 
 import com.artal.capella.mapping.MappingUtils;
-import com.artal.capella.mapping.rules.AbstractDynamicMapping;
 import com.artal.capella.mapping.rules.MappingRulesManager;
+import com.artal.capella.mapping.rules.commons.CommonInterfaceMapping;
 
 import xmi.util.XMIExtensionsUtils;
 
@@ -32,7 +31,7 @@ import xmi.util.XMIExtensionsUtils;
  * @author binot
  *
  */
-public class InterfaceMapping extends AbstractDynamicMapping<InterfacePkg, Interface, Capella2UMLAlgo> {
+public class InterfaceMapping extends CommonInterfaceMapping<Capella2UMLAlgo> {
 
 	/**
 	 * @param algo
@@ -41,32 +40,6 @@ public class InterfaceMapping extends AbstractDynamicMapping<InterfacePkg, Inter
 	 */
 	public InterfaceMapping(Capella2UMLAlgo algo, InterfacePkg parent, IMappingExecution mappingExecution) {
 		super(algo, parent, mappingExecution);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * computeEAContainer(java.lang.Object)
-	 */
-	@Override
-	public Object computeTargetContainer(InterfacePkg capellaContainer) {
-
-		Project capellaProject = ProjectExt.getProject(capellaContainer);
-		Model model = (Model) MappingRulesManager.getCapellaObjectFromAllRules(capellaProject);
-		return model;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * computeCapellaSource(java.lang.Object)
-	 */
-	@Override
-	public List<Interface> findSourceElements(InterfacePkg capellaContainer) {
-		List<Interface> ownedInterfaces = capellaContainer.getOwnedInterfaces();
-		return ownedInterfaces;
 	}
 
 	/*

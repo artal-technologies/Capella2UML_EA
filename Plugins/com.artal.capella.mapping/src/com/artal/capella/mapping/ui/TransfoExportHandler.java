@@ -23,6 +23,7 @@ import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.handlers.HandlerUtil;
+import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.la.LogicalArchitecture;
 
@@ -76,7 +77,7 @@ public class TransfoExportHandler extends AbstractHandler {
 		// String folder = umlPath.substring(0, umlPath.lastIndexOf(File.separator));
 		URI targetUri = URI.createFileURI(umlPath);
 
-		LogicalArchitecture firstElement = (LogicalArchitecture) currentSelection.getFirstElement();
+		CapellaElement firstElement = (CapellaElement) currentSelection.getFirstElement();
 		Resource capellaResource = firstElement.eResource();
 		ResourceSet resourceSet = capellaResource.getResourceSet();
 		URI semanticResourceURI = capellaResource.getURI().trimFileExtension().appendFileExtension("melodymodeller");

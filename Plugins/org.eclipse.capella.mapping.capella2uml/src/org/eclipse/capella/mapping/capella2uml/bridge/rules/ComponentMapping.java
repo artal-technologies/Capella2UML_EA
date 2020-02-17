@@ -3,74 +3,37 @@
  */
 package org.eclipse.capella.mapping.capella2uml.bridge.rules;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
-import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.capellamodeller.Project;
-import org.polarsys.capella.core.data.la.LogicalArchitecture;
 import org.polarsys.capella.core.data.la.LogicalComponent;
 import org.polarsys.capella.core.model.helpers.ProjectExt;
 
-import com.artal.capella.mapping.CapellaUtils;
 import com.artal.capella.mapping.MappingUtils;
-import com.artal.capella.mapping.rules.AbstractDynamicMapping;
 import com.artal.capella.mapping.rules.MappingRulesManager;
+import com.artal.capella.mapping.rules.commons.CommonComponentMapping;
 
+import xmi.element;
 import xmi.util.XMIExtensionsUtils;
 
 /**
  * @author binot
  *
  */
-public class ComponentMapping extends AbstractDynamicMapping<CapellaElement, LogicalComponent, Capella2UMLAlgo> {
-
-	private boolean _isLogicalSystem = false;
+public class ComponentMapping extends CommonComponentMapping<Capella2UMLAlgo> {
 
 	public ComponentMapping(Capella2UMLAlgo algo, CapellaElement component, IMappingExecution execution) {
 		super(algo, component, execution);
-	}
-
-	@Override
-	public Object computeTargetContainer(CapellaElement capellaContainer) {
-		if (capellaContainer instanceof LogicalArchitecture) {
-			_isLogicalSystem = true;
-			Project capellaProject = ProjectExt.getProject(capellaContainer);
-			Model model = (Model) MappingRulesManager.getCapellaObjectFromAllRules(capellaProject);
-			return model;
-		} else {
-			_isLogicalSystem = false;
-			return (Component) MappingRulesManager.getCapellaObjectFromAllRules(capellaContainer);
-		}
-	}
-
-	@Override
-	public List<LogicalComponent> findSourceElements(CapellaElement capellaContainer) {
-		if (capellaContainer instanceof LogicalArchitecture) {
-			LogicalComponent logicalSystem = CapellaUtils.getLogicalSystemRoot(capellaContainer);
-			List<LogicalComponent> resutls = new ArrayList<>();
-			resutls.add(logicalSystem);
-			return resutls;
-		}
-
-		if (capellaContainer instanceof LogicalComponent) {
-			List<LogicalComponent> ownedLogicalComponents = ((LogicalComponent) capellaContainer)
-					.getOwnedLogicalComponents();
-			return ownedLogicalComponents;
-		}
-
-		return Collections.emptyList();
 	}
 
 	@Override
@@ -78,18 +41,29 @@ public class ComponentMapping extends AbstractDynamicMapping<CapellaElement, Log
 		org.eclipse.uml2.uml.Component targetComponent = UMLFactory.eINSTANCE.createComponent();
 
 		MappingUtils.generateUID(getAlgo(), source, targetComponent, this);
-		XMIExtensionsUtils.createElement(targetComponent, getAlgo().getXMIExtension());
+		element createElement = XMIExtensionsUtils.createElement(targetComponent, getAlgo().getXMIExtension());
 
+		
+		Project project = ProjectExt.getProject(source);
+		Model model = (Model)MappingRulesManager.getCapellaObjectFromAllRules(project);
+		Package pack = null;
+		
+		EList<PackageableElement> ownedMembers = model.getPackagedElements();
+		for (PackageableElement ownedMember : ownedMembers) {
+			if (ownedMember.getName().equals("Import Capella"))
+				pack = (Package)ownedMember;
+			break;
+		}
+
+		
 		targetComponent.setName(source.getName());
 		if (eaContainer instanceof Model) {
-			EList<PackageableElement> ownedMembers = ((Model) eaContainer).getPackagedElements();
-			for (PackageableElement ownedMember : ownedMembers) {
-				if (ownedMember.getName().equals("Import Capella"))
-					((org.eclipse.uml2.uml.Package) ownedMember).getPackagedElements().add(targetComponent);
-			}
+			pack.getPackagedElements().add(targetComponent);
+			XMIExtensionsUtils.addModel(createElement, null, pack);
 
 		} else if (eaContainer instanceof Component) {
 			((Component) eaContainer).getNestedClassifiers().add(targetComponent);
+			XMIExtensionsUtils.addModel(createElement, (Component) eaContainer, pack);
 		}
 
 		return targetComponent;
@@ -102,13 +76,8 @@ public class ComponentMapping extends AbstractDynamicMapping<CapellaElement, Log
 					getMappingExucution());
 			PortMapping portMapping = new PortMapping(getAlgo(), logicalComponent, getMappingExucution());
 
-			// ExchangeMapping exchangeMapping = new ExchangeMapping(getAlgo(),
-			// logicalComponent, getMappingExucution());
-
 			manager.add(ComponentMapping.class.getName() + logicalComponent.getId(), componentMapping);
 			manager.add(PortMapping.class.getName() + logicalComponent.getId(), portMapping);
-			// manager.add(ExchangeMapping.class.getName() + logicalComponent.getId(),
-			// exchangeMapping);
 		}
 
 		for (LogicalComponent logicalComponent : _capellaSource) {

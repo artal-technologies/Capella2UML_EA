@@ -70,6 +70,7 @@ public class XmiFactoryImpl extends EFactoryImpl implements XmiFactory {
 			case XmiPackage.CONSTRAINT: return createconstraint();
 			case XmiPackage.CONNECTORS: return createconnectors();
 			case XmiPackage.CONNECTOR: return createconnector();
+			case XmiPackage.MODEL: return createmodel();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -213,6 +214,16 @@ public class XmiFactoryImpl extends EFactoryImpl implements XmiFactory {
 	public connector createconnector() {
 		connectorImpl connector = new connectorImpl();
 		return connector;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public model createmodel() {
+		modelImpl model = new modelImpl();
+		return model;
 	}
 
 	/**

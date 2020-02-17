@@ -22,6 +22,7 @@ import org.polarsys.capella.core.data.cs.Component;
 import org.polarsys.capella.core.data.cs.InterfacePkg;
 import org.polarsys.capella.core.data.cs.Part;
 import org.polarsys.capella.core.data.fa.AbstractFunction;
+import org.polarsys.capella.core.data.fa.ComponentFunctionalAllocation;
 import org.polarsys.capella.core.data.fa.FunctionPkg;
 import org.polarsys.capella.core.data.information.DataPkg;
 import org.polarsys.capella.core.data.la.LogicalArchitecture;
@@ -239,6 +240,9 @@ public class CapellaUtils {
 			EObject eObject = setting.getEObject();
 			if (eObject instanceof Component) {
 				return (Component) eObject;
+			}
+			if (eObject instanceof ComponentFunctionalAllocation) {
+				return (Component) ((ComponentFunctionalAllocation) eObject).getSourceElement();
 			}
 		}
 		return null;

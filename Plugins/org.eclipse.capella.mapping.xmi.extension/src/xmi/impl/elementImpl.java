@@ -16,6 +16,7 @@ import xmi.XmiPackage;
 import xmi.attributes;
 import xmi.constraints;
 import xmi.element;
+import xmi.model;
 import xmi.properties;
 import xmi.xrefs;
 
@@ -35,6 +36,7 @@ import xmi.xrefs;
  *   <li>{@link xmi.impl.elementImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link xmi.impl.elementImpl#getAttributes <em>Attributes</em>}</li>
  *   <li>{@link xmi.impl.elementImpl#getConstraints <em>Constraints</em>}</li>
+ *   <li>{@link xmi.impl.elementImpl#getModel <em>Model</em>}</li>
  * </ul>
  *
  * @generated
@@ -139,6 +141,16 @@ public class elementImpl extends MinimalEObjectImpl.Container implements element
 	 * @ordered
 	 */
 	protected constraints constraints;
+
+	/**
+	 * The cached value of the '{@link #getModel() <em>Model</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getModel()
+	 * @generated
+	 * @ordered
+	 */
+	protected model model;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -454,6 +466,49 @@ public class elementImpl extends MinimalEObjectImpl.Container implements element
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public model getModel() {
+		return model;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetModel(model newModel, NotificationChain msgs) {
+		model oldModel = model;
+		model = newModel;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XmiPackage.ELEMENT__MODEL, oldModel, newModel);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setModel(model newModel) {
+		if (newModel != model) {
+			NotificationChain msgs = null;
+			if (model != null)
+				msgs = ((InternalEObject)model).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XmiPackage.ELEMENT__MODEL, null, msgs);
+			if (newModel != null)
+				msgs = ((InternalEObject)newModel).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XmiPackage.ELEMENT__MODEL, null, msgs);
+			msgs = basicSetModel(newModel, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, XmiPackage.ELEMENT__MODEL, newModel, newModel));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -465,6 +520,8 @@ public class elementImpl extends MinimalEObjectImpl.Container implements element
 				return basicSetAttributes(null, msgs);
 			case XmiPackage.ELEMENT__CONSTRAINTS:
 				return basicSetConstraints(null, msgs);
+			case XmiPackage.ELEMENT__MODEL:
+				return basicSetModel(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -495,6 +552,8 @@ public class elementImpl extends MinimalEObjectImpl.Container implements element
 				return getAttributes();
 			case XmiPackage.ELEMENT__CONSTRAINTS:
 				return getConstraints();
+			case XmiPackage.ELEMENT__MODEL:
+				return getModel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -530,6 +589,9 @@ public class elementImpl extends MinimalEObjectImpl.Container implements element
 				return;
 			case XmiPackage.ELEMENT__CONSTRAINTS:
 				setConstraints((constraints)newValue);
+				return;
+			case XmiPackage.ELEMENT__MODEL:
+				setModel((model)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -567,6 +629,9 @@ public class elementImpl extends MinimalEObjectImpl.Container implements element
 			case XmiPackage.ELEMENT__CONSTRAINTS:
 				setConstraints((constraints)null);
 				return;
+			case XmiPackage.ELEMENT__MODEL:
+				setModel((model)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -595,6 +660,8 @@ public class elementImpl extends MinimalEObjectImpl.Container implements element
 				return attributes != null;
 			case XmiPackage.ELEMENT__CONSTRAINTS:
 				return constraints != null;
+			case XmiPackage.ELEMENT__MODEL:
+				return model != null;
 		}
 		return super.eIsSet(featureID);
 	}
