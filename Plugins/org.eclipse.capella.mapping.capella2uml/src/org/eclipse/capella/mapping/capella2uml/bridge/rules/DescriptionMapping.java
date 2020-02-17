@@ -45,22 +45,24 @@ public class DescriptionMapping extends CommonDescriptionMapping<LogicalArchitec
 	@Override
 	public Object compute(Object eaContainer, CapellaElement source) {
 
-		Comment createComment = UMLFactory.eINSTANCE.createComment();
-		MappingUtils.generateUID(getAlgo(), source, createComment, this, "ct");
-
-		createComment.setBody(source.getDescription());
-
 		Element capellaObjectFromAllRules = (Element) MappingRulesManager.getCapellaObjectFromAllRules(source);
+		if (capellaObjectFromAllRules != null) {
+			Comment createComment = UMLFactory.eINSTANCE.createComment();
+			MappingUtils.generateUID(getAlgo(), source, createComment, this, "ct");
 
-		createComment.getAnnotatedElements().add(capellaObjectFromAllRules);
+			createComment.setBody(source.getDescription());
 
-		if (eaContainer instanceof Model) {
-			org.eclipse.uml2.uml.Package pkgCapella = (org.eclipse.uml2.uml.Package) (((Model) eaContainer)
-					.getPackagedElements().get(0));
-			pkgCapella.getOwnedComments().add(createComment);
+			createComment.getAnnotatedElements().add(capellaObjectFromAllRules);
+
+			if (eaContainer instanceof Model) {
+				org.eclipse.uml2.uml.Package pkgCapella = (org.eclipse.uml2.uml.Package) (((Model) eaContainer)
+						.getPackagedElements().get(0));
+				pkgCapella.getOwnedComments().add(createComment);
+			}
+
+			return createComment;
 		}
-
-		return createComment;
+		return null;
 	}
 
 	/*

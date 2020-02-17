@@ -67,7 +67,9 @@ public abstract class AbstractDynamicMapping<SOURCE_CONTAINER, SOURCE_ELEMENT, A
 		if (eaContainer != null && capellaSource != null && !capellaSource.isEmpty()) {
 			for (SOURCE_ELEMENT capella_SOURCE : capellaSource) {
 				Object object = compute(eaContainer, capella_SOURCE);
-				toTrace(capella_SOURCE, object);
+				if (object != null) {
+					toTrace(capella_SOURCE, object);
+				}
 			}
 
 			executeSubRules(capellaSource, _manager);

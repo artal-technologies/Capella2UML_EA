@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <xmi:Documentation exporter="Enterprise Architect" exporterVersion="6.5"/>
+  <uml:Model xmi:id="MX_EAID_0fcca5dc-569b-48d4-9dce-aea7daa0a760" name="EA_Model" visibility="public">
+    <packagedElement xmi:type="uml:Package" xmi:id="EAPK_0fcca5dc-569b-48d4-9dce-aea7daa0a760" name="Import Capella">
+      <packagedElement xmi:type="uml:Enumeration" xmi:id="EAID_6bc11de1-e2d0-4121-9f36-a26794b17a5e" name="Enumeration 1">
+        <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="EAID_ccce0080-6aae-4811-a739-cd16b1c81604" name="EnumerationLiteral 1" classifier="EAID_6bc11de1-e2d0-4121-9f36-a26794b17a5e"/>
+        <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="EAID_756b47da-5a92-4e59-bc71-9c076043eefb" name="EnumerationLiteral 2" classifier="EAID_6bc11de1-e2d0-4121-9f36-a26794b17a5e"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="EAID_e8cef0d4-cdf6-4d9d-8d25-4af798ba734b" name="Logical System"/>
+    </packagedElement>
+  </uml:Model>
+  <xmi:Extension extender="Enterprise Architect" extenderID="6.5">
+    <elements xmi:type="xmi:elements">
+      <element xmi:type="xmi:element" xmi:idref="EAPK_0fcca5dc-569b-48d4-9dce-aea7daa0a760">
+        <xrefs xmi:type="xmi:xrefs"/>
+      </element>
+      <element xmi:type="xmi:element" xmi:idref="EAID_6bc11de1-e2d0-4121-9f36-a26794b17a5e">
+        <xrefs xmi:type="xmi:xrefs"/>
+        <properties xmi:type="xmi:properties" sType="Enumeration" scope="public"/>
+        <attributes xmi:type="xmi:attributes">
+          <attribute xmi:type="xmi:attribute" xmi:idref="EAID_ccce0080-6aae-4811-a739-cd16b1c81604" name="EnumerationLiteral 1">
+            <stereotype xmi:type="xmi:stereotype" stereotype="enum"/>
+          </attribute>
+          <attribute xmi:type="xmi:attribute" xmi:idref="EAID_756b47da-5a92-4e59-bc71-9c076043eefb" name="EnumerationLiteral 2">
+            <stereotype xmi:type="xmi:stereotype" stereotype="enum"/>
+          </attribute>
+        </attributes>
+      </element>
+      <element xmi:type="xmi:element" xmi:idref="EAID_e8cef0d4-cdf6-4d9d-8d25-4af798ba734b">
+        <xrefs xmi:type="xmi:xrefs"/>
+      </element>
+    </elements>
+  </xmi:Extension>
+</xmi:XMI>
