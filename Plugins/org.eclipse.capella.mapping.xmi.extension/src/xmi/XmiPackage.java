@@ -305,13 +305,22 @@ public interface XmiPackage extends EPackage {
 	int ELEMENT__CONSTRAINTS = 7;
 
 	/**
+	 * The feature id for the '<em><b>Model</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT__MODEL = 8;
+
+	/**
 	 * The number of structural features of the '<em>element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_FEATURE_COUNT = 8;
+	int ELEMENT_FEATURE_COUNT = 9;
 
 	/**
 	 * The number of operations of the '<em>element</em>' class.
@@ -843,6 +852,80 @@ public interface XmiPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link xmi.impl.modelImpl <em>model</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see xmi.impl.modelImpl
+	 * @see xmi.impl.XmiPackageImpl#getmodel()
+	 * @generated
+	 */
+	int MODEL = 14;
+
+	/**
+	 * The feature id for the '<em><b>Package</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__PACKAGE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__OWNER = 1;
+
+	/**
+	 * The feature id for the '<em><b>Tpos</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__TPOS = 2;
+
+	/**
+	 * The feature id for the '<em><b>Ea localid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__EA_LOCALID = 3;
+
+	/**
+	 * The feature id for the '<em><b>Ea eletype</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__EA_ELETYPE = 4;
+
+	/**
+	 * The number of structural features of the '<em>model</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_FEATURE_COUNT = 5;
+
+	/**
+	 * The number of operations of the '<em>model</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_OPERATION_COUNT = 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link xmi.Extension <em>Extension</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1068,6 +1151,17 @@ public interface XmiPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getelement_Constraints();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link xmi.element#getModel <em>Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Model</em>'.
+	 * @see xmi.element#getModel()
+	 * @see #getelement()
+	 * @generated
+	 */
+	EReference getelement_Model();
 
 	/**
 	 * Returns the meta object for class '{@link xmi.xrefs <em>xrefs</em>}'.
@@ -1456,6 +1550,71 @@ public interface XmiPackage extends EPackage {
 	EReference getconnector_Xmiidref();
 
 	/**
+	 * Returns the meta object for class '{@link xmi.model <em>model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>model</em>'.
+	 * @see xmi.model
+	 * @generated
+	 */
+	EClass getmodel();
+
+	/**
+	 * Returns the meta object for the reference '{@link xmi.model#getPackage <em>Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Package</em>'.
+	 * @see xmi.model#getPackage()
+	 * @see #getmodel()
+	 * @generated
+	 */
+	EReference getmodel_Package();
+
+	/**
+	 * Returns the meta object for the reference '{@link xmi.model#getOwner <em>Owner</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Owner</em>'.
+	 * @see xmi.model#getOwner()
+	 * @see #getmodel()
+	 * @generated
+	 */
+	EReference getmodel_Owner();
+
+	/**
+	 * Returns the meta object for the attribute '{@link xmi.model#getTpos <em>Tpos</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Tpos</em>'.
+	 * @see xmi.model#getTpos()
+	 * @see #getmodel()
+	 * @generated
+	 */
+	EAttribute getmodel_Tpos();
+
+	/**
+	 * Returns the meta object for the attribute '{@link xmi.model#getEa_localid <em>Ea localid</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Ea localid</em>'.
+	 * @see xmi.model#getEa_localid()
+	 * @see #getmodel()
+	 * @generated
+	 */
+	EAttribute getmodel_Ea_localid();
+
+	/**
+	 * Returns the meta object for the attribute '{@link xmi.model#getEa_eletype <em>Ea eletype</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Ea eletype</em>'.
+	 * @see xmi.model#getEa_eletype()
+	 * @see #getmodel()
+	 * @generated
+	 */
+	EAttribute getmodel_Ea_eletype();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1653,6 +1812,14 @@ public interface XmiPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ELEMENT__CONSTRAINTS = eINSTANCE.getelement_Constraints();
+
+		/**
+		 * The meta object literal for the '<em><b>Model</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ELEMENT__MODEL = eINSTANCE.getelement_Model();
 
 		/**
 		 * The meta object literal for the '{@link xmi.impl.xrefsImpl <em>xrefs</em>}' class.
@@ -1961,6 +2128,56 @@ public interface XmiPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONNECTOR__XMIIDREF = eINSTANCE.getconnector_Xmiidref();
+
+		/**
+		 * The meta object literal for the '{@link xmi.impl.modelImpl <em>model</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see xmi.impl.modelImpl
+		 * @see xmi.impl.XmiPackageImpl#getmodel()
+		 * @generated
+		 */
+		EClass MODEL = eINSTANCE.getmodel();
+
+		/**
+		 * The meta object literal for the '<em><b>Package</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODEL__PACKAGE = eINSTANCE.getmodel_Package();
+
+		/**
+		 * The meta object literal for the '<em><b>Owner</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODEL__OWNER = eINSTANCE.getmodel_Owner();
+
+		/**
+		 * The meta object literal for the '<em><b>Tpos</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MODEL__TPOS = eINSTANCE.getmodel_Tpos();
+
+		/**
+		 * The meta object literal for the '<em><b>Ea localid</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MODEL__EA_LOCALID = eINSTANCE.getmodel_Ea_localid();
+
+		/**
+		 * The meta object literal for the '<em><b>Ea eletype</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MODEL__EA_ELETYPE = eINSTANCE.getmodel_Ea_eletype();
 
 	}
 

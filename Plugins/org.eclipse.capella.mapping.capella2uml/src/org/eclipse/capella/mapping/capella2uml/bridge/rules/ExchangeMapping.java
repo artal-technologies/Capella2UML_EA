@@ -25,8 +25,10 @@ import org.polarsys.capella.core.data.fa.ComponentExchange;
 import org.polarsys.capella.core.data.fa.ComponentPort;
 import org.polarsys.capella.core.data.fa.OrientationPortKind;
 import org.polarsys.capella.core.data.information.Port;
+import org.polarsys.capella.core.data.la.LogicalComponent;
 import org.polarsys.capella.core.model.helpers.ProjectExt;
 
+import com.artal.capella.mapping.CapellaUtils;
 import com.artal.capella.mapping.MappingUtils;
 import com.artal.capella.mapping.rules.MappingRulesManager;
 import com.artal.capella.mapping.rules.commons.CommonComponentExchangeMapping;
@@ -59,6 +61,10 @@ public class ExchangeMapping extends CommonComponentExchangeMapping<Capella2UMLA
 	 */
 	@Override
 	public Object compute(Object eaContainer, ComponentExchange source) {
+
+		LogicalComponent logicalSystemRoot = CapellaUtils.getLogicalSystemRoot(source);
+		Component container = (Component) MappingRulesManager.getCapellaObjectFromAllRules(logicalSystemRoot);
+
 		Connector targetConnector = UMLFactory.eINSTANCE.createConnector();
 		MappingUtils.generateUID(getAlgo(), source, targetConnector, this);
 		targetConnector.setName(source.getName());
@@ -90,9 +96,12 @@ public class ExchangeMapping extends CommonComponentExchangeMapping<Capella2UMLA
 				targetConnector.getEnds().add(sourceConnectorEnd);
 			}
 
-			Component eContainer = (Component) sourceUMLPort.eContainer();
-			eContainer.getOwnedConnectors().add(targetConnector);
-
+			if (container != null) {
+				container.getOwnedConnectors().add(targetConnector);
+			} else {
+				Component eContainer = (Component) sourceUMLPort.eContainer();
+				eContainer.getOwnedConnectors().add(targetConnector);
+			}
 			Set<Interface> providedInterface = new HashSet<>();
 			if (!sourcePort.getProvidedInterfaces().isEmpty()) {
 				providedInterface.addAll(sourcePort.getProvidedInterfaces());

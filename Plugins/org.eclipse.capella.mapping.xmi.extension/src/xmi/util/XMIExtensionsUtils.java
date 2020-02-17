@@ -16,6 +16,7 @@ import xmi.constraint;
 import xmi.constraints;
 import xmi.element;
 import xmi.elements;
+import xmi.model;
 import xmi.properties;
 import xmi.stereotype;
 import xmi.xrefs;
@@ -63,6 +64,18 @@ public class XMIExtensionsUtils {
 		xmiproperties.setEa_type(type);
 		xmiproperties.setDirection(direction);
 		xmiconnector.setProperties(xmiproperties);
+
+	}
+
+	public static void addModel(element element, EObject owner, EObject pack) {
+		model createmodel = XmiFactory.eINSTANCE.createmodel();
+		createmodel.setPackage(pack);
+		if (owner != null) {
+			createmodel.setOwner(owner);
+		}
+		createmodel.setTpos("0");
+		createmodel.setEa_eletype("element");
+		element.setModel(createmodel);
 
 	}
 

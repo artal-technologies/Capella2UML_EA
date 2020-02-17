@@ -11,15 +11,19 @@ import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.polarsys.capella.core.data.capellacore.CapellaElement;
+import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.la.LogicalComponent;
+import org.polarsys.capella.core.model.helpers.ProjectExt;
 
 import com.artal.capella.mapping.MappingUtils;
 import com.artal.capella.mapping.rules.MappingRulesManager;
 import com.artal.capella.mapping.rules.commons.CommonComponentMapping;
 
+import xmi.element;
 import xmi.util.XMIExtensionsUtils;
 
 /**
@@ -37,18 +41,29 @@ public class ComponentMapping extends CommonComponentMapping<Capella2UMLAlgo> {
 		org.eclipse.uml2.uml.Component targetComponent = UMLFactory.eINSTANCE.createComponent();
 
 		MappingUtils.generateUID(getAlgo(), source, targetComponent, this);
-		XMIExtensionsUtils.createElement(targetComponent, getAlgo().getXMIExtension());
+		element createElement = XMIExtensionsUtils.createElement(targetComponent, getAlgo().getXMIExtension());
 
+		
+		Project project = ProjectExt.getProject(source);
+		Model model = (Model)MappingRulesManager.getCapellaObjectFromAllRules(project);
+		Package pack = null;
+		
+		EList<PackageableElement> ownedMembers = model.getPackagedElements();
+		for (PackageableElement ownedMember : ownedMembers) {
+			if (ownedMember.getName().equals("Import Capella"))
+				pack = (Package)ownedMember;
+			break;
+		}
+
+		
 		targetComponent.setName(source.getName());
 		if (eaContainer instanceof Model) {
-			EList<PackageableElement> ownedMembers = ((Model) eaContainer).getPackagedElements();
-			for (PackageableElement ownedMember : ownedMembers) {
-				if (ownedMember.getName().equals("Import Capella"))
-					((org.eclipse.uml2.uml.Package) ownedMember).getPackagedElements().add(targetComponent);
-			}
+			pack.getPackagedElements().add(targetComponent);
+			XMIExtensionsUtils.addModel(createElement, null, pack);
 
 		} else if (eaContainer instanceof Component) {
 			((Component) eaContainer).getNestedClassifiers().add(targetComponent);
+			XMIExtensionsUtils.addModel(createElement, (Component) eaContainer, pack);
 		}
 
 		return targetComponent;
