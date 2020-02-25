@@ -36,7 +36,6 @@
       </element>
       <element xmi:type="xmi:element" xmi:idref="EAID_6aa5ffdf-fdce-419a-8e10-76d3a36531cf">
         <xrefs xmi:type="xmi:xrefs"/>
-        <model xmi:type="xmi:model" package="EAPK_83b13c7a-fc0a-4c7c-aca4-509689a47a7c" tpos="0" ea_eletype="element"/>
       </element>
     </elements>
   </xmi:Extension>

@@ -226,40 +226,12 @@
         <ownedAttribute xmi:type="uml:Property" xmi:id="EAID_e0941270-f4df-4e5f-940e-6b48c2ad45e2p" aggregation="composite" association="EAID_e0941270-f4df-4e5f-940e-6b48c2ad45e2a">
           <type xmi:type="uml:Component" xmi:idref="EAID_e0941270-f4df-4e5f-940e-6b48c2ad45e2"></type>
         </ownedAttribute>
-        <ownedConnector xmi:type="uml:Connector" xmi:id="EAID_da4d4294-94f7-44ca-814c-ee56491458e9" name="pwr link" kind="assembly">
-          <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_da4d4294-94f7-44ca-814c-ee56491458e9sourcePort" role="EAID_85ce3a24-c662-4dbe-9aff-82d8c29d33b1"/>
-          <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_da4d4294-94f7-44ca-814c-ee56491458e9targetPort" role="EAID_dcea285e-8724-410e-8344-4685dec4752a"/>
-        </ownedConnector>
-        <ownedConnector xmi:type="uml:Connector" xmi:id="EAID_7bc0231f-1d56-46e9-850b-cfce213286f8" name="bus" kind="assembly">
-          <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_7bc0231f-1d56-46e9-850b-cfce213286f8sourcePort" role="EAID_0b0d5bbb-362f-43b9-8e0a-a518d94b7017"/>
-          <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_7bc0231f-1d56-46e9-850b-cfce213286f8targetPort" role="EAID_e6bcbcd3-23af-4117-b1af-41cb69c757d7"/>
-        </ownedConnector>
-        <ownedConnector xmi:type="uml:Connector" xmi:id="EAID_c605f1b6-d4e2-4060-be80-0e4756d7f9b1" name="bus" kind="assembly">
-          <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_c605f1b6-d4e2-4060-be80-0e4756d7f9b1sourcePort" role="EAID_0b0d5bbb-362f-43b9-8e0a-a518d94b7017"/>
-          <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_c605f1b6-d4e2-4060-be80-0e4756d7f9b1targetPort" role="EAID_aa83a0ce-6406-4d40-b997-ecf9dfae0481"/>
-        </ownedConnector>
-        <ownedConnector xmi:type="uml:Connector" xmi:id="EAID_68c5b724-b519-4869-a896-531c6f6d4d11" name="protocol" kind="assembly">
-          <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_68c5b724-b519-4869-a896-531c6f6d4d11sourcePort" role="EAID_bafb25cb-2b09-4d18-95b5-6494a8ab1dd0"/>
-          <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_68c5b724-b519-4869-a896-531c6f6d4d11targetPort" role="EAID_dd657338-e50e-4999-8f80-fdde76d35207"/>
-        </ownedConnector>
-        <ownedConnector xmi:type="uml:Connector" xmi:id="EAID_356480f1-a7c4-4014-a4b3-93a738ee893c" name="Flash ITF" kind="assembly">
-          <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_356480f1-a7c4-4014-a4b3-93a738ee893csourcePort" role="EAID_53d2ec69-8f31-4e8e-8d07-717d0500c425"/>
-          <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_356480f1-a7c4-4014-a4b3-93a738ee893ctargetPort" role="EAID_c618b990-9ef9-4268-b3c9-e9352018ea1e"/>
-        </ownedConnector>
-        <ownedConnector xmi:type="uml:Connector" xmi:id="EAID_8c9d3dd4-8cc6-4f25-a466-81ed05875136" name="Sensor ITF" kind="assembly">
-          <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_8c9d3dd4-8cc6-4f25-a466-81ed05875136sourcePort" role="EAID_6ae72e2c-1def-48be-80fd-989d90170fe4"/>
-          <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_8c9d3dd4-8cc6-4f25-a466-81ed05875136targetPort" role="EAID_e93d2889-2f1f-40e0-b5ab-0c135f73d571"/>
-        </ownedConnector>
-        <ownedConnector xmi:type="uml:Connector" xmi:id="EAID_31d37f4b-2469-4ef7-b2ee-73333d2beb57" name="Parameter DB" kind="assembly">
-          <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_31d37f4b-2469-4ef7-b2ee-73333d2beb57targetPort" role="EAID_44cf53ed-bffd-4e08-8587-5c32940aa681"/>
-          <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_31d37f4b-2469-4ef7-b2ee-73333d2beb57sourcePort" role="EAID_858ef181-4ee4-4f1e-b77d-ce44b41824c9"/>
-        </ownedConnector>
-        <ownedConnector xmi:type="uml:Connector" xmi:id="EAID_7f662815-7f39-4e1a-982f-0626710d0265" name="Shutter ITF" kind="assembly">
-          <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_7f662815-7f39-4e1a-982f-0626710d0265targetPort" role="EAID_09645fb1-ec84-42c7-975f-84e604c2b9f9"/>
-          <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_7f662815-7f39-4e1a-982f-0626710d0265sourcePort" role="EAID_2078a28c-f1d7-4b21-8847-20dd60879849"/>
-        </ownedConnector>
         <nestedClassifier xmi:type="uml:Component" xmi:id="EAID_5d053925-194c-4cd4-aeb2-44c7e70598ef" name="Camera power button">
           <ownedAttribute xmi:type="uml:Port" xmi:id="EAID_85ce3a24-c662-4dbe-9aff-82d8c29d33b1" name="CP 2" isUnique="false" aggregation="composite" isBehavior="true" isService="false"/>
+          <ownedConnector xmi:type="uml:Connector" xmi:id="EAID_da4d4294-94f7-44ca-814c-ee56491458e9" name="pwr link" kind="assembly">
+            <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_da4d4294-94f7-44ca-814c-ee56491458e9sourcePort" role="EAID_85ce3a24-c662-4dbe-9aff-82d8c29d33b1"/>
+            <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_da4d4294-94f7-44ca-814c-ee56491458e9targetPort" role="EAID_dcea285e-8724-410e-8344-4685dec4752a"/>
+          </ownedConnector>
         </nestedClassifier>
         <nestedClassifier xmi:type="uml:Component" xmi:id="EAID_32a0fc13-dbd8-40fe-a659-e495791edf59" name="Battery">
           <ownedAttribute xmi:type="uml:Port" xmi:id="EAID_dcea285e-8724-410e-8344-4685dec4752a" name="CP 1" isUnique="false" aggregation="composite" isBehavior="true" isService="false"/>
@@ -276,14 +248,42 @@
           <ownedAttribute xmi:type="uml:Port" xmi:id="EAID_858ef181-4ee4-4f1e-b77d-ce44b41824c9" name="CP 3" isUnique="false" aggregation="composite" isBehavior="true" isService="false"/>
           <ownedAttribute xmi:type="uml:Port" xmi:id="EAID_2078a28c-f1d7-4b21-8847-20dd60879849" name="CP 4" isUnique="false" aggregation="composite" isBehavior="true" isService="false"/>
           <ownedAttribute xmi:type="uml:Port" xmi:id="EAID_6ae72e2c-1def-48be-80fd-989d90170fe4" name="CP 5" isUnique="false" aggregation="composite" isBehavior="true" isService="false"/>
+          <ownedConnector xmi:type="uml:Connector" xmi:id="EAID_356480f1-a7c4-4014-a4b3-93a738ee893c" name="Flash ITF" kind="assembly">
+            <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_356480f1-a7c4-4014-a4b3-93a738ee893csourcePort" role="EAID_53d2ec69-8f31-4e8e-8d07-717d0500c425"/>
+            <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_356480f1-a7c4-4014-a4b3-93a738ee893ctargetPort" role="EAID_c618b990-9ef9-4268-b3c9-e9352018ea1e"/>
+          </ownedConnector>
+          <ownedConnector xmi:type="uml:Connector" xmi:id="EAID_8c9d3dd4-8cc6-4f25-a466-81ed05875136" name="Sensor ITF" kind="assembly">
+            <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_8c9d3dd4-8cc6-4f25-a466-81ed05875136sourcePort" role="EAID_6ae72e2c-1def-48be-80fd-989d90170fe4"/>
+            <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_8c9d3dd4-8cc6-4f25-a466-81ed05875136targetPort" role="EAID_e93d2889-2f1f-40e0-b5ab-0c135f73d571"/>
+          </ownedConnector>
+          <ownedConnector xmi:type="uml:Connector" xmi:id="EAID_31d37f4b-2469-4ef7-b2ee-73333d2beb57" name="Parameter DB" kind="assembly">
+            <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_31d37f4b-2469-4ef7-b2ee-73333d2beb57targetPort" role="EAID_44cf53ed-bffd-4e08-8587-5c32940aa681"/>
+            <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_31d37f4b-2469-4ef7-b2ee-73333d2beb57sourcePort" role="EAID_858ef181-4ee4-4f1e-b77d-ce44b41824c9"/>
+          </ownedConnector>
+          <ownedConnector xmi:type="uml:Connector" xmi:id="EAID_7f662815-7f39-4e1a-982f-0626710d0265" name="Shutter ITF" kind="assembly">
+            <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_7f662815-7f39-4e1a-982f-0626710d0265targetPort" role="EAID_09645fb1-ec84-42c7-975f-84e604c2b9f9"/>
+            <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_7f662815-7f39-4e1a-982f-0626710d0265sourcePort" role="EAID_2078a28c-f1d7-4b21-8847-20dd60879849"/>
+          </ownedConnector>
         </nestedClassifier>
         <nestedClassifier xmi:type="uml:Component" xmi:id="EAID_d342e314-4bc6-438f-a5d2-ae68119270b4" name="Image Processor">
           <ownedAttribute xmi:type="uml:Port" xmi:id="EAID_0b0d5bbb-362f-43b9-8e0a-a518d94b7017" name="CP 1" isUnique="false" aggregation="composite" isBehavior="true" isService="false"/>
           <ownedAttribute xmi:type="uml:Port" xmi:id="EAID_dd657338-e50e-4999-8f80-fdde76d35207" name="CP 2" isUnique="false" aggregation="composite" isBehavior="true" isService="false"/>
+          <ownedConnector xmi:type="uml:Connector" xmi:id="EAID_7bc0231f-1d56-46e9-850b-cfce213286f8" name="bus" kind="assembly">
+            <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_7bc0231f-1d56-46e9-850b-cfce213286f8sourcePort" role="EAID_0b0d5bbb-362f-43b9-8e0a-a518d94b7017"/>
+            <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_7bc0231f-1d56-46e9-850b-cfce213286f8targetPort" role="EAID_e6bcbcd3-23af-4117-b1af-41cb69c757d7"/>
+          </ownedConnector>
+          <ownedConnector xmi:type="uml:Connector" xmi:id="EAID_c605f1b6-d4e2-4060-be80-0e4756d7f9b1" name="bus" kind="assembly">
+            <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_c605f1b6-d4e2-4060-be80-0e4756d7f9b1sourcePort" role="EAID_0b0d5bbb-362f-43b9-8e0a-a518d94b7017"/>
+            <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_c605f1b6-d4e2-4060-be80-0e4756d7f9b1targetPort" role="EAID_aa83a0ce-6406-4d40-b997-ecf9dfae0481"/>
+          </ownedConnector>
         </nestedClassifier>
         <nestedClassifier xmi:type="uml:Component" xmi:id="EAID_594dd68b-ae95-4c59-b0f3-f99d71070a2c" name="Shutter-Sensor">
           <ownedAttribute xmi:type="uml:Port" xmi:id="EAID_bafb25cb-2b09-4d18-95b5-6494a8ab1dd0" name="CP 1" isUnique="false" aggregation="composite" isBehavior="true" isService="false"/>
           <ownedAttribute xmi:type="uml:Port" xmi:id="EAID_e93d2889-2f1f-40e0-b5ab-0c135f73d571" name="CP 2" isUnique="false" aggregation="composite" isBehavior="true" isService="false"/>
+          <ownedConnector xmi:type="uml:Connector" xmi:id="EAID_68c5b724-b519-4869-a896-531c6f6d4d11" name="protocol" kind="assembly">
+            <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_68c5b724-b519-4869-a896-531c6f6d4d11sourcePort" role="EAID_bafb25cb-2b09-4d18-95b5-6494a8ab1dd0"/>
+            <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_68c5b724-b519-4869-a896-531c6f6d4d11targetPort" role="EAID_dd657338-e50e-4999-8f80-fdde76d35207"/>
+          </ownedConnector>
         </nestedClassifier>
         <nestedClassifier xmi:type="uml:Component" xmi:id="EAID_48732e14-368c-4cc8-bcef-99bf1e115cfd" name="Memory card">
           <ownedAttribute xmi:type="uml:Port" xmi:id="EAID_aa83a0ce-6406-4d40-b997-ecf9dfae0481" name="CP 1" isUnique="false" aggregation="composite" isBehavior="true" isService="false"/>
@@ -642,47 +642,36 @@
       </element>
       <element xmi:type="xmi:element" xmi:idref="EAID_2d017299-02e0-4339-b05f-130318e8f828">
         <xrefs xmi:type="xmi:xrefs"/>
-        <model xmi:type="xmi:model" package="EAPK_f118b8aa-041d-48af-b1ab-8db49f6f4080" tpos="0" ea_eletype="element"/>
       </element>
       <element xmi:type="xmi:element" xmi:idref="EAID_5d053925-194c-4cd4-aeb2-44c7e70598ef">
         <xrefs xmi:type="xmi:xrefs"/>
-        <model xmi:type="xmi:model" package="EAPK_f118b8aa-041d-48af-b1ab-8db49f6f4080" owner="EAID_2d017299-02e0-4339-b05f-130318e8f828" tpos="0" ea_eletype="element"/>
       </element>
       <element xmi:type="xmi:element" xmi:idref="EAID_32a0fc13-dbd8-40fe-a659-e495791edf59">
         <xrefs xmi:type="xmi:xrefs"/>
-        <model xmi:type="xmi:model" package="EAPK_f118b8aa-041d-48af-b1ab-8db49f6f4080" owner="EAID_2d017299-02e0-4339-b05f-130318e8f828" tpos="0" ea_eletype="element"/>
       </element>
       <element xmi:type="xmi:element" xmi:idref="EAID_574ab222-eb21-4c28-bdda-8e8273c9d90b">
         <xrefs xmi:type="xmi:xrefs"/>
-        <model xmi:type="xmi:model" package="EAPK_f118b8aa-041d-48af-b1ab-8db49f6f4080" owner="EAID_2d017299-02e0-4339-b05f-130318e8f828" tpos="0" ea_eletype="element"/>
       </element>
       <element xmi:type="xmi:element" xmi:idref="EAID_6ec56708-9e3c-4189-af0e-86650f27ba15">
         <xrefs xmi:type="xmi:xrefs"/>
-        <model xmi:type="xmi:model" package="EAPK_f118b8aa-041d-48af-b1ab-8db49f6f4080" owner="EAID_2d017299-02e0-4339-b05f-130318e8f828" tpos="0" ea_eletype="element"/>
       </element>
       <element xmi:type="xmi:element" xmi:idref="EAID_64d7f5da-a03f-4a52-98bb-5b62106e47f3">
         <xrefs xmi:type="xmi:xrefs"/>
-        <model xmi:type="xmi:model" package="EAPK_f118b8aa-041d-48af-b1ab-8db49f6f4080" owner="EAID_2d017299-02e0-4339-b05f-130318e8f828" tpos="0" ea_eletype="element"/>
       </element>
       <element xmi:type="xmi:element" xmi:idref="EAID_d342e314-4bc6-438f-a5d2-ae68119270b4">
         <xrefs xmi:type="xmi:xrefs"/>
-        <model xmi:type="xmi:model" package="EAPK_f118b8aa-041d-48af-b1ab-8db49f6f4080" owner="EAID_2d017299-02e0-4339-b05f-130318e8f828" tpos="0" ea_eletype="element"/>
       </element>
       <element xmi:type="xmi:element" xmi:idref="EAID_594dd68b-ae95-4c59-b0f3-f99d71070a2c">
         <xrefs xmi:type="xmi:xrefs"/>
-        <model xmi:type="xmi:model" package="EAPK_f118b8aa-041d-48af-b1ab-8db49f6f4080" owner="EAID_2d017299-02e0-4339-b05f-130318e8f828" tpos="0" ea_eletype="element"/>
       </element>
       <element xmi:type="xmi:element" xmi:idref="EAID_48732e14-368c-4cc8-bcef-99bf1e115cfd">
         <xrefs xmi:type="xmi:xrefs"/>
-        <model xmi:type="xmi:model" package="EAPK_f118b8aa-041d-48af-b1ab-8db49f6f4080" owner="EAID_2d017299-02e0-4339-b05f-130318e8f828" tpos="0" ea_eletype="element"/>
       </element>
       <element xmi:type="xmi:element" xmi:idref="EAID_deb92639-fad5-4266-a60d-8fc991d02581">
         <xrefs xmi:type="xmi:xrefs"/>
-        <model xmi:type="xmi:model" package="EAPK_f118b8aa-041d-48af-b1ab-8db49f6f4080" owner="EAID_2d017299-02e0-4339-b05f-130318e8f828" tpos="0" ea_eletype="element"/>
       </element>
       <element xmi:type="xmi:element" xmi:idref="EAID_e0941270-f4df-4e5f-940e-6b48c2ad45e2">
         <xrefs xmi:type="xmi:xrefs"/>
-        <model xmi:type="xmi:model" package="EAPK_f118b8aa-041d-48af-b1ab-8db49f6f4080" owner="EAID_2d017299-02e0-4339-b05f-130318e8f828" tpos="0" ea_eletype="element"/>
       </element>
       <element xmi:type="xmi:element" xmi:idref="EAID_85ce3a24-c662-4dbe-9aff-82d8c29d33b1">
         <xrefs xmi:type="xmi:xrefs"/>

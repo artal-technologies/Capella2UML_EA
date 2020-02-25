@@ -14,12 +14,12 @@
         <ownedAttribute xmi:type="uml:Property" xmi:id="EAID_27fda3e1-97b5-4101-a3a7-a72871a85864p" aggregation="composite" association="EAID_27fda3e1-97b5-4101-a3a7-a72871a85864a">
           <type xmi:type="uml:Component" xmi:idref="EAID_27fda3e1-97b5-4101-a3a7-a72871a85864"></type>
         </ownedAttribute>
-        <ownedConnector xmi:type="uml:Connector" xmi:id="EAID_c4e60f0c-6bcb-4e4a-881e-a0a557659681" name="C 1" kind="assembly">
-          <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_c4e60f0c-6bcb-4e4a-881e-a0a557659681sourcePort" role="EAID_bd4a017c-4f64-4b30-b5b1-e7446437963f"/>
-          <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_c4e60f0c-6bcb-4e4a-881e-a0a557659681targetPort" role="EAID_33521875-129b-44c1-994b-b993cc12b017"/>
-        </ownedConnector>
         <nestedClassifier xmi:type="uml:Component" xmi:id="EAID_fe229f86-6b9f-4bec-b7ef-17598f3b40b9" name="LC 1">
           <ownedAttribute xmi:type="uml:Port" xmi:id="EAID_bd4a017c-4f64-4b30-b5b1-e7446437963f" name="CP 1" isUnique="false" aggregation="composite" isBehavior="true" isService="false"/>
+          <ownedConnector xmi:type="uml:Connector" xmi:id="EAID_c4e60f0c-6bcb-4e4a-881e-a0a557659681" name="C 1" kind="assembly">
+            <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_c4e60f0c-6bcb-4e4a-881e-a0a557659681sourcePort" role="EAID_bd4a017c-4f64-4b30-b5b1-e7446437963f"/>
+            <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_c4e60f0c-6bcb-4e4a-881e-a0a557659681targetPort" role="EAID_33521875-129b-44c1-994b-b993cc12b017"/>
+          </ownedConnector>
         </nestedClassifier>
         <nestedClassifier xmi:type="uml:Component" xmi:id="EAID_27fda3e1-97b5-4101-a3a7-a72871a85864" name="LC 2">
           <ownedAttribute xmi:type="uml:Port" xmi:id="EAID_33521875-129b-44c1-994b-b993cc12b017" name="CP 1" isUnique="false" aggregation="composite" isBehavior="true" isService="false"/>
@@ -35,8 +35,8 @@
           <type xmi:type="uml:Component" xmi:idref="EAID_cac83761-bef1-40fc-811c-3630f0cc8d73"></type>
         </ownedEnd>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="EAID_3fd6c0c8-4c97-46fb-87ee-5145a875b926pc" name="ProxyConnector"/>
       <packagedElement xmi:type="uml:Class" xmi:id="EAID_a9b9ff13-a586-4eb9-b641-a745865d3b31pc" name="ProxyConnector"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="EAID_3fd6c0c8-4c97-46fb-87ee-5145a875b926pc" name="ProxyConnector"/>
     </packagedElement>
   </uml:Model>
   <xmi:Extension extender="Enterprise Architect" extenderID="6.5">
@@ -52,15 +52,12 @@
       </element>
       <element xmi:type="xmi:element" xmi:idref="EAID_cac83761-bef1-40fc-811c-3630f0cc8d73">
         <xrefs xmi:type="xmi:xrefs"/>
-        <model xmi:type="xmi:model" package="EAPK_44ffb3a3-b86d-4cc1-b55f-85912262b0b0" tpos="0" ea_eletype="element"/>
       </element>
       <element xmi:type="xmi:element" xmi:idref="EAID_fe229f86-6b9f-4bec-b7ef-17598f3b40b9">
         <xrefs xmi:type="xmi:xrefs"/>
-        <model xmi:type="xmi:model" package="EAPK_44ffb3a3-b86d-4cc1-b55f-85912262b0b0" owner="EAID_cac83761-bef1-40fc-811c-3630f0cc8d73" tpos="0" ea_eletype="element"/>
       </element>
       <element xmi:type="xmi:element" xmi:idref="EAID_27fda3e1-97b5-4101-a3a7-a72871a85864">
         <xrefs xmi:type="xmi:xrefs"/>
-        <model xmi:type="xmi:model" package="EAPK_44ffb3a3-b86d-4cc1-b55f-85912262b0b0" owner="EAID_cac83761-bef1-40fc-811c-3630f0cc8d73" tpos="0" ea_eletype="element"/>
       </element>
       <element xmi:type="xmi:element" xmi:idref="EAID_bd4a017c-4f64-4b30-b5b1-e7446437963f">
         <xrefs xmi:type="xmi:xrefs"/>
@@ -68,11 +65,11 @@
       <element xmi:type="xmi:element" xmi:idref="EAID_33521875-129b-44c1-994b-b993cc12b017">
         <xrefs xmi:type="xmi:xrefs"/>
       </element>
-      <element xmi:type="xmi:element" xmi:idref="EAID_3fd6c0c8-4c97-46fb-87ee-5145a875b926pc" classifier="EAID_c4e60f0c-6bcb-4e4a-881e-a0a557659681">
+      <element xmi:type="xmi:element" xmi:idref="EAID_a9b9ff13-a586-4eb9-b641-a745865d3b31pc" classifier="EAID_c4e60f0c-6bcb-4e4a-881e-a0a557659681">
         <xrefs xmi:type="xmi:xrefs"/>
         <properties xmi:type="xmi:properties" sType="ProxyConnector" scope="public"/>
       </element>
-      <element xmi:type="xmi:element" xmi:idref="EAID_a9b9ff13-a586-4eb9-b641-a745865d3b31pc" classifier="EAID_c4e60f0c-6bcb-4e4a-881e-a0a557659681">
+      <element xmi:type="xmi:element" xmi:idref="EAID_3fd6c0c8-4c97-46fb-87ee-5145a875b926pc" classifier="EAID_c4e60f0c-6bcb-4e4a-881e-a0a557659681">
         <xrefs xmi:type="xmi:xrefs"/>
         <properties xmi:type="xmi:properties" sType="ProxyConnector" scope="public"/>
       </element>
