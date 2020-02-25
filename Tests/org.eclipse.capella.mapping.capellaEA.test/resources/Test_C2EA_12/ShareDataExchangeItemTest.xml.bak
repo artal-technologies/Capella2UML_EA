@@ -17,7 +17,6 @@
       </element>
       <element xmi:type="xmi:element" xmi:idref="EAID_94650257-acec-407f-9ea3-47b21e20acd5">
         <xrefs xmi:type="xmi:xrefs"/>
-        <model xmi:type="xmi:model" package="EAPK_79e70168-a73c-4f8c-84b9-5c4737a5734d" tpos="0" ea_eletype="element"/>
       </element>
     </elements>
   </xmi:Extension>

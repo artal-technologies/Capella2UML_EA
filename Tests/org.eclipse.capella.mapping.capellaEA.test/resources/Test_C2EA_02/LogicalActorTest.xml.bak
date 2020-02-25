@@ -32,11 +32,9 @@
       </element>
       <element xmi:type="xmi:element" xmi:idref="EAID_2156b6bb-a4a8-40b4-b5ce-ae64299bb881">
         <xrefs xmi:type="xmi:xrefs"/>
-        <model xmi:type="xmi:model" package="EAPK_807b89c9-57f0-44ea-9157-8436c5127e8b" tpos="0" ea_eletype="element"/>
       </element>
       <element xmi:type="xmi:element" xmi:idref="EAID_6eaffc3b-0628-40c8-a01b-30104b73151b">
         <xrefs xmi:type="xmi:xrefs"/>
-        <model xmi:type="xmi:model" package="EAPK_807b89c9-57f0-44ea-9157-8436c5127e8b" owner="EAID_2156b6bb-a4a8-40b4-b5ce-ae64299bb881" tpos="0" ea_eletype="element"/>
       </element>
       <element xmi:type="xmi:element" xmi:idref="EAID_03a61a7b-fae2-4cf9-9d3c-1bae9600bf00">
         <xrefs xmi:type="xmi:xrefs"/>

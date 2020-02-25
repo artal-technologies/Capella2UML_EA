@@ -57,12 +57,12 @@
         <ownedAttribute xmi:type="uml:Property" xmi:id="EAID_dc2b5b58-9667-4300-96f0-1ac0bda5b4d3p" aggregation="composite" association="EAID_dc2b5b58-9667-4300-96f0-1ac0bda5b4d3a">
           <type xmi:type="uml:Component" xmi:idref="EAID_dc2b5b58-9667-4300-96f0-1ac0bda5b4d3"></type>
         </ownedAttribute>
-        <ownedConnector xmi:type="uml:Connector" xmi:id="EAID_b74dffac-9e51-4abe-9986-700f49e25270" name="C 1" kind="assembly">
-          <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_b74dffac-9e51-4abe-9986-700f49e25270sourcePort" role="EAID_a8fb184e-de6a-4b66-b22e-a39642366cbe"/>
-          <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_b74dffac-9e51-4abe-9986-700f49e25270targetPort" role="EAID_19ae020a-0a1b-47eb-8f36-10fce20769c7"/>
-        </ownedConnector>
         <nestedClassifier xmi:type="uml:Component" xmi:id="EAID_c5ac1c30-ce0b-42c4-951a-7e8aaae3914f" name="LC 1">
           <ownedAttribute xmi:type="uml:Port" xmi:id="EAID_a8fb184e-de6a-4b66-b22e-a39642366cbe" name="CP 1" isUnique="false" aggregation="composite" isBehavior="true" isService="false"/>
+          <ownedConnector xmi:type="uml:Connector" xmi:id="EAID_b74dffac-9e51-4abe-9986-700f49e25270" name="C 1" kind="assembly">
+            <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_b74dffac-9e51-4abe-9986-700f49e25270sourcePort" role="EAID_a8fb184e-de6a-4b66-b22e-a39642366cbe"/>
+            <end xmi:type="uml:ConnectorEnd" xmi:id="EAID_b74dffac-9e51-4abe-9986-700f49e25270targetPort" role="EAID_19ae020a-0a1b-47eb-8f36-10fce20769c7"/>
+          </ownedConnector>
         </nestedClassifier>
         <nestedClassifier xmi:type="uml:Component" xmi:id="EAID_dc2b5b58-9667-4300-96f0-1ac0bda5b4d3" name="LC 2">
           <ownedAttribute xmi:type="uml:Port" xmi:id="EAID_19ae020a-0a1b-47eb-8f36-10fce20769c7" name="CP 1" isUnique="false" aggregation="composite" isBehavior="true" isService="false"/>
@@ -99,15 +99,12 @@
       </element>
       <element xmi:type="xmi:element" xmi:idref="EAID_d5d1b309-79d6-44fb-b49f-5d461bf37927">
         <xrefs xmi:type="xmi:xrefs"/>
-        <model xmi:type="xmi:model" package="EAPK_ff5dbaee-f3d3-4c7e-a453-eece77b62eaf" tpos="0" ea_eletype="element"/>
       </element>
       <element xmi:type="xmi:element" xmi:idref="EAID_c5ac1c30-ce0b-42c4-951a-7e8aaae3914f">
         <xrefs xmi:type="xmi:xrefs"/>
-        <model xmi:type="xmi:model" package="EAPK_ff5dbaee-f3d3-4c7e-a453-eece77b62eaf" owner="EAID_d5d1b309-79d6-44fb-b49f-5d461bf37927" tpos="0" ea_eletype="element"/>
       </element>
       <element xmi:type="xmi:element" xmi:idref="EAID_dc2b5b58-9667-4300-96f0-1ac0bda5b4d3">
         <xrefs xmi:type="xmi:xrefs"/>
-        <model xmi:type="xmi:model" package="EAPK_ff5dbaee-f3d3-4c7e-a453-eece77b62eaf" owner="EAID_d5d1b309-79d6-44fb-b49f-5d461bf37927" tpos="0" ea_eletype="element"/>
       </element>
       <element xmi:type="xmi:element" xmi:idref="EAID_a8fb184e-de6a-4b66-b22e-a39642366cbe">
         <xrefs xmi:type="xmi:xrefs"/>
