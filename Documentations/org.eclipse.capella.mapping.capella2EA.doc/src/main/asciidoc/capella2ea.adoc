@@ -126,8 +126,21 @@ image::CAPUML_Installation.JPG[CAPUML_Installation.JPG, title="Capella to Enterp
 
 
 == Export from Capella
+
 === Pre-requisite
+
+- A Capella Project:  The goal of the Capella to Enterprise Architect is to transform a existing capella project to a new EA model persisted in a XMI/UML file.
+
+In the following sections, the Camera SysML2 Example Capella project is used to illustrate the descriptions.
+
+image::CAPUML_CapellaProject.JPG[CAPUML_CapellaProject.JPG, title="Capella project example."] 
+
 === Launch the Export model
+
+==== Open Contextual Exports menu
+
+Right click on a Capella Element, and select the "Export" menu.
+
 
 == Import to Enterprise Architect
 === Create new EA project
