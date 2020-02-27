@@ -85,9 +85,13 @@ Set CapellaEABridge in the Field "Name".
 
 image::CAPUML_Add_Repo.JPG[CAPUML_Add_Repo.JPG,title="Add CapellaEABridge repository."] 
 
-Select the CapellaEABridge feature ans click on "Next" button.
+Select the CapellaEABridge feature and click on "Next" button.
+
+image::CAPUML_SelectFeature.JPG[CAPUML_SelectFeature.JPG,title="Select the new feature."] 
 
 Click again on the "Next" button.
+
+image::CAPUML_ReviewItemtoInstall.JPG[CAPUML_ReviewItemtoInstall.JPG, title="Review the items to be installed."] 
 
 Accept the terms of the licence agreement and click on the "Finish" button.
 

@@ -4,7 +4,7 @@
       label="Capella to Enterprise Architect feature"
       version="1.0.0.qualifier"
       license-feature="org.eclipse.license"
-      license-feature-version="0.0.0">
+      license-feature-version="2.0.2.v20181016-2210">
 
    <description url="http://www.example.com/description">
       This feature provides the tools to transform a Capella model to a XMI/UML file compatible with Enterprise Architect.
