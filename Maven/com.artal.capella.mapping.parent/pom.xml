@@ -22,7 +22,11 @@
 			<layout>p2</layout>
 			<url>http://download.eclipse.org/releases/oxygen/</url>
 		</repository>
-
+		<repository>
+		<id>eclipse.license</id>
+		<layout>p2</layout>
+		<url>http://download.eclipse.org/cbi/updates/license</url>
+		</repository>
 		<repository>
 			<id>capella</id>
 			<layout>p2</layout>

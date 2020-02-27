@@ -31,6 +31,10 @@ SPDX-License-Identifier: EPL-2.0\n
          id="org.eclipse.uml2"
          version="0.0.0"/>
 
+   <includes
+         id="org.eclipse.license"
+         version="0.0.0"/>
+
    <plugin
          id="com.artal.capella.mapping"
          download-size="0"
@@ -61,6 +65,13 @@ SPDX-License-Identifier: EPL-2.0\n
 
    <plugin
          id="org.eclipse.capella.mapping.xmi.extension"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.capella.mapping.capella2EA.doc"
          download-size="0"
          install-size="0"
          version="0.0.0"
