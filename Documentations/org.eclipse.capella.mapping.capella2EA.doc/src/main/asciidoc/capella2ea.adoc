@@ -95,15 +95,30 @@ image::CAPUML_ReviewItemtoInstall.JPG[CAPUML_ReviewItemtoInstall.JPG, title="Rev
 
 Accept the terms of the licence agreement and click on the "Finish" button.
 
+image::CAPUML_Licenses.JPG[CAPUML_Licenses.JPG, title="Accept license agreement."] 
+
 After the CapellaEABridge udapte site installation, close Capella_X.Y.Z.
 
 
 
 === Launch Capella
 
-After installation procedure, lauch Capella.
+After installation procedure, launch Capella.
 
 Check in the plugins installation CapellaEABridge is correctly installed.
+
+In the Capella "Help" menu, select "About Capella".
+
+image::CAPUML_AboutCapella.JPG[CAPUML_AboutCapella.JPG,title="About Capella."] 
+
+In the opened wizard, select "Installation details" button.
+
+image::CAPUML_InstallationDetails.JPG[CAPUML_InstallationDetails.JPG, title="Installation details."] 
+
+Check the Capella to Enterprise Architecture feature exists.
+
+image::CAPUML_Installation.JPG[CAPUML_Installation.JPG, title="Capella to Enterprise feature."] 
+
 
 <<<
 
