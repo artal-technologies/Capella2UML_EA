@@ -139,7 +139,16 @@ image::CAPUML_CapellaProject.JPG[CAPUML_CapellaProject.JPG, title="Capella proje
 
 ==== Open Contextual Exports menu
 
-Right click on a Capella Element, and select the "Export" menu.
+Right click on a Capella Element, and select the "Exports" menu.
+
+image::CAPUML_ExportsMenu.JPG[CAPUML_ExportsMenu.JPG, title="Exports menu"] 
+
+
+A wizard is opened. This wizard shall be filled with:
+
+- A type of transformation.
+- A target path file.
+- Select a predefined alternative algorithm.
 
 
 == Import to Enterprise Architect

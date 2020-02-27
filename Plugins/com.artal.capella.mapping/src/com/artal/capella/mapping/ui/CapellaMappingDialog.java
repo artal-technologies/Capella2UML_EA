@@ -181,7 +181,7 @@ public class CapellaMappingDialog extends TitleAreaDialog {
 	public ComboViewer createMixCombo(Group selectGroup) {
 		Label mixLabel = new Label(selectGroup, SWT.NONE);
 		mixLabel.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		mixLabel.setText("Select an predifined alternative algorithm");
+		mixLabel.setText("Select a predefined alternative algorithm");
 
 		ComboViewer combo = new ComboViewer(selectGroup, SWT.NONE);
 		combo.getCombo().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -195,8 +195,6 @@ public class CapellaMappingDialog extends TitleAreaDialog {
 				return super.getText(element);
 			}
 		});
-		// TODO manage mix
-		// combo.add(new AbstractMappingAlgoMix<?, ?>());
 		return combo;
 	}
 
