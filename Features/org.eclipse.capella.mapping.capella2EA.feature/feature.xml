@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.capella.mapping.capella2EA.feature"
-      label="Feature"
-      version="1.0.0.qualifier">
+      label="Capella to Enterprise Architect feature"
+      version="1.0.0.qualifier"
+      license-feature="org.eclipse.license"
+      license-feature-version="0.0.0">
 
    <description url="http://www.example.com/description">
-      [Enter Feature Description here.]
+      This feature provides the tools to transform a Capella model to a XMI/UML file compatible with Enterprise Architect.
    </description>
 
    <copyright url="http://www.example.com/copyright">
-      [Enter Copyright Description here.]
+      Copyright (c) Artal Technologies.\n\
+This program and the accompanying materials are made\n\
+available under the terms of the Eclipse Public License 2.0\n\
+which is available at https://www.eclipse.org/legal/epl-2.0/\n\
+\n\
+SPDX-License-Identifier: EPL-2.0\n
    </copyright>
 
    <license url="http://www.example.com/license">

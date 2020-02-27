@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?artifactRepository version='1.1.0'?>
+<artifacts size='1'>
+  <artifact classifier='osgi.bundle' id='org.eclipse.capella.mapping.capella2EA.doc' version='1.0.8.202002271050'>
+    <properties size='5'>
+      <property name='artifact.size' value='160129'/>
+      <property name='download.size' value='160129'/>
+      <property name='maven-groupId' value='CapellaMapping'/>
+      <property name='maven-artifactId' value='org.eclipse.capella.mapping.capella2EA.doc'/>
+      <property name='maven-version' value='1.0.8-SNAPSHOT'/>
+    </properties>
+  </artifact>
+</artifacts>

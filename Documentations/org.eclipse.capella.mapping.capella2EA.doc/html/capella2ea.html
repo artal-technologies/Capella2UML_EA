@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.4">
+<meta name="author" content="Artal">
+<title>Capella to Enterprise Architect Extension User Guide</title>
+<link rel="stylesheet" href="./css/doc.css">
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>Capella to Enterprise Architect Extension User Guide</h1>
+<div class="details">
+<span id="author" class="author">Artal</span><br>
+<span id="email" class="email">Artal.com</span><br>
+<span id="revnumber">version 1.0,</span>
+<span id="revdate">2020/02/28</span>
+<br><span id="revremark">First Draft</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_introduction">1. Introduction</a></li>
+<li><a href="#_procedure_installation">2. Procedure installation</a>
+<ul class="sectlevel2">
+<li><a href="#_product_description">2.1. Product description</a></li>
+<li><a href="#_dropin_installation">2.2. Dropin installation</a></li>
+<li><a href="#_updatesite_installation">2.3. UpdateSite installation</a></li>
+<li><a href="#_launch_capella">2.4. Launch Capella</a></li>
+</ul>
+</li>
+<li><a href="#_export_from_capella">3. Export from Capella</a>
+<ul class="sectlevel2">
+<li><a href="#_pre_requisite">3.1. Pre-requisite</a></li>
+<li><a href="#_launch_the_export_model">3.2. Launch the Export model</a></li>
+</ul>
+</li>
+<li><a href="#_import_to_enterprise_architect">4. Import to Enterprise Architect</a>
+<ul class="sectlevel2">
+<li><a href="#_create_new_ea_project">4.1. Create new EA project</a></li>
+<li><a href="#_import_ea_model">4.2. Import EA model</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_introduction">1. Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This document constitutes the user guide of the Capella to Enterprise Architect extension.</p>
+</div>
+<div class="paragraph">
+<p>The extension allows to transform a Capella model to an Enterprise Architect model.
+This manual is composed to three sections:
+- Installation : description of the extension installation
+- Capella using : description of the capella extension
+- EA using: description of the procedures to import the Capella exported model to Enterprise Architect.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_procedure_installation">2. Procedure installation</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_product_description">2.1. Product description</h3>
+<div class="paragraph">
+<p>The product is delivered as a ZIP archive: Delivery_CapellaEABridge_X.Y.Z.zip, where  X.Y.Z the version of the current extension.</p>
+</div>
+<div class="paragraph">
+<p>The ZIP archive contains the extension products for the both 1.3.X and 1.4.x capella versions</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CAPUML_Delivery_versions.JPG" alt="CAPUML_Delivery_versions.JPG">
+</div>
+<div class="title">Figure 1. Compatible Capella versions.</div>
+</div>
+<div class="paragraph">
+<p>For each capella version, a dropin and an update-site are delivered.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CAPUML_dropins_udaptesites.JPG" alt="CAPUML_dropins_udaptesites.JPG">
+</div>
+<div class="title">Figure 2. Dropins and Update-site are delivered.</div>
+</div>
+<div class="paragraph">
+<p>A dropin is delivered as ZIP archive: CapellaEABridge_VP-X.Y.Z-dropins.zip, where X.Y.Z the version of the current extension.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CAPUML_dropins.JPG" alt="CAPUML_dropins.JPG">
+</div>
+<div class="title">Figure 3. Dropin delivery.</div>
+</div>
+<div class="paragraph">
+<p>An update site is delivered as ZIP archive: CapellaEABridge_X.Y.Z_updatesite.zip, where X.Y.Z the version of the current extension.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CAPUML_updatesites.JPG" alt="CAPUML_updatesites.JPG">
+</div>
+<div class="title">Figure 4. Update-site delivery.</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dropin_installation">2.2. Dropin installation</h3>
+<div class="paragraph">
+<p>Extract Delivery_CapellaEABridge_X.Y.Z.zip archive.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CAPUML_Extract_delivery.JPG" alt="CAPUML_Extract_delivery.JPG">
+</div>
+<div class="title">Figure 5. Delivery Extraction.</div>
+</div>
+<div class="paragraph">
+<p>Open the dropin directory.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CAPUML_dropin_to_copied.JPG" alt="CAPUML_dropin_to_copied.JPG">
+</div>
+<div class="title">Figure 6. Dropin to copied</div>
+</div>
+<div class="paragraph">
+<p>Copy/paste  and extract the CapellaEABridge_X.Y.Z-dropins.zip into the dropins directory of the Capella_X.Y.Z installation.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CAPUML_Extract_dropin.JPG" alt="CAPUML_Extract_dropin.JPG">
+</div>
+<div class="title">Figure 7. Extract dropin.</div>
+</div>
+<div class="paragraph">
+<p>After, the CapellaEABridge_X.Y.Z-dropins.zip archive can be remove of the dropins directory.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_updatesite_installation">2.3. UpdateSite installation</h3>
+<div class="paragraph">
+<p>Extract Delivery_CapellaEABridge_X.Y.Z.zip archive.</p>
+</div>
+<div class="paragraph">
+<p>Launch Capella_X.Y.Z.</p>
+</div>
+<div class="paragraph">
+<p>In the Capella "Help" menu, select "Install New Software&#8230;&#8203;".</p>
+</div>
+<div class="paragraph">
+<p>In the opened wizard, select the "Add&#8230;&#8203;" button and choose the CapellaEABridge_X.Y.Z_updatesite.zip update site archive.</p>
+</div>
+<div class="paragraph">
+<p>Select the CapellaEABridge feature ans click on "Next" button.</p>
+</div>
+<div class="paragraph">
+<p>Click again on the "Next" button.</p>
+</div>
+<div class="paragraph">
+<p>Accept the terms of the licence agreement and click on the "Finish" button.</p>
+</div>
+<div class="paragraph">
+<p>After the CapellaEABridge udapte site installation, close Capella_X.Y.Z.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_launch_capella">2.4. Launch Capella</h3>
+<div class="paragraph">
+<p>After installation procedure, lauch Capella.</p>
+</div>
+<div class="paragraph">
+<p>Check in the plugins installation CapellaEABridge is correctly installed.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_export_from_capella">3. Export from Capella</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_pre_requisite">3.1. Pre-requisite</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_launch_the_export_model">3.2. Launch the Export model</h3>
+
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_import_to_enterprise_architect">4. Import to Enterprise Architect</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_create_new_ea_project">4.1. Create new EA project</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_import_ea_model">4.2. Import EA model</h3>
+
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 1.0<br>
+Last updated 2020-02-27 11:48:55 +01:00
+</div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+</body>
+</html>

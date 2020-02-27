@@ -1,0 +1,107 @@
+= Capella to Enterprise Architect Extension User Guide
+Artal <Artal.com>
+v1.0, 2020/02/28: First Draft
+:appversion: 1.1.0
+:doctype: article
+:encoding: utf-8
+:lang: en
+:toc: left
+:numbered:
+:imagesdir: ./images
+:experimental:
+:systemArchProj: IFE_System
+:stylesdir: ./css
+:stylesheet: doc.css
+:linkcss:
+
+
+== Introduction
+This document constitutes the user guide of the Capella to Enterprise Architect extension.
+
+The extension allows to transform a Capella model to an Enterprise Architect model.
+This manual is composed to three sections:
+- Installation : description of the extension installation
+- Capella using : description of the capella extension
+- EA using: description of the procedures to import the Capella exported model to Enterprise Architect.
+
+<<<
+
+== Procedure installation
+=== Product description
+The product is delivered as a ZIP archive: Delivery_CapellaEABridge_X.Y.Z.zip, where  X.Y.Z the version of the current extension.
+
+The ZIP archive contains the extension products for the both 1.3.X and 1.4.x capella versions
+
+image::CAPUML_Delivery_versions.JPG[CAPUML_Delivery_versions.JPG,title="Compatible Capella versions."] 
+
+
+For each capella version, a dropin and an update-site are delivered.
+
+image::CAPUML_dropins_udaptesites.JPG[CAPUML_dropins_udaptesites.JPG,title="Dropins and Update-site are delivered."] 
+
+A dropin is delivered as ZIP archive: CapellaEABridge_VP-X.Y.Z-dropins.zip, where X.Y.Z the version of the current extension.
+
+image::CAPUML_dropins.JPG[CAPUML_dropins.JPG, title="Dropin delivery."] 
+
+An update site is delivered as ZIP archive: CapellaEABridge_X.Y.Z_updatesite.zip, where X.Y.Z the version of the current extension.
+
+image::CAPUML_updatesites.JPG[CAPUML_updatesites.JPG,title="Update-site delivery."] 
+
+
+=== Dropin installation
+Extract Delivery_CapellaEABridge_X.Y.Z.zip archive.
+
+image::CAPUML_Extract_delivery.JPG[CAPUML_Extract_delivery.JPG,title="Delivery Extraction."] 
+
+Open the dropin directory.
+
+image::CAPUML_dropin_to_copied.JPG[CAPUML_dropin_to_copied.JPG,title="Dropin to copied"] 
+
+Copy/paste  and extract the CapellaEABridge_X.Y.Z-dropins.zip into the dropins directory of the Capella_X.Y.Z installation.
+
+image::CAPUML_Extract_dropin.JPG[CAPUML_Extract_dropin.JPG,title="Extract dropin."] 
+
+After, the CapellaEABridge_X.Y.Z-dropins.zip archive can be remove of the dropins directory.
+
+
+
+=== UpdateSite installation
+
+Extract Delivery_CapellaEABridge_X.Y.Z.zip archive.
+
+Launch Capella_X.Y.Z.
+
+In the Capella "Help" menu, select "Install New Software...".
+
+In the opened wizard, select the "Add..." button and choose the CapellaEABridge_X.Y.Z_updatesite.zip update site archive.
+
+Select the CapellaEABridge feature ans click on "Next" button.
+
+Click again on the "Next" button.
+
+Accept the terms of the licence agreement and click on the "Finish" button.
+
+After the CapellaEABridge udapte site installation, close Capella_X.Y.Z.
+
+
+
+=== Launch Capella
+
+After installation procedure, lauch Capella.
+
+Check in the plugins installation CapellaEABridge is correctly installed.
+
+<<<
+
+
+
+
+== Export from Capella
+=== Pre-requisite
+=== Launch the Export model
+
+== Import to Enterprise Architect
+=== Create new EA project
+=== Import EA model
+
+ 
