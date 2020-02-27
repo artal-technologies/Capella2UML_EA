@@ -23,11 +23,6 @@
 			<url>http://download.eclipse.org/releases/oxygen/</url>
 		</repository>
 		<repository>
-		<id>eclipse.license</id>
-		<layout>p2</layout>
-		<url>http://download.eclipse.org/cbi/updates/license</url>
-		</repository>
-		<repository>
 			<id>capella</id>
 			<layout>p2</layout>
 			<url>https://hudson.polarsys.org/capella/job/capella-master/1567/artifact/releng/plugins/org.polarsys.capella.rcp.site/target/repository/
