@@ -486,122 +486,18 @@ Under the "Model" node, "Import Capella" package is created. This package contai
 <div class="sect1">
 <h2 id="_transformation_rules">5. Transformation rules</h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1. Table Transformation rules</caption>
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Capella items</th>
-<th class="tableblock halign-left valign-top">Capella descriptions</th>
-<th class="tableblock halign-left valign-top">EA descriptions</th>
-<th class="tableblock halign-left valign-top">EA items</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">image::CAPUML_Actor.JPG[CAPUML_Actor.JPG]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Logical actor</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Actor</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">image::EA_Actor.JPG[EA_Actor.JPG]</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">image::CAPUML_LogicalComponent.JPG[CAPUML_LogicalComponent.JPG]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Logical component</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Component</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">image::EA_Component.JPG[EA_Component.JPG]</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">image::CAPUML_SubComponent.JPG[CAPUML_SubComponent.JPG]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Breakdown of logical component</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Component aggregation</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">image::EA_Component_aggr.JPG[EA_Component_aggr.JPG]</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">image::CAPUML_ComponentPort.JPG[CAPUML_ComponentPort.JPG]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Component port</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Simple port of the componend</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">image::EA_Port.JPG[EA_Port.JPG]</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">image::CAPUML_Exchange.JPG[CAPUML_Exchange.JPG]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Component Exchange</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Connector with assembly kind</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">image::EA_Connector.JPG[EA_Connector.JPG]</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">image::CAPUML_EventComponentExchange.JPG[CAPUML_EventComponentExchange.JPG]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Event exchange item</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Signal</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">image::EA_Signal.JPG[EA_Signal.JPG]</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">image::CAPUML_EventEIE.JPG[CAPUML_EventEIE.JPG]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Event exchange item element</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Attribute of class</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">image::EA_SignalAttr.JPG[EA_SignalAttr.JPG]</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">image::CAPUML_OperationEI.JPG[CAPUML_OperationEI.JPG]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Operation exchange item</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Operation of an interface</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">image::EA_Operation.JPG[EA_Operation.JPG]</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">image::CAPUML_Event.JPG[CAPUML_Event.JPG]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Operation exchange item element</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">parameter.return value of an operation in an interface</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">image::EA_OperationParam.JPG[EA_OperationParam.JPG]</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">image::CAPUML_Interface.JPG[CAPUML_Interface.JPG]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Interface</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Interface</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">image::EA_Interface.JPG[EA_Interface.JPG]</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">image::CAPUML_Description.JPG[CAPUML_Description.JPG]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Description of an element</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Comment</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">image::EA_Notes.JPG[EA_Notes.JPG]</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">image::CAPUML_Share.JPG[CAPUML_Share.JPG]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Share data exchange item</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Class of stereotype <a href="#entity">[entity]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">image::EA_Entity.JPG[EA_Entity.JPG]</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">image::CAPUML_ShareElement.JPG[CAPUML_ShareElement.JPG]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Share data exchange item element</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Attribute of class</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">image::EA_EntityElement.JPG[EA_EntityElement.JPG]</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">image::CAPUML_Enumeration.JPG[CAPUML_Enumeration.JPG]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Enumeration</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">data type "enumeration"</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">image::EA_Enumeration.JPG[EA_Enumeration.JPG]</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">image::CAPUML_Class.JPG[CAPUML_Class.JPG]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Class, data type</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Datatype</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">image::EA_datatype.JPG[EA_datatype.JPG]</p></td>
-</tr>
-</tbody>
-</table>
+<div class="imageblock">
+<div class="content">
+<img src="images/TableRule.JPG" alt="TableRule.JPG">
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 1.0<br>
-Last updated 2020-02-28 11:35:23 +01:00
+Last updated 2020-02-28 15:06:35 +01:00
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">

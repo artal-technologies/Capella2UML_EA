@@ -71,7 +71,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>CapellaMapping</groupId>
-			<artifactId>org.eclipse.emf.diffmerge.bridge.capella.integration</artifactId>
+			<artifactId> org.eclipse.emf.diffmerge.bridge.capella.integration</artifactId>
 			<version>0.8.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
