@@ -44,5 +44,8 @@
   	<module>
   		../../Plugins/org.eclipse.capella.mapping.xmi.extension
   	</module>
+  	<module>
+  		../../Documentations/org.eclipse.capella.mapping.capella2EA.doc
+  	</module>
   </modules>
 </project>

@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.xmi.XMLSave;
 import org.eclipse.emf.ecore.xmi.impl.XMIHelperImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMISaveImpl;
 import org.eclipse.uml2.uml.Connector;
+import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -189,9 +190,14 @@ public class Capella2UMLBridgeJob extends UMLBridgeJob<Project> {
 					boolean b = kind != TRANSIENT && shouldSaveFeature(o, f);
 					if (o instanceof Connector && f.getName().equalsIgnoreCase("kind") && b == false) {
 						b = true;
-						kind=DATATYPE_SINGLE;
+						kind = DATATYPE_SINGLE;
 					}
 					if (b) {
+						if (f.equals(UMLPackage.eINSTANCE.getTypedElement_Type())) {
+							if (o.eContainer() instanceof Operation) {
+								kind = OBJECT_ATTRIBUTE_IDREF_SINGLE;
+							}
+						}
 						switch (kind) {
 						case DATATYPE_ELEMENT_SINGLE: {
 							if (contentKind == ExtendedMetaData.SIMPLE_CONTENT) {

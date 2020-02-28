@@ -44,6 +44,7 @@
       </element>
       <element xmi:type="xmi:element" xmi:idref="EAID_41829a0c-6140-4b59-a8c5-aecce60b41ee">
         <xrefs xmi:type="xmi:xrefs"/>
+        <model xmi:type="xmi:model" package="EAPK_d53562f0-35b0-499f-aa13-dee420b05811" tpos="0" ea_eletype="element"/>
       </element>
     </elements>
   </xmi:Extension>

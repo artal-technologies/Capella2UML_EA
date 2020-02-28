@@ -156,9 +156,7 @@
       <packagedElement xmi:type="uml:Usage" xmi:id="EAID_e6552098-56fc-43cc-95ea-3fa7a9259bc4us" client="EAID_217071ba-b7dc-4275-a3ff-92a6935efd9d" supplier="EAID_2382824b-73f7-4c64-8343-ef75d57097a8"/>
       <packagedElement xmi:type="uml:Interface" xmi:id="EAID_2f2ce299-7229-4a22-8241-7594ff5d83eb" name="Flash ITF">
         <ownedOperation xmi:type="uml:Operation" xmi:id="EAID_844f5cf6-7869-45c9-97da-a027701a260b" name="Flash Command">
-          <ownedParameter xmi:type="uml:Parameter" xmi:id="EAID_b6efce4a-e64c-41a2-aae0-c2290d5d44dc" name="intensity">
-            <type xmi:type="uml:Enumeration" xmi:idref="EAID_741b3cf5-349e-407f-85a5-2ef54ec0f7aa"></type>
-          </ownedParameter>
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="EAID_b6efce4a-e64c-41a2-aae0-c2290d5d44dc" name="intensity" type="EAID_741b3cf5-349e-407f-85a5-2ef54ec0f7aa"/>
         </ownedOperation>
       </packagedElement>
       <packagedElement xmi:type="uml:Realization" xmi:id="EAID_2f2ce299-7229-4a22-8241-7594ff5d83ebr" client="EAID_2f2ce299-7229-4a22-8241-7594ff5d83eb" supplier="EAID_2f2ce299-7229-4a22-8241-7594ff5d83ebpc"/>
@@ -186,12 +184,8 @@
       <packagedElement xmi:type="uml:Realization" xmi:id="EAID_cfae8659-d7d1-4e32-8d6b-55efae8843f6r" client="EAID_cfae8659-d7d1-4e32-8d6b-55efae8843f6" supplier="EAID_cfae8659-d7d1-4e32-8d6b-55efae8843f6pc"/>
       <packagedElement xmi:type="uml:Interface" xmi:id="EAID_0f789486-2fa0-4b56-81ef-d1df768a89a6" name="Sensor ITF">
         <ownedOperation xmi:type="uml:Operation" xmi:id="EAID_f70435f6-ee96-4fba-89c7-ddb23e88e9e4" name="Sensor Command">
-          <ownedParameter xmi:type="uml:Parameter" xmi:id="EAID_0a7b1011-9753-4698-8101-44cfd3fdfc94" name="exposure">
-            <type xmi:type="uml:DataType" xmi:idref="EAID_df3a4761-21d8-4b3f-96cb-afc17d18ccf6"></type>
-          </ownedParameter>
-          <ownedParameter xmi:type="uml:Parameter" xmi:id="EAID_54ba8093-769a-413b-9292-4505900360ae" name="timestamp">
-            <type xmi:type="uml:DataType" xmi:idref="EAID_27c158f7-6f7f-44da-a952-4262950a34c8"></type>
-          </ownedParameter>
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="EAID_0a7b1011-9753-4698-8101-44cfd3fdfc94" name="exposure" type="EAID_df3a4761-21d8-4b3f-96cb-afc17d18ccf6"/>
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="EAID_54ba8093-769a-413b-9292-4505900360ae" name="timestamp" type="EAID_27c158f7-6f7f-44da-a952-4262950a34c8"/>
         </ownedOperation>
       </packagedElement>
       <packagedElement xmi:type="uml:Realization" xmi:id="EAID_0f789486-2fa0-4b56-81ef-d1df768a89a6r" client="EAID_0f789486-2fa0-4b56-81ef-d1df768a89a6" supplier="EAID_0f789486-2fa0-4b56-81ef-d1df768a89a6pc"/>
