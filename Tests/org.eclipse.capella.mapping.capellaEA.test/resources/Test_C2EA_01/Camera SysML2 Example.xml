@@ -3,10 +3,6 @@
   <xmi:Documentation exporter="Enterprise Architect" exporterVersion="6.5"/>
   <uml:Model xmi:id="MX_EAID_f118b8aa-041d-48af-b1ab-8db49f6f4080" name="EA_Model" visibility="public">
     <packagedElement xmi:type="uml:Package" xmi:id="EAPK_f118b8aa-041d-48af-b1ab-8db49f6f4080" name="Import Capella">
-      <ownedComment xmi:type="uml:Comment" xmi:id="EAID_695488ac-c2fd-4ead-aed4-bc5ec304b619ct" annotatedElement="EAID_695488ac-c2fd-4ead-aed4-bc5ec304b619">
-        <body>&lt;p>J&amp;#39;ai ajout&amp;eacute; une description pour tester&lt;/p>
-</body>
-      </ownedComment>
       <packagedElement xmi:type="uml:Enumeration" xmi:id="EAID_741b3cf5-349e-407f-85a5-2ef54ec0f7aa" name="FLASH INTENSITY">
         <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="EAID_958569e9-0313-4ee3-9c0e-597435adb073" name="SUBTLE" classifier="EAID_741b3cf5-349e-407f-85a5-2ef54ec0f7aa"/>
         <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="EAID_e36ff71f-9f9e-4352-8128-d24af4f6a2e4" name="MEDIUM" classifier="EAID_741b3cf5-349e-407f-85a5-2ef54ec0f7aa"/>
