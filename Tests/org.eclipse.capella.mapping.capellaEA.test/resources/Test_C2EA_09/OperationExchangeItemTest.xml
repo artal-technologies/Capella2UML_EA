@@ -8,15 +8,9 @@
       <packagedElement xmi:type="uml:DataType" xmi:id="EAID_998ea40c-d10d-4f00-b0d8-7449b2aa28d7" name="Class 3"/>
       <packagedElement xmi:type="uml:Interface" xmi:id="EAID_797405d7-6582-4ead-8a30-5a678db76830" name="Interface 1">
         <ownedOperation xmi:type="uml:Operation" xmi:id="EAID_eb4c210b-9268-4feb-bc5e-3e135958333e" name="ExchangeItem 1">
-          <ownedParameter xmi:type="uml:Parameter" xmi:id="EAID_f57d9bc0-df3e-4df7-b134-e6261de881eb" name="ExchangeItemElement 1">
-            <type xmi:type="uml:DataType" xmi:idref="EAID_12416b4c-4d9e-4f6c-b655-3085b00e47ab"></type>
-          </ownedParameter>
-          <ownedParameter xmi:type="uml:Parameter" xmi:id="EAID_182737ec-c80a-424b-9822-dbe6fa7c8e93" name="ExchangeItemElement 2" direction="out">
-            <type xmi:type="uml:DataType" xmi:idref="EAID_8c7cc5b1-1870-419d-9fbb-3b3d8818451b"></type>
-          </ownedParameter>
-          <ownedParameter xmi:type="uml:Parameter" xmi:id="EAID_62c4ef5d-d23b-4a35-a500-4d35eda23713" name="ExchangeItemElement 3" direction="return">
-            <type xmi:type="uml:DataType" xmi:idref="EAID_998ea40c-d10d-4f00-b0d8-7449b2aa28d7"></type>
-          </ownedParameter>
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="EAID_f57d9bc0-df3e-4df7-b134-e6261de881eb" name="ExchangeItemElement 1" type="EAID_12416b4c-4d9e-4f6c-b655-3085b00e47ab"/>
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="EAID_182737ec-c80a-424b-9822-dbe6fa7c8e93" name="ExchangeItemElement 2" direction="out" type="EAID_8c7cc5b1-1870-419d-9fbb-3b3d8818451b"/>
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="EAID_62c4ef5d-d23b-4a35-a500-4d35eda23713" name="ExchangeItemElement 3" direction="return" type="EAID_998ea40c-d10d-4f00-b0d8-7449b2aa28d7"/>
         </ownedOperation>
       </packagedElement>
       <packagedElement xmi:type="uml:Component" xmi:id="EAID_41829a0c-6140-4b59-a8c5-aecce60b41ee" name="Logical System"/>

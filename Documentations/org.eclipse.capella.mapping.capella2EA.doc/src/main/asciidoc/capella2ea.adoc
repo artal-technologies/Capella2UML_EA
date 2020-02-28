@@ -50,6 +50,8 @@ An update site is delivered as ZIP archive: *CapellaEABridge_X.Y.Z_updatesite.zi
 
 image::CAPUML_updatesites.JPG[CAPUML_updatesites.JPG,title="Update-site delivery."] 
 
+<<<
+
 
 === Dropin installation
 Extract Delivery_CapellaEABridge_X.Y.Z.zip archive.
@@ -99,7 +101,7 @@ image::CAPUML_Licenses.JPG[CAPUML_Licenses.JPG, title="Accept license agreement.
 
 After the CapellaEABridge udapte site installation, close Capella_X.Y.Z.
 
-
+<<<
 
 === Launch Capella
 
@@ -131,9 +133,11 @@ image::CAPUML_Installation.JPG[CAPUML_Installation.JPG, title="Capella to Enterp
 
 - A Capella Project:  The goal of the Capella to Enterprise Architect is to transform a existing capella project to a new EA model persisted in a XMI/UML file.
 
-In the following sections, the Camera SysML2 Example Capella project is used to illustrate the descriptions.
+In the following sections, the *Camera SysML2 Example* Capella project is used to illustrate the descriptions.
 
 image::CAPUML_CapellaProject.JPG[CAPUML_CapellaProject.JPG, title="Capella project example."] 
+
+<<<
 
 === Launch the Export model
 
@@ -143,6 +147,7 @@ Right click on a Capella Element, and select the "Exports" menu.
 
 image::CAPUML_ExportsMenu.JPG[CAPUML_ExportsMenu.JPG, title="Exports menu"] 
 
+==== Configure the Export wizard
 
 A wizard is opened. This wizard shall be filled with:
 
@@ -150,9 +155,173 @@ A wizard is opened. This wizard shall be filled with:
 - A target path file.
 - Select a predefined alternative algorithm.
 
+image::CAPUML_ExportWizard.JPG[CAPUML_ExportWizard.JPG, title="Export wizard."] 
+
+
+Select a type of transformation: The field proposes the "Capella to Enterprise Architect" type.
+
+image::CAPUML_TypeTransfo.JPG[CAPUML_TypeTransfo.JPG, title="Type of transformation."] 
+
+
+Select a target file. Set the target path or click on the "Browse.." button.
+A file selection wizard is opened. All the existing xml file are displayed.
+
+image::CAPUML_targetpath.JPG[CAPUML_targetpath.JPG, title="Selection output file."] 
+
+Select an existing xml file, or set a new file name. Click on "Open" button.
+
+image::CAPUML_SelectTargetPathWizard.JPG[CAPUML_SelectTargetPathWizard.JPG, title="Export wizard."]
+
+Select a predefined alternative algorithm.
+
+image::CAPUML_AlgoSelection.JPG[CAPUML_AlgoSelection.JPG, title="Algorithm selection."]
+
+
+The OK button is available only when the three fields are filled.
+
+image::CAPUML_FilledWizard.JPG[CAPUML_FilledWizard.JPG, title="filled Exports wizard"] 
+
+Click on the "OK" button.
+
+The Enterprise Architect is built and persisted in the generated output xml file.
+
+<<<
 
 == Import to Enterprise Architect
-=== Create new EA project
-=== Import EA model
+
+=== Create a new Enterprise Architect Project.
+
+Start Enterprise Architect.
+Click on the "New File" menu.
+
+image::EA_NewProject.JPG[EA_NewProject.JPG, title="New project..."] 
+
+In the displayed standard Windows file browser dialog, locate a suitable folder for your project and, in the "File name" field, type in a distinctive name.
+Click on the "Save" button.
+
+image::EA_CreateProject.JPG[EA_CreateProject.JPG, title="Create a new project."] 
+
+=== Import Enterprise Architect model
+
+In the "Browser" explorer, select the "Model" node. 
+
+In the Enterprise Architect Ribbon, select "Publish -> Model Exchange -> Import XMI -> Import Package from XMI" menu.
+
+image::EA_Import.JPG[EA_Import.JPG, title="Import XML file."] 
+
+In the displayed "Import Package from XMI" dialog:
+
+- *Filename* field: type the directory path and filename from which to import the XMI file.
+- *Baseline Package after import* checkbox: Select this checkbox to open the "Create Baseline" dialog, through which to baseline the imported Package once the import is complete.
+- *Import* button: Click on this button to start the import
+- *Close* button: Click on this button to close the dialog.
+
+image::EA_ImportWizard.JPG[EA_ImportWizard.JPG, title="Import XML wizard."] 
+
+image::EA_NewBaseLine.JPG[EA_NewBaseLine.JPG, title="New Baseline."]
+
+=== Inspect Import results
+
+In the "Browser" explorer, the imported data are displayed.
+Under the "Model" node, "Import Capella" package is created. This package contains all imported datas from Capella.
+
+image::EA_Model.JPG[EA_Model.JPG, title="EA model."] 
+
+<<<
+
+Create a Component diagram and drag and drop all components inside.
+
+image::EA_Component_diagram.JPG[EA_Component_diagram.JPG, title="Component diagram."] 
+
+<<<
+
+Create a Class diagram and drag and drop all others elements.
+
+image::EA_ClassDiagram.JPG[EA_ClassDiagram.JPG, title="Class diagram."] 
+
+
+== Transformation rules
+
+.Table Transformation rules
+|===
+|Capella items | Capella descriptions | EA descriptions | EA items
+
+|image::CAPUML_Actor.JPG[CAPUML_Actor.JPG] 
+|Logical actor
+|Actor
+|image::EA_Actor.JPG[EA_Actor.JPG] 
+
+|image::CAPUML_LogicalComponent.JPG[CAPUML_LogicalComponent.JPG] 
+|Logical component
+|Component
+|image::EA_Component.JPG[EA_Component.JPG] 
+
+|image::CAPUML_SubComponent.JPG[CAPUML_SubComponent.JPG] 
+|Breakdown of logical component
+|Component aggregation
+|image::EA_Component_aggr.JPG[EA_Component_aggr.JPG] 
+
+|image::CAPUML_ComponentPort.JPG[CAPUML_ComponentPort.JPG] 
+|Component port
+|Simple port of the componend
+|image::EA_Port.JPG[EA_Port.JPG] 
+
+|image::CAPUML_Exchange.JPG[CAPUML_Exchange.JPG] 
+|Component Exchange
+|Connector with assembly kind
+|image::EA_Connector.JPG[EA_Connector.JPG] 
+
+|image::CAPUML_EventComponentExchange.JPG[CAPUML_EventComponentExchange.JPG] 
+|Event exchange item
+|Signal
+|image::EA_Signal.JPG[EA_Signal.JPG] 
+
+|image::CAPUML_EventEIE.JPG[CAPUML_EventEIE.JPG] 
+|Event exchange item element
+|Attribute of class
+|image::EA_SignalAttr.JPG[EA_SignalAttr.JPG] 
+
+|image::CAPUML_OperationEI.JPG[CAPUML_OperationEI.JPG] 
+|Operation exchange item
+|Operation of an interface
+|image::EA_Operation.JPG[EA_Operation.JPG] 
+
+|image::CAPUML_Event.JPG[CAPUML_Event.JPG] 
+|Operation exchange item element
+|parameter.return value of an operation in an interface
+|image::EA_OperationParam.JPG[EA_OperationParam.JPG] 
+
+|image::CAPUML_Interface.JPG[CAPUML_Interface.JPG] 
+|Interface
+|Interface
+|image::EA_Interface.JPG[EA_Interface.JPG] 
+
+|image::CAPUML_Description.JPG[CAPUML_Description.JPG] 
+|Description of an element
+|Comment
+|image::EA_Notes.JPG[EA_Notes.JPG] 
+
+|image::CAPUML_Share.JPG[CAPUML_Share.JPG] 
+|Share data exchange item
+|Class of stereotype <<entity>>
+|image::EA_Entity.JPG[EA_Entity.JPG] 
+
+|image::CAPUML_ShareElement.JPG[CAPUML_ShareElement.JPG] 
+|Share data exchange item element
+|Attribute of class
+|image::EA_EntityElement.JPG[EA_EntityElement.JPG] 
+
+|image::CAPUML_Enumeration.JPG[CAPUML_Enumeration.JPG] 
+|Enumeration
+|data type "enumeration"
+|image::EA_Enumeration.JPG[EA_Enumeration.JPG] 
+
+|image::CAPUML_Class.JPG[CAPUML_Class.JPG] 
+|Class, data type
+|Datatype
+|image::EA_datatype.JPG[EA_datatype.JPG] 
+|===
+
+
 
  
