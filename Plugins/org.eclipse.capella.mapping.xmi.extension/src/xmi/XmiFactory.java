@@ -157,6 +157,33 @@ public interface XmiFactory extends EFactory {
 	model createmodel();
 
 	/**
+	 * Returns a new object of class '<em>source</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>source</em>'.
+	 * @generated
+	 */
+	source createsource();
+
+	/**
+	 * Returns a new object of class '<em>target</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>target</em>'.
+	 * @generated
+	 */
+	target createtarget();
+
+	/**
+	 * Returns a new object of class '<em>role</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>role</em>'.
+	 * @generated
+	 */
+	role createrole();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

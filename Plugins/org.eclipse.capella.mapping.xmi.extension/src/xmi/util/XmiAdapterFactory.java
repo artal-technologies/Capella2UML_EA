@@ -128,6 +128,18 @@ public class XmiAdapterFactory extends AdapterFactoryImpl {
 				return createmodelAdapter();
 			}
 			@Override
+			public Adapter casesource(source object) {
+				return createsourceAdapter();
+			}
+			@Override
+			public Adapter casetarget(target object) {
+				return createtargetAdapter();
+			}
+			@Override
+			public Adapter caserole(role object) {
+				return createroleAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -354,6 +366,48 @@ public class XmiAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createmodelAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link xmi.source <em>source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see xmi.source
+	 * @generated
+	 */
+	public Adapter createsourceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link xmi.target <em>target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see xmi.target
+	 * @generated
+	 */
+	public Adapter createtargetAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link xmi.role <em>role</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see xmi.role
+	 * @generated
+	 */
+	public Adapter createroleAdapter() {
 		return null;
 	}
 

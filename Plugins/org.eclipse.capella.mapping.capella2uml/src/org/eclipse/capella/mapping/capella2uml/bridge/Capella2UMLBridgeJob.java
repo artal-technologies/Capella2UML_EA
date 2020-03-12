@@ -8,6 +8,8 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -31,6 +33,8 @@ import org.w3c.dom.Node;
 
 import com.artal.capella.mapping.mix.AbstractMappingAlgoMix;
 import com.artal.capella.mapping.uml.UMLBridgeJob;
+
+import xmi.XmiPackage;
 
 /**
  * @author binot
@@ -61,6 +65,7 @@ public class Capella2UMLBridgeJob extends UMLBridgeJob<Project> {
 		saveOptions.put(XMIResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.TRUE);
 		saveOptions.put(XMIResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
 		saveOptions.put(XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.FALSE);
+		// saveOptions.put(XMLResource.OPTION_SKIP_ESCAPE, Boolean.TRUE);
 
 		final ExtendedMetaData ext = new BasicExtendedMetaData(ExtendedMetaData.ANNOTATION_URI,
 				EPackage.Registry.INSTANCE, new HashMap<>());
@@ -471,6 +476,29 @@ public class Capella2UMLBridgeJob extends UMLBridgeJob<Project> {
 				}
 				endSaveFeatures(o, 0, null);
 				return true;
+			}
+
+			protected String getDatatypeValue(Object value, EStructuralFeature f, boolean isAttribute) {
+				if (value == null) {
+					return null;
+				}
+				EDataType d = (EDataType) f.getEType();
+				EPackage ePackage = d.getEPackage();
+				EFactory fac = ePackage.getEFactoryInstance();
+				String svalue = helper.convertToString(fac, d, value);
+
+				if (escape != null) {
+					if (f.equals(XmiPackage.Literals.XREFS__VALUE)) {
+						return svalue;
+					}
+
+					if (isAttribute) {
+						svalue = escape.convert(svalue);
+					} else {
+						svalue = escape.convertText(svalue);
+					}
+				}
+				return svalue;
 			}
 
 		};

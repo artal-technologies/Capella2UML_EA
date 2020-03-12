@@ -77,7 +77,7 @@ public class AggregationMapping extends AbstractDynamicMapping<LogicalComponent,
 		MappingUtils.generateUID(getAlgo(), source, targetAssociation, this, "a");
 		Resource eResource = source.eResource();
 		String sysMLID = MappingUtils.getSysMLID(eResource, source);
-		XMIExtensionsUtils.addConnector(targetAssociation, getAlgo().getXMIExtension(),sysMLID , "Unspecified", "Association");
+		
 		
 		Component parent = (Component) eaContainer;
 		((org.eclipse.uml2.uml.Package) parent.getModel().getPackagedElements().get(0)).getPackagedElements()
@@ -101,6 +101,8 @@ public class AggregationMapping extends AbstractDynamicMapping<LogicalComponent,
 		targetProperty.setAssociation(targetAssociation);
 		parent.getOwnedAttributes().add(subProp);
 
+		
+		XMIExtensionsUtils.addConnector(targetAssociation, getAlgo().getXMIExtension(),sysMLID , "Unspecified", "Association",subProp,targetProperty,true);
 		return targetAssociation;
 	}
 

@@ -235,6 +235,76 @@ image::EA_ClassDiagram.JPG[EA_ClassDiagram.JPG, title="Class diagram."]
 
 <<<
 
+=== Merge in Enterprise Architect
+
+In Capella software, modify the name of the following Capella elements:
+
+-  "Camera power button" component name to "Camera power button from Capella"
+
+-  "Sensor Command" exchange item name to "Sensor Command from Capella"
+
+-  "Timestamp" class name to "Timestamp from Capella".
+
+
+Export the Capella model as it's describe in the <<Export from Capella>> section.
+
+
+In Enterprise Architect, in the previously imported model, modify the name of the following EA elements:
+
+- "Camera power button" component to "Camera power button from EA"
+
+- "Sensor Command" operation to "Sensor Command from EA"
+
+- "Explosure Triangle"  datatype to "Explosure Triangle from EA".
+
+It's very important to increment the version of the Enterprise Architect model after the last modification.
+This version allows to have a tag to compare with the new import to merge.
+
+In the Enterprise Architect ribbon, select "Design -> Model -> Manage -> Manage Baselines..." menu.
+
+image::EA_ManageBaselines.JPG[EA_ManageBaselines.JPG, title="Manage Baselines..."] 
+
+In the displayed Baselines dialog:
+
+image::EA_BaselineDialog.JPG[EA_BaselineDialog.JPG, title="Baselines dialog."]
+
+Select the "New Baseline" button. In the "New Baseline" dialog, type the new version name in the version field.
+
+image::EA_NewBaselineWizard.JPG[EA_NewBaselineWizard.JPG, title="New Baseline."]
+
+In the Baselines dialog, the new version is added in the top of the list.
+
+image::EA_NewVersion.JPG[EA_NewVersion.JPG,title="New version."]
+
+And click in "Close" Button.
+
+
+Select the Import Capella package in the "Browser" explorer and import the last version of the Capella export file as describe in the <<Import Enterprise Architect model>> section.
+ 
+image::EA_NewImportForMerge.JPG[EA_NewImportForMerge.JPG,title="Import Package from XML"] 
+ 
+In the Import Package from XML dialog, after to configure when describe in the above screeshot, click on the "Import" Button. 
+*Warning* don't use the "Merge" Button. The exported Capella file is write in XMI 2.1/ UML 2.1 format. The EA merge doesn't support XMI and UML version upper than 1.3.
+
+After the import, the "New Baseline" is displayed. In the "Version" field, type a new name version.
+
+image::NewBaseLinesForMerge.JPG[NewBaseLinesForMerge.JPG,title="New BaseLine."]
+
+Click on "OK" button. And Click on "Close" button in the "Import Package from XML" dialog.
+
+In the "Browser" explorer, all the data modified before the last import are removed.
+
+In the Enterprise Architect ribbon, select "Design -> Model -> Manage -> Manage Baselines..." menu.
+
+image::EA_BaselineVersionToMerge.JPG[EA_BaselineVersionToMerge.JPG, title="Baselines."]
+
+In the displayed dialog, select the two last versions. 
+
+ 
+ 
+
+
+
 == Transformation rules
 
 image::TableRule.JPG[TableRule.JPG] 

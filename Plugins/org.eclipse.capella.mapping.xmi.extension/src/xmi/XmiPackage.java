@@ -815,13 +815,31 @@ public interface XmiPackage extends EPackage {
 	int CONNECTOR = 13;
 
 	/**
+	 * The feature id for the '<em><b>Source</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONNECTOR__SOURCE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONNECTOR__TARGET = 1;
+
+	/**
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__PROPERTIES = 0;
+	int CONNECTOR__PROPERTIES = 2;
 
 	/**
 	 * The feature id for the '<em><b>Xmiidref</b></em>' reference.
@@ -830,7 +848,7 @@ public interface XmiPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__XMIIDREF = 1;
+	int CONNECTOR__XMIIDREF = 3;
 
 	/**
 	 * The number of structural features of the '<em>connector</em>' class.
@@ -839,7 +857,7 @@ public interface XmiPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR_FEATURE_COUNT = 2;
+	int CONNECTOR_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>connector</em>' class.
@@ -923,6 +941,136 @@ public interface XmiPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_OPERATION_COUNT = 0;
+
+
+	/**
+	 * The meta object id for the '{@link xmi.impl.sourceImpl <em>source</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see xmi.impl.sourceImpl
+	 * @see xmi.impl.XmiPackageImpl#getsource()
+	 * @generated
+	 */
+	int SOURCE = 15;
+
+	/**
+	 * The feature id for the '<em><b>Xmiidref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE__XMIIDREF = 0;
+
+	/**
+	 * The feature id for the '<em><b>Role</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE__ROLE = 1;
+
+	/**
+	 * The number of structural features of the '<em>source</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>source</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link xmi.impl.targetImpl <em>target</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see xmi.impl.targetImpl
+	 * @see xmi.impl.XmiPackageImpl#gettarget()
+	 * @generated
+	 */
+	int TARGET = 16;
+
+	/**
+	 * The feature id for the '<em><b>Xmiidref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET__XMIIDREF = 0;
+
+	/**
+	 * The feature id for the '<em><b>Role</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET__ROLE = 1;
+
+	/**
+	 * The number of structural features of the '<em>target</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>target</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link xmi.impl.roleImpl <em>role</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see xmi.impl.roleImpl
+	 * @see xmi.impl.XmiPackageImpl#getrole()
+	 * @generated
+	 */
+	int ROLE = 17;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROLE__VISIBILITY = 0;
+
+	/**
+	 * The number of structural features of the '<em>role</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROLE_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>role</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROLE_OPERATION_COUNT = 0;
 
 
 	/**
@@ -1528,6 +1676,28 @@ public interface XmiPackage extends EPackage {
 	EClass getconnector();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link xmi.connector#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Source</em>'.
+	 * @see xmi.connector#getSource()
+	 * @see #getconnector()
+	 * @generated
+	 */
+	EReference getconnector_Source();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link xmi.connector#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Target</em>'.
+	 * @see xmi.connector#getTarget()
+	 * @see #getconnector()
+	 * @generated
+	 */
+	EReference getconnector_Target();
+
+	/**
 	 * Returns the meta object for the containment reference '{@link xmi.connector#getProperties <em>Properties</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1613,6 +1783,91 @@ public interface XmiPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getmodel_Ea_eletype();
+
+	/**
+	 * Returns the meta object for class '{@link xmi.source <em>source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>source</em>'.
+	 * @see xmi.source
+	 * @generated
+	 */
+	EClass getsource();
+
+	/**
+	 * Returns the meta object for the reference '{@link xmi.source#getXmiidref <em>Xmiidref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Xmiidref</em>'.
+	 * @see xmi.source#getXmiidref()
+	 * @see #getsource()
+	 * @generated
+	 */
+	EReference getsource_Xmiidref();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link xmi.source#getRole <em>Role</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Role</em>'.
+	 * @see xmi.source#getRole()
+	 * @see #getsource()
+	 * @generated
+	 */
+	EReference getsource_Role();
+
+	/**
+	 * Returns the meta object for class '{@link xmi.target <em>target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>target</em>'.
+	 * @see xmi.target
+	 * @generated
+	 */
+	EClass gettarget();
+
+	/**
+	 * Returns the meta object for the reference '{@link xmi.target#getXmiidref <em>Xmiidref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Xmiidref</em>'.
+	 * @see xmi.target#getXmiidref()
+	 * @see #gettarget()
+	 * @generated
+	 */
+	EReference gettarget_Xmiidref();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link xmi.target#getRole <em>Role</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Role</em>'.
+	 * @see xmi.target#getRole()
+	 * @see #gettarget()
+	 * @generated
+	 */
+	EReference gettarget_Role();
+
+	/**
+	 * Returns the meta object for class '{@link xmi.role <em>role</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>role</em>'.
+	 * @see xmi.role
+	 * @generated
+	 */
+	EClass getrole();
+
+	/**
+	 * Returns the meta object for the attribute '{@link xmi.role#getVisibility <em>Visibility</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Visibility</em>'.
+	 * @see xmi.role#getVisibility()
+	 * @see #getrole()
+	 * @generated
+	 */
+	EAttribute getrole_Visibility();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -2114,6 +2369,22 @@ public interface XmiPackage extends EPackage {
 		EClass CONNECTOR = eINSTANCE.getconnector();
 
 		/**
+		 * The meta object literal for the '<em><b>Source</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONNECTOR__SOURCE = eINSTANCE.getconnector_Source();
+
+		/**
+		 * The meta object literal for the '<em><b>Target</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONNECTOR__TARGET = eINSTANCE.getconnector_Target();
+
+		/**
 		 * The meta object literal for the '<em><b>Properties</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2178,6 +2449,76 @@ public interface XmiPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MODEL__EA_ELETYPE = eINSTANCE.getmodel_Ea_eletype();
+
+		/**
+		 * The meta object literal for the '{@link xmi.impl.sourceImpl <em>source</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see xmi.impl.sourceImpl
+		 * @see xmi.impl.XmiPackageImpl#getsource()
+		 * @generated
+		 */
+		EClass SOURCE = eINSTANCE.getsource();
+
+		/**
+		 * The meta object literal for the '<em><b>Xmiidref</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SOURCE__XMIIDREF = eINSTANCE.getsource_Xmiidref();
+
+		/**
+		 * The meta object literal for the '<em><b>Role</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SOURCE__ROLE = eINSTANCE.getsource_Role();
+
+		/**
+		 * The meta object literal for the '{@link xmi.impl.targetImpl <em>target</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see xmi.impl.targetImpl
+		 * @see xmi.impl.XmiPackageImpl#gettarget()
+		 * @generated
+		 */
+		EClass TARGET = eINSTANCE.gettarget();
+
+		/**
+		 * The meta object literal for the '<em><b>Xmiidref</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TARGET__XMIIDREF = eINSTANCE.gettarget_Xmiidref();
+
+		/**
+		 * The meta object literal for the '<em><b>Role</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TARGET__ROLE = eINSTANCE.gettarget_Role();
+
+		/**
+		 * The meta object literal for the '{@link xmi.impl.roleImpl <em>role</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see xmi.impl.roleImpl
+		 * @see xmi.impl.XmiPackageImpl#getrole()
+		 * @generated
+		 */
+		EClass ROLE = eINSTANCE.getrole();
+
+		/**
+		 * The meta object literal for the '<em><b>Visibility</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ROLE__VISIBILITY = eINSTANCE.getrole_Visibility();
 
 	}
 

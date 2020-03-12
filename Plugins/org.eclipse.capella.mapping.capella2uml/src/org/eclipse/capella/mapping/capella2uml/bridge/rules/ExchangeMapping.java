@@ -10,6 +10,7 @@ import java.util.Set;
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.Connector;
@@ -61,7 +62,8 @@ public class ExchangeMapping extends CommonComponentExchangeMapping<Capella2UMLA
 
 		LogicalComponent logicalSystemRoot = CapellaUtils.getLogicalSystemRoot(source);
 		Component container = (Component) MappingRulesManager.getCapellaObjectFromAllRules(logicalSystemRoot);
-
+		Resource eResource = source.eResource();
+		String sysMLID = MappingUtils.getSysMLID(eResource, source);
 		Connector targetConnector = UMLFactory.eINSTANCE.createConnector();
 		MappingUtils.generateUID(getAlgo(), source, targetConnector, this);
 		targetConnector.setName(source.getName());
@@ -85,6 +87,8 @@ public class ExchangeMapping extends CommonComponentExchangeMapping<Capella2UMLA
 
 			OrientationPortKind sourceorientation = ((ComponentPort) sourcePort).getOrientation();
 
+			XMIExtensionsUtils.addConnector(targetConnector, getAlgo().getXMIExtension(),sysMLID , "Unspecified", "Assembly",sourceUMLPort,targetUMLPort,false);
+			
 			if (sourceorientation == OrientationPortKind.OUT) {
 				targetConnector.getEnds().add(sourceConnectorEnd);
 				targetConnector.getEnds().add(targetConnectorEnd);
@@ -120,11 +124,14 @@ public class ExchangeMapping extends CommonComponentExchangeMapping<Capella2UMLA
 				MappingUtils.generateUID(getAlgo(), interface1, createClass, this, "pc");
 				createClass.setName("ProxyConnector");
 
+				
 				element addElement = XMIExtensionsUtils.createElement(createClass, getAlgo().getXMIExtension());
 				XMIExtensionsUtils.createProperties(addElement, false, false, "ProxyConnector", 0, "public", false,
 						false);
 				addElement.setClassifier(targetConnector);
 
+				XMIExtensionsUtils.addConnector(realizationTarget, getAlgo().getXMIExtension(),sysMLID , "Unspecified", "Relization",interf,createClass,false);
+				
 				if (eaContainer instanceof StructuredClassifier) {
 					org.eclipse.uml2.uml.Package pkgCapella = (org.eclipse.uml2.uml.Package) ((StructuredClassifier) eaContainer)
 							.getModel().getPackagedElements().get(0);

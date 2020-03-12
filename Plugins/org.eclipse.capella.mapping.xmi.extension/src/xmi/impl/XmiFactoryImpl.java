@@ -71,6 +71,9 @@ public class XmiFactoryImpl extends EFactoryImpl implements XmiFactory {
 			case XmiPackage.CONNECTORS: return createconnectors();
 			case XmiPackage.CONNECTOR: return createconnector();
 			case XmiPackage.MODEL: return createmodel();
+			case XmiPackage.SOURCE: return createsource();
+			case XmiPackage.TARGET: return createtarget();
+			case XmiPackage.ROLE: return createrole();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -224,6 +227,36 @@ public class XmiFactoryImpl extends EFactoryImpl implements XmiFactory {
 	public model createmodel() {
 		modelImpl model = new modelImpl();
 		return model;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public source createsource() {
+		sourceImpl source = new sourceImpl();
+		return source;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public target createtarget() {
+		targetImpl target = new targetImpl();
+		return target;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public role createrole() {
+		roleImpl role = new roleImpl();
+		return role;
 	}
 
 	/**

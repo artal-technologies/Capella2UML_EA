@@ -3,6 +3,7 @@
  */
 package xmi.util;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
@@ -18,7 +19,10 @@ import xmi.element;
 import xmi.elements;
 import xmi.model;
 import xmi.properties;
+import xmi.role;
+import xmi.source;
 import xmi.stereotype;
+import xmi.target;
 import xmi.xrefs;
 
 /**
@@ -45,12 +49,13 @@ public class XMIExtensionsUtils {
 		xrefs xrefs = XmiFactory.eINSTANCE.createxrefs();
 		xmielement.setXrefs(xrefs);
 		if (ids != null) {
-			setXRefsValue(xrefs, ids + name, name);
+			setXRefsValue(xrefs, ids , name);
 		}
 		return xmielement;
 	}
 
-	public static void addConnector(EObject connector, Extension extension, String ids, String direction, String type) {
+	public static void addConnector(EObject connector, Extension extension, String ids, String direction, String type,
+			EObject source, EObject target, boolean properties) {
 		EList<connectors> connectors = extension.getConnectors();
 		if (connectors.size() == 0) {
 			xmi.connectors xmiconnectors = XmiFactory.eINSTANCE.createconnectors();
@@ -60,10 +65,26 @@ public class XMIExtensionsUtils {
 		xmi.connector xmiconnector = XmiFactory.eINSTANCE.createconnector();
 		xmiconnector.setXmiidref(connector);
 		xmiConnectors.getConnector().add(xmiconnector);
-		xmi.properties xmiproperties = XmiFactory.eINSTANCE.createproperties();
-		xmiproperties.setEa_type(type);
-		xmiproperties.setDirection(direction);
-		xmiconnector.setProperties(xmiproperties);
+		if (properties) {
+			xmi.properties xmiproperties = XmiFactory.eINSTANCE.createproperties();
+			xmiproperties.setEa_type(type);
+			xmiproperties.setDirection(direction);
+			xmiconnector.setProperties(xmiproperties);
+		}
+		source createsource = XmiFactory.eINSTANCE.createsource();
+		createsource.setXmiidref(source);
+		role createrolesource = XmiFactory.eINSTANCE.createrole();
+		createrolesource.setVisibility("Public");
+		createsource.setRole(createrolesource);
+
+		target createtarget = XmiFactory.eINSTANCE.createtarget();
+		createtarget.setXmiidref(target);
+		role createroletarget = XmiFactory.eINSTANCE.createrole();
+		createroletarget.setVisibility("Public");
+		createtarget.setRole(createroletarget);
+
+		xmiconnector.setSource(createsource);
+		xmiconnector.setTarget(createtarget);
 
 	}
 
@@ -87,10 +108,10 @@ public class XMIExtensionsUtils {
 		String value = null;
 		// value = "$XREFPROP=$XID={"+ids+"}$XID;$NAM=Stereotypes$NAM;$TYP=element
 		// property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=sign;GUID={1D3CEB02-60D8-41c9-9D8A-168ACA9D8E5E};@ENDSTEREO;$DES;$CLT={528D2027-4A69-48e6-8F05-CE3F31EC978D}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;";
-		value = "$XREFPROP=$XID={" + ids
+		value = "$XREFPROP=$XID={" + ids+name
 				+ "}$XID;$NAM=Stereotypes$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name="
 				+ name
-				+ ";GUID={25076860-6280-4441-B4D3-B21668224ABF};@ENDSTEREO;$DES;$CLT={361DF415-5446-4841-88A0-64AE880F5A6E}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;";
+				+ ";GUID={25076860-6280-4441-B4D3-B21668224ABF};@ENDSTEREO;$DES;$CLT={"+ids+"}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;";
 
 		xrefs.setValue(value);
 	}

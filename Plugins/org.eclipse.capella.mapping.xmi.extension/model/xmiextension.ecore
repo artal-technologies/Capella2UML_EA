@@ -87,6 +87,10 @@
         derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="connector">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//source"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//target"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" eType="#//properties"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="xmiidref" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
@@ -97,5 +101,16 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="tpos" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ea_localid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ea_eletype" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="source">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="xmiidref" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="role" eType="#//role" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="target">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="xmiidref" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="role" eType="#//role" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="role">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>
