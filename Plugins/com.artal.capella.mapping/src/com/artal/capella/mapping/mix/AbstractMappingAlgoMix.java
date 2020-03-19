@@ -14,7 +14,8 @@ import com.artal.capella.mapping.rules.MappingRulesManager;
  */
 abstract public class AbstractMappingAlgoMix<SOURCE, ALGO extends CapellaBridgeAlgo<?>> {
 
-	MappingRulesManager _managerRules = new MappingRulesManager();
+
+	MappingRulesManager _managerRules= new MappingRulesManager();
 
 	String _mixName = "";
 

@@ -9,10 +9,79 @@
     <genClasses ecoreClass="xmiextension.ecore#//Extension">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//Extension/extender"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//Extension/extenderID"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmiextension.ecore#//Extension/elements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmiextension.ecore#//Extension/profiles"/>
     </genClasses>
     <genClasses ecoreClass="xmiextension.ecore#//Documentation">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//Documentation/exporter"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//Documentation/exporterVersion"/>
+    </genClasses>
+    <genClasses ecoreClass="xmiextension.ecore#//elements">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmiextension.ecore#//elements/element"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmiextension.ecore#//elements/test"/>
+    </genClasses>
+    <genClasses ecoreClass="xmiextension.ecore#//element">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//element/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//element/scope"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmiextension.ecore#//element/xrefs"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmiextension.ecore#//element/xmiidref"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmiextension.ecore#//element/classifier"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmiextension.ecore#//element/properties"/>
+    </genClasses>
+    <genClasses ecoreClass="xmiextension.ecore#//xrefs">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//xrefs/value"/>
+    </genClasses>
+    <genClasses ecoreClass="xmiextension.ecore#//profiles">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmiextension.ecore#//profiles/profile"/>
+    </genClasses>
+    <genClasses ecoreClass="xmiextension.ecore#//properties">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//properties/isSpecification"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//properties/sType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//properties/nType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//properties/scope"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//properties/isRoot"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//properties/isLeaf"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//properties/isAbstract"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//properties/stereotype"/>
+    </genClasses>
+    <genClasses ecoreClass="xmiextension.ecore#//PackagedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//PackagedElement/xmiid"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//PackagedElement/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//PackagedElement/prefix"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//PackagedElement/xmitype"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmiextension.ecore#//PackagedElement/ownedEnd.1"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmiextension.ecore#//PackagedElement/ownedAttribute"/>
+    </genClasses>
+    <genClasses ecoreClass="xmiextension.ecore#//umlProfile">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmiextension.ecore#//umlProfile/packagedElement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//umlProfile/memberEnd"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//umlProfile/xmiversion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//umlProfile/xmlnsuml"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//umlProfile/xmlnsxmi"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//umlProfile/xmiid"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//umlProfile/nsPrefix"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//umlProfile/metamodelReference"/>
+    </genClasses>
+    <genClasses ecoreClass="xmiextension.ecore#//ownedEnd">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//ownedEnd/xmiid"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//ownedEnd/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//ownedEnd/memberEnd"/>
+    </genClasses>
+    <genClasses ecoreClass="xmiextension.ecore#//packageImport">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//packageImport/xmiid"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmiextension.ecore#//packageImport/importedPackage"/>
+    </genClasses>
+    <genClasses ecoreClass="xmiextension.ecore#//importedPackage">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//importedPackage/href"/>
+    </genClasses>
+    <genClasses ecoreClass="xmiextension.ecore#//ownedAttribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//ownedAttribute/xmiid"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//ownedAttribute/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//ownedAttribute/memberEnd"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmiextension.ecore#//ownedAttribute/type"/>
+    </genClasses>
+    <genClasses ecoreClass="xmiextension.ecore#//type">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmiextension.ecore#//type/href"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
