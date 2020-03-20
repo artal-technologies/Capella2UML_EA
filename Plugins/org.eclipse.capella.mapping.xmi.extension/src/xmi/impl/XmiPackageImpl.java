@@ -90,6 +90,62 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass packagedElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass umlProfileEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass ownedEndEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass packageImportEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass importedPackageEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass ownedAttributeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass typeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass extendedPropertiesEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass attributesEClass = null;
 
 	/**
@@ -534,7 +590,7 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getproperties_Ea_type() {
+	public EAttribute getproperties_Xmiid() {
 		return (EAttribute)propertiesEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -543,8 +599,368 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getproperties_Direction() {
+	public EAttribute getproperties_Name() {
 		return (EAttribute)propertiesEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getproperties_Prefix() {
+		return (EAttribute)propertiesEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getproperties_OwnedEnd() {
+		return (EReference)propertiesEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getproperties_Xmitype() {
+		return (EAttribute)propertiesEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getproperties_OwnedAttribute() {
+		return (EReference)propertiesEClass.getEStructuralFeatures().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getproperties_Ea_type() {
+		return (EAttribute)propertiesEClass.getEStructuralFeatures().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getproperties_Direction() {
+		return (EAttribute)propertiesEClass.getEStructuralFeatures().get(14);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPackagedElement() {
+		return packagedElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPackagedElement_Xmiid() {
+		return (EAttribute)packagedElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPackagedElement_Name() {
+		return (EAttribute)packagedElementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPackagedElement_Prefix() {
+		return (EAttribute)packagedElementEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPackagedElement_OwnedEnd() {
+		return (EReference)packagedElementEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPackagedElement_Xmitype() {
+		return (EAttribute)packagedElementEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPackagedElement_OwnedAttribute() {
+		return (EReference)packagedElementEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getumlProfile() {
+		return umlProfileEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getumlProfile_PackagedElement() {
+		return (EReference)umlProfileEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getumlProfile_MemberEnd() {
+		return (EAttribute)umlProfileEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getumlProfile_Xmiversion() {
+		return (EAttribute)umlProfileEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getumlProfile_Xmlnsuml() {
+		return (EAttribute)umlProfileEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getumlProfile_Xmlnsxmi() {
+		return (EAttribute)umlProfileEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getumlProfile_Xmiid() {
+		return (EAttribute)umlProfileEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getumlProfile_NsPrefix() {
+		return (EAttribute)umlProfileEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getumlProfile_MetamodelReference() {
+		return (EAttribute)umlProfileEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getownedEnd() {
+		return ownedEndEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getownedEnd_Xmiid() {
+		return (EAttribute)ownedEndEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getownedEnd_Name() {
+		return (EAttribute)ownedEndEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getownedEnd_MemberEnd() {
+		return (EAttribute)ownedEndEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getpackageImport() {
+		return packageImportEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getpackageImport_Xmiid() {
+		return (EAttribute)packageImportEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getpackageImport_ImportedPackage() {
+		return (EReference)packageImportEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getimportedPackage() {
+		return importedPackageEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getimportedPackage_Href() {
+		return (EAttribute)importedPackageEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getownedAttribute() {
+		return ownedAttributeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getownedAttribute_Xmiid() {
+		return (EAttribute)ownedAttributeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getownedAttribute_Name() {
+		return (EAttribute)ownedAttributeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getownedAttribute_MemberEnd() {
+		return (EAttribute)ownedAttributeEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getownedAttribute_Type() {
+		return (EReference)ownedAttributeEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass gettype() {
+		return typeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute gettype_Href() {
+		return (EAttribute)typeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getextendedProperties() {
+		return extendedPropertiesEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getextendedProperties_Direction() {
+		return (EAttribute)extendedPropertiesEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -608,6 +1024,24 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 	 */
 	public EAttribute getattribute_Scope() {
 		return (EAttribute)attributeEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getattribute_ExtendedProperties() {
+		return (EReference)attributeEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getattribute_Tagged() {
+		return (EAttribute)attributeEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -957,8 +1391,56 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 		createEAttribute(propertiesEClass, PROPERTIES__IS_ROOT);
 		createEAttribute(propertiesEClass, PROPERTIES__IS_LEAF);
 		createEAttribute(propertiesEClass, PROPERTIES__IS_ABSTRACT);
+		createEAttribute(propertiesEClass, PROPERTIES__XMIID);
+		createEAttribute(propertiesEClass, PROPERTIES__NAME);
+		createEAttribute(propertiesEClass, PROPERTIES__PREFIX);
+		createEReference(propertiesEClass, PROPERTIES__OWNED_END);
+		createEAttribute(propertiesEClass, PROPERTIES__XMITYPE);
+		createEReference(propertiesEClass, PROPERTIES__OWNED_ATTRIBUTE);
 		createEAttribute(propertiesEClass, PROPERTIES__EA_TYPE);
 		createEAttribute(propertiesEClass, PROPERTIES__DIRECTION);
+
+		packagedElementEClass = createEClass(PACKAGED_ELEMENT);
+		createEAttribute(packagedElementEClass, PACKAGED_ELEMENT__XMIID);
+		createEAttribute(packagedElementEClass, PACKAGED_ELEMENT__NAME);
+		createEAttribute(packagedElementEClass, PACKAGED_ELEMENT__PREFIX);
+		createEReference(packagedElementEClass, PACKAGED_ELEMENT__OWNED_END);
+		createEAttribute(packagedElementEClass, PACKAGED_ELEMENT__XMITYPE);
+		createEReference(packagedElementEClass, PACKAGED_ELEMENT__OWNED_ATTRIBUTE);
+
+		umlProfileEClass = createEClass(UML_PROFILE);
+		createEReference(umlProfileEClass, UML_PROFILE__PACKAGED_ELEMENT);
+		createEAttribute(umlProfileEClass, UML_PROFILE__MEMBER_END);
+		createEAttribute(umlProfileEClass, UML_PROFILE__XMIVERSION);
+		createEAttribute(umlProfileEClass, UML_PROFILE__XMLNSUML);
+		createEAttribute(umlProfileEClass, UML_PROFILE__XMLNSXMI);
+		createEAttribute(umlProfileEClass, UML_PROFILE__XMIID);
+		createEAttribute(umlProfileEClass, UML_PROFILE__NS_PREFIX);
+		createEAttribute(umlProfileEClass, UML_PROFILE__METAMODEL_REFERENCE);
+
+		ownedEndEClass = createEClass(OWNED_END);
+		createEAttribute(ownedEndEClass, OWNED_END__XMIID);
+		createEAttribute(ownedEndEClass, OWNED_END__NAME);
+		createEAttribute(ownedEndEClass, OWNED_END__MEMBER_END);
+
+		packageImportEClass = createEClass(PACKAGE_IMPORT);
+		createEAttribute(packageImportEClass, PACKAGE_IMPORT__XMIID);
+		createEReference(packageImportEClass, PACKAGE_IMPORT__IMPORTED_PACKAGE);
+
+		importedPackageEClass = createEClass(IMPORTED_PACKAGE);
+		createEAttribute(importedPackageEClass, IMPORTED_PACKAGE__HREF);
+
+		ownedAttributeEClass = createEClass(OWNED_ATTRIBUTE);
+		createEAttribute(ownedAttributeEClass, OWNED_ATTRIBUTE__XMIID);
+		createEAttribute(ownedAttributeEClass, OWNED_ATTRIBUTE__NAME);
+		createEAttribute(ownedAttributeEClass, OWNED_ATTRIBUTE__MEMBER_END);
+		createEReference(ownedAttributeEClass, OWNED_ATTRIBUTE__TYPE);
+
+		typeEClass = createEClass(TYPE);
+		createEAttribute(typeEClass, TYPE__HREF);
+
+		extendedPropertiesEClass = createEClass(EXTENDED_PROPERTIES);
+		createEAttribute(extendedPropertiesEClass, EXTENDED_PROPERTIES__DIRECTION);
 
 		attributesEClass = createEClass(ATTRIBUTES);
 		createEReference(attributesEClass, ATTRIBUTES__ATTRIBUTE);
@@ -968,6 +1450,8 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 		createEReference(attributeEClass, ATTRIBUTE__XMIIDREF);
 		createEAttribute(attributeEClass, ATTRIBUTE__NAME);
 		createEAttribute(attributeEClass, ATTRIBUTE__SCOPE);
+		createEReference(attributeEClass, ATTRIBUTE__EXTENDED_PROPERTIES);
+		createEAttribute(attributeEClass, ATTRIBUTE__TAGGED);
 
 		stereotypeEClass = createEClass(STEREOTYPE);
 		createEAttribute(stereotypeEClass, STEREOTYPE__STEREOTYPE);

@@ -17,6 +17,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link xmi.attribute#getXmiidref <em>Xmiidref</em>}</li>
  *   <li>{@link xmi.attribute#getName <em>Name</em>}</li>
  *   <li>{@link xmi.attribute#getScope <em>Scope</em>}</li>
+ *   <li>{@link xmi.attribute#getExtendedProperties <em>Extended Properties</em>}</li>
+ *   <li>{@link xmi.attribute#getTagged <em>Tagged</em>}</li>
  * </ul>
  *
  * @see xmi.XmiPackage#getattribute()
@@ -127,5 +129,57 @@ public interface attribute extends EObject {
 	 * @generated
 	 */
 	void setScope(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Extended Properties</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Extended Properties</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Extended Properties</em>' containment reference.
+	 * @see #setExtendedProperties(extendedProperties)
+	 * @see xmi.XmiPackage#getattribute_ExtendedProperties()
+	 * @model containment="true"
+	 * @generated
+	 */
+	extendedProperties getExtendedProperties();
+
+	/**
+	 * Sets the value of the '{@link xmi.attribute#getExtendedProperties <em>Extended Properties</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Extended Properties</em>' containment reference.
+	 * @see #getExtendedProperties()
+	 * @generated
+	 */
+	void setExtendedProperties(extendedProperties value);
+
+	/**
+	 * Returns the value of the '<em><b>Tagged</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Tagged</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Tagged</em>' attribute.
+	 * @see #setTagged(String)
+	 * @see xmi.XmiPackage#getattribute_Tagged()
+	 * @model
+	 * @generated
+	 */
+	String getTagged();
+
+	/**
+	 * Sets the value of the '{@link xmi.attribute#getTagged <em>Tagged</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Tagged</em>' attribute.
+	 * @see #getTagged()
+	 * @generated
+	 */
+	void setTagged(String value);
 
 } // attribute

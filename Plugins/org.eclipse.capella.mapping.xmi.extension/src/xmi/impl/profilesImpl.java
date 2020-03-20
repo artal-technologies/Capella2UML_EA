@@ -2,13 +2,15 @@
  */
 package xmi.impl;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.util.Collection;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import xmi.XmiPackage;
 import xmi.profiles;
 
@@ -27,14 +29,14 @@ import xmi.profiles;
  */
 public class profilesImpl extends MinimalEObjectImpl.Container implements profiles {
 	/**
-	 * The cached value of the '{@link #getProfile() <em>Profile</em>}' containment reference.
+	 * The cached value of the '{@link #getProfile() <em>Profile</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getProfile()
 	 * @generated
 	 * @ordered
 	 */
-	protected EObject profile;
+	protected EList<EObject> profile;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -60,42 +62,11 @@ public class profilesImpl extends MinimalEObjectImpl.Container implements profil
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EObject getProfile() {
+	public EList<EObject> getProfile() {
+		if (profile == null) {
+			profile = new EObjectContainmentEList<EObject>(EObject.class, this, XmiPackage.PROFILES__PROFILE);
+		}
 		return profile;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetProfile(EObject newProfile, NotificationChain msgs) {
-		EObject oldProfile = profile;
-		profile = newProfile;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XmiPackage.PROFILES__PROFILE, oldProfile, newProfile);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setProfile(EObject newProfile) {
-		if (newProfile != profile) {
-			NotificationChain msgs = null;
-			if (profile != null)
-				msgs = ((InternalEObject)profile).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XmiPackage.PROFILES__PROFILE, null, msgs);
-			if (newProfile != null)
-				msgs = ((InternalEObject)newProfile).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XmiPackage.PROFILES__PROFILE, null, msgs);
-			msgs = basicSetProfile(newProfile, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, XmiPackage.PROFILES__PROFILE, newProfile, newProfile));
 	}
 
 	/**
@@ -107,7 +78,7 @@ public class profilesImpl extends MinimalEObjectImpl.Container implements profil
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case XmiPackage.PROFILES__PROFILE:
-				return basicSetProfile(null, msgs);
+				return ((InternalEList<?>)getProfile()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -136,7 +107,8 @@ public class profilesImpl extends MinimalEObjectImpl.Container implements profil
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case XmiPackage.PROFILES__PROFILE:
-				setProfile((EObject)newValue);
+				getProfile().clear();
+				getProfile().addAll((Collection<? extends EObject>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -151,7 +123,7 @@ public class profilesImpl extends MinimalEObjectImpl.Container implements profil
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case XmiPackage.PROFILES__PROFILE:
-				setProfile((EObject)null);
+				getProfile().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -166,7 +138,7 @@ public class profilesImpl extends MinimalEObjectImpl.Container implements profil
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case XmiPackage.PROFILES__PROFILE:
-				return profile != null;
+				return profile != null && !profile.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

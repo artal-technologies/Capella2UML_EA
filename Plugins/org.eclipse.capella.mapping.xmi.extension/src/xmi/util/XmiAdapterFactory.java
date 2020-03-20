@@ -96,6 +96,38 @@ public class XmiAdapterFactory extends AdapterFactoryImpl {
 				return createpropertiesAdapter();
 			}
 			@Override
+			public Adapter casePackagedElement(PackagedElement object) {
+				return createPackagedElementAdapter();
+			}
+			@Override
+			public Adapter caseumlProfile(umlProfile object) {
+				return createumlProfileAdapter();
+			}
+			@Override
+			public Adapter caseownedEnd(ownedEnd object) {
+				return createownedEndAdapter();
+			}
+			@Override
+			public Adapter casepackageImport(packageImport object) {
+				return createpackageImportAdapter();
+			}
+			@Override
+			public Adapter caseimportedPackage(importedPackage object) {
+				return createimportedPackageAdapter();
+			}
+			@Override
+			public Adapter caseownedAttribute(ownedAttribute object) {
+				return createownedAttributeAdapter();
+			}
+			@Override
+			public Adapter casetype(type object) {
+				return createtypeAdapter();
+			}
+			@Override
+			public Adapter caseextendedProperties(extendedProperties object) {
+				return createextendedPropertiesAdapter();
+			}
+			@Override
 			public Adapter caseattributes(attributes object) {
 				return createattributesAdapter();
 			}
@@ -254,6 +286,118 @@ public class XmiAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createpropertiesAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link xmi.PackagedElement <em>Packaged Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see xmi.PackagedElement
+	 * @generated
+	 */
+	public Adapter createPackagedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link xmi.umlProfile <em>uml Profile</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see xmi.umlProfile
+	 * @generated
+	 */
+	public Adapter createumlProfileAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link xmi.ownedEnd <em>owned End</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see xmi.ownedEnd
+	 * @generated
+	 */
+	public Adapter createownedEndAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link xmi.packageImport <em>package Import</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see xmi.packageImport
+	 * @generated
+	 */
+	public Adapter createpackageImportAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link xmi.importedPackage <em>imported Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see xmi.importedPackage
+	 * @generated
+	 */
+	public Adapter createimportedPackageAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link xmi.ownedAttribute <em>owned Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see xmi.ownedAttribute
+	 * @generated
+	 */
+	public Adapter createownedAttributeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link xmi.type <em>type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see xmi.type
+	 * @generated
+	 */
+	public Adapter createtypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link xmi.extendedProperties <em>extended Properties</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see xmi.extendedProperties
+	 * @generated
+	 */
+	public Adapter createextendedPropertiesAdapter() {
 		return null;
 	}
 
