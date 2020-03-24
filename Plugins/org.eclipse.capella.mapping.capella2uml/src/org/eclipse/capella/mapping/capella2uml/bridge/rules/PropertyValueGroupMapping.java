@@ -84,6 +84,7 @@ public class PropertyValueGroupMapping extends AbstractDynamicMapping<PropertyVa
 			profile.getPackagedElements().add(stereo);
 			stereo.setName(source.getName());
 			XMIExtensionsUtils.createElement(stereo, getAlgo().getXMIExtension());//TODO
+			
 			for (AbstractPropertyValue pv:source.getOwnedPropertyValues()){
 				Property property = UMLFactory.eINSTANCE.createProperty();
 				MappingUtils.generateUID(getAlgo(), source, property, this);

@@ -15,28 +15,31 @@ import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.polarsys.capella.core.data.capellacore.CapellaElement;
+import org.polarsys.capella.core.data.cs.BlockArchitecture;
 import org.polarsys.capella.core.data.information.ExchangeItem;
 import org.polarsys.capella.core.data.information.ExchangeMechanism;
-import org.polarsys.capella.core.data.la.LogicalArchitecture;
 
+import com.artal.capella.mapping.CapellaUtils;
 import com.artal.capella.mapping.MappingUtils;
 import com.artal.capella.mapping.rules.MappingRulesManager;
 import com.artal.capella.mapping.rules.commons.CommonExchangeItemMapping;
 
+import xmi.element;
 import xmi.util.XMIExtensionsUtils;
 
 /**
  * @author binot
  *
  */
-public class ShareDataExchangeItemMapping extends CommonExchangeItemMapping<LogicalArchitecture, Capella2UMLAlgo> {
+public class ShareDataExchangeItemMapping extends CommonExchangeItemMapping<BlockArchitecture, Capella2UMLAlgo> {
 
 	/**
 	 * @param algo
 	 * @param parent
 	 * @param mappingExecution
 	 */
-	public ShareDataExchangeItemMapping(Capella2UMLAlgo algo, LogicalArchitecture parent,
+	public ShareDataExchangeItemMapping(Capella2UMLAlgo algo, BlockArchitecture parent,
 			IMappingExecution mappingExecution) {
 		super(algo, parent, mappingExecution);
 	}
@@ -48,7 +51,7 @@ public class ShareDataExchangeItemMapping extends CommonExchangeItemMapping<Logi
 	 * computeCapellaSource(java.lang.Object)
 	 */
 	@Override
-	public List<ExchangeItem> findSourceElements(LogicalArchitecture capellaContainer) {
+	public List<ExchangeItem> findSourceElements(BlockArchitecture capellaContainer) {
 
 		List<ExchangeItem> findSourceElements = super.findSourceElements(capellaContainer);
 
@@ -72,7 +75,14 @@ public class ShareDataExchangeItemMapping extends CommonExchangeItemMapping<Logi
 		MappingUtils.generateUID(getAlgo(), source, classTarget, this);
 		Resource eResource = source.eResource();
 		String sysMLID = MappingUtils.getSysMLID(eResource, source);
-		XMIExtensionsUtils.addElement(classTarget, getAlgo().getXMIExtension(), sysMLID, "entity");
+		element createElement = XMIExtensionsUtils.addElement(classTarget, getAlgo().getXMIExtension(), sysMLID,
+				"entity");
+
+		CapellaElement ce = (CapellaElement) classTarget;
+		if (CapellaUtils.hasStereotype(ce)) {
+			XMIExtensionsUtils.createStereotypeProperties(createElement, CapellaUtils.getSterotypeName(ce));
+		}
+
 		classTarget.setName(source.getName());
 
 		if (eaContainer instanceof Model) {

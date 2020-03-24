@@ -5,8 +5,8 @@ package xmi.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
@@ -38,6 +38,7 @@ import xmi.properties;
  *   <li>{@link xmi.impl.propertiesImpl#getOwnedAttribute <em>Owned Attribute</em>}</li>
  *   <li>{@link xmi.impl.propertiesImpl#getEa_type <em>Ea type</em>}</li>
  *   <li>{@link xmi.impl.propertiesImpl#getDirection <em>Direction</em>}</li>
+ *   <li>{@link xmi.impl.propertiesImpl#getStereotype <em>Stereotype</em>}</li>
  * </ul>
  *
  * @generated
@@ -322,6 +323,26 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 	 * @ordered
 	 */
 	protected String direction = DIRECTION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getStereotype() <em>Stereotype</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStereotype()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String STEREOTYPE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getStereotype() <em>Stereotype</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStereotype()
+	 * @generated
+	 * @ordered
+	 */
+	protected String stereotype = STEREOTYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -696,6 +717,27 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getStereotype() {
+		return stereotype;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStereotype(String newStereotype) {
+		String oldStereotype = stereotype;
+		stereotype = newStereotype;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, XmiPackage.PROPERTIES__STEREOTYPE, oldStereotype, stereotype));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -731,6 +773,8 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 				return getEa_type();
 			case XmiPackage.PROPERTIES__DIRECTION:
 				return getDirection();
+			case XmiPackage.PROPERTIES__STEREOTYPE:
+				return getStereotype();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -787,6 +831,9 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 				return;
 			case XmiPackage.PROPERTIES__DIRECTION:
 				setDirection((String)newValue);
+				return;
+			case XmiPackage.PROPERTIES__STEREOTYPE:
+				setStereotype((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -845,6 +892,9 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 			case XmiPackage.PROPERTIES__DIRECTION:
 				setDirection(DIRECTION_EDEFAULT);
 				return;
+			case XmiPackage.PROPERTIES__STEREOTYPE:
+				setStereotype(STEREOTYPE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -887,6 +937,8 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 				return EA_TYPE_EDEFAULT == null ? ea_type != null : !EA_TYPE_EDEFAULT.equals(ea_type);
 			case XmiPackage.PROPERTIES__DIRECTION:
 				return DIRECTION_EDEFAULT == null ? direction != null : !DIRECTION_EDEFAULT.equals(direction);
+			case XmiPackage.PROPERTIES__STEREOTYPE:
+				return STEREOTYPE_EDEFAULT == null ? stereotype != null : !STEREOTYPE_EDEFAULT.equals(stereotype);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -927,6 +979,8 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 		result.append(ea_type);
 		result.append(", direction: ");
 		result.append(direction);
+		result.append(", stereotype: ");
+		result.append(stereotype);
 		result.append(')');
 		return result.toString();
 	}

@@ -3,6 +3,7 @@
 package xmi;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -99,7 +100,7 @@ public interface Extension extends EObject {
 	 * Returns the value of the '<em><b>Profiles</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Profiles</em>' reference isn't clear,
+	 * If the meaning of the '<em>Profiles</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
@@ -126,7 +127,7 @@ public interface Extension extends EObject {
 	 * The list contents are of type {@link xmi.connectors}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Connectors</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Connectors</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->

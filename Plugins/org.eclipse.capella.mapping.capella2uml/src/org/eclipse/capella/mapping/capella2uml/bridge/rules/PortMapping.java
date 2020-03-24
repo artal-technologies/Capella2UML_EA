@@ -12,12 +12,15 @@ import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.EncapsulatedClassifier;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.fa.ComponentPort;
 
+import com.artal.capella.mapping.CapellaUtils;
 import com.artal.capella.mapping.MappingUtils;
 import com.artal.capella.mapping.rules.MappingRulesManager;
 import com.artal.capella.mapping.rules.commons.CommonPortMapping;
 
+import xmi.element;
 import xmi.util.XMIExtensionsUtils;
 
 /**
@@ -47,7 +50,15 @@ public class PortMapping extends CommonPortMapping<Capella2UMLAlgo> {
 	public Object compute(Object eaContainer, ComponentPort source) {
 		Port targetPort = UMLFactory.eINSTANCE.createPort();
 		MappingUtils.generateUID(getAlgo(), source, targetPort, this);
-		XMIExtensionsUtils.createElement(targetPort, getAlgo().getXMIExtension());
+		element targetelement=XMIExtensionsUtils.createElement(targetPort, getAlgo().getXMIExtension());
+		
+		CapellaElement ce = (CapellaElement)source;
+		if (CapellaUtils.hasStereotype(ce)){
+		 XMIExtensionsUtils.createStereotypeProperties(targetelement, CapellaUtils.getSterotypeName(ce));
+		}
+
+
+		
 		targetPort.setName(source.getName());
 		targetPort.setAggregation(AggregationKind.COMPOSITE_LITERAL);
 		targetPort.setIsUnique(false);

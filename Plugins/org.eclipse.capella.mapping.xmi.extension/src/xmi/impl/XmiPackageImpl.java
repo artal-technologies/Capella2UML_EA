@@ -6,10 +6,12 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import xmi.Documentation;
 import xmi.Extension;
+import xmi.PackagedElement;
 import xmi.XmiFactory;
 import xmi.XmiPackage;
 import xmi.attribute;
@@ -20,13 +22,20 @@ import xmi.constraint;
 import xmi.constraints;
 import xmi.element;
 import xmi.elements;
+import xmi.extendedProperties;
+import xmi.importedPackage;
 import xmi.model;
+import xmi.ownedAttribute;
+import xmi.ownedEnd;
+import xmi.packageImport;
 import xmi.profiles;
 import xmi.properties;
 import xmi.role;
 import xmi.source;
 import xmi.stereotype;
 import xmi.target;
+import xmi.type;
+import xmi.umlProfile;
 import xmi.xrefs;
 
 /**
@@ -655,6 +664,15 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 	 */
 	public EAttribute getproperties_Direction() {
 		return (EAttribute)propertiesEClass.getEStructuralFeatures().get(14);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getproperties_Stereotype() {
+		return (EAttribute)propertiesEClass.getEStructuralFeatures().get(15);
 	}
 
 	/**
@@ -1399,6 +1417,7 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 		createEReference(propertiesEClass, PROPERTIES__OWNED_ATTRIBUTE);
 		createEAttribute(propertiesEClass, PROPERTIES__EA_TYPE);
 		createEAttribute(propertiesEClass, PROPERTIES__DIRECTION);
+		createEAttribute(propertiesEClass, PROPERTIES__STEREOTYPE);
 
 		packagedElementEClass = createEClass(PACKAGED_ELEMENT);
 		createEAttribute(packagedElementEClass, PACKAGED_ELEMENT__XMIID);
@@ -1506,7 +1525,7 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @not generated
+	 * @generated
 	 */
 	public void initializePackageContents() {
 		if (isInitialized) return;
@@ -1554,7 +1573,7 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 		initEAttribute(getxrefs_Value(), ecorePackage.getEString(), "value", null, 0, 1, xrefs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(profilesEClass, profiles.class, "profiles", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getprofiles_Profile(), ecorePackage.getEObject(), null, "profile", null, 0, 1, profiles.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getprofiles_Profile(), ecorePackage.getEObject(), null, "profile", null, 0, -1, profiles.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(propertiesEClass, properties.class, "properties", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getproperties_IsSpecification(), ecorePackage.getEBoolean(), "isSpecification", null, 0, 1, properties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1564,8 +1583,57 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 		initEAttribute(getproperties_IsRoot(), ecorePackage.getEBoolean(), "isRoot", null, 0, 1, properties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getproperties_IsLeaf(), ecorePackage.getEBoolean(), "isLeaf", null, 0, 1, properties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getproperties_IsAbstract(), ecorePackage.getEBoolean(), "isAbstract", null, 0, 1, properties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getproperties_Xmiid(), ecorePackage.getEString(), "xmi:id", null, 0, 1, properties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getproperties_Name(), ecorePackage.getEString(), "name", null, 0, 1, properties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getproperties_Prefix(), ecorePackage.getEString(), "prefix", null, 0, 1, properties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getproperties_OwnedEnd(), this.getownedEnd(), null, "ownedEnd", null, 0, 1, properties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getproperties_Xmitype(), ecorePackage.getEString(), "xmi:type", null, 0, 1, properties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getproperties_OwnedAttribute(), this.getownedAttribute(), null, "ownedAttribute", null, 0, 1, properties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getproperties_Ea_type(), ecorePackage.getEString(), "ea_type", null, 0, 1, properties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getproperties_Direction(), ecorePackage.getEString(), "direction", null, 0, 1, properties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getproperties_Stereotype(), ecorePackage.getEString(), "stereotype", null, 0, 1, properties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(packagedElementEClass, PackagedElement.class, "PackagedElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPackagedElement_Xmiid(), ecorePackage.getEString(), "xmi:id", null, 0, 1, PackagedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPackagedElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, PackagedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPackagedElement_Prefix(), ecorePackage.getEString(), "prefix", null, 0, 1, PackagedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPackagedElement_OwnedEnd(), this.getownedEnd(), null, "ownedEnd", null, 0, 1, PackagedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPackagedElement_Xmitype(), ecorePackage.getEString(), "xmi:type", null, 0, 1, PackagedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPackagedElement_OwnedAttribute(), this.getownedAttribute(), null, "ownedAttribute", null, 0, 1, PackagedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(umlProfileEClass, umlProfile.class, "umlProfile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getumlProfile_PackagedElement(), this.getPackagedElement(), null, "packagedElement", null, 0, -1, umlProfile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getumlProfile_MemberEnd(), ecorePackage.getEString(), "memberEnd", null, 0, 1, umlProfile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getumlProfile_Xmiversion(), ecorePackage.getEString(), "xmi:version", null, 0, 1, umlProfile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getumlProfile_Xmlnsuml(), ecorePackage.getEString(), "xmlns:uml", null, 0, 1, umlProfile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getumlProfile_Xmlnsxmi(), ecorePackage.getEString(), "xmlns:xmi", null, 0, 1, umlProfile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getumlProfile_Xmiid(), ecorePackage.getEString(), "xmi:id", null, 0, 1, umlProfile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getumlProfile_NsPrefix(), ecorePackage.getEString(), "nsPrefix", null, 0, 1, umlProfile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getumlProfile_MetamodelReference(), ecorePackage.getEString(), "metamodelReference", null, 0, 1, umlProfile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(ownedEndEClass, ownedEnd.class, "ownedEnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getownedEnd_Xmiid(), ecorePackage.getEString(), "xmi:id", null, 0, 1, ownedEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getownedEnd_Name(), ecorePackage.getEString(), "name", null, 0, 1, ownedEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getownedEnd_MemberEnd(), ecorePackage.getEString(), "memberEnd", null, 0, 1, ownedEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(packageImportEClass, packageImport.class, "packageImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getpackageImport_Xmiid(), ecorePackage.getEString(), "xmi:id", null, 0, 1, packageImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getpackageImport_ImportedPackage(), this.getimportedPackage(), null, "importedPackage", null, 0, 1, packageImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(importedPackageEClass, importedPackage.class, "importedPackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getimportedPackage_Href(), ecorePackage.getEString(), "href", null, 0, 1, importedPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(ownedAttributeEClass, ownedAttribute.class, "ownedAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getownedAttribute_Xmiid(), ecorePackage.getEString(), "xmiid", null, 0, 1, ownedAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getownedAttribute_Name(), ecorePackage.getEString(), "name", null, 0, 1, ownedAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getownedAttribute_MemberEnd(), ecorePackage.getEString(), "memberEnd", null, 0, 1, ownedAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getownedAttribute_Type(), this.gettype(), null, "type", null, 0, 1, ownedAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(typeEClass, type.class, "type", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(gettype_Href(), ecorePackage.getEString(), "href", null, 0, 1, type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(extendedPropertiesEClass, extendedProperties.class, "extendedProperties", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getextendedProperties_Direction(), ecorePackage.getEString(), "direction", null, 0, 1, extendedProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(attributesEClass, attributes.class, "attributes", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getattributes_Attribute(), this.getattribute(), null, "attribute", null, 0, -1, attributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1575,6 +1643,8 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 		initEReference(getattribute_Xmiidref(), ecorePackage.getEObject(), null, "xmi:idref", null, 0, 1, attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getattribute_Name(), ecorePackage.getEString(), "name", null, 0, 1, attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getattribute_Scope(), ecorePackage.getEString(), "scope", null, 0, 1, attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getattribute_ExtendedProperties(), this.getextendedProperties(), null, "extendedProperties", null, 0, 1, attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getattribute_Tagged(), ecorePackage.getEString(), "tagged", null, 0, 1, attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(stereotypeEClass, stereotype.class, "stereotype", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getstereotype_Stereotype(), ecorePackage.getEString(), "stereotype", null, 0, 1, stereotype.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

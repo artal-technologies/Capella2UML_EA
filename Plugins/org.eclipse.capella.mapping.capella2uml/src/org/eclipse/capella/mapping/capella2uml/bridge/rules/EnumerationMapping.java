@@ -13,11 +13,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.information.DataPkg;
 import org.polarsys.capella.core.data.information.datatype.DataType;
 import org.polarsys.capella.core.data.information.datatype.Enumeration;
 import org.polarsys.capella.core.data.information.datavalue.EnumerationLiteral;
 
+import com.artal.capella.mapping.CapellaUtils;
 import com.artal.capella.mapping.MappingUtils;
 import com.artal.capella.mapping.rules.MappingRulesManager;
 import com.artal.capella.mapping.rules.commons.CommonDatatypeMapping;
@@ -72,7 +74,15 @@ public class EnumerationMapping extends CommonDatatypeMapping<DataPkg, Capella2U
 		MappingUtils.generateUID(getAlgo(), source, enumerationTarget, this);
 
 		element addElement = XMIExtensionsUtils.createElement(enumerationTarget, getAlgo().getXMIExtension());
-		XMIExtensionsUtils.createProperties(addElement, false, false, "Enumeration", 0, "public", false, false);
+
+		CapellaElement ce= (CapellaElement) source;
+		if (!CapellaUtils.hasStereotype(ce)) {
+			XMIExtensionsUtils.createProperties(addElement, false, false, "Enumeration", 0, "public", false, false);
+		} else {
+			XMIExtensionsUtils.createPropertiesWithStereotype(addElement, false, false, "Enumeration", 0, "public", false, false, CapellaUtils.getSterotypeName(ce));
+		}
+		
+//		XMIExtensionsUtils.createProperties(addElement, false, false, "Enumeration", 0, "public", false, false);
 
 		enumerationTarget.setName(source.getName());
 

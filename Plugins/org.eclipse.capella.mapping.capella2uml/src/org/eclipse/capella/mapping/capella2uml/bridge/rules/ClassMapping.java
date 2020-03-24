@@ -12,13 +12,16 @@ import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.information.Class;
 import org.polarsys.capella.core.data.information.DataPkg;
 
+import com.artal.capella.mapping.CapellaUtils;
 import com.artal.capella.mapping.MappingUtils;
 import com.artal.capella.mapping.rules.MappingRulesManager;
 import com.artal.capella.mapping.rules.commons.CommonClassMapping;
 
+import xmi.element;
 import xmi.util.XMIExtensionsUtils;
 
 /**
@@ -49,7 +52,12 @@ public class ClassMapping extends CommonClassMapping<DataPkg, Capella2UMLAlgo> {
 		DataType targetdataType = UMLFactory.eINSTANCE.createDataType();
 
 		MappingUtils.generateUID(getAlgo(), source, targetdataType, this);
-		XMIExtensionsUtils.createElement(targetdataType, getAlgo().getXMIExtension());
+		element targetelement = XMIExtensionsUtils.createElement(targetdataType, getAlgo().getXMIExtension());
+
+		CapellaElement ce = (CapellaElement)source;
+		if (CapellaUtils.hasStereotype(ce)){
+		 XMIExtensionsUtils.createStereotypeProperties(targetelement, CapellaUtils.getSterotypeName(ce));
+		}
 
 		targetdataType.setName(source.getName());
 		if (eaContainer instanceof Model) {

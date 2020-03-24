@@ -15,6 +15,7 @@ import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.polarsys.capella.common.helpers.EObjectExt;
+import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.information.DataPkg;
 import org.polarsys.capella.core.data.information.datatype.BooleanType;
@@ -27,6 +28,7 @@ import org.polarsys.capella.core.data.information.datavalue.LiteralNumericValue;
 import org.polarsys.capella.core.data.information.datavalue.NumericValue;
 import org.polarsys.capella.core.model.helpers.ProjectExt;
 
+import com.artal.capella.mapping.CapellaUtils;
 import com.artal.capella.mapping.MappingUtils;
 import com.artal.capella.mapping.rules.MappingRulesManager;
 import com.artal.capella.mapping.rules.commons.CommonDatatypeMapping;
@@ -90,6 +92,12 @@ public class PrimitiveMapping extends CommonDatatypeMapping<DataPkg, Capella2UML
 
 		MappingUtils.generateUID(getAlgo(), source, targetPrimitiveType, this);
 		element createElement = XMIExtensionsUtils.createElement(targetPrimitiveType, getAlgo().getXMIExtension());
+		
+		CapellaElement ce = (CapellaElement)source;
+		if (CapellaUtils.hasStereotype(ce)){
+		 XMIExtensionsUtils.createStereotypeProperties(createElement, CapellaUtils.getSterotypeName(ce));
+		}
+
 		targetPrimitiveType.setName(source.getName());
 
 		constraints createConstraints = XMIExtensionsUtils.createConstraints(createElement);

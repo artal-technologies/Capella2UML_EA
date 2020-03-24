@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface extendedProperties extends EObject {
-
 	/**
 	 * Returns the value of the '<em><b>Direction</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -47,4 +46,5 @@ public interface extendedProperties extends EObject {
 	 * @generated
 	 */
 	void setDirection(String value);
+
 } // extendedProperties

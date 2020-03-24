@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.mix.DefaultCapella2UMLMix;
+import org.eclipse.capella.mapping.capella2uml.bridge.mix.PhysicalArchitectureCapella2UMLMix;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.diffmerge.bridge.interactive.BridgeJob;
 import org.eclipse.swt.widgets.Composite;
@@ -62,7 +63,9 @@ public class EAMappingService implements MappingService {
 		List<AbstractMappingAlgoMix<?, ?>> results = new ArrayList<AbstractMappingAlgoMix<?, ?>>();
 
 		DefaultCapella2UMLMix mix = new DefaultCapella2UMLMix();
+		PhysicalArchitectureCapella2UMLMix pamix = new PhysicalArchitectureCapella2UMLMix();
 		results.add(mix);
+		results.add(pamix);
 
 		return results;
 	}

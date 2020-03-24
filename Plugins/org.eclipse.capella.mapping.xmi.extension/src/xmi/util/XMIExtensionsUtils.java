@@ -129,6 +129,28 @@ public class XMIExtensionsUtils {
 		addElement.setProperties(createproperties);
 	}
 
+	static public void createStereotypeProperties(element addElement, String stereotype) {
+		properties createproperties = XmiFactory.eINSTANCE.createproperties();
+		createproperties.setStereotype(stereotype);
+		addElement.setProperties(createproperties);
+	}
+
+	
+	static public void createPropertiesWithStereotype(element addElement, boolean isAbstract, boolean isLeaf, String sType, int nType,
+			String scope, boolean isRoot, boolean isSpecification, String stereotype) {
+		properties createproperties = XmiFactory.eINSTANCE.createproperties();
+		createproperties.setIsAbstract(isAbstract);
+		createproperties.setIsLeaf(isLeaf);
+		createproperties.setSType(sType);
+		createproperties.setNType(nType);
+		createproperties.setScope(scope);
+		createproperties.setIsRoot(isRoot);
+		createproperties.setIsSpecification(isSpecification);
+		createproperties.setStereotype(stereotype);
+		addElement.setProperties(createproperties);
+	}
+
+	
 	static public attributes createAttributes(element addElement) {
 		attributes createattributes = XmiFactory.eINSTANCE.createattributes();
 		addElement.setAttributes(createattributes);

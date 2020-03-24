@@ -221,27 +221,6 @@ public class PackagedElementImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getXmitype() {
-		return xmitype;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setXmitype(String newXmitype) {
-		String oldXmitype = xmitype;
-		xmitype = newXmitype;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, XmiPackage.PACKAGED_ELEMENT__XMITYPE, oldXmitype, xmitype));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public ownedEnd getOwnedEnd() {
 		if (ownedEnd != null && ownedEnd.eIsProxy()) {
 			InternalEObject oldOwnedEnd = (InternalEObject)ownedEnd;
@@ -273,6 +252,27 @@ public class PackagedElementImpl extends MinimalEObjectImpl.Container implements
 		ownedEnd = newOwnedEnd;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, XmiPackage.PACKAGED_ELEMENT__OWNED_END, oldOwnedEnd, ownedEnd));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getXmitype() {
+		return xmitype;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setXmitype(String newXmitype) {
+		String oldXmitype = xmitype;
+		xmitype = newXmitype;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, XmiPackage.PACKAGED_ELEMENT__XMITYPE, oldXmitype, xmitype));
 	}
 
 	/**

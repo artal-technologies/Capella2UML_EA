@@ -14,28 +14,31 @@ import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.la.LogicalActor;
 import org.polarsys.capella.core.data.la.LogicalActorPkg;
 import org.polarsys.capella.core.model.helpers.ProjectExt;
 
+import com.artal.capella.mapping.CapellaUtils;
 import com.artal.capella.mapping.MappingUtils;
 import com.artal.capella.mapping.rules.MappingRulesManager;
 import com.artal.capella.mapping.rules.commons.CommonsActorMapping;
 
+import xmi.XmiFactory;
+import xmi.element;
+import xmi.properties;
 import xmi.util.XMIExtensionsUtils;
 
 /**
  * @author binot
  *
  */
-public class ActorMapping extends CommonsActorMapping< Capella2UMLAlgo> {
+public class ActorMapping extends CommonsActorMapping<Capella2UMLAlgo> {
 
 	public ActorMapping(Capella2UMLAlgo algo, LogicalActorPkg parent, IMappingExecution mappingExecution) {
 		super(algo, parent, mappingExecution);
 	}
-
-
 
 	/*
 	 * (non-Javadoc)
@@ -51,9 +54,15 @@ public class ActorMapping extends CommonsActorMapping< Capella2UMLAlgo> {
 		Capella2UMLAlgo algo = getAlgo();
 
 		MappingUtils.generateUID(algo, source, targetActor, this);
-		XMIExtensionsUtils.createElement(targetActor, algo.getXMIExtension());
+		element targetelement =XMIExtensionsUtils.createElement(targetActor, algo.getXMIExtension());
 
 		targetActor.setName(source.getName());
+		
+		CapellaElement ce = (CapellaElement)source;
+		if (CapellaUtils.hasStereotype(ce)){
+		 XMIExtensionsUtils.createStereotypeProperties(targetelement, CapellaUtils.getSterotypeName(ce));
+		}
+
 		if (eaContainer instanceof Model) {
 			EList<PackageableElement> packagedElements = ((Model) eaContainer).getPackagedElements();
 			for (PackageableElement packageableElement : packagedElements) {
@@ -63,7 +72,6 @@ public class ActorMapping extends CommonsActorMapping< Capella2UMLAlgo> {
 		}
 		return targetActor;
 	}
-
 
 	/*
 	 * (non-Javadoc)

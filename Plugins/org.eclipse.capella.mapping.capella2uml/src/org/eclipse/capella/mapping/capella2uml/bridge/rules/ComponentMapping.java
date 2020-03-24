@@ -19,6 +19,7 @@ import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.la.LogicalComponent;
 import org.polarsys.capella.core.model.helpers.ProjectExt;
 
+import com.artal.capella.mapping.CapellaUtils;
 import com.artal.capella.mapping.MappingUtils;
 import com.artal.capella.mapping.rules.MappingRulesManager;
 import com.artal.capella.mapping.rules.commons.CommonComponentMapping;
@@ -43,6 +44,11 @@ public class ComponentMapping extends CommonComponentMapping<Capella2UMLAlgo> {
 		MappingUtils.generateUID(getAlgo(), source, targetComponent, this);
 		element createElement = XMIExtensionsUtils.createElement(targetComponent, getAlgo().getXMIExtension());
 
+		CapellaElement ce = (CapellaElement)source;
+		if (CapellaUtils.hasStereotype(ce)) {
+			String stereoName=CapellaUtils.getSterotypeName(ce);
+			XMIExtensionsUtils.createStereotypeProperties(createElement, stereoName);
+		}
 		
 		Project project = ProjectExt.getProject(source);
 		Model model = (Model)MappingRulesManager.getCapellaObjectFromAllRules(project);

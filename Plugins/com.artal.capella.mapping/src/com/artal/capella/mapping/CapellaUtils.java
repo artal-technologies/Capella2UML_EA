@@ -14,7 +14,9 @@ import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
+import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.capellacore.ModellingArchitecture;
+import org.polarsys.capella.core.data.capellacore.PropertyValueGroup;
 import org.polarsys.capella.core.data.capellamodeller.ModelRoot;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.capellamodeller.SystemEngineering;
@@ -29,6 +31,7 @@ import org.polarsys.capella.core.data.la.LogicalActorPkg;
 import org.polarsys.capella.core.data.la.LogicalArchitecture;
 import org.polarsys.capella.core.data.la.LogicalComponent;
 import org.polarsys.capella.core.data.la.LogicalFunctionPkg;
+import org.polarsys.capella.core.data.pa.PhysicalArchitecture;
 
 /**
  * @author binot
@@ -41,6 +44,17 @@ public class CapellaUtils {
 			return true;
 		}
 		return false;
+	}
+	
+	public static boolean hasStereotype(CapellaElement ce) {
+		return ce.getOwnedPropertyValueGroups().size()>0;	
+	}
+	
+	public static String getSterotypeName(CapellaElement ce) {//TODO: To improve (search for a Helper?)
+		for (PropertyValueGroup pvg:ce.getOwnedPropertyValueGroups()) {
+			return pvg.getName();
+		}
+		return null;
 	}
 
 	/**
@@ -135,6 +149,38 @@ public class CapellaUtils {
 		}
 		return null;
 	}
+	
+	/**
+	 * Returns the logical architecture system root given a semantic object
+	 * 
+	 * @param source_p
+	 *            the semantic object
+	 * @return the logical component root
+	 */
+	public static PhysicalArchitecture getPhysicalArchitecture(EObject source_p) {
+		ResourceSet resourceSet = source_p.eResource().getResourceSet();
+		URI semanticResourceURI = source_p.eResource().getURI().trimFileExtension()
+				.appendFileExtension("melodymodeller");
+		Resource semanticResource = resourceSet.getResource(semanticResourceURI, false);
+		if (semanticResource != null) {
+			EObject root = semanticResource.getContents().get(0);
+			if (root instanceof Project) {
+				EList<ModelRoot> ownedModelRoots = ((Project) root).getOwnedModelRoots();
+				for (ModelRoot modelRoot : ownedModelRoots) {
+					if (modelRoot instanceof SystemEngineering) {
+						EList<ModellingArchitecture> containedLogicalArchitecture = ((SystemEngineering) modelRoot)
+								.getOwnedArchitectures();
+						for (ModellingArchitecture arch : containedLogicalArchitecture) {
+							if (arch instanceof PhysicalArchitecture)
+								return ((PhysicalArchitecture) arch);
+						}
+					}
+				}
+			}
+		}
+		return null;
+	}
+
 
 	/**
 	 * Returns the interface package given a semantic object
@@ -280,5 +326,6 @@ public class CapellaUtils {
 		return referencers;
 
 	}
+
 
 }

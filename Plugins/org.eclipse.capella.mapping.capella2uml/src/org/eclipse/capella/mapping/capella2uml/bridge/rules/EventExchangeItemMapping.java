@@ -17,10 +17,10 @@ import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.polarsys.capella.common.helpers.EObjectExt;
 import org.polarsys.capella.core.data.capellamodeller.Project;
+import org.polarsys.capella.core.data.cs.BlockArchitecture;
 import org.polarsys.capella.core.data.information.ExchangeItem;
 import org.polarsys.capella.core.data.information.ExchangeMechanism;
 import org.polarsys.capella.core.data.information.InformationPackage;
-import org.polarsys.capella.core.data.la.LogicalArchitecture;
 import org.polarsys.capella.core.model.helpers.ProjectExt;
 
 import com.artal.capella.mapping.MappingUtils;
@@ -33,14 +33,14 @@ import xmi.util.XMIExtensionsUtils;
  * @author binot
  *
  */
-public class EventExchangeItemMapping extends CommonExchangeItemMapping<LogicalArchitecture, Capella2UMLAlgo> {
+public class EventExchangeItemMapping extends CommonExchangeItemMapping<BlockArchitecture, Capella2UMLAlgo> {
 
 	/**
 	 * @param algo
 	 * @param parent
 	 * @param mappingExecution
 	 */
-	public EventExchangeItemMapping(Capella2UMLAlgo algo, LogicalArchitecture parent,
+	public EventExchangeItemMapping(Capella2UMLAlgo algo, BlockArchitecture parent,
 			IMappingExecution mappingExecution) {
 		super(algo, parent, mappingExecution);
 	}
@@ -52,7 +52,7 @@ public class EventExchangeItemMapping extends CommonExchangeItemMapping<LogicalA
 	 * computeCapellaSource(java.lang.Object)
 	 */
 	@Override
-	public List<ExchangeItem> findSourceElements(LogicalArchitecture capellaContainer) {
+	public List<ExchangeItem> findSourceElements(BlockArchitecture capellaContainer) {
 		List<ExchangeItem> findSourceElements = super.findSourceElements(capellaContainer);
 		List<ExchangeItem> eventEIs = findSourceElements.stream()
 				.filter(ei -> (ei.getExchangeMechanism() == ExchangeMechanism.EVENT)).collect(Collectors.toList());

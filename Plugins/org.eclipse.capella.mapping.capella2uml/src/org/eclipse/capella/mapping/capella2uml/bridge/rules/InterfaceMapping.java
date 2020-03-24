@@ -15,16 +15,19 @@ import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.Usage;
+import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.cs.Interface;
 import org.polarsys.capella.core.data.cs.InterfacePkg;
 import org.polarsys.capella.core.data.information.ExchangeItem;
 import org.polarsys.capella.core.model.helpers.ProjectExt;
 
+import com.artal.capella.mapping.CapellaUtils;
 import com.artal.capella.mapping.MappingUtils;
 import com.artal.capella.mapping.rules.MappingRulesManager;
 import com.artal.capella.mapping.rules.commons.CommonInterfaceMapping;
 
+import xmi.element;
 import xmi.util.XMIExtensionsUtils;
 
 /**
@@ -53,7 +56,15 @@ public class InterfaceMapping extends CommonInterfaceMapping<Capella2UMLAlgo> {
 	public Object compute(Object eaContainer, Interface source) {
 		org.eclipse.uml2.uml.Interface targetInterface = UMLFactory.eINSTANCE.createInterface();
 		MappingUtils.generateUID(getAlgo(), source, targetInterface, this);
-		XMIExtensionsUtils.createElement(targetInterface, getAlgo().getXMIExtension());
+		
+		element targetelement=XMIExtensionsUtils.createElement(targetInterface, getAlgo().getXMIExtension());
+		
+		CapellaElement ce = (CapellaElement)source;
+		if (CapellaUtils.hasStereotype(ce)){
+		 XMIExtensionsUtils.createStereotypeProperties(targetelement, CapellaUtils.getSterotypeName(ce));
+		}
+
+		
 		targetInterface.setName(source.getName());
 
 		EList<ExchangeItem> exchangeItems = source.getExchangeItems();

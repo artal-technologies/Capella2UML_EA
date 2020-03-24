@@ -61,6 +61,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAttribute" eType="#//ownedAttribute"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ea_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="direction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stereotype" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PackagedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="xmiid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

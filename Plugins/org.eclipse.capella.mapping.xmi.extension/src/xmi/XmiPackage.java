@@ -175,7 +175,6 @@ public interface XmiPackage extends EPackage {
 	 */
 	int DOCUMENTATION_OPERATION_COUNT = 0;
 
-
 	/**
 	 * The meta object id for the '{@link xmi.impl.elementsImpl <em>elements</em>}' class.
 	 * <!-- begin-user-doc -->
@@ -368,7 +367,6 @@ public interface XmiPackage extends EPackage {
 	 */
 	int XREFS_OPERATION_COUNT = 0;
 
-
 	/**
 	 * The meta object id for the '{@link xmi.impl.profilesImpl <em>profiles</em>}' class.
 	 * <!-- begin-user-doc -->
@@ -405,7 +403,6 @@ public interface XmiPackage extends EPackage {
 	 * @ordered
 	 */
 	int PROFILES_OPERATION_COUNT = 0;
-
 
 	/**
 	 * The meta object id for the '{@link xmi.impl.propertiesImpl <em>properties</em>}' class.
@@ -553,13 +550,22 @@ public interface XmiPackage extends EPackage {
 	int PROPERTIES__DIRECTION = 14;
 
 	/**
+	 * The feature id for the '<em><b>Stereotype</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTIES__STEREOTYPE = 15;
+
+	/**
 	 * The number of structural features of the '<em>properties</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTIES_FEATURE_COUNT = 15;
+	int PROPERTIES_FEATURE_COUNT = 16;
 
 	/**
 	 * The number of operations of the '<em>properties</em>' class.
@@ -569,7 +575,6 @@ public interface XmiPackage extends EPackage {
 	 * @ordered
 	 */
 	int PROPERTIES_OPERATION_COUNT = 0;
-
 
 	/**
 	 * The meta object id for the '{@link xmi.impl.PackagedElementImpl <em>Packaged Element</em>}' class.
@@ -1185,7 +1190,6 @@ public interface XmiPackage extends EPackage {
 	 */
 	int STEREOTYPE_OPERATION_COUNT = 0;
 
-
 	/**
 	 * The meta object id for the '{@link xmi.impl.constraintsImpl <em>constraints</em>}' class.
 	 * <!-- begin-user-doc -->
@@ -1286,7 +1290,6 @@ public interface XmiPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONSTRAINT_OPERATION_COUNT = 0;
-
 
 	/**
 	 * The meta object id for the '{@link xmi.impl.connectorsImpl <em>connectors</em>}' class.
@@ -1398,7 +1401,6 @@ public interface XmiPackage extends EPackage {
 	 */
 	int CONNECTOR_OPERATION_COUNT = 0;
 
-
 	/**
 	 * The meta object id for the '{@link xmi.impl.modelImpl <em>model</em>}' class.
 	 * <!-- begin-user-doc -->
@@ -1471,7 +1473,6 @@ public interface XmiPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_OPERATION_COUNT = 0;
-
 
 	/**
 	 * The meta object id for the '{@link xmi.impl.sourceImpl <em>source</em>}' class.
@@ -2057,6 +2058,17 @@ public interface XmiPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getproperties_Direction();
+
+	/**
+	 * Returns the meta object for the attribute '{@link xmi.properties#getStereotype <em>Stereotype</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Stereotype</em>'.
+	 * @see xmi.properties#getStereotype()
+	 * @see #getproperties()
+	 * @generated
+	 */
+	EAttribute getproperties_Stereotype();
 
 	/**
 	 * Returns the meta object for class '{@link xmi.PackagedElement <em>Packaged Element</em>}'.
@@ -3225,6 +3237,14 @@ public interface XmiPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PROPERTIES__DIRECTION = eINSTANCE.getproperties_Direction();
+
+		/**
+		 * The meta object literal for the '<em><b>Stereotype</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROPERTIES__STEREOTYPE = eINSTANCE.getproperties_Stereotype();
 
 		/**
 		 * The meta object literal for the '{@link xmi.impl.PackagedElementImpl <em>Packaged Element</em>}' class.

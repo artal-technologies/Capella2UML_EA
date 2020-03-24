@@ -45,7 +45,7 @@ public interface elements extends EObject {
 	 * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Test</em>' reference isn't clear,
+	 * If the meaning of the '<em>Test</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->

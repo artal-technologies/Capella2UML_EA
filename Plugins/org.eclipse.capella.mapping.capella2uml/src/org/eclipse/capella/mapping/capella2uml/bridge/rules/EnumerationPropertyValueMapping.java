@@ -11,10 +11,12 @@ import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Extension;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.capellacore.EnumerationPropertyLiteral;
 import org.polarsys.capella.core.data.capellacore.EnumerationPropertyType;
 import org.polarsys.capella.core.data.capellacore.PropertyValuePkg;
 
+import com.artal.capella.mapping.CapellaUtils;
 import com.artal.capella.mapping.MappingUtils;
 import com.artal.capella.mapping.rules.AbstractDynamicMapping;
 import com.artal.capella.mapping.rules.MappingRulesManager;
@@ -80,7 +82,13 @@ public class EnumerationPropertyValueMapping
 		MappingUtils.generateUID(getAlgo(), source, enumerationTarget, this);
 		//Add element
 		element addElement = XMIExtensionsUtils.createElement(enumerationTarget, getAlgo().getXMIExtension());
-		XMIExtensionsUtils.createProperties(addElement, false, false, "Enumeration", 0, "public", false, false);
+
+		CapellaElement ce= (CapellaElement) source;
+		if (!CapellaUtils.hasStereotype(ce)) {
+			XMIExtensionsUtils.createProperties(addElement, false, false, "Enumeration", 0, "public", false, false);
+		} else {
+			XMIExtensionsUtils.createPropertiesWithStereotype(addElement, false, false, "Enumeration", 0, "public", false, false, CapellaUtils.getSterotypeName(ce));
+		}
 
 		enumerationTarget.setName(source.getName());
 

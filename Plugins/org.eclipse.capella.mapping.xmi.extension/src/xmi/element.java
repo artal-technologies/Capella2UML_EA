@@ -85,7 +85,7 @@ public interface element extends EObject {
 	 * Returns the value of the '<em><b>Xrefs</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Xrefs</em>' reference isn't clear,
+	 * If the meaning of the '<em>Xrefs</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
@@ -111,7 +111,7 @@ public interface element extends EObject {
 	 * Returns the value of the '<em><b>Xmiidref</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Xmiidref</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Xmiidref</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
@@ -163,7 +163,7 @@ public interface element extends EObject {
 	 * Returns the value of the '<em><b>Properties</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Properties</em>' reference isn't clear,
+	 * If the meaning of the '<em>Properties</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->

@@ -13,7 +13,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.polarsys.capella.core.data.capellacore.CapellaElement;
-import org.polarsys.capella.core.data.la.LogicalArchitecture;
+import org.polarsys.capella.core.data.cs.BlockArchitecture;
 
 import com.artal.capella.mapping.MappingUtils;
 import com.artal.capella.mapping.rules.MappingRulesManager;
@@ -23,14 +23,14 @@ import com.artal.capella.mapping.rules.commons.CommonDescriptionMapping;
  * @author binot
  *
  */
-public class DescriptionMapping extends CommonDescriptionMapping<LogicalArchitecture, Capella2UMLAlgo> {
+public class DescriptionMapping extends CommonDescriptionMapping<BlockArchitecture, Capella2UMLAlgo> {
 
 	/**
 	 * @param algo
 	 * @param parent
 	 * @param mappingExecution
 	 */
-	public DescriptionMapping(Capella2UMLAlgo algo, LogicalArchitecture parent, IMappingExecution mappingExecution) {
+	public DescriptionMapping(Capella2UMLAlgo algo, BlockArchitecture parent, IMappingExecution mappingExecution) {
 		super(algo, parent, mappingExecution);
 		// TODO Auto-generated constructor stub
 	}

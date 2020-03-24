@@ -11,14 +11,17 @@ import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.cs.Interface;
 import org.polarsys.capella.core.data.information.ExchangeItem;
 import org.polarsys.capella.core.data.information.ExchangeMechanism;
 
+import com.artal.capella.mapping.CapellaUtils;
 import com.artal.capella.mapping.MappingUtils;
 import com.artal.capella.mapping.rules.MappingRulesManager;
 import com.artal.capella.mapping.rules.commons.CommonExchangeItemMapping;
 
+import xmi.element;
 import xmi.util.XMIExtensionsUtils;
 
 /**
@@ -49,8 +52,14 @@ public class OperationExchangeItemMapping extends
 		Operation targetOperation = UMLFactory.eINSTANCE.createOperation();
 		targetOperation.setName(source.getName());
 		MappingUtils.generateUID(getAlgo(), source, targetOperation, this);
-		XMIExtensionsUtils.createElement(targetOperation, getAlgo().getXMIExtension());
+		element targetelement=XMIExtensionsUtils.createElement(targetOperation, getAlgo().getXMIExtension());
 
+		CapellaElement ce = (CapellaElement)source;
+		if (CapellaUtils.hasStereotype(ce)){
+		 XMIExtensionsUtils.createStereotypeProperties(targetelement, CapellaUtils.getSterotypeName(ce));
+		}
+
+		
 		if (eaContainer instanceof org.eclipse.uml2.uml.Interface) {
 			((org.eclipse.uml2.uml.Interface) eaContainer).getOwnedOperations().add(targetOperation);
 		}

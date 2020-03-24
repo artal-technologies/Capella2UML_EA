@@ -105,32 +105,6 @@ public interface PackagedElement extends EObject {
 	void setPrefix(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Xmitype</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Xmitype</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Xmitype</em>' attribute.
-	 * @see #setXmitype(String)
-	 * @see xmi.XmiPackage#getPackagedElement_Xmitype()
-	 * @model
-	 * @generated
-	 */
-	String getXmitype();
-
-	/**
-	 * Sets the value of the '{@link xmi.PackagedElement#getXmitype <em>Xmitype</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Xmitype</em>' attribute.
-	 * @see #getXmitype()
-	 * @generated
-	 */
-	void setXmitype(String value);
-
-	/**
 	 * Returns the value of the '<em><b>Owned End</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -155,6 +129,32 @@ public interface PackagedElement extends EObject {
 	 * @generated
 	 */
 	void setOwnedEnd(ownedEnd value);
+
+	/**
+	 * Returns the value of the '<em><b>Xmitype</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Xmitype</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Xmitype</em>' attribute.
+	 * @see #setXmitype(String)
+	 * @see xmi.XmiPackage#getPackagedElement_Xmitype()
+	 * @model
+	 * @generated
+	 */
+	String getXmitype();
+
+	/**
+	 * Sets the value of the '{@link xmi.PackagedElement#getXmitype <em>Xmitype</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Xmitype</em>' attribute.
+	 * @see #getXmitype()
+	 * @generated
+	 */
+	void setXmitype(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Attribute</b></em>' reference.

@@ -19,6 +19,7 @@ import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Realization;
 import org.eclipse.uml2.uml.StructuredClassifier;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.cs.Interface;
 import org.polarsys.capella.core.data.fa.ComponentExchange;
 import org.polarsys.capella.core.data.fa.ComponentPort;
@@ -126,8 +127,14 @@ public class ExchangeMapping extends CommonComponentExchangeMapping<Capella2UMLA
 
 				
 				element addElement = XMIExtensionsUtils.createElement(createClass, getAlgo().getXMIExtension());
+				CapellaElement ce= (CapellaElement) interface1;
+				if (!CapellaUtils.hasStereotype(ce)) {
 				XMIExtensionsUtils.createProperties(addElement, false, false, "ProxyConnector", 0, "public", false,
 						false);
+				} else {
+				XMIExtensionsUtils.createPropertiesWithStereotype(addElement, false, false, "ProxyConnector", 0, "public", false,
+						false, CapellaUtils.getSterotypeName(ce));
+				}
 				addElement.setClassifier(targetConnector);
 
 				XMIExtensionsUtils.addConnector(realizationTarget, getAlgo().getXMIExtension(),sysMLID , "Unspecified", "Relization",interf,createClass,false);
