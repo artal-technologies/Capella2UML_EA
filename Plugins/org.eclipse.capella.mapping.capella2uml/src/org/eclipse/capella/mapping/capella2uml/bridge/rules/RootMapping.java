@@ -124,7 +124,7 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 
 		Project project = _capellaSource.get(0);
 
-		DataPkg dataPkgRoot = CapellaUtils.getDataPkgRoot(project);
+		DataPkg dataPkgRoot = CapellaUtils.getDataPkgRoot(project,LogicalArchitecture.class);
 
 		EnumerationMapping enumerationMapping = new EnumerationMapping(getAlgo(), dataPkgRoot, getMappingExucution());
 		manager.add(EnumerationMapping.class.getName() + dataPkgRoot.getId(), enumerationMapping);
@@ -154,7 +154,7 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 		manager.add(eventExchangeItemMapping.getClass().getName() + logicalArchitecture.getName(),
 				eventExchangeItemMapping);
 
-		InterfacePkg interfacePkg = CapellaUtils.getInterfacePkgRoot(project);
+		InterfacePkg interfacePkg = CapellaUtils.getInterfacePkgRoot(project,LogicalArchitecture.class);
 		InterfaceMapping interfaceMapping = new InterfaceMapping(getAlgo(), interfacePkg, getMappingExucution());
 		manager.add(InterfaceMapping.class.getName() + interfacePkg.getId(), interfaceMapping);
 

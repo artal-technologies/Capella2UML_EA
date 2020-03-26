@@ -14,6 +14,7 @@ import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.polarsys.capella.core.data.cs.AbstractActor;
 import org.polarsys.capella.core.data.cs.Component;
 import org.polarsys.capella.core.data.fa.AbstractFunction;
 import org.polarsys.capella.core.data.fa.FunctionInputPort;
@@ -30,15 +31,15 @@ import com.artal.capella.mapping.rules.commons.CommonFunctionalExchangeMapping;
  * @author binot
  *
  */
-public class ActorFunctionalExchangeMapping extends CommonFunctionalExchangeMapping<LogicalActor, Capella2UMLAlgo> {
+public class ActorFunctionalExchangeMapping extends CommonFunctionalExchangeMapping<AbstractActor, Capella2UMLAlgo> {
 
-	public ActorFunctionalExchangeMapping(Capella2UMLAlgo algo, LogicalActor parent,
+	public ActorFunctionalExchangeMapping(Capella2UMLAlgo algo, AbstractActor parent,
 			IMappingExecution mappingExecution) {
 		super(algo, parent, mappingExecution);
 	}
 
 	@Override
-	public List<FunctionalExchange> findSourceElements(LogicalActor capellaContainer) {
+	public List<FunctionalExchange> findSourceElements(AbstractActor capellaContainer) {
 
 		List<FunctionalExchange> findSourceElements = super.findSourceElements(capellaContainer);
 		List<FunctionalExchange> collect = findSourceElements.stream().filter(lf -> isInActor(lf, capellaContainer))
@@ -47,7 +48,7 @@ public class ActorFunctionalExchangeMapping extends CommonFunctionalExchangeMapp
 		return collect;
 	}
 
-	public boolean isInActor(FunctionalExchange lf, LogicalActor capellaContainer) {
+	public boolean isInActor(FunctionalExchange lf, AbstractActor capellaContainer) {
 		FunctionOutputPort sourceFunctionOutputPort = lf.getSourceFunctionOutputPort();
 		FunctionInputPort targetFunctionInputPort = lf.getTargetFunctionInputPort();
 

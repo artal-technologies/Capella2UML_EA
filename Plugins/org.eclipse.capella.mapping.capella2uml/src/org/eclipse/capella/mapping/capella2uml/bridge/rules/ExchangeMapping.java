@@ -21,11 +21,11 @@ import org.eclipse.uml2.uml.StructuredClassifier;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.cs.Interface;
+import org.polarsys.capella.core.data.cs.SystemComponent;
 import org.polarsys.capella.core.data.fa.ComponentExchange;
 import org.polarsys.capella.core.data.fa.ComponentPort;
 import org.polarsys.capella.core.data.fa.OrientationPortKind;
 import org.polarsys.capella.core.data.information.Port;
-import org.polarsys.capella.core.data.la.LogicalComponent;
 
 import com.artal.capella.mapping.CapellaUtils;
 import com.artal.capella.mapping.MappingUtils;
@@ -61,7 +61,7 @@ public class ExchangeMapping extends CommonComponentExchangeMapping<Capella2UMLA
 	@Override
 	public Object compute(Object eaContainer, ComponentExchange source) {
 
-		LogicalComponent logicalSystemRoot = CapellaUtils.getLogicalSystemRoot(source);
+		SystemComponent logicalSystemRoot = CapellaUtils.getLogicalSystemRoot(source);
 		Component container = (Component) MappingRulesManager.getCapellaObjectFromAllRules(logicalSystemRoot);
 		Resource eResource = source.eResource();
 		String sysMLID = MappingUtils.getSysMLID(eResource, source);

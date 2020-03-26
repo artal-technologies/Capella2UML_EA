@@ -20,6 +20,7 @@ import org.polarsys.capella.core.data.capellacore.PropertyValueGroup;
 import org.polarsys.capella.core.data.capellamodeller.ModelRoot;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.capellamodeller.SystemEngineering;
+import org.polarsys.capella.core.data.cs.BlockArchitecture;
 import org.polarsys.capella.core.data.cs.Component;
 import org.polarsys.capella.core.data.cs.InterfacePkg;
 import org.polarsys.capella.core.data.cs.Part;
@@ -31,7 +32,9 @@ import org.polarsys.capella.core.data.la.LogicalActorPkg;
 import org.polarsys.capella.core.data.la.LogicalArchitecture;
 import org.polarsys.capella.core.data.la.LogicalComponent;
 import org.polarsys.capella.core.data.la.LogicalFunctionPkg;
+import org.polarsys.capella.core.data.pa.PhysicalActorPkg;
 import org.polarsys.capella.core.data.pa.PhysicalArchitecture;
+import org.polarsys.capella.core.data.pa.PhysicalComponent;
 
 /**
  * @author binot
@@ -45,13 +48,13 @@ public class CapellaUtils {
 		}
 		return false;
 	}
-	
+
 	public static boolean hasStereotype(CapellaElement ce) {
-		return ce.getOwnedPropertyValueGroups().size()>0;	
+		return ce.getOwnedPropertyValueGroups().size() > 0;
 	}
-	
-	public static String getSterotypeName(CapellaElement ce) {//TODO: To improve (search for a Helper?)
-		for (PropertyValueGroup pvg:ce.getOwnedPropertyValueGroups()) {
+
+	public static String getSterotypeName(CapellaElement ce) {// TODO: To improve (search for a Helper?)
+		for (PropertyValueGroup pvg : ce.getOwnedPropertyValueGroups()) {
 			return pvg.getName();
 		}
 		return null;
@@ -95,6 +98,37 @@ public class CapellaUtils {
 	 *            the semantic object
 	 * @return the logical component root
 	 */
+	public static PhysicalComponent getPhysicalSystemRoot(EObject source_p) {
+		ResourceSet resourceSet = source_p.eResource().getResourceSet();
+		URI semanticResourceURI = source_p.eResource().getURI().trimFileExtension()
+				.appendFileExtension("melodymodeller");
+		Resource semanticResource = resourceSet.getResource(semanticResourceURI, false);
+		if (semanticResource != null) {
+			EObject root = semanticResource.getContents().get(0);
+			if (root instanceof Project) {
+				EList<ModelRoot> ownedModelRoots = ((Project) root).getOwnedModelRoots();
+				for (ModelRoot modelRoot : ownedModelRoots) {
+					if (modelRoot instanceof SystemEngineering) {
+						EList<ModellingArchitecture> containedLogicalArchitecture = ((SystemEngineering) modelRoot)
+								.getOwnedArchitectures();
+						for (ModellingArchitecture arch : containedLogicalArchitecture) {
+							if (arch instanceof PhysicalArchitecture)
+								return ((PhysicalArchitecture) arch).getOwnedPhysicalComponent();
+						}
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the logical component system root given a semantic object
+	 * 
+	 * @param source_p
+	 *            the semantic object
+	 * @return the logical component root
+	 */
 	public static LogicalActorPkg getLogicalActorPkg(EObject source_p) {
 		ResourceSet resourceSet = source_p.eResource().getResourceSet();
 		URI semanticResourceURI = source_p.eResource().getURI().trimFileExtension()
@@ -111,6 +145,37 @@ public class CapellaUtils {
 						for (ModellingArchitecture arch : containedLogicalArchitecture) {
 							if (arch instanceof LogicalArchitecture)
 								return ((LogicalArchitecture) arch).getOwnedLogicalActorPkg();
+						}
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the logical component system root given a semantic object
+	 * 
+	 * @param source_p
+	 *            the semantic object
+	 * @return the logical component root
+	 */
+	public static PhysicalActorPkg getPhysicalActorPkg(EObject source_p) {
+		ResourceSet resourceSet = source_p.eResource().getResourceSet();
+		URI semanticResourceURI = source_p.eResource().getURI().trimFileExtension()
+				.appendFileExtension("melodymodeller");
+		Resource semanticResource = resourceSet.getResource(semanticResourceURI, false);
+		if (semanticResource != null) {
+			EObject root = semanticResource.getContents().get(0);
+			if (root instanceof Project) {
+				EList<ModelRoot> ownedModelRoots = ((Project) root).getOwnedModelRoots();
+				for (ModelRoot modelRoot : ownedModelRoots) {
+					if (modelRoot instanceof SystemEngineering) {
+						EList<ModellingArchitecture> containedLogicalArchitecture = ((SystemEngineering) modelRoot)
+								.getOwnedArchitectures();
+						for (ModellingArchitecture arch : containedLogicalArchitecture) {
+							if (arch instanceof PhysicalArchitecture)
+								return ((PhysicalArchitecture) arch).getOwnedPhysicalActorPkg();
 						}
 					}
 				}
@@ -149,7 +214,7 @@ public class CapellaUtils {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Returns the logical architecture system root given a semantic object
 	 * 
@@ -181,7 +246,6 @@ public class CapellaUtils {
 		return null;
 	}
 
-
 	/**
 	 * Returns the interface package given a semantic object
 	 * 
@@ -189,7 +253,7 @@ public class CapellaUtils {
 	 *            the semantic object
 	 * @return the data pkg root
 	 */
-	public static InterfacePkg getInterfacePkgRoot(EObject source_p) {
+	public static InterfacePkg getInterfacePkgRoot(EObject source_p, Class<?> clazz) {
 		ResourceSet resourceSet = source_p.eResource().getResourceSet();
 		URI semanticResourceURI = source_p.eResource().getURI().trimFileExtension()
 				.appendFileExtension("melodymodeller");
@@ -203,8 +267,8 @@ public class CapellaUtils {
 						EList<ModellingArchitecture> containedLogicalArchitecture = ((SystemEngineering) modelRoot)
 								.getOwnedArchitectures();
 						for (ModellingArchitecture arch : containedLogicalArchitecture) {
-							if (arch instanceof LogicalArchitecture)
-								return ((LogicalArchitecture) arch).getOwnedInterfacePkg();
+							if (/* arch instanceof LogicalArchitecture */clazz.isInstance(arch))
+								return ((BlockArchitecture) arch).getOwnedInterfacePkg();
 						}
 					}
 				}
@@ -220,7 +284,7 @@ public class CapellaUtils {
 	 *            the semantic object
 	 * @return the data pkg root
 	 */
-	public static DataPkg getDataPkgRoot(EObject source_p) {
+	public static DataPkg getDataPkgRoot(EObject source_p, Class<?> clazz) {
 		ResourceSet resourceSet = source_p.eResource().getResourceSet();
 		URI semanticResourceURI = source_p.eResource().getURI().trimFileExtension()
 				.appendFileExtension("melodymodeller");
@@ -234,8 +298,8 @@ public class CapellaUtils {
 						EList<ModellingArchitecture> containedLogicalArchitecture = ((SystemEngineering) modelRoot)
 								.getOwnedArchitectures();
 						for (ModellingArchitecture arch : containedLogicalArchitecture) {
-							if (arch instanceof LogicalArchitecture)
-								return ((LogicalArchitecture) arch).getOwnedDataPkg();
+							if (clazz.isInstance(arch))
+								return ((BlockArchitecture) arch).getOwnedDataPkg();
 						}
 					}
 				}
@@ -326,6 +390,5 @@ public class CapellaUtils {
 		return referencers;
 
 	}
-
 
 }

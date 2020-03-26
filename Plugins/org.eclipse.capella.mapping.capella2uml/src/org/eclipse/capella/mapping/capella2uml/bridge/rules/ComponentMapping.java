@@ -16,6 +16,7 @@ import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.capellamodeller.Project;
+import org.polarsys.capella.core.data.cs.SystemComponent;
 import org.polarsys.capella.core.data.la.LogicalComponent;
 import org.polarsys.capella.core.model.helpers.ProjectExt;
 
@@ -38,30 +39,29 @@ public class ComponentMapping extends CommonComponentMapping<Capella2UMLAlgo> {
 	}
 
 	@Override
-	public Object compute(Object eaContainer, LogicalComponent source) {
+	public Object compute(Object eaContainer, SystemComponent source) {
 		org.eclipse.uml2.uml.Component targetComponent = UMLFactory.eINSTANCE.createComponent();
 
 		MappingUtils.generateUID(getAlgo(), source, targetComponent, this);
 		element createElement = XMIExtensionsUtils.createElement(targetComponent, getAlgo().getXMIExtension());
 
-		CapellaElement ce = (CapellaElement)source;
+		CapellaElement ce = (CapellaElement) source;
 		if (CapellaUtils.hasStereotype(ce)) {
-			String stereoName=CapellaUtils.getSterotypeName(ce);
+			String stereoName = CapellaUtils.getSterotypeName(ce);
 			XMIExtensionsUtils.createStereotypeProperties(createElement, stereoName);
 		}
-		
+
 		Project project = ProjectExt.getProject(source);
-		Model model = (Model)MappingRulesManager.getCapellaObjectFromAllRules(project);
+		Model model = (Model) MappingRulesManager.getCapellaObjectFromAllRules(project);
 		Package pack = null;
-		
+
 		EList<PackageableElement> ownedMembers = model.getPackagedElements();
 		for (PackageableElement ownedMember : ownedMembers) {
 			if (ownedMember.getName().equals("Import Capella"))
-				pack = (Package)ownedMember;
+				pack = (Package) ownedMember;
 			break;
 		}
 
-		
 		targetComponent.setName(source.getName());
 		if (eaContainer instanceof Model) {
 			pack.getPackagedElements().add(targetComponent);
@@ -76,8 +76,8 @@ public class ComponentMapping extends CommonComponentMapping<Capella2UMLAlgo> {
 	}
 
 	@Override
-	public void executeSubRules(List<LogicalComponent> _capellaSource, MappingRulesManager manager) {
-		for (LogicalComponent logicalComponent : _capellaSource) {
+	public void executeSubRules(List<SystemComponent> _capellaSource, MappingRulesManager manager) {
+		for (SystemComponent logicalComponent : _capellaSource) {
 			ComponentMapping componentMapping = new ComponentMapping(getAlgo(), logicalComponent,
 					getMappingExucution());
 			PortMapping portMapping = new PortMapping(getAlgo(), logicalComponent, getMappingExucution());
@@ -86,11 +86,10 @@ public class ComponentMapping extends CommonComponentMapping<Capella2UMLAlgo> {
 			manager.add(PortMapping.class.getName() + logicalComponent.getId(), portMapping);
 		}
 
-		for (LogicalComponent logicalComponent : _capellaSource) {
+		for (SystemComponent logicalComponent : _capellaSource) {
 			AggregationMapping aggregationMapping = new AggregationMapping(getAlgo(), logicalComponent,
 					getMappingExucution());
 			manager.add(aggregationMapping.getClass().getName(), aggregationMapping);
-
 		}
 
 	}

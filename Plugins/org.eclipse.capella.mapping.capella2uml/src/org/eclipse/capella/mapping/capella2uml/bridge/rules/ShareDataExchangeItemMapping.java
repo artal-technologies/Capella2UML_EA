@@ -78,7 +78,7 @@ public class ShareDataExchangeItemMapping extends CommonExchangeItemMapping<Bloc
 		element createElement = XMIExtensionsUtils.addElement(classTarget, getAlgo().getXMIExtension(), sysMLID,
 				"entity");
 
-		CapellaElement ce = (CapellaElement) classTarget;
+		CapellaElement ce = (CapellaElement) source;
 		if (CapellaUtils.hasStereotype(ce)) {
 			XMIExtensionsUtils.createStereotypeProperties(createElement, CapellaUtils.getSterotypeName(ce));
 		}
