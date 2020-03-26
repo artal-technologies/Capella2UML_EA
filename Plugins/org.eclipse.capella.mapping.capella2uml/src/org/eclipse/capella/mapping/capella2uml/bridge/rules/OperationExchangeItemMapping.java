@@ -56,7 +56,7 @@ public class OperationExchangeItemMapping extends
 
 		CapellaElement ce = (CapellaElement)source;
 		if (CapellaUtils.hasStereotype(ce)){
-		 XMIExtensionsUtils.createStereotypeProperties(targetelement, CapellaUtils.getSterotypeName(ce));
+		 XMIExtensionsUtils.createStereotypeProperties(targetelement, CapellaUtils.getSterotypeName(ce), "Object");
 		}
 
 		

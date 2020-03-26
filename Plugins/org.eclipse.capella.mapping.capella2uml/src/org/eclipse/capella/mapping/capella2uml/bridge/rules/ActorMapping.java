@@ -56,7 +56,7 @@ public class ActorMapping extends CommonsActorMapping<Capella2UMLAlgo> {
 		
 		CapellaElement ce = (CapellaElement)source;
 		if (CapellaUtils.hasStereotype(ce)){
-		 XMIExtensionsUtils.createStereotypeProperties(targetelement, CapellaUtils.getSterotypeName(ce));
+		 XMIExtensionsUtils.createStereotypeProperties(targetelement, CapellaUtils.getSterotypeName(ce), "Actor");
 		}
 
 		if (eaContainer instanceof Model) {

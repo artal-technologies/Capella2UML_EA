@@ -54,7 +54,7 @@ public class PortMapping extends CommonPortMapping<Capella2UMLAlgo> {
 		
 		CapellaElement ce = (CapellaElement)source;
 		if (CapellaUtils.hasStereotype(ce)){
-		 XMIExtensionsUtils.createStereotypeProperties(targetelement, CapellaUtils.getSterotypeName(ce));
+		 XMIExtensionsUtils.createStereotypeProperties(targetelement, CapellaUtils.getSterotypeName(ce), "Port");
 		}
 
 
