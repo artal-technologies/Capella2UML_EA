@@ -61,7 +61,7 @@ public class InterfaceMapping extends CommonInterfaceMapping<Capella2UMLAlgo> {
 		
 		CapellaElement ce = (CapellaElement)source;
 		if (CapellaUtils.hasStereotype(ce)){
-		 XMIExtensionsUtils.createStereotypeProperties(targetelement, CapellaUtils.getSterotypeName(ce));
+		 XMIExtensionsUtils.createStereotypeProperties(targetelement, CapellaUtils.getSterotypeName(ce), "Interface");
 		}
 
 		

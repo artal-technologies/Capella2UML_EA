@@ -95,7 +95,7 @@ public class PrimitiveMapping extends CommonDatatypeMapping<DataPkg, Capella2UML
 		
 		CapellaElement ce = (CapellaElement)source;
 		if (CapellaUtils.hasStereotype(ce)){
-		 XMIExtensionsUtils.createStereotypeProperties(createElement, CapellaUtils.getSterotypeName(ce));
+		 XMIExtensionsUtils.createStereotypeProperties(createElement, CapellaUtils.getSterotypeName(ce), "DataType");
 		}
 
 		targetPrimitiveType.setName(source.getName());

@@ -129,9 +129,10 @@ public class XMIExtensionsUtils {
 		addElement.setProperties(createproperties);
 	}
 
-	static public void createStereotypeProperties(element addElement, String stereotype) {
+	static public void createStereotypeProperties(element addElement, String stereotype, String sType) {
 		properties createproperties = XmiFactory.eINSTANCE.createproperties();
 		createproperties.setStereotype(stereotype);
+		createproperties.setSType(sType);
 		addElement.setProperties(createproperties);
 	}
 

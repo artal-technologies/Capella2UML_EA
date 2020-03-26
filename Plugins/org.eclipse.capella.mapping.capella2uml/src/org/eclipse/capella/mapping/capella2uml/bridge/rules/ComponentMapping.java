@@ -47,7 +47,7 @@ public class ComponentMapping extends CommonComponentMapping<Capella2UMLAlgo> {
 		CapellaElement ce = (CapellaElement)source;
 		if (CapellaUtils.hasStereotype(ce)) {
 			String stereoName=CapellaUtils.getSterotypeName(ce);
-			XMIExtensionsUtils.createStereotypeProperties(createElement, stereoName);
+			XMIExtensionsUtils.createStereotypeProperties(createElement, stereoName, "Component");
 		}
 		
 		Project project = ProjectExt.getProject(source);
