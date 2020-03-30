@@ -172,6 +172,14 @@ public class XmiAdapterFactory extends AdapterFactoryImpl {
 				return createroleAdapter();
 			}
 			@Override
+			public Adapter casetags(tags object) {
+				return createtagsAdapter();
+			}
+			@Override
+			public Adapter casetag(tag object) {
+				return createtagAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -552,6 +560,34 @@ public class XmiAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createroleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link xmi.tags <em>tags</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see xmi.tags
+	 * @generated
+	 */
+	public Adapter createtagsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link xmi.tag <em>tag</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see xmi.tag
+	 * @generated
+	 */
+	public Adapter createtagAdapter() {
 		return null;
 	}
 

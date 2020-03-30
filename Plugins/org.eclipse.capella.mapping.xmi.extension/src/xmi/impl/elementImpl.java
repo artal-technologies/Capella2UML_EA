@@ -18,6 +18,7 @@ import xmi.constraints;
 import xmi.element;
 import xmi.model;
 import xmi.properties;
+import xmi.tags;
 import xmi.xrefs;
 
 /**
@@ -37,6 +38,7 @@ import xmi.xrefs;
  *   <li>{@link xmi.impl.elementImpl#getAttributes <em>Attributes</em>}</li>
  *   <li>{@link xmi.impl.elementImpl#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link xmi.impl.elementImpl#getModel <em>Model</em>}</li>
+ *   <li>{@link xmi.impl.elementImpl#getTags <em>Tags</em>}</li>
  * </ul>
  *
  * @generated
@@ -151,6 +153,16 @@ public class elementImpl extends MinimalEObjectImpl.Container implements element
 	 * @ordered
 	 */
 	protected model model;
+
+	/**
+	 * The cached value of the '{@link #getTags() <em>Tags</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTags()
+	 * @generated
+	 * @ordered
+	 */
+	protected tags tags;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -509,6 +521,49 @@ public class elementImpl extends MinimalEObjectImpl.Container implements element
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public tags getTags() {
+		return tags;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetTags(tags newTags, NotificationChain msgs) {
+		tags oldTags = tags;
+		tags = newTags;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XmiPackage.ELEMENT__TAGS, oldTags, newTags);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTags(tags newTags) {
+		if (newTags != tags) {
+			NotificationChain msgs = null;
+			if (tags != null)
+				msgs = ((InternalEObject)tags).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XmiPackage.ELEMENT__TAGS, null, msgs);
+			if (newTags != null)
+				msgs = ((InternalEObject)newTags).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XmiPackage.ELEMENT__TAGS, null, msgs);
+			msgs = basicSetTags(newTags, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, XmiPackage.ELEMENT__TAGS, newTags, newTags));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -522,6 +577,8 @@ public class elementImpl extends MinimalEObjectImpl.Container implements element
 				return basicSetConstraints(null, msgs);
 			case XmiPackage.ELEMENT__MODEL:
 				return basicSetModel(null, msgs);
+			case XmiPackage.ELEMENT__TAGS:
+				return basicSetTags(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -554,6 +611,8 @@ public class elementImpl extends MinimalEObjectImpl.Container implements element
 				return getConstraints();
 			case XmiPackage.ELEMENT__MODEL:
 				return getModel();
+			case XmiPackage.ELEMENT__TAGS:
+				return getTags();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -592,6 +651,9 @@ public class elementImpl extends MinimalEObjectImpl.Container implements element
 				return;
 			case XmiPackage.ELEMENT__MODEL:
 				setModel((model)newValue);
+				return;
+			case XmiPackage.ELEMENT__TAGS:
+				setTags((tags)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -632,6 +694,9 @@ public class elementImpl extends MinimalEObjectImpl.Container implements element
 			case XmiPackage.ELEMENT__MODEL:
 				setModel((model)null);
 				return;
+			case XmiPackage.ELEMENT__TAGS:
+				setTags((tags)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -662,6 +727,8 @@ public class elementImpl extends MinimalEObjectImpl.Container implements element
 				return constraints != null;
 			case XmiPackage.ELEMENT__MODEL:
 				return model != null;
+			case XmiPackage.ELEMENT__TAGS:
+				return tags != null;
 		}
 		return super.eIsSet(featureID);
 	}

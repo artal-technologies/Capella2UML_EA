@@ -256,6 +256,24 @@ public interface XmiFactory extends EFactory {
 	role createrole();
 
 	/**
+	 * Returns a new object of class '<em>tags</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>tags</em>'.
+	 * @generated
+	 */
+	tags createtags();
+
+	/**
+	 * Returns a new object of class '<em>tag</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>tag</em>'.
+	 * @generated
+	 */
+	tag createtag();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

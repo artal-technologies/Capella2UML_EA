@@ -5,12 +5,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.diffmerge.impl.scopes.AbstractEditableModelScope;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.VisibilityKind;
 import org.polarsys.capella.common.helpers.EObjectExt;
@@ -76,8 +79,21 @@ public class PhysicalRootMapping extends AbstractDynamicMapping<Project, Project
 		getAlgo().setXMIExtension(extensionObject);
 
 		((AbstractEditableModelScope) targetDataSet).add(extensionObject);
+		
+//		ResourceSet targetResourceSet = MappingUtils.getTargetResourceSet((AbstractEditableModelScope) targetDataSet);
+//		model.applyProfile(getProfile("pathmap://UML_PROFILES/Ecore.profile.uml", targetResourceSet));
+//		model.applyProfile(getProfile("pathmap://UML_PROFILES/Standard.profile.uml", targetResourceSet));
 		return model;
 
+	}
+	
+	static public Profile getProfile(String uri, ResourceSet rset) {
+		URI pURI = URI.createURI(uri, false);
+		Resource resource = rset.getResource(pURI, true);
+		Profile umlStdProfile = (Profile) resource.getContents().get(0);
+		return umlStdProfile;
+		
+	
 	}
 
 	/*
@@ -120,6 +136,14 @@ public class PhysicalRootMapping extends AbstractDynamicMapping<Project, Project
 
 		DataPkg dataPkgRoot = CapellaUtils.getDataPkgRoot(project, PhysicalArchitecture.class);
 
+		RootPropertyValuePkgMapping pvpMapping = new RootPropertyValuePkgMapping(getAlgo(), project,
+				getMappingExucution());
+		manager.add(RootPropertyValuePkgMapping.class.getName() + project.getId(), pvpMapping);
+
+		PhysicalProfileMapping ppMapping = new PhysicalProfileMapping(getAlgo(), project, getMappingExucution());
+		manager.add(PhysicalProfileMapping.class.getName() + project.getId(), ppMapping);
+		
+		
 		EnumerationMapping enumerationMapping = new EnumerationMapping(getAlgo(), dataPkgRoot, getMappingExucution());
 		manager.add(EnumerationMapping.class.getName() + dataPkgRoot.getId(), enumerationMapping);
 
@@ -170,12 +194,7 @@ public class PhysicalRootMapping extends AbstractDynamicMapping<Project, Project
 				getMappingExucution());
 		manager.add(descriptionMapping.getClass().getName() + physicalArchitecture.getId(), descriptionMapping);
 
-		RootPropertyValuePkgMapping pvpMapping = new RootPropertyValuePkgMapping(getAlgo(), project,
-				getMappingExucution());
-		manager.add(RootPropertyValuePkgMapping.class.getName() + project.getId(), pvpMapping);
-
-		PhysicalProfileMapping ppMapping = new PhysicalProfileMapping(getAlgo(), project, getMappingExucution());
-		manager.add(PhysicalProfileMapping.class.getName() + project.getId(), ppMapping);
+	
 
 	}
 

@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link xmi.element#getAttributes <em>Attributes</em>}</li>
  *   <li>{@link xmi.element#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link xmi.element#getModel <em>Model</em>}</li>
+ *   <li>{@link xmi.element#getTags <em>Tags</em>}</li>
  * </ul>
  *
  * @see xmi.XmiPackage#getelement()
@@ -262,5 +263,31 @@ public interface element extends EObject {
 	 * @generated
 	 */
 	void setModel(model value);
+
+	/**
+	 * Returns the value of the '<em><b>Tags</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Tags</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Tags</em>' containment reference.
+	 * @see #setTags(tags)
+	 * @see xmi.XmiPackage#getelement_Tags()
+	 * @model containment="true"
+	 * @generated
+	 */
+	tags getTags();
+
+	/**
+	 * Sets the value of the '{@link xmi.element#getTags <em>Tags</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Tags</em>' containment reference.
+	 * @see #getTags()
+	 * @generated
+	 */
+	void setTags(tags value);
 
 } // element

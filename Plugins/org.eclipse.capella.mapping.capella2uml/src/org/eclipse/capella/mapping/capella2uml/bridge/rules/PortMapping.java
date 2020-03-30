@@ -3,17 +3,21 @@
  */
 package org.eclipse.capella.mapping.capella2uml.bridge.rules;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
+import org.eclipse.capella.mapping.capella2uml.bridge.rules.utils.SpecificUtils;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.EncapsulatedClassifier;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.fa.ComponentPort;
+import org.polarsys.capella.core.data.pa.PhysicalComponent;
 
 import com.artal.capella.mapping.CapellaUtils;
 import com.artal.capella.mapping.MappingUtils;
@@ -50,15 +54,21 @@ public class PortMapping extends CommonPortMapping<Capella2UMLAlgo> {
 	public Object compute(Object eaContainer, ComponentPort source) {
 		Port targetPort = UMLFactory.eINSTANCE.createPort();
 		MappingUtils.generateUID(getAlgo(), source, targetPort, this);
-		element targetelement=XMIExtensionsUtils.createElement(targetPort, getAlgo().getXMIExtension());
-		
-		CapellaElement ce = (CapellaElement)source;
-		if (CapellaUtils.hasStereotype(ce)){
-		 XMIExtensionsUtils.createStereotypeProperties(targetelement, CapellaUtils.getSterotypeName(ce), "Port");
+		element targetelement = XMIExtensionsUtils.createElement(targetPort, getAlgo().getXMIExtension());
+
+		CapellaElement ce = (CapellaElement) source;
+		if (CapellaUtils.hasStereotype(ce)) {
+			XMIExtensionsUtils.createStereotypeProperties(targetelement, CapellaUtils.getSterotypeName(ce), "Port");
+		}
+		if (source.eContainer() instanceof PhysicalComponent) {
+			List<String> stereoNames = new ArrayList<String>();
+			stereoNames.add("Component Port");
+			Resource eResource = source.eResource();
+			String sysMLID = MappingUtils.getSysMLID(eResource, source);
+			XMIExtensionsUtils.createStereotypeProperties(targetelement, stereoNames, "Port", sysMLID);
+			SpecificUtils.applyComponentPortStereotypeAttribute(targetelement, source, targetPort);
 		}
 
-
-		
 		targetPort.setName(source.getName());
 		targetPort.setAggregation(AggregationKind.COMPOSITE_LITERAL);
 		targetPort.setIsUnique(false);

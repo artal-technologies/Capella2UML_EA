@@ -313,13 +313,22 @@ public interface XmiPackage extends EPackage {
 	int ELEMENT__MODEL = 8;
 
 	/**
+	 * The feature id for the '<em><b>Tags</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT__TAGS = 9;
+
+	/**
 	 * The number of structural features of the '<em>element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_FEATURE_COUNT = 9;
+	int ELEMENT_FEATURE_COUNT = 10;
 
 	/**
 	 * The number of operations of the '<em>element</em>' class.
@@ -1605,6 +1614,99 @@ public interface XmiPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link xmi.impl.tagsImpl <em>tags</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see xmi.impl.tagsImpl
+	 * @see xmi.impl.XmiPackageImpl#gettags()
+	 * @generated
+	 */
+	int TAGS = 26;
+
+	/**
+	 * The feature id for the '<em><b>Tag</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGS__TAG = 0;
+
+	/**
+	 * The number of structural features of the '<em>tags</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGS_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>tags</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGS_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link xmi.impl.tagImpl <em>tag</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see xmi.impl.tagImpl
+	 * @see xmi.impl.XmiPackageImpl#gettag()
+	 * @generated
+	 */
+	int TAG = 27;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAG__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAG__VALUE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Model Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAG__MODEL_ELEMENT = 2;
+
+	/**
+	 * The number of structural features of the '<em>tag</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAG_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>tag</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAG_OPERATION_COUNT = 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link xmi.Extension <em>Extension</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1841,6 +1943,17 @@ public interface XmiPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getelement_Model();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link xmi.element#getTags <em>Tags</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Tags</em>'.
+	 * @see xmi.element#getTags()
+	 * @see #getelement()
+	 * @generated
+	 */
+	EReference getelement_Tags();
 
 	/**
 	 * Returns the meta object for class '{@link xmi.xrefs <em>xrefs</em>}'.
@@ -2866,6 +2979,70 @@ public interface XmiPackage extends EPackage {
 	EAttribute getrole_Visibility();
 
 	/**
+	 * Returns the meta object for class '{@link xmi.tags <em>tags</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>tags</em>'.
+	 * @see xmi.tags
+	 * @generated
+	 */
+	EClass gettags();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link xmi.tags#getTag <em>Tag</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Tag</em>'.
+	 * @see xmi.tags#getTag()
+	 * @see #gettags()
+	 * @generated
+	 */
+	EReference gettags_Tag();
+
+	/**
+	 * Returns the meta object for class '{@link xmi.tag <em>tag</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>tag</em>'.
+	 * @see xmi.tag
+	 * @generated
+	 */
+	EClass gettag();
+
+	/**
+	 * Returns the meta object for the attribute '{@link xmi.tag#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see xmi.tag#getName()
+	 * @see #gettag()
+	 * @generated
+	 */
+	EAttribute gettag_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link xmi.tag#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see xmi.tag#getValue()
+	 * @see #gettag()
+	 * @generated
+	 */
+	EAttribute gettag_Value();
+
+	/**
+	 * Returns the meta object for the reference '{@link xmi.tag#getModelElement <em>Model Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Model Element</em>'.
+	 * @see xmi.tag#getModelElement()
+	 * @see #gettag()
+	 * @generated
+	 */
+	EReference gettag_ModelElement();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3071,6 +3248,14 @@ public interface XmiPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ELEMENT__MODEL = eINSTANCE.getelement_Model();
+
+		/**
+		 * The meta object literal for the '<em><b>Tags</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ELEMENT__TAGS = eINSTANCE.getelement_Tags();
 
 		/**
 		 * The meta object literal for the '{@link xmi.impl.xrefsImpl <em>xrefs</em>}' class.
@@ -3875,6 +4060,58 @@ public interface XmiPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ROLE__VISIBILITY = eINSTANCE.getrole_Visibility();
+
+		/**
+		 * The meta object literal for the '{@link xmi.impl.tagsImpl <em>tags</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see xmi.impl.tagsImpl
+		 * @see xmi.impl.XmiPackageImpl#gettags()
+		 * @generated
+		 */
+		EClass TAGS = eINSTANCE.gettags();
+
+		/**
+		 * The meta object literal for the '<em><b>Tag</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TAGS__TAG = eINSTANCE.gettags_Tag();
+
+		/**
+		 * The meta object literal for the '{@link xmi.impl.tagImpl <em>tag</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see xmi.impl.tagImpl
+		 * @see xmi.impl.XmiPackageImpl#gettag()
+		 * @generated
+		 */
+		EClass TAG = eINSTANCE.gettag();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TAG__NAME = eINSTANCE.gettag_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TAG__VALUE = eINSTANCE.gettag_Value();
+
+		/**
+		 * The meta object literal for the '<em><b>Model Element</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TAG__MODEL_ELEMENT = eINSTANCE.gettag_ModelElement();
 
 	}
 

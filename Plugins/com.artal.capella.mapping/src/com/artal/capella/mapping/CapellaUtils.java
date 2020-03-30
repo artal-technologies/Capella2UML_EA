@@ -3,6 +3,7 @@
  */
 package com.artal.capella.mapping;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -58,6 +59,14 @@ public class CapellaUtils {
 			return pvg.getName();
 		}
 		return null;
+	}
+
+	public static List<String> getListStereotypeName(CapellaElement ce) {// TODO: To improve (search for a Helper?)
+		List<String> results = new ArrayList<String>();
+		for (PropertyValueGroup pvg : ce.getOwnedPropertyValueGroups()) {
+			results.add(pvg.getName());
+		}
+		return results;
 	}
 
 	/**
