@@ -33,7 +33,7 @@ import xmi.util.XMIExtensionsUtils;
  * @author binot
  *
  */
-public class EnumerationMapping extends CommonDatatypeMapping<DataPkg, Capella2UMLAlgo> {
+public class EnumerationMapping extends CommonDatatypeMapping< Capella2UMLAlgo> {
 
 	/**
 	 * @param algo
@@ -103,13 +103,14 @@ public class EnumerationMapping extends CommonDatatypeMapping<DataPkg, Capella2U
 
 		}
 
-		if (eaContainer instanceof Model) {
-			EList<PackageableElement> ownedMembers = ((Model) eaContainer).getPackagedElements();
-			for (PackageableElement ownedMember : ownedMembers) {
-				if (ownedMember.getName().equals("Import Capella"))
-					((org.eclipse.uml2.uml.Package) ownedMember).getPackagedElements().add(enumerationTarget);
-			}
-		}
+		((org.eclipse.uml2.uml.Package) eaContainer).getPackagedElements().add(enumerationTarget);
+//		if (eaContainer instanceof Model) {
+//			EList<PackageableElement> ownedMembers = ((Model) eaContainer).getPackagedElements();
+//			for (PackageableElement ownedMember : ownedMembers) {
+//				if (ownedMember.getName().equals("Import Capella"))
+//					((org.eclipse.uml2.uml.Package) ownedMember).getPackagedElements().add(enumerationTarget);
+//			}
+//		}
 
 		return enumerationTarget;
 	}

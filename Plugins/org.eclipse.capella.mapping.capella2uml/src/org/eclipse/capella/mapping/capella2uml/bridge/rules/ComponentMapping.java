@@ -61,7 +61,7 @@ public class ComponentMapping extends CommonComponentMapping<Capella2UMLAlgo> {
 
 		EList<PackageableElement> ownedMembers = model.getPackagedElements();
 		for (PackageableElement ownedMember : ownedMembers) {
-			if (ownedMember.getName().equals("Import Capella"))
+			if (ownedMember.getName().equals(SpecificUtils.getCapellaImportName(this)))
 				pack = (Package) ownedMember;
 			break;
 		}

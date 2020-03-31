@@ -6,6 +6,7 @@ package org.eclipse.capella.mapping.capella2uml.bridge.rules;
 import java.util.List;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
+import org.eclipse.capella.mapping.capella2uml.bridge.rules.utils.SpecificUtils;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.uml2.uml.Actor;
@@ -17,6 +18,7 @@ import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.cs.AbstractActor;
 import org.polarsys.capella.core.data.fa.AbstractFunctionalStructure;
 import org.polarsys.capella.core.data.la.LogicalActor;
+import org.polarsys.capella.core.model.helpers.ProjectExt;
 
 import com.artal.capella.mapping.CapellaUtils;
 import com.artal.capella.mapping.MappingUtils;
@@ -59,13 +61,14 @@ public class ActorMapping extends CommonsActorMapping<Capella2UMLAlgo> {
 		 XMIExtensionsUtils.createStereotypeProperties(targetelement, CapellaUtils.getSterotypeName(ce), "Actor");
 		}
 
-		if (eaContainer instanceof Model) {
-			EList<PackageableElement> packagedElements = ((Model) eaContainer).getPackagedElements();
-			for (PackageableElement packageableElement : packagedElements) {
-				if (packageableElement.getName().equals("Import Capella"))
-					((Package) packageableElement).getPackagedElements().add(targetActor);
-			}
-		}
+		((org.eclipse.uml2.uml.Package) eaContainer).getPackagedElements().add(targetActor);
+//		if (eaContainer instanceof Model) {
+//			EList<PackageableElement> packagedElements = ((Model) eaContainer).getPackagedElements();
+//			for (PackageableElement packageableElement : packagedElements) {
+//				if (packageableElement.getName().equals(SpecificUtils.getCapellaImportName(this)))
+//					((Package) packageableElement).getPackagedElements().add(targetActor);
+//			}
+//		}
 		return targetActor;
 	}
 

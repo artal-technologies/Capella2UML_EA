@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
+import org.eclipse.capella.mapping.capella2uml.bridge.rules.utils.SpecificUtils;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
@@ -75,10 +76,16 @@ public class EventExchangeItemMapping extends CommonExchangeItemMapping<BlockArc
 		XMIExtensionsUtils.addElement(signalTarget, getAlgo().getXMIExtension(), sysMLID, "sign");
 
 		signalTarget.setName(source.getName());
-		if (eaContainer instanceof Model) {
+
+		Object capellaObjectFromAllRules = MappingRulesManager.getCapellaObjectFromAllRules(source.eContainer());
+		if (capellaObjectFromAllRules instanceof org.eclipse.uml2.uml.Package) {
+			((org.eclipse.uml2.uml.Package) capellaObjectFromAllRules).getPackagedElements().add(signalTarget);
+		}
+
+		else if (eaContainer instanceof Model) {
 			EList<PackageableElement> ownedMembers = ((Model) eaContainer).getPackagedElements();
 			for (PackageableElement ownedMember : ownedMembers) {
-				if (ownedMember.getName().equals("Import Capella"))
+				if (ownedMember.getName().equals(SpecificUtils.getCapellaImportName(this)))
 					((org.eclipse.uml2.uml.Package) ownedMember).getPackagedElements().add(signalTarget);
 			}
 

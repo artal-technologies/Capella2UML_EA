@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
+import org.eclipse.capella.mapping.capella2uml.bridge.rules.utils.SpecificUtils;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.diffmerge.impl.scopes.AbstractEditableModelScope;
@@ -28,6 +29,7 @@ import org.polarsys.capella.core.data.la.LogicalActorPkg;
 import org.polarsys.capella.core.data.la.LogicalArchitecture;
 import org.polarsys.capella.core.data.pa.PhysicalActorPkg;
 import org.polarsys.capella.core.data.pa.PhysicalArchitecture;
+import org.polarsys.capella.core.model.helpers.ProjectExt;
 
 import com.artal.capella.mapping.CapellaUtils;
 import com.artal.capella.mapping.MappingUtils;
@@ -69,7 +71,7 @@ public class PhysicalRootMapping extends AbstractDynamicMapping<Project, Project
 
 		model.setVisibility(VisibilityKind.PUBLIC_LITERAL);
 		Package createPackage = UMLFactory.eINSTANCE.createPackage();
-		createPackage.setName("Import Capella");
+		createPackage.setName(SpecificUtils.getCapellaImportName(this));
 		String sysMLID2 = MappingUtils.getSysMLID(eResource, capellaContainer);
 		getAlgo().putId(createPackage, this, sysMLID2);
 		model.getPackagedElements().add(createPackage);
@@ -79,21 +81,24 @@ public class PhysicalRootMapping extends AbstractDynamicMapping<Project, Project
 		getAlgo().setXMIExtension(extensionObject);
 
 		((AbstractEditableModelScope) targetDataSet).add(extensionObject);
-		
-//		ResourceSet targetResourceSet = MappingUtils.getTargetResourceSet((AbstractEditableModelScope) targetDataSet);
-//		model.applyProfile(getProfile("pathmap://UML_PROFILES/Ecore.profile.uml", targetResourceSet));
-//		model.applyProfile(getProfile("pathmap://UML_PROFILES/Standard.profile.uml", targetResourceSet));
+
+		// ResourceSet targetResourceSet =
+		// MappingUtils.getTargetResourceSet((AbstractEditableModelScope)
+		// targetDataSet);
+		// model.applyProfile(getProfile("pathmap://UML_PROFILES/Ecore.profile.uml",
+		// targetResourceSet));
+		// model.applyProfile(getProfile("pathmap://UML_PROFILES/Standard.profile.uml",
+		// targetResourceSet));
 		return model;
 
 	}
-	
+
 	static public Profile getProfile(String uri, ResourceSet rset) {
 		URI pURI = URI.createURI(uri, false);
 		Resource resource = rset.getResource(pURI, true);
 		Profile umlStdProfile = (Profile) resource.getContents().get(0);
 		return umlStdProfile;
-		
-	
+
 	}
 
 	/*
@@ -142,8 +147,7 @@ public class PhysicalRootMapping extends AbstractDynamicMapping<Project, Project
 
 		PhysicalProfileMapping ppMapping = new PhysicalProfileMapping(getAlgo(), project, getMappingExucution());
 		manager.add(PhysicalProfileMapping.class.getName() + project.getId(), ppMapping);
-		
-		
+
 		EnumerationMapping enumerationMapping = new EnumerationMapping(getAlgo(), dataPkgRoot, getMappingExucution());
 		manager.add(EnumerationMapping.class.getName() + dataPkgRoot.getId(), enumerationMapping);
 
@@ -193,8 +197,6 @@ public class PhysicalRootMapping extends AbstractDynamicMapping<Project, Project
 		DescriptionMapping descriptionMapping = new DescriptionMapping(getAlgo(), physicalArchitecture,
 				getMappingExucution());
 		manager.add(descriptionMapping.getClass().getName() + physicalArchitecture.getId(), descriptionMapping);
-
-	
 
 	}
 

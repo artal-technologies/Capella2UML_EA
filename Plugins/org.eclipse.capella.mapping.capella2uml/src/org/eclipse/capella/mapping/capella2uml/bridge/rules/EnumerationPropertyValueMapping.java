@@ -6,6 +6,7 @@ package org.eclipse.capella.mapping.capella2uml.bridge.rules;
 import java.util.List;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
+import org.eclipse.capella.mapping.capella2uml.bridge.rules.utils.SpecificUtils;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
@@ -95,7 +96,7 @@ public class EnumerationPropertyValueMapping
 		Model capellaObjectFromAllRules = (Model) MappingRulesManager.getCapellaObjectFromAllRules(project);
 		EList<PackageableElement> ownedMembers = ((Model) capellaObjectFromAllRules).getPackagedElements();
 		for (PackageableElement ownedMember : ownedMembers) {
-			if (ownedMember.getName().equals("Import Capella"))
+			if (ownedMember.getName().equals(SpecificUtils.getCapellaImportName(this)))
 				((org.eclipse.uml2.uml.Package) ownedMember).getPackagedElements().add(enumerationTarget);
 		}
 		enumerationTarget.setName(source.getName());

@@ -7,9 +7,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
+import org.eclipse.capella.mapping.capella2uml.bridge.rules.utils.SpecificUtils;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.uml2.uml.Actor;
+import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.LiteralInteger;
 import org.eclipse.uml2.uml.PackageableElement;
@@ -18,6 +21,7 @@ import org.eclipse.uml2.uml.Usage;
 import org.polarsys.capella.core.data.capellacore.Classifier;
 import org.polarsys.capella.core.data.capellacore.Type;
 import org.polarsys.capella.core.data.information.Property;
+import org.polarsys.capella.core.model.helpers.ProjectExt;
 
 import com.artal.capella.mapping.MappingUtils;
 import com.artal.capella.mapping.rules.AbstractDynamicMapping;
@@ -109,12 +113,31 @@ public class PropertyMapping extends AbstractDynamicMapping<Classifier, Property
 				EList<PackageableElement> packagedElements = ((org.eclipse.uml2.uml.DataType) eaContainer).getModel()
 						.getPackagedElements();
 				for (PackageableElement ownedMember : packagedElements) {
-					if (ownedMember.getName().equals("Import Capella"))
+					if (ownedMember.getName().equals(SpecificUtils.getCapellaImportName(this)))
 						((org.eclipse.uml2.uml.Package) ownedMember).getPackagedElements().add(createUsage);
 				}
 
 			}
 		}
+//		if(eaContainer instanceof Actor) {
+//			((Component) eaContainer).getOwnedAttributes()().add(targetProperty);
+//
+//			if (capellaObjectFromAllRules != null) {
+//				Usage createUsage = UMLFactory.eINSTANCE.createUsage();
+//				MappingUtils.generateUID(getAlgo(), source, createUsage, this, "us");
+//
+//				createUsage.getClients().add((Actor) eaContainer);
+//				createUsage.getSuppliers().add((org.eclipse.uml2.uml.Type) capellaObjectFromAllRules);
+//
+//				EList<PackageableElement> packagedElements = ((Actor) eaContainer).getModel()
+//						.getPackagedElements();
+//				for (PackageableElement ownedMember : packagedElements) {
+//					if (ownedMember.getName().equals("Import Capella"))
+//						((org.eclipse.uml2.uml.Package) ownedMember).getPackagedElements().add(createUsage);
+//				}
+//
+//			}
+//		}
 
 		return targetProperty;
 	}

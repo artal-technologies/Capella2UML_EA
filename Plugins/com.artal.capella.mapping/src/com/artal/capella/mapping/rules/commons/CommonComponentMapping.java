@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.Model;
@@ -15,8 +16,10 @@ import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.cs.SystemComponent;
 import org.polarsys.capella.core.data.la.LogicalArchitecture;
 import org.polarsys.capella.core.data.la.LogicalComponent;
+import org.polarsys.capella.core.data.la.LogicalComponentPkg;
 import org.polarsys.capella.core.data.pa.PhysicalArchitecture;
 import org.polarsys.capella.core.data.pa.PhysicalComponent;
+import org.polarsys.capella.core.data.pa.PhysicalComponentPkg;
 import org.polarsys.capella.core.model.helpers.ProjectExt;
 
 import com.artal.capella.mapping.CapellaBridgeAlgo;
@@ -69,6 +72,14 @@ public abstract class CommonComponentMapping<ALGO extends CapellaBridgeAlgo<?>> 
 			List<LogicalComponent> ownedLogicalComponents = ((LogicalComponent) capellaContainer)
 					.getOwnedLogicalComponents();
 			List<SystemComponent> resutls = new ArrayList<>();
+
+			EList<LogicalComponentPkg> ownedLogicalComponentPkgs = ((LogicalComponent) capellaContainer)
+					.getOwnedLogicalComponentPkgs();
+			for (LogicalComponentPkg logicalComponentPkg : ownedLogicalComponentPkgs) {
+				EList<LogicalComponent> ownedLogicalComponents2 = logicalComponentPkg.getOwnedLogicalComponents();
+				resutls.addAll(ownedLogicalComponents2);
+			}
+
 			resutls.addAll(ownedLogicalComponents);
 			return resutls;
 		}
@@ -76,6 +87,12 @@ public abstract class CommonComponentMapping<ALGO extends CapellaBridgeAlgo<?>> 
 			List<PhysicalComponent> ownedLogicalComponents = ((PhysicalComponent) capellaContainer)
 					.getOwnedPhysicalComponents();
 			List<SystemComponent> resutls = new ArrayList<>();
+			EList<PhysicalComponentPkg> ownedLogicalComponentPkgs = ((PhysicalComponent) capellaContainer)
+					.getOwnedPhysicalComponentPkgs();
+			for (PhysicalComponentPkg logicalComponentPkg : ownedLogicalComponentPkgs) {
+				EList<PhysicalComponent> ownedLogicalComponents2 = logicalComponentPkg.getOwnedComponents();
+				resutls.addAll(ownedLogicalComponents2);
+			}
 			resutls.addAll(ownedLogicalComponents);
 			return resutls;
 		}

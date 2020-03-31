@@ -6,6 +6,7 @@ package org.eclipse.capella.mapping.capella2uml.bridge.rules;
 import java.util.List;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
+import org.eclipse.capella.mapping.capella2uml.bridge.rules.utils.SpecificUtils;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
@@ -56,15 +57,15 @@ public class InterfaceMapping extends CommonInterfaceMapping<Capella2UMLAlgo> {
 	public Object compute(Object eaContainer, Interface source) {
 		org.eclipse.uml2.uml.Interface targetInterface = UMLFactory.eINSTANCE.createInterface();
 		MappingUtils.generateUID(getAlgo(), source, targetInterface, this);
-		
-		element targetelement=XMIExtensionsUtils.createElement(targetInterface, getAlgo().getXMIExtension());
-		
-		CapellaElement ce = (CapellaElement)source;
-		if (CapellaUtils.hasStereotype(ce)){
-		 XMIExtensionsUtils.createStereotypeProperties(targetelement, CapellaUtils.getSterotypeName(ce), "Interface");
+
+		element targetelement = XMIExtensionsUtils.createElement(targetInterface, getAlgo().getXMIExtension());
+
+		CapellaElement ce = (CapellaElement) source;
+		if (CapellaUtils.hasStereotype(ce)) {
+			XMIExtensionsUtils.createStereotypeProperties(targetelement, CapellaUtils.getSterotypeName(ce),
+					"Interface");
 		}
 
-		
 		targetInterface.setName(source.getName());
 
 		EList<ExchangeItem> exchangeItems = source.getExchangeItems();
@@ -86,9 +87,13 @@ public class InterfaceMapping extends CommonInterfaceMapping<Capella2UMLAlgo> {
 					createUsage.getClients().add((org.eclipse.uml2.uml.Interface) targetInterface);
 					createUsage.getSuppliers().add((org.eclipse.uml2.uml.Type) capellaObjectFromAllRules);
 
-					EList<PackageableElement> packagedElements = ((Model) eaContainer).getPackagedElements();
+					Project project = ProjectExt.getProject(source);
+					Object capellaObjectFromAllRules2 = MappingRulesManager.getCapellaObjectFromAllRules(project);
+
+					EList<PackageableElement> packagedElements = ((Model) capellaObjectFromAllRules2)
+							.getPackagedElements();
 					for (PackageableElement ownedMember : packagedElements) {
-						if (ownedMember.getName().equals("Import Capella"))
+						if (ownedMember.getName().equals(SpecificUtils.getCapellaImportName(this)))
 							((org.eclipse.uml2.uml.Package) ownedMember).getPackagedElements().add(createUsage);
 					}
 
@@ -97,14 +102,19 @@ public class InterfaceMapping extends CommonInterfaceMapping<Capella2UMLAlgo> {
 			}
 		}
 
-		if (eaContainer instanceof Model) {
-			EList<PackageableElement> ownedMembers = ((Model) eaContainer).getPackagedElements();
-			for (PackageableElement ownedMember : ownedMembers) {
-				if (ownedMember.getName().equals("Import Capella"))
-					((org.eclipse.uml2.uml.Package) ownedMember).getPackagedElements().add(targetInterface);
-			}
+		Object capellaObjectFromAllRules = MappingRulesManager.getCapellaObjectFromAllRules(source.eContainer());
+		((org.eclipse.uml2.uml.Package) capellaObjectFromAllRules).getPackagedElements().add(targetInterface);
 
-		}
+		// if (eaContainer instanceof Model) {
+		// EList<PackageableElement> ownedMembers = ((Model)
+		// eaContainer).getPackagedElements();
+		// for (PackageableElement ownedMember : ownedMembers) {
+		// if (ownedMember.getName().equals("Import Capella"))
+		// ((org.eclipse.uml2.uml.Package)
+		// ownedMember).getPackagedElements().add(targetInterface);
+		// }
+		//
+		// }
 
 		return targetInterface;
 	}

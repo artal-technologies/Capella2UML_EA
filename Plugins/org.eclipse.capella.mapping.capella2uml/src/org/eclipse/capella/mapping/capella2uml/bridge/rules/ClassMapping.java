@@ -28,7 +28,7 @@ import xmi.util.XMIExtensionsUtils;
  * @author binot
  *
  */
-public class ClassMapping extends CommonClassMapping<DataPkg, Capella2UMLAlgo> {
+public class ClassMapping extends CommonClassMapping< Capella2UMLAlgo> {
 
 	/**
 	 * @param algo
@@ -60,14 +60,14 @@ public class ClassMapping extends CommonClassMapping<DataPkg, Capella2UMLAlgo> {
 		}
 
 		targetdataType.setName(source.getName());
-		if (eaContainer instanceof Model) {
-			EList<PackageableElement> ownedMembers = ((Model) eaContainer).getPackagedElements();
-			for (PackageableElement ownedMember : ownedMembers) {
-				if (ownedMember.getName().equals("Import Capella"))
-					((org.eclipse.uml2.uml.Package) ownedMember).getPackagedElements().add(targetdataType);
-			}
-		}
-
+//		if (eaContainer instanceof Model) {
+//			EList<PackageableElement> ownedMembers = ((Model) eaContainer).getPackagedElements();
+//			for (PackageableElement ownedMember : ownedMembers) {
+//				if (ownedMember.getName().equals("Import Capella"))
+//					((org.eclipse.uml2.uml.Package) ownedMember).getPackagedElements().add(targetdataType);
+//			}
+//		}
+		((org.eclipse.uml2.uml.Package) eaContainer).getPackagedElements().add(targetdataType);
 		return targetdataType;
 	}
 

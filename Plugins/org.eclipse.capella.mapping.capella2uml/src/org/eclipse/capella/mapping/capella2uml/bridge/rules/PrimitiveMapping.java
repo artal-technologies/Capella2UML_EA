@@ -41,7 +41,7 @@ import xmi.util.XMIExtensionsUtils;
  * @author binot
  *
  */
-public class PrimitiveMapping extends CommonDatatypeMapping<DataPkg, Capella2UMLAlgo> {
+public class PrimitiveMapping extends CommonDatatypeMapping<Capella2UMLAlgo> {
 
 	/**
 	 * @param algo
@@ -92,10 +92,10 @@ public class PrimitiveMapping extends CommonDatatypeMapping<DataPkg, Capella2UML
 
 		MappingUtils.generateUID(getAlgo(), source, targetPrimitiveType, this);
 		element createElement = XMIExtensionsUtils.createElement(targetPrimitiveType, getAlgo().getXMIExtension());
-		
-		CapellaElement ce = (CapellaElement)source;
-		if (CapellaUtils.hasStereotype(ce)){
-		 XMIExtensionsUtils.createStereotypeProperties(createElement, CapellaUtils.getSterotypeName(ce), "DataType");
+
+		CapellaElement ce = (CapellaElement) source;
+		if (CapellaUtils.hasStereotype(ce)) {
+			XMIExtensionsUtils.createStereotypeProperties(createElement, CapellaUtils.getSterotypeName(ce), "DataType");
 		}
 
 		targetPrimitiveType.setName(source.getName());
@@ -126,13 +126,14 @@ public class PrimitiveMapping extends CommonDatatypeMapping<DataPkg, Capella2UML
 			// UMLFactory.eINSTANCE.create
 		}
 
-		if (eaContainer instanceof Model) {
-			EList<PackageableElement> ownedMembers = ((Model) eaContainer).getPackagedElements();
-			for (PackageableElement ownedMember : ownedMembers) {
-				if (ownedMember.getName().equals("Import Capella"))
-					((org.eclipse.uml2.uml.Package) ownedMember).getPackagedElements().add(targetPrimitiveType);
-			}
-		}
+		((org.eclipse.uml2.uml.Package) eaContainer).getPackagedElements().add(targetPrimitiveType);
+//		if (eaContainer instanceof Model) {
+//			EList<PackageableElement> ownedMembers = ((Model) eaContainer).getPackagedElements();
+//			for (PackageableElement ownedMember : ownedMembers) {
+//				if (ownedMember.getName().equals("Import Capella"))
+//					((org.eclipse.uml2.uml.Package) ownedMember).getPackagedElements().add(targetPrimitiveType);
+//			}
+//		}
 
 		return targetPrimitiveType;
 	}

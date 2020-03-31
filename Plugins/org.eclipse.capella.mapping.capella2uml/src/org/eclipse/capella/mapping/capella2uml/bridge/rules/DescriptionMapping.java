@@ -6,6 +6,7 @@ package org.eclipse.capella.mapping.capella2uml.bridge.rules;
 import java.util.List;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
+import org.eclipse.capella.mapping.capella2uml.bridge.rules.utils.SpecificUtils;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Comment;
@@ -18,6 +19,8 @@ import org.polarsys.capella.core.data.cs.BlockArchitecture;
 import com.artal.capella.mapping.MappingUtils;
 import com.artal.capella.mapping.rules.MappingRulesManager;
 import com.artal.capella.mapping.rules.commons.CommonDescriptionMapping;
+
+import xmi.util.XMIExtensionsUtils;
 
 /**
  * @author binot
@@ -59,6 +62,9 @@ public class DescriptionMapping extends CommonDescriptionMapping<BlockArchitectu
 						.getPackagedElements().get(0));
 				pkgCapella.getOwnedComments().add(createComment);
 			}
+
+			XMIExtensionsUtils.setDocumentation(capellaObjectFromAllRules, getAlgo().getXMIExtension(),
+					source.getDescription(), SpecificUtils.getSType(source));
 
 			return createComment;
 		}

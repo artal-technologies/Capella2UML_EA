@@ -568,13 +568,22 @@ public interface XmiPackage extends EPackage {
 	int PROPERTIES__STEREOTYPE = 15;
 
 	/**
+	 * The feature id for the '<em><b>Documentation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTIES__DOCUMENTATION = 16;
+
+	/**
 	 * The number of structural features of the '<em>properties</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTIES_FEATURE_COUNT = 16;
+	int PROPERTIES_FEATURE_COUNT = 17;
 
 	/**
 	 * The number of operations of the '<em>properties</em>' class.
@@ -2184,6 +2193,17 @@ public interface XmiPackage extends EPackage {
 	EAttribute getproperties_Stereotype();
 
 	/**
+	 * Returns the meta object for the attribute '{@link xmi.properties#getDocumentation <em>Documentation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Documentation</em>'.
+	 * @see xmi.properties#getDocumentation()
+	 * @see #getproperties()
+	 * @generated
+	 */
+	EAttribute getproperties_Documentation();
+
+	/**
 	 * Returns the meta object for class '{@link xmi.PackagedElement <em>Packaged Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3430,6 +3450,14 @@ public interface XmiPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PROPERTIES__STEREOTYPE = eINSTANCE.getproperties_Stereotype();
+
+		/**
+		 * The meta object literal for the '<em><b>Documentation</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROPERTIES__DOCUMENTATION = eINSTANCE.getproperties_Documentation();
 
 		/**
 		 * The meta object literal for the '{@link xmi.impl.PackagedElementImpl <em>Packaged Element</em>}' class.

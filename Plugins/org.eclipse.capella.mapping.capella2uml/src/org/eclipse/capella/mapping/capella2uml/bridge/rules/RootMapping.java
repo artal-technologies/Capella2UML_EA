@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
+import org.eclipse.capella.mapping.capella2uml.bridge.rules.utils.SpecificUtils;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.diffmerge.impl.scopes.AbstractEditableModelScope;
 import org.eclipse.emf.ecore.EObject;
@@ -19,6 +20,7 @@ import org.eclipse.uml2.uml.VisibilityKind;
 import org.polarsys.capella.common.helpers.EObjectExt;
 import org.polarsys.capella.core.data.capellacore.PropertyValuePkg;
 import org.polarsys.capella.core.data.capellamodeller.Project;
+import org.polarsys.capella.core.data.cs.AbstractActor;
 import org.polarsys.capella.core.data.cs.Component;
 import org.polarsys.capella.core.data.cs.CsPackage;
 import org.polarsys.capella.core.data.cs.InterfacePkg;
@@ -69,10 +71,10 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 		getAlgo().putId(model, this, sysMLID);
 		((AbstractEditableModelScope) targetDataSet).add(model);
 		model.setName("EA_Model");
-
 		model.setVisibility(VisibilityKind.PUBLIC_LITERAL);
+
 		Package createPackage = UMLFactory.eINSTANCE.createPackage();
-		createPackage.setName("Import Capella");
+		createPackage.setName(SpecificUtils.getCapellaImportName(this));
 		String sysMLID2 = MappingUtils.getSysMLID(eResource, capellaContainer);
 		getAlgo().putId(createPackage, this, sysMLID2);
 		model.getPackagedElements().add(createPackage);
@@ -124,16 +126,25 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 
 		Project project = _capellaSource.get(0);
 
-		DataPkg dataPkgRoot = CapellaUtils.getDataPkgRoot(project,LogicalArchitecture.class);
+		DataPkg dataPkgRoot = CapellaUtils.getDataPkgRoot(project, LogicalArchitecture.class);
+		LogicalArchitecture logicalArchitecture = CapellaUtils.getLogicalArchitecture(project);
+		// EnumerationMapping enumerationMapping = new EnumerationMapping(getAlgo(),
+		// dataPkgRoot, getMappingExucution());
+		// manager.add(EnumerationMapping.class.getName() + dataPkgRoot.getId(),
+		// enumerationMapping);
+		//
+		// PrimitiveMapping primitiveMapping = new PrimitiveMapping(getAlgo(),
+		// dataPkgRoot, getMappingExucution());
+		// manager.add(primitiveMapping.getClass().getName() + dataPkgRoot.getId(),
+		// primitiveMapping);
+		//
+		// ClassMapping classMapping = new ClassMapping(getAlgo(), dataPkgRoot,
+		// getMappingExucution());
+		// manager.add(ClassMapping.class.getName() + dataPkgRoot.getId(),
+		// classMapping);
 
-		EnumerationMapping enumerationMapping = new EnumerationMapping(getAlgo(), dataPkgRoot, getMappingExucution());
-		manager.add(EnumerationMapping.class.getName() + dataPkgRoot.getId(), enumerationMapping);
-
-		PrimitiveMapping primitiveMapping = new PrimitiveMapping(getAlgo(), dataPkgRoot, getMappingExucution());
-		manager.add(primitiveMapping.getClass().getName() + dataPkgRoot.getId(), primitiveMapping);
-
-		ClassMapping classMapping = new ClassMapping(getAlgo(), dataPkgRoot, getMappingExucution());
-		manager.add(ClassMapping.class.getName() + dataPkgRoot.getId(), classMapping);
+		DataPkgMapping dataPkgMapping = new DataPkgMapping(getAlgo(), logicalArchitecture, getMappingExucution());
+		manager.add(dataPkgMapping.getClass().getName() + logicalArchitecture.getId(), dataPkgMapping);
 
 		List<Class> classes = EObjectExt.getAll(dataPkgRoot, InformationPackage.Literals.CLASS).stream()
 				.map(Class.class::cast).collect(Collectors.toList());
@@ -142,7 +153,9 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 			manager.add(propertyMapping.getClass().getName() + class1.getId(), propertyMapping);
 		}
 
-		LogicalArchitecture logicalArchitecture = CapellaUtils.getLogicalArchitecture(project);
+		InterfacePkgMapping interfacePkgMapping = new InterfacePkgMapping(getAlgo(), logicalArchitecture,
+				getMappingExucution());
+		manager.add(interfacePkgMapping.getClass().getName() + logicalArchitecture.getId(), interfacePkgMapping);
 
 		ShareDataExchangeItemMapping dataExchangeItemMapping = new ShareDataExchangeItemMapping(getAlgo(),
 				logicalArchitecture, getMappingExucution());
@@ -154,10 +167,9 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 		manager.add(eventExchangeItemMapping.getClass().getName() + logicalArchitecture.getName(),
 				eventExchangeItemMapping);
 
-		InterfacePkg interfacePkg = CapellaUtils.getInterfacePkgRoot(project,LogicalArchitecture.class);
+		InterfacePkg interfacePkg = CapellaUtils.getInterfacePkgRoot(project, LogicalArchitecture.class);
 		InterfaceMapping interfaceMapping = new InterfaceMapping(getAlgo(), interfacePkg, getMappingExucution());
 		manager.add(InterfaceMapping.class.getName() + interfacePkg.getId(), interfaceMapping);
-
 
 		ComponentMapping componentMapping = new ComponentMapping(getAlgo(), logicalArchitecture, getMappingExucution());
 		manager.add(componentMapping.getClass().getName() + logicalArchitecture.getId(), componentMapping);
@@ -169,20 +181,32 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 			manager.add(mapping.getClass().getName() + component.getId(), mapping);
 		}
 
-		LogicalActorPkg logicalActorPkg = CapellaUtils.getLogicalActorPkg(project);
-		ActorMapping actorMapping = new ActorMapping(getAlgo(), logicalActorPkg, getMappingExucution());
-		manager.add(logicalActorPkg.getClass().getName() + logicalActorPkg.getId(), actorMapping);
+		ActorPkgMapping actorPkgMapping = new ActorPkgMapping(getAlgo(), logicalArchitecture, getMappingExucution());
+		manager.add(actorPkgMapping.getClass().getName() + logicalArchitecture.getId(), actorPkgMapping);
+		// LogicalActorPkg logicalActorPkg = CapellaUtils.getLogicalActorPkg(project);
+		// ActorMapping actorMapping = new ActorMapping(getAlgo(), logicalActorPkg,
+		// getMappingExucution());
+		// manager.add(logicalActorPkg.getClass().getName() + logicalActorPkg.getId(),
+		// actorMapping);
+
+		// List<AbstractActor> ownedLogicalActors = EObjectExt.getAll(logicalActorPkg,
+		// CsPackage.Literals.ABSTRACT_ACTOR)
+		// .stream().map(AbstractActor.class::cast).collect(Collectors.toList());
+		// for (AbstractActor actor : ownedLogicalActors) {
+		// PropertyMapping propertyMapping = new PropertyMapping(getAlgo(), actor,
+		// getMappingExucution());
+		// manager.add(propertyMapping.getClass().getName() + actor.getId(),
+		// propertyMapping);
+		// }
 
 		DescriptionMapping descriptionMapping = new DescriptionMapping(getAlgo(), logicalArchitecture,
 				getMappingExucution());
 		manager.add(descriptionMapping.getClass().getName() + logicalArchitecture.getId(), descriptionMapping);
 
-		RootPropertyValuePkgMapping pvpMapping = new RootPropertyValuePkgMapping(getAlgo(), project, getMappingExucution());
+		RootPropertyValuePkgMapping pvpMapping = new RootPropertyValuePkgMapping(getAlgo(), project,
+				getMappingExucution());
 		manager.add(RootPropertyValuePkgMapping.class.getName() + project.getId(), pvpMapping);
 
-		
-	
-		
 	}
 
 	@Override

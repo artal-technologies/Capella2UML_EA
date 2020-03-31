@@ -6,6 +6,7 @@ package org.eclipse.capella.mapping.capella2uml.bridge.rules;
 import java.util.List;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
+import org.eclipse.capella.mapping.capella2uml.bridge.rules.utils.SpecificUtils;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
@@ -18,6 +19,7 @@ import org.eclipse.uml2.uml.VisibilityKind;
 import org.polarsys.capella.core.data.capellacore.Type;
 import org.polarsys.capella.core.data.information.ExchangeItem;
 import org.polarsys.capella.core.data.information.ExchangeItemElement;
+import org.polarsys.capella.core.model.helpers.ProjectExt;
 
 import com.artal.capella.mapping.MappingUtils;
 import com.artal.capella.mapping.rules.MappingRulesManager;
@@ -87,7 +89,7 @@ public class ShareDataExchangeItemElementMapping extends CommonExchangeItemEleme
 			EList<PackageableElement> packagedElements = ((org.eclipse.uml2.uml.Class) eaContainer).getModel()
 					.getPackagedElements();
 			for (PackageableElement ownedMember : packagedElements) {
-				if (ownedMember.getName().equals("Import Capella"))
+				if (ownedMember.getName().equals(SpecificUtils.getCapellaImportName(this)))
 					((org.eclipse.uml2.uml.Package) ownedMember).getPackagedElements().add(createDependency);
 			}
 		}

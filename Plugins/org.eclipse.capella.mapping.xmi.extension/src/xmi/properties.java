@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link xmi.properties#getEa_type <em>Ea type</em>}</li>
  *   <li>{@link xmi.properties#getDirection <em>Direction</em>}</li>
  *   <li>{@link xmi.properties#getStereotype <em>Stereotype</em>}</li>
+ *   <li>{@link xmi.properties#getDocumentation <em>Documentation</em>}</li>
  * </ul>
  *
  * @see xmi.XmiPackage#getproperties()
@@ -451,5 +452,31 @@ public interface properties extends EObject {
 	 * @generated
 	 */
 	void setStereotype(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Documentation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Documentation</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Documentation</em>' attribute.
+	 * @see #setDocumentation(String)
+	 * @see xmi.XmiPackage#getproperties_Documentation()
+	 * @model
+	 * @generated
+	 */
+	String getDocumentation();
+
+	/**
+	 * Sets the value of the '{@link xmi.properties#getDocumentation <em>Documentation</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Documentation</em>' attribute.
+	 * @see #getDocumentation()
+	 * @generated
+	 */
+	void setDocumentation(String value);
 
 } // properties

@@ -705,6 +705,15 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getproperties_Documentation() {
+		return (EAttribute)propertiesEClass.getEStructuralFeatures().get(16);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getPackagedElement() {
 		return packagedElementEClass;
 	}
@@ -1498,6 +1507,7 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 		createEAttribute(propertiesEClass, PROPERTIES__EA_TYPE);
 		createEAttribute(propertiesEClass, PROPERTIES__DIRECTION);
 		createEAttribute(propertiesEClass, PROPERTIES__STEREOTYPE);
+		createEAttribute(propertiesEClass, PROPERTIES__DOCUMENTATION);
 
 		packagedElementEClass = createEClass(PACKAGED_ELEMENT);
 		createEAttribute(packagedElementEClass, PACKAGED_ELEMENT__XMIID);
@@ -1681,6 +1691,7 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 		initEAttribute(getproperties_Ea_type(), ecorePackage.getEString(), "ea_type", null, 0, 1, properties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getproperties_Direction(), ecorePackage.getEString(), "direction", null, 0, 1, properties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getproperties_Stereotype(), ecorePackage.getEString(), "stereotype", null, 0, 1, properties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getproperties_Documentation(), ecorePackage.getEString(), "documentation", null, 0, 1, properties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(packagedElementEClass, PackagedElement.class, "PackagedElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPackagedElement_Xmiid(), ecorePackage.getEString(), "xmi:id", null, 0, 1, PackagedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

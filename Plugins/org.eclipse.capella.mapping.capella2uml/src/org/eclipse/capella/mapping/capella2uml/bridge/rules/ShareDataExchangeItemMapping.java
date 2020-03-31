@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
+import org.eclipse.capella.mapping.capella2uml.bridge.rules.utils.SpecificUtils;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
@@ -17,8 +18,10 @@ import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.cs.BlockArchitecture;
+import org.polarsys.capella.core.data.information.DataPkg;
 import org.polarsys.capella.core.data.information.ExchangeItem;
 import org.polarsys.capella.core.data.information.ExchangeMechanism;
+import org.polarsys.capella.core.model.helpers.ProjectExt;
 
 import com.artal.capella.mapping.CapellaUtils;
 import com.artal.capella.mapping.MappingUtils;
@@ -85,10 +88,15 @@ public class ShareDataExchangeItemMapping extends CommonExchangeItemMapping<Bloc
 
 		classTarget.setName(source.getName());
 
-		if (eaContainer instanceof Model) {
+		Object capellaObjectFromAllRules = MappingRulesManager.getCapellaObjectFromAllRules(source.eContainer());
+		if (capellaObjectFromAllRules instanceof org.eclipse.uml2.uml.Package) {
+			((org.eclipse.uml2.uml.Package) capellaObjectFromAllRules).getPackagedElements().add(classTarget);
+		}
+
+		else if (eaContainer instanceof Model) {
 			EList<PackageableElement> ownedMembers = ((Model) eaContainer).getPackagedElements();
 			for (PackageableElement ownedMember : ownedMembers) {
-				if (ownedMember.getName().equals("Import Capella"))
+				if (ownedMember.getName().equals(SpecificUtils.getCapellaImportName(this)))
 					((org.eclipse.uml2.uml.Package) ownedMember).getPackagedElements().add(classTarget);
 			}
 		}

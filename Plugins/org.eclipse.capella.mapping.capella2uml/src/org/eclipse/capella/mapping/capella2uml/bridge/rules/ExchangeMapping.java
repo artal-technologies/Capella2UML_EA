@@ -88,8 +88,9 @@ public class ExchangeMapping extends CommonComponentExchangeMapping<Capella2UMLA
 
 			OrientationPortKind sourceorientation = ((ComponentPort) sourcePort).getOrientation();
 
-			XMIExtensionsUtils.addConnector(targetConnector, getAlgo().getXMIExtension(),sysMLID , "Unspecified", "Assembly",sourceUMLPort,targetUMLPort,false);
-			
+			XMIExtensionsUtils.addConnector(targetConnector, getAlgo().getXMIExtension(), sysMLID, "Unspecified",
+					"Assembly", sourceUMLPort, targetUMLPort, false);
+
 			if (sourceorientation == OrientationPortKind.OUT) {
 				targetConnector.getEnds().add(sourceConnectorEnd);
 				targetConnector.getEnds().add(targetConnectorEnd);
@@ -115,6 +116,9 @@ public class ExchangeMapping extends CommonComponentExchangeMapping<Capella2UMLA
 			for (Interface interface1 : providedInterface) {
 				org.eclipse.uml2.uml.Interface interf = (org.eclipse.uml2.uml.Interface) MappingRulesManager
 						.getCapellaObjectFromAllRules(interface1);
+				if (interf == null) {
+					continue;
+				}
 				Realization realizationTarget = UMLFactory.eINSTANCE.createRealization();
 				MappingUtils.generateUID(getAlgo(), interface1, realizationTarget, this, "r");
 				realizationTarget.getClients().add(interf);
@@ -125,20 +129,20 @@ public class ExchangeMapping extends CommonComponentExchangeMapping<Capella2UMLA
 				MappingUtils.generateUID(getAlgo(), interface1, createClass, this, "pc");
 				createClass.setName("ProxyConnector");
 
-				
 				element addElement = XMIExtensionsUtils.createElement(createClass, getAlgo().getXMIExtension());
-				CapellaElement ce= (CapellaElement) interface1;
+				CapellaElement ce = (CapellaElement) interface1;
 				if (!CapellaUtils.hasStereotype(ce)) {
-				XMIExtensionsUtils.createProperties(addElement, false, false, "ProxyConnector", 0, "public", false,
-						false);
+					XMIExtensionsUtils.createProperties(addElement, false, false, "ProxyConnector", 0, "public", false,
+							false);
 				} else {
-				XMIExtensionsUtils.createPropertiesWithStereotype(addElement, false, false, "ProxyConnector", 0, "public", false,
-						false, CapellaUtils.getSterotypeName(ce));
+					XMIExtensionsUtils.createPropertiesWithStereotype(addElement, false, false, "ProxyConnector", 0,
+							"public", false, false, CapellaUtils.getSterotypeName(ce));
 				}
 				addElement.setClassifier(targetConnector);
 
-				XMIExtensionsUtils.addConnector(realizationTarget, getAlgo().getXMIExtension(),sysMLID , "Unspecified", "Relization",interf,createClass,false);
-				
+				XMIExtensionsUtils.addConnector(realizationTarget, getAlgo().getXMIExtension(), sysMLID, "Unspecified",
+						"Relization", interf, createClass, false);
+
 				if (eaContainer instanceof StructuredClassifier) {
 					org.eclipse.uml2.uml.Package pkgCapella = (org.eclipse.uml2.uml.Package) ((StructuredClassifier) eaContainer)
 							.getModel().getPackagedElements().get(0);
@@ -155,6 +159,7 @@ public class ExchangeMapping extends CommonComponentExchangeMapping<Capella2UMLA
 				}
 			}
 		}
+
 		return targetConnector;
 	}
 

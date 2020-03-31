@@ -154,6 +154,31 @@ public class XMIExtensionsUtils {
 		addElement.setProperties(createproperties);
 	}
 
+	static public void setDocumentation(EObject element, Extension extension, String documentation, String sType) {
+
+		EList<elements> elements = extension.getElements();
+		for (elements elements2 : elements) {
+			EList<xmi.element> element2 = elements2.getElement();
+			for (element element3 : element2) {
+				EObject xmiidref = element3.getXmiidref();
+				if (element.equals(xmiidref)) {
+					setDocumentation(element3, documentation, sType);
+				}
+			}
+		}
+
+	}
+
+	static public void setDocumentation(element element, String description, String sType) {
+		properties properties = element.getProperties();
+		if (properties == null) {
+			properties = XmiFactory.eINSTANCE.createproperties();
+			element.setProperties(properties);
+		}
+		properties.setSType(sType);
+		properties.setDocumentation(description);
+	}
+
 	static public void createStereotypeProperties(element addElement, String stereotype, String sType) {
 		properties createproperties = XmiFactory.eINSTANCE.createproperties();
 		createproperties.setStereotype(stereotype);

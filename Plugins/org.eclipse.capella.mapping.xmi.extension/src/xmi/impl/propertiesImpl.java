@@ -39,6 +39,7 @@ import xmi.properties;
  *   <li>{@link xmi.impl.propertiesImpl#getEa_type <em>Ea type</em>}</li>
  *   <li>{@link xmi.impl.propertiesImpl#getDirection <em>Direction</em>}</li>
  *   <li>{@link xmi.impl.propertiesImpl#getStereotype <em>Stereotype</em>}</li>
+ *   <li>{@link xmi.impl.propertiesImpl#getDocumentation <em>Documentation</em>}</li>
  * </ul>
  *
  * @generated
@@ -343,6 +344,26 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 	 * @ordered
 	 */
 	protected String stereotype = STEREOTYPE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDocumentation() <em>Documentation</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDocumentation()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DOCUMENTATION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDocumentation() <em>Documentation</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDocumentation()
+	 * @generated
+	 * @ordered
+	 */
+	protected String documentation = DOCUMENTATION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -738,6 +759,27 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getDocumentation() {
+		return documentation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDocumentation(String newDocumentation) {
+		String oldDocumentation = documentation;
+		documentation = newDocumentation;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, XmiPackage.PROPERTIES__DOCUMENTATION, oldDocumentation, documentation));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -775,6 +817,8 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 				return getDirection();
 			case XmiPackage.PROPERTIES__STEREOTYPE:
 				return getStereotype();
+			case XmiPackage.PROPERTIES__DOCUMENTATION:
+				return getDocumentation();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -834,6 +878,9 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 				return;
 			case XmiPackage.PROPERTIES__STEREOTYPE:
 				setStereotype((String)newValue);
+				return;
+			case XmiPackage.PROPERTIES__DOCUMENTATION:
+				setDocumentation((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -895,6 +942,9 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 			case XmiPackage.PROPERTIES__STEREOTYPE:
 				setStereotype(STEREOTYPE_EDEFAULT);
 				return;
+			case XmiPackage.PROPERTIES__DOCUMENTATION:
+				setDocumentation(DOCUMENTATION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -939,6 +989,8 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 				return DIRECTION_EDEFAULT == null ? direction != null : !DIRECTION_EDEFAULT.equals(direction);
 			case XmiPackage.PROPERTIES__STEREOTYPE:
 				return STEREOTYPE_EDEFAULT == null ? stereotype != null : !STEREOTYPE_EDEFAULT.equals(stereotype);
+			case XmiPackage.PROPERTIES__DOCUMENTATION:
+				return DOCUMENTATION_EDEFAULT == null ? documentation != null : !DOCUMENTATION_EDEFAULT.equals(documentation);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -981,6 +1033,8 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 		result.append(direction);
 		result.append(", stereotype: ");
 		result.append(stereotype);
+		result.append(", documentation: ");
+		result.append(documentation);
 		result.append(')');
 		return result.toString();
 	}
