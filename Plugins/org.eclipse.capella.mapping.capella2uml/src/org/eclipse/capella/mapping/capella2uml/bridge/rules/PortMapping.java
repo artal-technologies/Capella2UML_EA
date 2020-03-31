@@ -5,9 +5,11 @@ package org.eclipse.capella.mapping.capella2uml.bridge.rules;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
 import org.eclipse.capella.mapping.capella2uml.bridge.rules.utils.SpecificUtils;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -16,6 +18,10 @@ import org.eclipse.uml2.uml.EncapsulatedClassifier;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.polarsys.capella.core.data.capellacore.CapellaElement;
+import org.polarsys.capella.core.data.cs.AbstractActor;
+import org.polarsys.capella.core.data.cs.Component;
+import org.polarsys.capella.core.data.cs.SystemComponent;
+import org.polarsys.capella.core.data.fa.ComponentExchange;
 import org.polarsys.capella.core.data.fa.ComponentPort;
 import org.polarsys.capella.core.data.pa.PhysicalComponent;
 
@@ -43,6 +49,35 @@ public class PortMapping extends CommonPortMapping<Capella2UMLAlgo> {
 		super(algo, parent, mappingExecution);
 	}
 
+	@Override
+	public List<ComponentPort> findSourceElements(Component capellaContainer) {
+		List<ComponentPort> ports = capellaContainer.getOwnedFeatures().stream().filter(p -> p instanceof ComponentPort)
+				.map(ComponentPort.class::cast).filter(p -> isNotActorConnection(p)).collect(Collectors.toList());
+		return ports;
+	}
+
+	public boolean isNotActorConnection(ComponentPort port) {
+
+		EList<ComponentExchange> componentExchanges = port.getComponentExchanges();
+		for (ComponentExchange componentExchange : componentExchanges) {
+			org.polarsys.capella.core.data.information.Port sourcePort = componentExchange.getSourcePort();
+			org.polarsys.capella.core.data.information.Port targetPort = componentExchange.getTargetPort();
+			if (sourcePort.equals(port)) {
+				if (targetPort.eContainer() instanceof SystemComponent) {
+					return true;
+				}
+			} else {
+
+				if (sourcePort.eContainer() instanceof SystemComponent) {
+					return true;
+				}
+
+			}
+		}
+
+		return false;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -52,6 +87,9 @@ public class PortMapping extends CommonPortMapping<Capella2UMLAlgo> {
 	 */
 	@Override
 	public Object compute(Object eaContainer, ComponentPort source) {
+		if (source.eContainer() instanceof AbstractActor) {
+			return null;
+		}
 		Port targetPort = UMLFactory.eINSTANCE.createPort();
 		MappingUtils.generateUID(getAlgo(), source, targetPort, this);
 		element targetelement = XMIExtensionsUtils.createElement(targetPort, getAlgo().getXMIExtension());
@@ -76,7 +114,6 @@ public class PortMapping extends CommonPortMapping<Capella2UMLAlgo> {
 		targetPort.setIsBehavior(true);
 		if (eaContainer instanceof EncapsulatedClassifier) {
 			((EncapsulatedClassifier) eaContainer).getOwnedPorts().add(targetPort);
-
 		}
 
 		return targetPort;

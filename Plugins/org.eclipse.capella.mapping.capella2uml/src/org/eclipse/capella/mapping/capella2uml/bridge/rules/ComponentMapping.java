@@ -24,6 +24,7 @@ import org.polarsys.capella.core.data.capellacore.PropertyValueGroup;
 import org.polarsys.capella.core.data.capellacore.PropertyValuePkg;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.cs.SystemComponent;
+import org.polarsys.capella.core.data.information.Class;
 import org.polarsys.capella.core.data.pa.PhysicalComponent;
 import org.polarsys.capella.core.model.helpers.ProjectExt;
 
@@ -125,6 +126,10 @@ public class ComponentMapping extends CommonComponentMapping<Capella2UMLAlgo> {
 
 			manager.add(ComponentMapping.class.getName() + logicalComponent.getId(), componentMapping);
 			manager.add(PortMapping.class.getName() + logicalComponent.getId(), portMapping);
+
+			PropertyMapping propertyMapping = new PropertyMapping(getAlgo(), logicalComponent, getMappingExucution());
+			manager.add(propertyMapping.getClass().getName() + logicalComponent.getId(), propertyMapping);
+
 		}
 
 		for (SystemComponent logicalComponent : _capellaSource) {
