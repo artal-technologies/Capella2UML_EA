@@ -17,6 +17,7 @@ import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.capellamodeller.Project;
+import org.polarsys.capella.core.data.cs.BlockArchitecture;
 import org.polarsys.capella.core.data.cs.InterfacePkg;
 import org.polarsys.capella.core.data.information.DataPkg;
 import org.polarsys.capella.core.data.la.LogicalArchitecture;
@@ -74,8 +75,8 @@ public class DataPkgMapping extends AbstractDynamicMapping<CapellaElement, DataP
 	public List<DataPkg> findSourceElements(CapellaElement capellaContainer) {
 
 		List<DataPkg> results = new ArrayList<DataPkg>();
-		if (capellaContainer instanceof LogicalArchitecture) {
-			DataPkg ownedInterfacePkg = ((LogicalArchitecture) capellaContainer).getOwnedDataPkg();
+		if (capellaContainer instanceof BlockArchitecture) {
+			DataPkg ownedInterfacePkg = ((BlockArchitecture) capellaContainer).getOwnedDataPkg();
 			results.add(ownedInterfacePkg);
 		}
 		if (capellaContainer instanceof DataPkg) {

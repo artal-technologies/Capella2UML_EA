@@ -17,6 +17,7 @@ import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.capellamodeller.Project;
+import org.polarsys.capella.core.data.cs.BlockArchitecture;
 import org.polarsys.capella.core.data.cs.InterfacePkg;
 import org.polarsys.capella.core.data.la.LogicalArchitecture;
 import org.polarsys.capella.core.model.helpers.ProjectExt;
@@ -73,10 +74,11 @@ public class InterfacePkgMapping extends AbstractDynamicMapping<CapellaElement, 
 	public List<InterfacePkg> findSourceElements(CapellaElement capellaContainer) {
 
 		List<InterfacePkg> results = new ArrayList<InterfacePkg>();
-		if (capellaContainer instanceof LogicalArchitecture) {
-			InterfacePkg ownedInterfacePkg = ((LogicalArchitecture) capellaContainer).getOwnedInterfacePkg();
+		if (capellaContainer instanceof BlockArchitecture) {
+			InterfacePkg ownedInterfacePkg = ((BlockArchitecture) capellaContainer).getOwnedInterfacePkg();
 			results.add(ownedInterfacePkg);
 		}
+		
 		if (capellaContainer instanceof InterfacePkg) {
 			EList<InterfacePkg> ownedInterfacePkgs = ((InterfacePkg) capellaContainer).getOwnedInterfacePkgs();
 			results.addAll(ownedInterfacePkgs);

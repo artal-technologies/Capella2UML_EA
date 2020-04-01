@@ -140,7 +140,7 @@ public class PhysicalRootMapping extends AbstractDynamicMapping<Project, Project
 		Project project = _capellaSource.get(0);
 
 		DataPkg dataPkgRoot = CapellaUtils.getDataPkgRoot(project, PhysicalArchitecture.class);
-
+		PhysicalArchitecture physicalArchitecture = CapellaUtils.getPhysicalArchitecture(project);
 		RootPropertyValuePkgMapping pvpMapping = new RootPropertyValuePkgMapping(getAlgo(), project,
 				getMappingExucution());
 		manager.add(RootPropertyValuePkgMapping.class.getName() + project.getId(), pvpMapping);
@@ -148,15 +148,18 @@ public class PhysicalRootMapping extends AbstractDynamicMapping<Project, Project
 		PhysicalProfileMapping ppMapping = new PhysicalProfileMapping(getAlgo(), project, getMappingExucution());
 		manager.add(PhysicalProfileMapping.class.getName() + project.getId(), ppMapping);
 
-		EnumerationMapping enumerationMapping = new EnumerationMapping(getAlgo(), dataPkgRoot, getMappingExucution());
-		manager.add(EnumerationMapping.class.getName() + dataPkgRoot.getId(), enumerationMapping);
+//		EnumerationMapping enumerationMapping = new EnumerationMapping(getAlgo(), dataPkgRoot, getMappingExucution());
+//		manager.add(EnumerationMapping.class.getName() + dataPkgRoot.getId(), enumerationMapping);
+//
+//		PrimitiveMapping primitiveMapping = new PrimitiveMapping(getAlgo(), dataPkgRoot, getMappingExucution());
+//		manager.add(primitiveMapping.getClass().getName() + dataPkgRoot.getId(), primitiveMapping);
+//
+//		ClassMapping classMapping = new ClassMapping(getAlgo(), dataPkgRoot, getMappingExucution());
+//		manager.add(ClassMapping.class.getName() + dataPkgRoot.getId(), classMapping);
 
-		PrimitiveMapping primitiveMapping = new PrimitiveMapping(getAlgo(), dataPkgRoot, getMappingExucution());
-		manager.add(primitiveMapping.getClass().getName() + dataPkgRoot.getId(), primitiveMapping);
-
-		ClassMapping classMapping = new ClassMapping(getAlgo(), dataPkgRoot, getMappingExucution());
-		manager.add(ClassMapping.class.getName() + dataPkgRoot.getId(), classMapping);
-
+		DataPkgMapping dataPkgMapping = new DataPkgMapping(getAlgo(), physicalArchitecture, getMappingExucution());
+		manager.add(dataPkgMapping.getClass().getName() + physicalArchitecture.getId(), dataPkgMapping);
+		
 		List<Class> classes = EObjectExt.getAll(dataPkgRoot, InformationPackage.Literals.CLASS).stream()
 				.map(Class.class::cast).collect(Collectors.toList());
 		for (Class class1 : classes) {
@@ -164,7 +167,10 @@ public class PhysicalRootMapping extends AbstractDynamicMapping<Project, Project
 			manager.add(propertyMapping.getClass().getName() + class1.getId(), propertyMapping);
 		}
 
-		PhysicalArchitecture physicalArchitecture = CapellaUtils.getPhysicalArchitecture(project);
+		InterfacePkgMapping interfacePkgMapping = new InterfacePkgMapping(getAlgo(), physicalArchitecture,
+				getMappingExucution());
+		manager.add(interfacePkgMapping.getClass().getName() + physicalArchitecture.getId(), interfacePkgMapping);
+		
 
 		ShareDataExchangeItemMapping dataExchangeItemMapping = new ShareDataExchangeItemMapping(getAlgo(),
 				physicalArchitecture, getMappingExucution());
@@ -184,15 +190,18 @@ public class PhysicalRootMapping extends AbstractDynamicMapping<Project, Project
 				getMappingExucution());
 		manager.add(componentMapping.getClass().getName() + physicalArchitecture.getId(), componentMapping);
 
+		ActorPkgMapping actorPkgMapping = new ActorPkgMapping(getAlgo(), physicalArchitecture, getMappingExucution());
+		manager.add(actorPkgMapping.getClass().getName() + physicalArchitecture.getId(), actorPkgMapping);
+		
 		List<Component> collect = EObjectExt.getAll(physicalArchitecture, CsPackage.Literals.COMPONENT).stream()
 				.map(Component.class::cast).collect(Collectors.toList());
 		for (Component component : collect) {
 			ExchangeMapping mapping = new ExchangeMapping(getAlgo(), component, getMappingExucution());
 			manager.add(mapping.getClass().getName() + component.getId(), mapping);
 		}
-		PhysicalActorPkg logicalActorPkg = CapellaUtils.getPhysicalActorPkg(project);
-		ActorMapping actorMapping = new ActorMapping(getAlgo(), logicalActorPkg, getMappingExucution());
-		manager.add(logicalActorPkg.getClass().getName() + logicalActorPkg.getId(), actorMapping);
+//		PhysicalActorPkg logicalActorPkg = CapellaUtils.getPhysicalActorPkg(project);
+//		ActorMapping actorMapping = new ActorMapping(getAlgo(), logicalActorPkg, getMappingExucution());
+//		manager.add(logicalActorPkg.getClass().getName() + logicalActorPkg.getId(), actorMapping);
 
 		DescriptionMapping descriptionMapping = new DescriptionMapping(getAlgo(), physicalArchitecture,
 				getMappingExucution());

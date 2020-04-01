@@ -109,7 +109,7 @@ public class ComponentMapping extends CommonComponentMapping<Capella2UMLAlgo> {
 		}
 		if (source instanceof PhysicalComponent) {
 			stereoNames.add("Physical Component");
-			XMIExtensionsUtils.createStereotypeProperties(createElement, stereoNames, "Physical Component", sysMLID);
+			XMIExtensionsUtils.createStereotypeProperties(createElement, stereoNames, "Component", sysMLID);
 
 			SpecificUtils.applyPhysicalStereotypeAttribute(createElement, (PhysicalComponent) source, targetComponent);
 
