@@ -17,13 +17,10 @@ abstract public class AbstractMappingAlgoMix<SOURCE, ALGO extends CapellaBridgeA
 
 	MappingRulesManager _managerRules= new MappingRulesManager();
 
-	String _mixName = "";
 
 	abstract public void launch(ALGO algo, SOURCE source, IMappingExecution execution);
 
-	public String getMixName() {
-		return _mixName;
-	}
+	abstract public String getMixName();
 
 	public MappingRulesManager getManagerRules() {
 		return _managerRules;

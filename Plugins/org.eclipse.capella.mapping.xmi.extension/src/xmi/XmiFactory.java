@@ -274,6 +274,24 @@ public interface XmiFactory extends EFactory {
 	tag createtag();
 
 	/**
+	 * Returns a new object of class '<em>operations</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>operations</em>'.
+	 * @generated
+	 */
+	operations createoperations();
+
+	/**
+	 * Returns a new object of class '<em>operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>operation</em>'.
+	 * @generated
+	 */
+	operation createoperation();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

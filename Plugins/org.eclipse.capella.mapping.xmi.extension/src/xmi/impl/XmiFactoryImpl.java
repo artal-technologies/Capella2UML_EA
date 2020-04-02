@@ -84,6 +84,8 @@ public class XmiFactoryImpl extends EFactoryImpl implements XmiFactory {
 			case XmiPackage.ROLE: return createrole();
 			case XmiPackage.TAGS: return createtags();
 			case XmiPackage.TAG: return createtag();
+			case XmiPackage.OPERATIONS: return createoperations();
+			case XmiPackage.OPERATION: return createoperation();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -367,6 +369,26 @@ public class XmiFactoryImpl extends EFactoryImpl implements XmiFactory {
 	public tag createtag() {
 		tagImpl tag = new tagImpl();
 		return tag;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public operations createoperations() {
+		operationsImpl operations = new operationsImpl();
+		return operations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public operation createoperation() {
+		operationImpl operation = new operationImpl();
+		return operation;
 	}
 
 	/**

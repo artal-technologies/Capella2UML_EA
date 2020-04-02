@@ -322,13 +322,22 @@ public interface XmiPackage extends EPackage {
 	int ELEMENT__TAGS = 9;
 
 	/**
+	 * The feature id for the '<em><b>Operations</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT__OPERATIONS = 10;
+
+	/**
 	 * The number of structural features of the '<em>element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_FEATURE_COUNT = 10;
+	int ELEMENT_FEATURE_COUNT = 11;
 
 	/**
 	 * The number of operations of the '<em>element</em>' class.
@@ -1716,6 +1725,126 @@ public interface XmiPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link xmi.impl.operationsImpl <em>operations</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see xmi.impl.operationsImpl
+	 * @see xmi.impl.XmiPackageImpl#getoperations()
+	 * @generated
+	 */
+	int OPERATIONS = 28;
+
+	/**
+	 * The feature id for the '<em><b>Operation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATIONS__OPERATION = 0;
+
+	/**
+	 * The number of structural features of the '<em>operations</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATIONS_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>operations</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATIONS_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link xmi.impl.operationImpl <em>operation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see xmi.impl.operationImpl
+	 * @see xmi.impl.XmiPackageImpl#getoperation()
+	 * @generated
+	 */
+	int OPERATION = 29;
+
+	/**
+	 * The feature id for the '<em><b>Xmiidref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__XMIIDREF = 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__NAME = 1;
+
+	/**
+	 * The feature id for the '<em><b>Scope</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__SCOPE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Tags</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__TAGS = 3;
+
+	/**
+	 * The feature id for the '<em><b>Stereotype</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__STEREOTYPE = 4;
+
+	/**
+	 * The feature id for the '<em><b>Xrefs</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__XREFS = 5;
+
+	/**
+	 * The number of structural features of the '<em>operation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_FEATURE_COUNT = 6;
+
+	/**
+	 * The number of operations of the '<em>operation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_OPERATION_COUNT = 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link xmi.Extension <em>Extension</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1963,6 +2092,17 @@ public interface XmiPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getelement_Tags();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link xmi.element#getOperations <em>Operations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Operations</em>'.
+	 * @see xmi.element#getOperations()
+	 * @see #getelement()
+	 * @generated
+	 */
+	EReference getelement_Operations();
 
 	/**
 	 * Returns the meta object for class '{@link xmi.xrefs <em>xrefs</em>}'.
@@ -3063,6 +3203,103 @@ public interface XmiPackage extends EPackage {
 	EReference gettag_ModelElement();
 
 	/**
+	 * Returns the meta object for class '{@link xmi.operations <em>operations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>operations</em>'.
+	 * @see xmi.operations
+	 * @generated
+	 */
+	EClass getoperations();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link xmi.operations#getOperation <em>Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Operation</em>'.
+	 * @see xmi.operations#getOperation()
+	 * @see #getoperations()
+	 * @generated
+	 */
+	EReference getoperations_Operation();
+
+	/**
+	 * Returns the meta object for class '{@link xmi.operation <em>operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>operation</em>'.
+	 * @see xmi.operation
+	 * @generated
+	 */
+	EClass getoperation();
+
+	/**
+	 * Returns the meta object for the reference '{@link xmi.operation#getXmiidref <em>Xmiidref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Xmiidref</em>'.
+	 * @see xmi.operation#getXmiidref()
+	 * @see #getoperation()
+	 * @generated
+	 */
+	EReference getoperation_Xmiidref();
+
+	/**
+	 * Returns the meta object for the attribute '{@link xmi.operation#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see xmi.operation#getName()
+	 * @see #getoperation()
+	 * @generated
+	 */
+	EAttribute getoperation_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link xmi.operation#getScope <em>Scope</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Scope</em>'.
+	 * @see xmi.operation#getScope()
+	 * @see #getoperation()
+	 * @generated
+	 */
+	EAttribute getoperation_Scope();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link xmi.operation#getTags <em>Tags</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Tags</em>'.
+	 * @see xmi.operation#getTags()
+	 * @see #getoperation()
+	 * @generated
+	 */
+	EReference getoperation_Tags();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link xmi.operation#getStereotype <em>Stereotype</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Stereotype</em>'.
+	 * @see xmi.operation#getStereotype()
+	 * @see #getoperation()
+	 * @generated
+	 */
+	EReference getoperation_Stereotype();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link xmi.operation#getXrefs <em>Xrefs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Xrefs</em>'.
+	 * @see xmi.operation#getXrefs()
+	 * @see #getoperation()
+	 * @generated
+	 */
+	EReference getoperation_Xrefs();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3276,6 +3513,14 @@ public interface XmiPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ELEMENT__TAGS = eINSTANCE.getelement_Tags();
+
+		/**
+		 * The meta object literal for the '<em><b>Operations</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ELEMENT__OPERATIONS = eINSTANCE.getelement_Operations();
 
 		/**
 		 * The meta object literal for the '{@link xmi.impl.xrefsImpl <em>xrefs</em>}' class.
@@ -4140,6 +4385,82 @@ public interface XmiPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TAG__MODEL_ELEMENT = eINSTANCE.gettag_ModelElement();
+
+		/**
+		 * The meta object literal for the '{@link xmi.impl.operationsImpl <em>operations</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see xmi.impl.operationsImpl
+		 * @see xmi.impl.XmiPackageImpl#getoperations()
+		 * @generated
+		 */
+		EClass OPERATIONS = eINSTANCE.getoperations();
+
+		/**
+		 * The meta object literal for the '<em><b>Operation</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATIONS__OPERATION = eINSTANCE.getoperations_Operation();
+
+		/**
+		 * The meta object literal for the '{@link xmi.impl.operationImpl <em>operation</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see xmi.impl.operationImpl
+		 * @see xmi.impl.XmiPackageImpl#getoperation()
+		 * @generated
+		 */
+		EClass OPERATION = eINSTANCE.getoperation();
+
+		/**
+		 * The meta object literal for the '<em><b>Xmiidref</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATION__XMIIDREF = eINSTANCE.getoperation_Xmiidref();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OPERATION__NAME = eINSTANCE.getoperation_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Scope</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OPERATION__SCOPE = eINSTANCE.getoperation_Scope();
+
+		/**
+		 * The meta object literal for the '<em><b>Tags</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATION__TAGS = eINSTANCE.getoperation_Tags();
+
+		/**
+		 * The meta object literal for the '<em><b>Stereotype</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATION__STEREOTYPE = eINSTANCE.getoperation_Stereotype();
+
+		/**
+		 * The meta object literal for the '<em><b>Xrefs</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATION__XREFS = eINSTANCE.getoperation_Xrefs();
 
 	}
 

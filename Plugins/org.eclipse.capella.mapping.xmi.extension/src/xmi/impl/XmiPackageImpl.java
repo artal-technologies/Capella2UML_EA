@@ -25,6 +25,8 @@ import xmi.elements;
 import xmi.extendedProperties;
 import xmi.importedPackage;
 import xmi.model;
+import xmi.operation;
+import xmi.operations;
 import xmi.ownedAttribute;
 import xmi.ownedEnd;
 import xmi.packageImport;
@@ -242,6 +244,20 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 	 * @generated
 	 */
 	private EClass tagEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass operationsEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass operationEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -509,6 +525,15 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 	 */
 	public EReference getelement_Tags() {
 		return (EReference)elementEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getelement_Operations() {
+		return (EReference)elementEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -1434,6 +1459,87 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getoperations() {
+		return operationsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getoperations_Operation() {
+		return (EReference)operationsEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getoperation() {
+		return operationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getoperation_Xmiidref() {
+		return (EReference)operationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getoperation_Name() {
+		return (EAttribute)operationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getoperation_Scope() {
+		return (EAttribute)operationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getoperation_Tags() {
+		return (EReference)operationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getoperation_Stereotype() {
+		return (EReference)operationEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getoperation_Xrefs() {
+		return (EReference)operationEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public XmiFactory getXmiFactory() {
 		return (XmiFactory)getEFactoryInstance();
 	}
@@ -1483,6 +1589,7 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 		createEReference(elementEClass, ELEMENT__CONSTRAINTS);
 		createEReference(elementEClass, ELEMENT__MODEL);
 		createEReference(elementEClass, ELEMENT__TAGS);
+		createEReference(elementEClass, ELEMENT__OPERATIONS);
 
 		xrefsEClass = createEClass(XREFS);
 		createEAttribute(xrefsEClass, XREFS__VALUE);
@@ -1609,6 +1716,17 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 		createEAttribute(tagEClass, TAG__NAME);
 		createEAttribute(tagEClass, TAG__VALUE);
 		createEReference(tagEClass, TAG__MODEL_ELEMENT);
+
+		operationsEClass = createEClass(OPERATIONS);
+		createEReference(operationsEClass, OPERATIONS__OPERATION);
+
+		operationEClass = createEClass(OPERATION);
+		createEReference(operationEClass, OPERATION__XMIIDREF);
+		createEAttribute(operationEClass, OPERATION__NAME);
+		createEAttribute(operationEClass, OPERATION__SCOPE);
+		createEReference(operationEClass, OPERATION__TAGS);
+		createEReference(operationEClass, OPERATION__STEREOTYPE);
+		createEReference(operationEClass, OPERATION__XREFS);
 	}
 
 	/**
@@ -1667,6 +1785,7 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 		initEReference(getelement_Constraints(), this.getconstraints(), null, "constraints", null, 0, 1, element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getelement_Model(), this.getmodel(), null, "model", null, 0, 1, element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getelement_Tags(), this.gettags(), null, "tags", null, 0, 1, element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getelement_Operations(), this.getoperations(), null, "operations", null, 0, 1, element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(xrefsEClass, xrefs.class, "xrefs", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getxrefs_Value(), ecorePackage.getEString(), "value", null, 0, 1, xrefs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1724,7 +1843,7 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 		initEAttribute(getimportedPackage_Href(), ecorePackage.getEString(), "href", null, 0, 1, importedPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(ownedAttributeEClass, ownedAttribute.class, "ownedAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getownedAttribute_Xmiid(), ecorePackage.getEString(), "xmiid", null, 0, 1, ownedAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getownedAttribute_Xmiid(), ecorePackage.getEString(), "xmi:id", null, 0, 1, ownedAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getownedAttribute_Name(), ecorePackage.getEString(), "name", null, 0, 1, ownedAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getownedAttribute_MemberEnd(), ecorePackage.getEString(), "memberEnd", null, 0, 1, ownedAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getownedAttribute_Type(), this.gettype(), null, "type", null, 0, 1, ownedAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1793,6 +1912,17 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 		initEAttribute(gettag_Name(), ecorePackage.getEString(), "name", null, 0, 1, tag.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(gettag_Value(), ecorePackage.getEString(), "value", null, 0, 1, tag.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(gettag_ModelElement(), ecorePackage.getEObject(), null, "modelElement", null, 0, 1, tag.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(operationsEClass, operations.class, "operations", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getoperations_Operation(), this.getoperation(), null, "operation", null, 0, -1, operations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(operationEClass, operation.class, "operation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getoperation_Xmiidref(), ecorePackage.getEObject(), null, "xmi:idref", null, 0, 1, operation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getoperation_Name(), ecorePackage.getEString(), "name", null, 0, 1, operation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getoperation_Scope(), ecorePackage.getEString(), "scope", null, 0, 1, operation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getoperation_Tags(), this.gettags(), null, "tags", null, 0, 1, operation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getoperation_Stereotype(), this.getstereotype(), null, "stereotype", null, 0, 1, operation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getoperation_Xrefs(), this.getxrefs(), null, "xrefs", null, 0, 1, operation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

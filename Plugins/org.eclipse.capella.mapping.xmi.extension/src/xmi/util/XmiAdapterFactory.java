@@ -180,6 +180,14 @@ public class XmiAdapterFactory extends AdapterFactoryImpl {
 				return createtagAdapter();
 			}
 			@Override
+			public Adapter caseoperations(operations object) {
+				return createoperationsAdapter();
+			}
+			@Override
+			public Adapter caseoperation(operation object) {
+				return createoperationAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -588,6 +596,34 @@ public class XmiAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createtagAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link xmi.operations <em>operations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see xmi.operations
+	 * @generated
+	 */
+	public Adapter createoperationsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link xmi.operation <em>operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see xmi.operation
+	 * @generated
+	 */
+	public Adapter createoperationAdapter() {
 		return null;
 	}
 

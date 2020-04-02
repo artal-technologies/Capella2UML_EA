@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link xmi.element#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link xmi.element#getModel <em>Model</em>}</li>
  *   <li>{@link xmi.element#getTags <em>Tags</em>}</li>
+ *   <li>{@link xmi.element#getOperations <em>Operations</em>}</li>
  * </ul>
  *
  * @see xmi.XmiPackage#getelement()
@@ -289,5 +290,31 @@ public interface element extends EObject {
 	 * @generated
 	 */
 	void setTags(tags value);
+
+	/**
+	 * Returns the value of the '<em><b>Operations</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Operations</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Operations</em>' containment reference.
+	 * @see #setOperations(operations)
+	 * @see xmi.XmiPackage#getelement_Operations()
+	 * @model containment="true"
+	 * @generated
+	 */
+	operations getOperations();
+
+	/**
+	 * Sets the value of the '{@link xmi.element#getOperations <em>Operations</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Operations</em>' containment reference.
+	 * @see #getOperations()
+	 * @generated
+	 */
+	void setOperations(operations value);
 
 } // element

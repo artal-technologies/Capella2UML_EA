@@ -6,6 +6,7 @@ package org.eclipse.capella.mapping.capella2uml.bridge;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.capella.mapping.capella2uml.bridge.mix.AlternativePhysicalArchitectureMix;
 import org.eclipse.capella.mapping.capella2uml.bridge.mix.DefaultCapella2UMLMix;
 import org.eclipse.capella.mapping.capella2uml.bridge.mix.PhysicalArchitectureCapella2UMLMix;
 import org.eclipse.emf.common.util.URI;
@@ -24,7 +25,6 @@ import com.artal.capella.mapping.services.MappingService;
  */
 @Component
 public class EAMappingService implements MappingService {
-
 
 	/**
 	 * 
@@ -64,8 +64,10 @@ public class EAMappingService implements MappingService {
 
 		DefaultCapella2UMLMix mix = new DefaultCapella2UMLMix();
 		PhysicalArchitectureCapella2UMLMix pamix = new PhysicalArchitectureCapella2UMLMix();
+		AlternativePhysicalArchitectureMix altMix = new AlternativePhysicalArchitectureMix();
 		results.add(mix);
 		results.add(pamix);
+		results.add(altMix);
 
 		return results;
 	}

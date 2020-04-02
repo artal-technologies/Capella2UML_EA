@@ -17,6 +17,7 @@ import xmi.attributes;
 import xmi.constraints;
 import xmi.element;
 import xmi.model;
+import xmi.operations;
 import xmi.properties;
 import xmi.tags;
 import xmi.xrefs;
@@ -39,6 +40,7 @@ import xmi.xrefs;
  *   <li>{@link xmi.impl.elementImpl#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link xmi.impl.elementImpl#getModel <em>Model</em>}</li>
  *   <li>{@link xmi.impl.elementImpl#getTags <em>Tags</em>}</li>
+ *   <li>{@link xmi.impl.elementImpl#getOperations <em>Operations</em>}</li>
  * </ul>
  *
  * @generated
@@ -163,6 +165,16 @@ public class elementImpl extends MinimalEObjectImpl.Container implements element
 	 * @ordered
 	 */
 	protected tags tags;
+
+	/**
+	 * The cached value of the '{@link #getOperations() <em>Operations</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOperations()
+	 * @generated
+	 * @ordered
+	 */
+	protected operations operations;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -564,6 +576,49 @@ public class elementImpl extends MinimalEObjectImpl.Container implements element
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public operations getOperations() {
+		return operations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOperations(operations newOperations, NotificationChain msgs) {
+		operations oldOperations = operations;
+		operations = newOperations;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XmiPackage.ELEMENT__OPERATIONS, oldOperations, newOperations);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOperations(operations newOperations) {
+		if (newOperations != operations) {
+			NotificationChain msgs = null;
+			if (operations != null)
+				msgs = ((InternalEObject)operations).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XmiPackage.ELEMENT__OPERATIONS, null, msgs);
+			if (newOperations != null)
+				msgs = ((InternalEObject)newOperations).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XmiPackage.ELEMENT__OPERATIONS, null, msgs);
+			msgs = basicSetOperations(newOperations, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, XmiPackage.ELEMENT__OPERATIONS, newOperations, newOperations));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -579,6 +634,8 @@ public class elementImpl extends MinimalEObjectImpl.Container implements element
 				return basicSetModel(null, msgs);
 			case XmiPackage.ELEMENT__TAGS:
 				return basicSetTags(null, msgs);
+			case XmiPackage.ELEMENT__OPERATIONS:
+				return basicSetOperations(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -613,6 +670,8 @@ public class elementImpl extends MinimalEObjectImpl.Container implements element
 				return getModel();
 			case XmiPackage.ELEMENT__TAGS:
 				return getTags();
+			case XmiPackage.ELEMENT__OPERATIONS:
+				return getOperations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -654,6 +713,9 @@ public class elementImpl extends MinimalEObjectImpl.Container implements element
 				return;
 			case XmiPackage.ELEMENT__TAGS:
 				setTags((tags)newValue);
+				return;
+			case XmiPackage.ELEMENT__OPERATIONS:
+				setOperations((operations)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -697,6 +759,9 @@ public class elementImpl extends MinimalEObjectImpl.Container implements element
 			case XmiPackage.ELEMENT__TAGS:
 				setTags((tags)null);
 				return;
+			case XmiPackage.ELEMENT__OPERATIONS:
+				setOperations((operations)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -729,6 +794,8 @@ public class elementImpl extends MinimalEObjectImpl.Container implements element
 				return model != null;
 			case XmiPackage.ELEMENT__TAGS:
 				return tags != null;
+			case XmiPackage.ELEMENT__OPERATIONS:
+				return operations != null;
 		}
 		return super.eIsSet(featureID);
 	}
