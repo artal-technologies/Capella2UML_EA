@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link xmi.tag#getXmiid <em>Xmiid</em>}</li>
  *   <li>{@link xmi.tag#getName <em>Name</em>}</li>
  *   <li>{@link xmi.tag#getValue <em>Value</em>}</li>
  *   <li>{@link xmi.tag#getModelElement <em>Model Element</em>}</li>
@@ -100,5 +101,31 @@ public interface tag extends EObject {
 	 * @generated
 	 */
 	void setModelElement(EObject value);
+
+	/**
+	 * Returns the value of the '<em><b>Xmiid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Xmiid</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Xmiid</em>' attribute.
+	 * @see #setXmiid(String)
+	 * @see xmi.XmiPackage#gettag_Xmiid()
+	 * @model
+	 * @generated
+	 */
+	String getXmiid();
+
+	/**
+	 * Sets the value of the '{@link xmi.tag#getXmiid <em>Xmiid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Xmiid</em>' attribute.
+	 * @see #getXmiid()
+	 * @generated
+	 */
+	void setXmiid(String value);
 
 } // tag

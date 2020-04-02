@@ -99,4 +99,9 @@ public class MappingUtils {
 		algo.putId(element, rule, sysMLID + suffix);
 	}
 
+	static public void generateNamesUID(CapellaBridgeAlgo<?> algo, EObject element,
+			AbstractDynamicMapping<?, ?, ?> rule, String id) {
+		algo.putId(element, rule, id);
+	}
+	
 }

@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import xmi.Documentation;
 import xmi.Extension;
@@ -124,7 +125,7 @@ public class XMIExtensionsUtils {
 			operation.setStereotype(createstereotype);
 
 			xrefs createxrefs = XmiFactory.eINSTANCE.createxrefs();
-			setXRefsValue(createxrefs, ids, stereoNames,"operation property");
+			setXRefsValue(createxrefs, ids, stereoNames, "operation property");
 			operation.setXrefs(createxrefs);
 
 		}
@@ -162,19 +163,16 @@ public class XMIExtensionsUtils {
 		xrefs.setValue(value);
 	}
 
-	static public void setXRefsValue(xrefs xrefs, String ids, List<String> names,String typeProperty) {
+	static public void setXRefsValue(xrefs xrefs, String ids, List<String> names, String typeProperty) {
 		String value = null;
 		// value = "$XREFPROP=$XID={"+ids+"}$XID;$NAM=Stereotypes$NAM;$TYP=element
 		// property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=sign;GUID={1D3CEB02-60D8-41c9-9D8A-168ACA9D8E5E};@ENDSTEREO;$DES;$CLT={528D2027-4A69-48e6-8F05-CE3F31EC978D}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;";
-		value = "$XREFPROP=$XID={" + ids + names.get(0)
-				+ "}$XID;$NAM=Stereotypes$NAM;$TYP="+typeProperty+"$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES="/*
-																											 * @STEREO;
-																											 * Name=" +
-																											 * name +
-																											 * ";GUID={25076860-6280-4441-B4D3-B21668224ABF};@ENDSTEREO;$DES;$CLT={"
-																											 * +ids+
-																											 * "}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"
-																											 */;
+		value = "$XREFPROP=$XID={" + ids + names.get(0) + "}$XID;$NAM=Stereotypes$NAM;$TYP=" + typeProperty
+				+ "$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES="/*
+															 * @STEREO; Name=" + name +
+															 * ";GUID={25076860-6280-4441-B4D3-B21668224ABF};@ENDSTEREO;$DES;$CLT={"
+															 * +ids+ "}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"
+															 */;
 
 		for (String string : names) {
 			value += "@STEREO;Name=" + string + ";GUID={25076860-6280-4441-B4D3-B21668224ABF};@ENDSTEREO;";
@@ -263,7 +261,7 @@ public class XMIExtensionsUtils {
 		}
 		xrefs xrefs = XmiFactory.eINSTANCE.createxrefs();
 		addElement.setXrefs(xrefs);
-		setXRefsValue(xrefs, ids, stereotypes,"element property");
+		setXRefsValue(xrefs, ids, stereotypes, "element property");
 	}
 
 	static public void createStereotypeProperties(operation operation, List<String> stereotypes, String sType,
@@ -271,10 +269,10 @@ public class XMIExtensionsUtils {
 
 		xrefs xrefs = XmiFactory.eINSTANCE.createxrefs();
 		operation.setXrefs(xrefs);
-		setXRefsValue(xrefs, ids, stereotypes,"operation property");
+		setXRefsValue(xrefs, ids, stereotypes, "operation property");
 	}
 
-	static public void addTag(element element, String name, String value, EObject targetComponent) {
+	static public tag addTag(element element, String name, String value, EObject targetComponent, String id,String suffix) {
 		tags tags = element.getTags();
 		if (tags == null) {
 			tags = XmiFactory.eINSTANCE.createtags();
@@ -283,10 +281,14 @@ public class XMIExtensionsUtils {
 
 		tag createtag = XmiFactory.eINSTANCE.createtag();
 		tags.getTag().add(createtag);
-
+		if (id == null) {
+			id = value;
+		}
+		createtag.setXmiid("EAID_" + id+suffix);
 		createtag.setName(name);
 		createtag.setValue(value);
 		createtag.setModelElement(targetComponent);
+		return createtag;
 
 	}
 

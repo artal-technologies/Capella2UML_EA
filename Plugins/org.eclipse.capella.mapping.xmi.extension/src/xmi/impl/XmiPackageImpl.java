@@ -1433,15 +1433,6 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 	 * @generated
 	 */
 	public EAttribute gettag_Name() {
-		return (EAttribute)tagEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute gettag_Value() {
 		return (EAttribute)tagEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1450,8 +1441,26 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute gettag_Value() {
+		return (EAttribute)tagEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference gettag_ModelElement() {
-		return (EReference)tagEClass.getEStructuralFeatures().get(2);
+		return (EReference)tagEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute gettag_Xmiid() {
+		return (EAttribute)tagEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1713,6 +1722,7 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 		createEReference(tagsEClass, TAGS__TAG);
 
 		tagEClass = createEClass(TAG);
+		createEAttribute(tagEClass, TAG__XMIID);
 		createEAttribute(tagEClass, TAG__NAME);
 		createEAttribute(tagEClass, TAG__VALUE);
 		createEReference(tagEClass, TAG__MODEL_ELEMENT);
@@ -1912,6 +1922,7 @@ public class XmiPackageImpl extends EPackageImpl implements XmiPackage {
 		initEAttribute(gettag_Name(), ecorePackage.getEString(), "name", null, 0, 1, tag.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(gettag_Value(), ecorePackage.getEString(), "value", null, 0, 1, tag.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(gettag_ModelElement(), ecorePackage.getEObject(), null, "modelElement", null, 0, 1, tag.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(gettag_Xmiid(), ecorePackage.getEString(), "xmi:id", null, 0, 1, tag.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(operationsEClass, operations.class, "operations", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getoperations_Operation(), this.getoperation(), null, "operation", null, 0, -1, operations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

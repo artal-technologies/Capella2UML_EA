@@ -1679,13 +1679,22 @@ public interface XmiPackage extends EPackage {
 	int TAG = 27;
 
 	/**
+	 * The feature id for the '<em><b>Xmiid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAG__XMIID = 0;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TAG__NAME = 0;
+	int TAG__NAME = 1;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1694,7 +1703,7 @@ public interface XmiPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TAG__VALUE = 1;
+	int TAG__VALUE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Model Element</b></em>' reference.
@@ -1703,7 +1712,7 @@ public interface XmiPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TAG__MODEL_ELEMENT = 2;
+	int TAG__MODEL_ELEMENT = 3;
 
 	/**
 	 * The number of structural features of the '<em>tag</em>' class.
@@ -1712,7 +1721,7 @@ public interface XmiPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TAG_FEATURE_COUNT = 3;
+	int TAG_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>tag</em>' class.
@@ -3203,6 +3212,17 @@ public interface XmiPackage extends EPackage {
 	EReference gettag_ModelElement();
 
 	/**
+	 * Returns the meta object for the attribute '{@link xmi.tag#getXmiid <em>Xmiid</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Xmiid</em>'.
+	 * @see xmi.tag#getXmiid()
+	 * @see #gettag()
+	 * @generated
+	 */
+	EAttribute gettag_Xmiid();
+
+	/**
 	 * Returns the meta object for class '{@link xmi.operations <em>operations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4385,6 +4405,14 @@ public interface XmiPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TAG__MODEL_ELEMENT = eINSTANCE.gettag_ModelElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Xmiid</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TAG__XMIID = eINSTANCE.gettag_Xmiid();
 
 		/**
 		 * The meta object literal for the '{@link xmi.impl.operationsImpl <em>operations</em>}' class.

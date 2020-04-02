@@ -137,7 +137,7 @@ public class Capella2UMLBridgeJob extends UMLBridgeJob<Project> {
 									handler.recordValues(text, remote.eContainer(), f, remote);
 								}
 								if (shouldSaveType) {
-									saveTypeAttribute(eClass);
+//									saveTypeAttribute(eClass);
 
 								}
 								if (!toDOM) {

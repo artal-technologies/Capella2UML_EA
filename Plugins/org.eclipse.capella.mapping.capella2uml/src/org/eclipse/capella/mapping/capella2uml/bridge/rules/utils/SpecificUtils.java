@@ -3,9 +3,15 @@
  */
 package org.eclipse.capella.mapping.capella2uml.bridge.rules.utils;
 
+import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.uml2.uml.Actor;
+import org.eclipse.uml2.uml.DataType;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.PrimitiveType;
+import org.eclipse.uml2.uml.Signal;
 import org.polarsys.capella.core.data.capellacore.AbstractPropertyValue;
 import org.polarsys.capella.core.data.capellacore.BooleanPropertyValue;
 import org.polarsys.capella.core.data.capellacore.CapellaElement;
@@ -118,21 +124,24 @@ public class SpecificUtils {
 
 	static public void applyPhysicalStereotypeAttribute(element element, PhysicalComponent component,
 			EObject targetComponent) {
+		Resource eResource = component.eResource();
+		String sysMLIDSource = MappingUtils.getSysMLID(eResource, component);
 		PhysicalComponentKind kind = component.getKind();
-		XMIExtensionsUtils.addTag(element, "Kind", kind.getLiteral(), targetComponent);
+		XMIExtensionsUtils.addTag(element, "Kind", kind.getLiteral(), targetComponent, sysMLIDSource,"K");
 		PhysicalComponentNature nature = component.getNature();
-		XMIExtensionsUtils.addTag(element, "Nature", nature.getLiteral(), targetComponent);
+		XMIExtensionsUtils.addTag(element, "Nature", nature.getLiteral(), targetComponent, sysMLIDSource,"N");
 
 	}
 
 	static public void applyComponentPortStereotypeAttribute(element element, ComponentPort componentPort,
 			EObject targetPort) {
-
+		Resource eResource = componentPort.eResource();
+		String sysMLIDSource = MappingUtils.getSysMLID(eResource, componentPort);
 		OrientationPortKind orientation = componentPort.getOrientation();
-		XMIExtensionsUtils.addTag(element, "Direction", orientation.getLiteral(), targetPort);
+		XMIExtensionsUtils.addTag(element, "Direction", orientation.getLiteral(), targetPort, sysMLIDSource,"D");
 
 		ComponentPortKind kind = componentPort.getKind();
-		XMIExtensionsUtils.addTag(element, "Kind", kind.getLiteral(), targetPort);
+		XMIExtensionsUtils.addTag(element, "Kind", kind.getLiteral(), targetPort, sysMLIDSource,"K");
 
 	}
 
@@ -142,11 +151,10 @@ public class SpecificUtils {
 		Resource eResource = ce.eResource();
 		String sysMLIDSource = MappingUtils.getSysMLID(eResource, sourcePort);
 
-		XMIExtensionsUtils.addTag(element, "SrcCapellaID", sysMLIDSource, interf);
-
+		XMIExtensionsUtils.addTag(element, "SrcCapellaID", sysMLIDSource, interf, sysMLIDSource,"S");
 		Port targetPort = ce.getTargetPort();
 		String sysMLIDTarget = MappingUtils.getSysMLID(eResource, targetPort);
-		XMIExtensionsUtils.addTag(element, "TargetCapellaID", sysMLIDTarget, interf);
+		XMIExtensionsUtils.addTag(element, "TargetCapellaID", sysMLIDTarget, interf, sysMLIDTarget,"T");
 
 	}
 
@@ -175,47 +183,40 @@ public class SpecificUtils {
 			if (abstractPropertyValue instanceof IntegerPropertyValue) {
 				value = "" + ((IntegerPropertyValue) abstractPropertyValue).getValue();
 			}
-			XMIExtensionsUtils.addTag(createElement, name, value, eobject);
+			Resource eResource = abstractPropertyValue.eResource();
+			String sysMLIDSource = MappingUtils.getSysMLID(eResource, abstractPropertyValue);
+			XMIExtensionsUtils.addTag(createElement, name, value, eobject, sysMLIDSource,"p");
 		}
 	}
 
-	static public String getSType(CapellaElement capellaElement) {
+	static public String getSType(Element capellaElement) {
 
-		if (capellaElement instanceof AbstractActor) {
+		if (capellaElement instanceof Actor) {
 			return "Actor";
 		}
-		if (capellaElement instanceof Component) {
+		if (capellaElement instanceof org.eclipse.uml2.uml.Component) {
 			return "Component";
 		}
 
-		if (capellaElement instanceof Port) {
+		if (capellaElement instanceof org.eclipse.uml2.uml.Port) {
 			return "Port";
 		}
-		if (capellaElement instanceof Enumeration) {
+		if (capellaElement instanceof org.eclipse.uml2.uml.Enumeration) {
 			return "Enumeration";
 		}
-		if (capellaElement instanceof ComponentExchange) {
-			return "ProxyConnector";
+		if (capellaElement instanceof Signal) {
+			return "Signal";
 		}
-		if (capellaElement instanceof ExchangeItem) {
-			if (((ExchangeItem) capellaElement).getExchangeMechanism() == ExchangeMechanism.SHARED_DATA) {
+		if (capellaElement instanceof org.eclipse.uml2.uml.Class) {
 				return "Class";
-			}
-			if (((ExchangeItem) capellaElement).getExchangeMechanism() == ExchangeMechanism.EVENT) {
-				return "Signal";
-			}
 		}
-		if (capellaElement instanceof Interface) {
+		if (capellaElement instanceof org.eclipse.uml2.uml.Interface) {
 			return "Interface";
 		}
-		if (capellaElement instanceof PhysicalQuantity) {
-			return "DataType";
-		}
-		if (capellaElement instanceof NumericType || capellaElement instanceof StringType
-				|| capellaElement instanceof BooleanType) {
+		if (capellaElement instanceof PrimitiveType) {
 			return "PrimitiveType";
 		}
-		if (capellaElement instanceof org.polarsys.capella.core.data.information.Class) {
+		if (capellaElement instanceof DataType) {
 			return "DataType";
 		}
 

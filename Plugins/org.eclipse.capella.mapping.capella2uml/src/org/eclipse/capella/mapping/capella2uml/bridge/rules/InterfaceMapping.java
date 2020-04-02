@@ -3,6 +3,7 @@
  */
 package org.eclipse.capella.mapping.capella2uml.bridge.rules;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
@@ -10,6 +11,7 @@ import org.eclipse.capella.mapping.capella2uml.bridge.rules.utils.SpecificUtils;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.PackageableElement;
@@ -68,21 +70,26 @@ public class InterfaceMapping extends CommonInterfaceMapping<Capella2UMLAlgo> {
 
 		targetInterface.setName(source.getName());
 
-		EList<ExchangeItem> exchangeItems = source.getExchangeItems();
+		Resource eResource = source.eResource();
+		String sysMLID = MappingUtils.getSysMLID(eResource, source);
+		String beginId = sysMLID.substring(0, 10);
 
+		EList<ExchangeItem> exchangeItems = source.getExchangeItems();
 		for (ExchangeItem exchangeItem : exchangeItems) {
+			String sysMLID2 = MappingUtils.getSysMLID(eResource, exchangeItem);
+			String endID = sysMLID2.substring(10);
 			Object capellaObjectFromAllRules = MappingRulesManager.getCapellaObjectFromAllRules(exchangeItem);
 			if (capellaObjectFromAllRules instanceof Classifier) {
 				Property createProperty = UMLFactory.eINSTANCE.createProperty();
 				createProperty.setName(exchangeItem.getName());
-				MappingUtils.generateUID(getAlgo(), exchangeItem, createProperty, this, "property");
+				MappingUtils.generateNamesUID(getAlgo(), createProperty, this, beginId + endID + "property");
 				XMIExtensionsUtils.createElement(createProperty, getAlgo().getXMIExtension());
 				targetInterface.getOwnedAttributes().add(createProperty);
 				createProperty.setType((Classifier) capellaObjectFromAllRules);
 
 				if (capellaObjectFromAllRules != null) {
 					Usage createUsage = UMLFactory.eINSTANCE.createUsage();
-					MappingUtils.generateUID(getAlgo(), exchangeItem, createUsage, this, "us");
+					MappingUtils.generateNamesUID(getAlgo(), createUsage, this, beginId + endID + "us");
 
 					createUsage.getClients().add((org.eclipse.uml2.uml.Interface) targetInterface);
 					createUsage.getSuppliers().add((org.eclipse.uml2.uml.Type) capellaObjectFromAllRules);

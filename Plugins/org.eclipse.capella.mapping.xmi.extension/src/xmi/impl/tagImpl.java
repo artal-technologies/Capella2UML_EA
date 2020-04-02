@@ -22,6 +22,7 @@ import xmi.tag;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link xmi.impl.tagImpl#getXmiid <em>Xmiid</em>}</li>
  *   <li>{@link xmi.impl.tagImpl#getName <em>Name</em>}</li>
  *   <li>{@link xmi.impl.tagImpl#getValue <em>Value</em>}</li>
  *   <li>{@link xmi.impl.tagImpl#getModelElement <em>Model Element</em>}</li>
@@ -30,6 +31,26 @@ import xmi.tag;
  * @generated
  */
 public class tagImpl extends MinimalEObjectImpl.Container implements tag {
+	/**
+	 * The default value of the '{@link #getXmiid() <em>Xmiid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getXmiid()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String XMIID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getXmiid() <em>Xmiid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getXmiid()
+	 * @generated
+	 * @ordered
+	 */
+	protected String xmiid = XMIID_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -184,9 +205,32 @@ public class tagImpl extends MinimalEObjectImpl.Container implements tag {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getXmiid() {
+		return xmiid;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setXmiid(String newXmiid) {
+		String oldXmiid = xmiid;
+		xmiid = newXmiid;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, XmiPackage.TAG__XMIID, oldXmiid, xmiid));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case XmiPackage.TAG__XMIID:
+				return getXmiid();
 			case XmiPackage.TAG__NAME:
 				return getName();
 			case XmiPackage.TAG__VALUE:
@@ -206,6 +250,9 @@ public class tagImpl extends MinimalEObjectImpl.Container implements tag {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case XmiPackage.TAG__XMIID:
+				setXmiid((String)newValue);
+				return;
 			case XmiPackage.TAG__NAME:
 				setName((String)newValue);
 				return;
@@ -227,6 +274,9 @@ public class tagImpl extends MinimalEObjectImpl.Container implements tag {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case XmiPackage.TAG__XMIID:
+				setXmiid(XMIID_EDEFAULT);
+				return;
 			case XmiPackage.TAG__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -248,6 +298,8 @@ public class tagImpl extends MinimalEObjectImpl.Container implements tag {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case XmiPackage.TAG__XMIID:
+				return XMIID_EDEFAULT == null ? xmiid != null : !XMIID_EDEFAULT.equals(xmiid);
 			case XmiPackage.TAG__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case XmiPackage.TAG__VALUE:
@@ -268,7 +320,9 @@ public class tagImpl extends MinimalEObjectImpl.Container implements tag {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
+		result.append(" (xmiid: ");
+		result.append(xmiid);
+		result.append(", name: ");
 		result.append(name);
 		result.append(", value: ");
 		result.append(value);

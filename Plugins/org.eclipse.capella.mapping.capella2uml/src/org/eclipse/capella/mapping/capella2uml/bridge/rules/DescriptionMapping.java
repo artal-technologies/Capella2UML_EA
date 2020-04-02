@@ -50,23 +50,23 @@ public class DescriptionMapping extends CommonDescriptionMapping<BlockArchitectu
 
 		Element capellaObjectFromAllRules = (Element) MappingRulesManager.getCapellaObjectFromAllRules(source);
 		if (capellaObjectFromAllRules != null) {
-			Comment createComment = UMLFactory.eINSTANCE.createComment();
-			MappingUtils.generateUID(getAlgo(), source, createComment, this, "ct");
-
-			createComment.setBody(source.getDescription());
-
-			createComment.getAnnotatedElements().add(capellaObjectFromAllRules);
-
-			if (eaContainer instanceof Model) {
-				org.eclipse.uml2.uml.Package pkgCapella = (org.eclipse.uml2.uml.Package) (((Model) eaContainer)
-						.getPackagedElements().get(0));
-				pkgCapella.getOwnedComments().add(createComment);
-			}
+//			Comment createComment = UMLFactory.eINSTANCE.createComment();
+//			MappingUtils.generateUID(getAlgo(), source, createComment, this, "ct");
+//
+//			createComment.setBody(source.getDescription());
+//
+//			createComment.getAnnotatedElements().add(capellaObjectFromAllRules);
+//
+//			if (eaContainer instanceof Model) {
+//				org.eclipse.uml2.uml.Package pkgCapella = (org.eclipse.uml2.uml.Package) (((Model) eaContainer)
+//						.getPackagedElements().get(0));
+//				pkgCapella.getOwnedComments().add(createComment);
+//			}
 
 			XMIExtensionsUtils.setDocumentation(capellaObjectFromAllRules, getAlgo().getXMIExtension(),
-					source.getDescription(), SpecificUtils.getSType(source));
+					source.getDescription(), SpecificUtils.getSType(capellaObjectFromAllRules));
 
-			return createComment;
+//			return createComment;
 		}
 		return null;
 	}

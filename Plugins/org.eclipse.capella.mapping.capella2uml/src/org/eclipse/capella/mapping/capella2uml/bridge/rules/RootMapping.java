@@ -143,6 +143,9 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 		// manager.add(ClassMapping.class.getName() + dataPkgRoot.getId(),
 		// classMapping);
 
+		RootPropertyValuePkgMapping pvpMapping = new RootPropertyValuePkgMapping(getAlgo(), project,
+				getMappingExucution());
+		manager.add(RootPropertyValuePkgMapping.class.getName() + project.getId(), pvpMapping);
 		DataPkgMapping dataPkgMapping = new DataPkgMapping(getAlgo(), logicalArchitecture, getMappingExucution());
 		manager.add(dataPkgMapping.getClass().getName() + logicalArchitecture.getId(), dataPkgMapping);
 
@@ -174,10 +177,9 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 		ComponentMapping componentMapping = new ComponentMapping(getAlgo(), logicalArchitecture, getMappingExucution());
 		manager.add(componentMapping.getClass().getName() + logicalArchitecture.getId(), componentMapping);
 
-		
 		ActorPkgMapping actorPkgMapping = new ActorPkgMapping(getAlgo(), logicalArchitecture, getMappingExucution());
 		manager.add(actorPkgMapping.getClass().getName() + logicalArchitecture.getId(), actorPkgMapping);
-	
+
 		List<Component> collect = EObjectExt.getAll(logicalArchitecture, CsPackage.Literals.COMPONENT).stream()
 				.map(Component.class::cast).collect(Collectors.toList());
 		for (Component component : collect) {
@@ -185,7 +187,6 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 			manager.add(mapping.getClass().getName() + component.getId(), mapping);
 		}
 
-		
 		// LogicalActorPkg logicalActorPkg = CapellaUtils.getLogicalActorPkg(project);
 		// ActorMapping actorMapping = new ActorMapping(getAlgo(), logicalActorPkg,
 		// getMappingExucution());
@@ -205,10 +206,6 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 		DescriptionMapping descriptionMapping = new DescriptionMapping(getAlgo(), logicalArchitecture,
 				getMappingExucution());
 		manager.add(descriptionMapping.getClass().getName() + logicalArchitecture.getId(), descriptionMapping);
-
-		RootPropertyValuePkgMapping pvpMapping = new RootPropertyValuePkgMapping(getAlgo(), project,
-				getMappingExucution());
-		manager.add(RootPropertyValuePkgMapping.class.getName() + project.getId(), pvpMapping);
 
 	}
 
