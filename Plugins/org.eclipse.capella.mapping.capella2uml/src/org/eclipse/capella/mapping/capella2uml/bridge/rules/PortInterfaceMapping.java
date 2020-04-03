@@ -11,27 +11,24 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.uml2.uml.Class;
+import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Realization;
-import org.eclipse.uml2.uml.StructuredClassifier;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.Usage;
-import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.fa.ComponentExchange;
 import org.polarsys.capella.core.data.fa.ComponentPort;
 import org.polarsys.capella.core.data.fa.OrientationPortKind;
 import org.polarsys.capella.core.model.helpers.ProjectExt;
 
-import com.artal.capella.mapping.CapellaUtils;
 import com.artal.capella.mapping.MappingUtils;
 import com.artal.capella.mapping.rules.AbstractDynamicMapping;
 import com.artal.capella.mapping.rules.MappingRulesManager;
 
-import xmi.element;
 import xmi.util.XMIExtensionsUtils;
 
 /**
@@ -90,47 +87,27 @@ public class PortInterfaceMapping extends AbstractDynamicMapping<ComponentPort, 
 		Port port = (Port) eaContainer;
 		org.eclipse.uml2.uml.Interface inter = (org.eclipse.uml2.uml.Interface) MappingRulesManager
 				.getCapellaObjectFromAllRules(source);
-		Resource eResource = source.eResource();
-		String sysMLID = MappingUtils.getSysMLID(eResource, source);
 		port.setType(inter);
+		Interface createInterface = null;
 		if (inter != null) {
 			if (orientation == OrientationPortKind.IN) {
 
-				port.setIsConjugated(false);
-
-				Realization realizationTarget = UMLFactory.eINSTANCE.createRealization();
-				MappingUtils.generateUID(getAlgo(), source, realizationTarget, this, "r");
-				realizationTarget.getClients().add(inter);
-
-				realizationTarget.getSuppliers().add(port);
-
-				XMIExtensionsUtils.addConnector(realizationTarget, getAlgo().getXMIExtension(), sysMLID, "Unspecified",
-						"Relization", inter, port, false);
-
-				Model model = port.getModel();
-				org.eclipse.uml2.uml.Package pkgCapella = (org.eclipse.uml2.uml.Package) ((model).getPackagedElements()
-						.get(0));
-				int indexOf = pkgCapella.getPackagedElements().indexOf(inter);
-				pkgCapella.getPackagedElements().add(indexOf + 1, realizationTarget);
+				createInterface = UMLFactory.eINSTANCE.createInterface();
+				MappingUtils.generateUID(getAlgo(), getSourceContainer(), createInterface, this, "P");
+				createInterface.setName(inter.getName());
+				XMIResource res = (XMIResource) (inter.eResource());
+				SpecificUtils.addCustoRef(res, port, "provided", createInterface, false, true);
+				SpecificUtils.addCustoAttr(res, createInterface, "xmi:idref", MappingUtils.getSysMLID(res, inter));
 
 			} else if (orientation == OrientationPortKind.OUT) {
 				port.setIsConjugated(true);
 
-				XMIExtensionsUtils.addXredPropIsConjugated(port, getAlgo().getXMIExtension());
-				Usage createUsage = UMLFactory.eINSTANCE.createUsage();
-				MappingUtils.generateUID(getAlgo(), source, createUsage, this, "us");
-
-				createUsage.getClients().add(port);
-				createUsage.getSuppliers().add((org.eclipse.uml2.uml.Interface) inter);
-
-				Project project = ProjectExt.getProject(source);
-				Object capellaObjectFromAllRules2 = MappingRulesManager.getCapellaObjectFromAllRules(project);
-
-				EList<PackageableElement> packagedElements = ((Model) capellaObjectFromAllRules2).getPackagedElements();
-				for (PackageableElement ownedMember : packagedElements) {
-					if (ownedMember.getName().equals(SpecificUtils.getCapellaImportName(this)))
-						((org.eclipse.uml2.uml.Package) ownedMember).getPackagedElements().add(createUsage);
-				}
+				createInterface = UMLFactory.eINSTANCE.createInterface();
+				MappingUtils.generateUID(getAlgo(), getSourceContainer(), createInterface, this, "R");
+				createInterface.setName(inter.getName());
+				XMIResource res = (XMIResource) (inter.eResource());
+				SpecificUtils.addCustoRef(res, port, "required", createInterface, false, true);
+				SpecificUtils.addCustoAttr(res, createInterface, "xmi:idref", MappingUtils.getSysMLID(res, inter));
 			}
 		}
 

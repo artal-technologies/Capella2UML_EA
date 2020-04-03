@@ -147,13 +147,18 @@ public class AlternativePhysicalRootMapping extends AbstractDynamicMapping<Proje
 				physicalSystemRoot, getMappingExucution());
 		manager.add(alternativeExchangeMapping.getClass().getName() + physicalSystemRoot.getId(),
 				alternativeExchangeMapping);
-		
+
 		ComponentMapping componentMapping = new AlternativeComponentMapping(getAlgo(), physicalArchitecture,
 				getMappingExucution());
 		manager.add(componentMapping.getClass().getName() + physicalArchitecture.getId(), componentMapping);
 
-	
-
+		List<Component> collect = EObjectExt.getAll(physicalArchitecture, CsPackage.Literals.COMPONENT).stream()
+				.map(Component.class::cast).collect(Collectors.toList());
+		for (Component component : collect) {
+			AlternativeAssociationMapping mapping = new AlternativeAssociationMapping(getAlgo(), component,
+					getMappingExucution());
+			manager.add(mapping.getClass().getName() + component.getId(), mapping);
+		}
 		DescriptionMapping descriptionMapping = new DescriptionMapping(getAlgo(), physicalArchitecture,
 				getMappingExucution());
 		manager.add(descriptionMapping.getClass().getName() + physicalArchitecture.getId(), descriptionMapping);

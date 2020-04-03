@@ -13,6 +13,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.uml2.uml.Actor;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.EncapsulatedClassifier;
 import org.eclipse.uml2.uml.Port;
@@ -58,24 +60,26 @@ public class PortMapping extends CommonPortMapping<Capella2UMLAlgo> {
 
 	public boolean isNotActorConnection(ComponentPort port) {
 
-		EList<ComponentExchange> componentExchanges = port.getComponentExchanges();
-		for (ComponentExchange componentExchange : componentExchanges) {
-			org.polarsys.capella.core.data.information.Port sourcePort = componentExchange.getSourcePort();
-			org.polarsys.capella.core.data.information.Port targetPort = componentExchange.getTargetPort();
-			if (sourcePort.equals(port)) {
-				if (targetPort.eContainer() instanceof SystemComponent) {
-					return true;
-				}
-			} else {
+		// EList<ComponentExchange> componentExchanges = port.getComponentExchanges();
+		// for (ComponentExchange componentExchange : componentExchanges) {
+		// org.polarsys.capella.core.data.information.Port sourcePort =
+		// componentExchange.getSourcePort();
+		// org.polarsys.capella.core.data.information.Port targetPort =
+		// componentExchange.getTargetPort();
+		// if (sourcePort.equals(port)) {
+		// if (targetPort.eContainer() instanceof SystemComponent) {
+		// return true;
+		// }
+		// } else {
+		//
+		// if (sourcePort.eContainer() instanceof SystemComponent) {
+		// return true;
+		// }
+		//
+		// }
+		// }
 
-				if (sourcePort.eContainer() instanceof SystemComponent) {
-					return true;
-				}
-
-			}
-		}
-
-		return false;
+		return true;
 	}
 
 	/*
@@ -87,9 +91,9 @@ public class PortMapping extends CommonPortMapping<Capella2UMLAlgo> {
 	 */
 	@Override
 	public Object compute(Object eaContainer, ComponentPort source) {
-		if (source.eContainer() instanceof AbstractActor) {
-			return null;
-		}
+//		 if (source.eContainer() instanceof AbstractActor) {
+//		 return null;
+//		 }
 		Port targetPort = UMLFactory.eINSTANCE.createPort();
 		MappingUtils.generateUID(getAlgo(), source, targetPort, this);
 		element targetelement = XMIExtensionsUtils.createElement(targetPort, getAlgo().getXMIExtension());
@@ -114,6 +118,12 @@ public class PortMapping extends CommonPortMapping<Capella2UMLAlgo> {
 		targetPort.setIsBehavior(true);
 		if (eaContainer instanceof EncapsulatedClassifier) {
 			((EncapsulatedClassifier) eaContainer).getOwnedPorts().add(targetPort);
+		}
+		if (eaContainer instanceof Actor) {
+			Resource resource = (Resource) ((Actor) eaContainer).eResource();
+			if (resource instanceof XMIResource) {
+				SpecificUtils.addCustoRef((XMIResource) resource, (Actor) eaContainer, "ownedPort", targetPort,true,true);
+			}
 		}
 
 		return targetPort;

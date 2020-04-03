@@ -4,10 +4,14 @@
 package org.eclipse.capella.mapping.capella2uml.bridge;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.eclipse.capella.mapping.capella2uml.bridge.rules.utils.SpecificUtils;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
@@ -20,8 +24,10 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLHelper;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.XMLSave;
+import org.eclipse.emf.ecore.xmi.XMLSave.XMLTypeInfo;
 import org.eclipse.emf.ecore.xmi.impl.XMIHelperImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMISaveImpl;
+import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
@@ -62,15 +68,31 @@ public class Capella2UMLBridgeJob extends UMLBridgeJob<Project> {
 	public void addOptions(final Map<Object, Object> saveOptions) {
 		saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
 		saveOptions.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
-		saveOptions.put(XMIResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.TRUE);
+		saveOptions.put(XMIResource.OPTION_SAVE_TYPE_INFORMATION, new XMLTypeInfo() {
+			public boolean shouldSaveType(EClass objectType, EClassifier featureType, EStructuralFeature feature) {
+				if (feature.getName().equals("provided") || feature.getName().equals("required")) {
+					return false;
+				}
+				return objectType != XMLTypePackage.eINSTANCE.getAnyType();
+			}
+
+			
+			public boolean shouldSaveType(EClass objectType, EClass featureType, EStructuralFeature feature) {
+				return true;
+			}
+			
+			
+		});
 		saveOptions.put(XMIResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
 		saveOptions.put(XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.FALSE);
+
 		// saveOptions.put(XMLResource.OPTION_SKIP_ESCAPE, Boolean.TRUE);
 
 		final ExtendedMetaData ext = new BasicExtendedMetaData(ExtendedMetaData.ANNOTATION_URI,
 				EPackage.Registry.INSTANCE, new HashMap<>());
 		ext.setQualified(UMLPackage.eINSTANCE, true);
 		ext.setFeatureKind(UMLPackage.eINSTANCE.getTypedElement_Type(), ExtendedMetaData.ELEMENT_FEATURE);
+
 		saveOptions.put(XMLResource.OPTION_EXTENDED_META_DATA, ext);
 	}
 
@@ -137,7 +159,7 @@ public class Capella2UMLBridgeJob extends UMLBridgeJob<Project> {
 									handler.recordValues(text, remote.eContainer(), f, remote);
 								}
 								if (shouldSaveType) {
-//									saveTypeAttribute(eClass);
+									// saveTypeAttribute(eClass);
 
 								}
 								if (!toDOM) {
@@ -160,6 +182,19 @@ public class Capella2UMLBridgeJob extends UMLBridgeJob<Project> {
 				} else {
 
 					super.saveElementReferenceSingle(o, f);
+				}
+			}
+
+			@Override
+			protected void saveTypeAttribute(EClass eClass) {
+				if (xmiType) {
+					if (!toDOM) {
+						doc.addAttribute(XMI_TYPE_NS, helper.getQName(eClass));
+					} else {
+						((Element) currentNode).setAttributeNS(xmiURI, XMI_TYPE_NS, helper.getQName(eClass));
+					}
+				} else {
+					super.saveTypeAttribute(eClass);
 				}
 			}
 

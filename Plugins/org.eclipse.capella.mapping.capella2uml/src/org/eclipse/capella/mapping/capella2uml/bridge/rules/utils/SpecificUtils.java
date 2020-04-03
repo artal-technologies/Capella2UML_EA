@@ -3,18 +3,42 @@
  */
 package org.eclipse.capella.mapping.capella2uml.bridge.rules.utils;
 
-import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.impl.EDataTypeImpl;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.emf.ecore.impl.EcoreFactoryImpl;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
+import org.eclipse.emf.ecore.util.BasicFeatureMap;
+import org.eclipse.emf.ecore.util.ExtendedMetaData;
+import org.eclipse.emf.ecore.util.FeatureMap;
+import org.eclipse.emf.ecore.util.FeatureMap.Entry;
+import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.emf.ecore.xml.type.AnyType;
+import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
+import org.eclipse.emf.ecore.xml.type.impl.AnyTypeImpl;
 import org.eclipse.uml2.uml.Actor;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Signal;
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.resource.UMLResource;
 import org.polarsys.capella.core.data.capellacore.AbstractPropertyValue;
 import org.polarsys.capella.core.data.capellacore.BooleanPropertyValue;
-import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.capellacore.EnumerationPropertyLiteral;
 import org.polarsys.capella.core.data.capellacore.EnumerationPropertyValue;
 import org.polarsys.capella.core.data.capellacore.FloatPropertyValue;
@@ -23,30 +47,16 @@ import org.polarsys.capella.core.data.capellacore.PropertyValueGroup;
 import org.polarsys.capella.core.data.capellacore.PropertyValuePkg;
 import org.polarsys.capella.core.data.capellacore.StringPropertyValue;
 import org.polarsys.capella.core.data.capellamodeller.Project;
-import org.polarsys.capella.core.data.cs.AbstractActor;
-import org.polarsys.capella.core.data.cs.BlockArchitecture;
-import org.polarsys.capella.core.data.cs.Component;
-import org.polarsys.capella.core.data.cs.Interface;
 import org.polarsys.capella.core.data.fa.ComponentExchange;
 import org.polarsys.capella.core.data.fa.ComponentPort;
 import org.polarsys.capella.core.data.fa.ComponentPortKind;
 import org.polarsys.capella.core.data.fa.OrientationPortKind;
-import org.polarsys.capella.core.data.information.ExchangeItem;
-import org.polarsys.capella.core.data.information.ExchangeMechanism;
 import org.polarsys.capella.core.data.information.Port;
-import org.polarsys.capella.core.data.information.datatype.BooleanType;
-import org.polarsys.capella.core.data.information.datatype.Enumeration;
-import org.polarsys.capella.core.data.information.datatype.NumericType;
-import org.polarsys.capella.core.data.information.datatype.PhysicalQuantity;
-import org.polarsys.capella.core.data.information.datatype.StringType;
-import org.polarsys.capella.core.data.la.LogicalArchitecture;
-import org.polarsys.capella.core.data.pa.PhysicalArchitecture;
 import org.polarsys.capella.core.data.pa.PhysicalComponent;
 import org.polarsys.capella.core.data.pa.PhysicalComponentKind;
 import org.polarsys.capella.core.data.pa.PhysicalComponentNature;
 
 import com.artal.capella.mapping.CapellaBridgeAlgo;
-import com.artal.capella.mapping.CapellaUtils;
 import com.artal.capella.mapping.MappingUtils;
 import com.artal.capella.mapping.mix.AbstractMappingAlgoMix;
 import com.artal.capella.mapping.rules.AbstractMapping;
@@ -127,9 +137,9 @@ public class SpecificUtils {
 		Resource eResource = component.eResource();
 		String sysMLIDSource = MappingUtils.getSysMLID(eResource, component);
 		PhysicalComponentKind kind = component.getKind();
-		XMIExtensionsUtils.addTag(element, "Kind", kind.getLiteral(), targetComponent, sysMLIDSource,"K");
+		XMIExtensionsUtils.addTag(element, "Kind", kind.getLiteral(), targetComponent, sysMLIDSource, "K");
 		PhysicalComponentNature nature = component.getNature();
-		XMIExtensionsUtils.addTag(element, "Nature", nature.getLiteral(), targetComponent, sysMLIDSource,"N");
+		XMIExtensionsUtils.addTag(element, "Nature", nature.getLiteral(), targetComponent, sysMLIDSource, "N");
 
 	}
 
@@ -138,10 +148,10 @@ public class SpecificUtils {
 		Resource eResource = componentPort.eResource();
 		String sysMLIDSource = MappingUtils.getSysMLID(eResource, componentPort);
 		OrientationPortKind orientation = componentPort.getOrientation();
-		XMIExtensionsUtils.addTag(element, "Direction", orientation.getLiteral(), targetPort, sysMLIDSource,"D");
+		XMIExtensionsUtils.addTag(element, "Direction", orientation.getLiteral(), targetPort, sysMLIDSource, "D");
 
 		ComponentPortKind kind = componentPort.getKind();
-		XMIExtensionsUtils.addTag(element, "Kind", kind.getLiteral(), targetPort, sysMLIDSource,"K");
+		XMIExtensionsUtils.addTag(element, "Kind", kind.getLiteral(), targetPort, sysMLIDSource, "K");
 
 	}
 
@@ -151,10 +161,10 @@ public class SpecificUtils {
 		Resource eResource = ce.eResource();
 		String sysMLIDSource = MappingUtils.getSysMLID(eResource, sourcePort);
 
-		XMIExtensionsUtils.addTag(element, "SrcCapellaID", sysMLIDSource, interf, sysMLIDSource,"S");
+		XMIExtensionsUtils.addTag(element, "SrcCapellaID", sysMLIDSource, interf, sysMLIDSource, "S");
 		Port targetPort = ce.getTargetPort();
 		String sysMLIDTarget = MappingUtils.getSysMLID(eResource, targetPort);
-		XMIExtensionsUtils.addTag(element, "TargetCapellaID", sysMLIDTarget, interf, sysMLIDTarget,"T");
+		XMIExtensionsUtils.addTag(element, "TargetCapellaID", sysMLIDTarget, interf, sysMLIDTarget, "T");
 
 	}
 
@@ -185,7 +195,7 @@ public class SpecificUtils {
 			}
 			Resource eResource = abstractPropertyValue.eResource();
 			String sysMLIDSource = MappingUtils.getSysMLID(eResource, abstractPropertyValue);
-			XMIExtensionsUtils.addTag(createElement, name, value, eobject, sysMLIDSource,"p");
+			XMIExtensionsUtils.addTag(createElement, name, value, eobject, sysMLIDSource, "p");
 		}
 	}
 
@@ -208,7 +218,7 @@ public class SpecificUtils {
 			return "Signal";
 		}
 		if (capellaElement instanceof org.eclipse.uml2.uml.Class) {
-				return "Class";
+			return "Class";
 		}
 		if (capellaElement instanceof org.eclipse.uml2.uml.Interface) {
 			return "Interface";
@@ -228,16 +238,152 @@ public class SpecificUtils {
 		return mix.getMixName();
 	}
 
-	//
-	// static public EObject applyStereotype(Element element, Stereotype stereotype)
-	// {
-	//
-	//
-	//
-	//
-	//
-	//
-	// }
-	//
+	static public AnyType getOrCreateCustomizationList(XMIResource res, EObject sourceItem) {
+		Map<EObject, AnyType> customMap = res.getEObjectToExtensionMap();
+		AnyType allCustoms = customMap.get(sourceItem);
+
+		if (allCustoms == null) {
+			allCustoms = new AnyTypeImpl() {
+				public FeatureMap getMixed() {
+					if (mixed == null) {
+						mixed = new BasicFeatureMap(this, XMLTypePackage.ANY_TYPE__MIXED) {
+							protected org.eclipse.emf.ecore.util.FeatureMap.Entry validate(int index,
+									org.eclipse.emf.ecore.util.FeatureMap.Entry object) {
+								if (modCount == 0)
+									return object;
+
+								return null;
+
+							}
+						};
+					}
+					return mixed;
+				}
+
+				@Override
+				public FeatureMap getAnyAttribute() {
+					if (anyAttribute == null) {
+						anyAttribute = new BasicFeatureMap(this, XMLTypePackage.ANY_TYPE__ANY_ATTRIBUTE) {
+							protected org.eclipse.emf.ecore.util.FeatureMap.Entry validate(int index,
+									org.eclipse.emf.ecore.util.FeatureMap.Entry object) {
+								if (modCount == 0)
+									return object;
+
+								return null;
+
+							}
+						};
+					}
+					return anyAttribute;
+				}
+			};
+			customMap.put(sourceItem, allCustoms);
+		}
+
+		return allCustoms;
+	}
+
+	/**
+	 * Add a custom reference
+	 *
+	 * @param res
+	 *            concerned UML resource
+	 * @param sourceItem
+	 *            item to customize
+	 * @param featureName
+	 *            name of the new attribute
+	 * @param targetItem
+	 *            customization to add on the sourceItem
+	 * @param displayType
+	 *            indicate if the object type must be displayed in a "xmi:type"
+	 *            attribute
+	 */
+	static public void addCustoRef(XMIResource res, EObject sourceItem, String featureName, EObject targetItem,
+			boolean displayType, boolean isContainment) {
+		// New Feature
+		EReference feature = EcoreFactory.eINSTANCE.createEReference();
+		feature.setName(featureName);
+		if (displayType) {
+			feature.setEType(UMLPackage.eINSTANCE.getElement());
+		} else {
+			feature.setEType(targetItem.eClass());
+		}
+
+		feature.setContainment(isContainment);
+		AnyType allCustoms = getOrCreateCustomizationList(res, sourceItem);
+
+		allCustoms.getAny().add(feature, targetItem);
+		if (res instanceof ResourceImpl) {
+			((ResourceImpl) res).attached(targetItem);
+		}
+	}
+
+	/**
+	 * Add a custom attribute
+	 *
+	 * @param res
+	 *            concerned UML resource
+	 * @param sourceItem
+	 *            item to customize
+	 * @param featureName
+	 *            name of the new attribute
+	 * @param value
+	 *            string value to display
+	 */
+	static public void addCustoAttr(XMIResource res, EObject sourceItem, String featureName, String value) {
+		// New Attribute
+		EAttribute attr = EcoreFactory.eINSTANCE.createEAttribute();
+		// attributes.add(attr);
+		attr.setName(featureName);
+		EDataType type = new EDataTypeImpl() {
+			@Override
+			public EPackage getEPackage() {
+				return new EPackageImpl() {
+					@Override
+					public EFactory getEFactoryInstance() {
+						return new EcoreFactoryImpl() {
+							@Override
+							public String convertToString(EDataType eDataType, Object instanceValue) {
+								return instanceValue.toString();
+							}
+						};
+					}
+				};
+			}
+		};
+		type.setName("AnySimpleType");
+		type.setInstanceClass(String.class);
+		attr.setEType(type);
+		attr.setUpperBound(1);
+
+		AnyType allCustoms = getOrCreateCustomizationList(res, sourceItem);
+
+		allCustoms.getAnyAttribute().add(attr, value);
+	}
+
+	/**
+	 * @param sp
+	 * @param featureName
+	 * @return
+	 */
+	static public Object getCustomFeature(EObject sp, String... featureNames) {
+		Object value = null;
+		XMIResource res = (XMIResource) sp.eResource();
+		Map<EObject, AnyType> eObjectToExtensionMap = res.getEObjectToExtensionMap();
+		AnyType anyType = eObjectToExtensionMap.get(sp);
+		FeatureMap any = anyType.getMixed();
+
+		for (String featureName : featureNames) {
+			for (int i = 0; i < any.size(); i++) {
+				Entry entry = any.get(i);
+
+				EStructuralFeature eStructuralFeature = entry.getEStructuralFeature();
+				if (eStructuralFeature.getName().equals(featureName)) {
+					value = entry.getValue();
+				}
+			}
+		}
+		return value;
+	}
 
 }

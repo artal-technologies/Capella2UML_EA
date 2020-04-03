@@ -85,6 +85,9 @@ public class ActorMapping extends CommonsActorMapping<Capella2UMLAlgo> {
 			// logicalActor.getId(),
 			// functionalExchangeMapping);
 
+			PropertyMapping propertyMapping = new PropertyMapping(getAlgo(), logicalActor, getMappingExucution());
+			manager.add(propertyMapping.getClass().getName() + logicalActor.getId(), propertyMapping);
+
 			PortMapping portMapping = new PortMapping(getAlgo(), logicalActor, getMappingExucution());
 			manager.add(PortMapping.class.getName() + logicalActor.getId(), portMapping);
 

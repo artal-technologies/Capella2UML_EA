@@ -10,8 +10,11 @@ import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
 import org.eclipse.capella.mapping.capella2uml.bridge.rules.utils.SpecificUtils;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
+import org.eclipse.emf.diffmerge.impl.scopes.AbstractEditableModelScope;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.uml2.uml.Actor;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Component;
@@ -20,6 +23,7 @@ import org.eclipse.uml2.uml.LiteralInteger;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.Usage;
+import org.eclipse.uml2.uml.resource.UMLResource;
 import org.polarsys.capella.core.data.capellacore.Classifier;
 import org.polarsys.capella.core.data.capellacore.Type;
 import org.polarsys.capella.core.data.information.AbstractInstance;
@@ -240,6 +244,12 @@ public class PropertyMapping extends AbstractDynamicMapping<Classifier, Property
 
 				XMIExtensionsUtils.addConnector(targetAssociation, getAlgo().getXMIExtension(), sysMLID, "Unspecified",
 						"Association", subProp, targetProp, true);
+			}
+		}
+		if (eaContainer instanceof Actor) {
+			Resource resource = (Resource) ((Actor) eaContainer).eResource();
+			if (resource instanceof XMIResource) {
+				SpecificUtils.addCustoRef((XMIResource) resource, (Actor) eaContainer, "ownedAttribute", targetProperty,true,true);
 			}
 		}
 
