@@ -137,9 +137,9 @@ image::CAPUML_CapellaProject.JPG[CAPUML_CapellaProject.JPG, title="Capella proje
 
 === Launch the Export model
 
-==== Open Contextual "Exports" menu
+==== Open Contextual "Model transformation" menu
 
-Right click on a Capella Element, and select the "Exports" menu.
+Right click on a Capella Element, and select the "Model transformation" menu.
 
 image::CAPUML_ExportsMenu.JPG[CAPUML_ExportsMenu.JPG, title="Exports menu"] 
 
@@ -175,13 +175,77 @@ The OK button is available only when the three fields are filled.
 
 image::CAPUML_FilledWizard.JPG[CAPUML_FilledWizard.JPG, title="Filled Exports wizard"] 
 
+
 Click on the "OK" button.
 
 The Enterprise Architect model is built and persisted in the generated output xml file.
 
+==== PVMT and Physical Architecture options
+
+In the "Model transformation" wizard, in the case where "Capella to Enterprise Architect" type is selected, a check button "Export profiles" appears. 
+
+image::CAPUML_ExportProfile.JPG[CAPUML_ExportProfile.JPG,title="Export profiles."]
+
+This option allows to export PVMT data as UML profile.
+
+image::CAPUML_PVMTtoProfiles.JPG[CAPUML_PVMTtoProfiles.JPG,title="PVMT data to UML profiles."]
+
+The profiles will be exported into a XML file naming "MDG_CapellaProfile_xxxxx" with xxxx is the export date.
+This file is exported in the same path than the target file.
+   
+
+
 <<<
 
 == Import to Enterprise Architect
+
+=== Import MDG technologies
+In the case where profiles has been exported from Capella (<PVMT options>), It's necessary to import these profiles in Enterprise Architect.
+In this way, the user can use this profile in Enterprise Architect software.
+
+Start Enterprise Architect.
+In the Enterprise Architect ribbon, select "Start -> Share -> Resources" menu.
+
+The Resources browser is displayed.
+
+image::EA_Resources.JPG[EA_Resources.JPG, title="EA Resources."] 
+ 
+In the "MDG Technologies" node, right click and select the "Import Technology" menu.
+
+image::EA_ImportTechnology.JPG[EA_ImportTechnology.JPG,title="Import Technology."]
+ 
+"Import MDG Technology" wizard is displayed. In the "Filename" field, select the MGG_CapellaProfile_xxxx.xml exported from Capella.
+
+image::EA_ImportMDGTechnologyWizard.JPG[EA_ImportMDGTechnologyWizard.JPG,title="Import MDG Technology wizard."]
+
+In this wizard, the others fields are automatically filled.
+Click on "OK" button.
+
+image::EA_CapellaProfile.JPG[EA_CapellaProfile.JPG,title="Capella profiles added."]
+
+In the EA project, create a new Component.
+
+Select this component. In the "Properties" view, select the Stereotype field.
+
+image::EA_StereoWizard.JPG[EA_StereoWizard.JPG,"Stereotypes wizard."]
+
+In the "Perpective" field, select "Specialized -> Model Technologies" value.
+
+image::EA_ModelTechnologies.JPG[EA_ModelTechnologies.JPG,title="Model Technologies perspective."]
+
+In the "Profile" field, several profiles are available In the "Profile" field, several profiles are available, including profiles imported from Capella.
+
+image::EA_ProfileCapella.JPG[EA_ProfileCapella.JPG, title="Profiles from Capella."]
+
+In this list, select a profile.
+All the compatible stereotypes from the profile with selected element are displayed. 
+
+image::EA_StereoCapella.JPG[EA_StereoCapella.JPG,title="Stereotypes from Capella."]
+
+Select stereotype and click on "OK" button.
+The stereotype is applied on the Component.
+
+
 
 === Create a new Enterprise Architect Project.
 
@@ -339,4 +403,12 @@ The last step, is to create a new Baselines after the merge.
 
 == Transformation rules
 
+=== Logical Architecture transformation
+
 image::TableRule.JPG[TableRule.JPG] 
+
+
+=== Alternative Physical Architecture transformation
+
+image::AlternativeTransfo.JPG[AlternativeTransfo.JPG] 
+
