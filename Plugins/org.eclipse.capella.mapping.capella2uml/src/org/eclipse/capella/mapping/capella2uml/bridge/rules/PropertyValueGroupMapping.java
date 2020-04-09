@@ -99,7 +99,7 @@ public class PropertyValueGroupMapping
 					.getTargetResourceSet((AbstractEditableModelScope) targetDataSet);
 			Model uml = UML2Util.load(targetResourceSet, URI.createURI(UMLResource.UML_METAMODEL_URI),
 					UMLPackage.Literals.MODEL);
-			org.eclipse.uml2.uml.Class ownedType = (org.eclipse.uml2.uml.Class) uml.getOwnedType("Component");
+			org.eclipse.uml2.uml.Class ownedType = (org.eclipse.uml2.uml.Class) uml.getOwnedType("Class");
 			profile.createMetaclassReference(ownedType);
 			stereo.createExtension(ownedType, false);
 			XMIExtensionsUtils.createElement(stereo, getAlgo().getXMIExtension());// TODO
@@ -108,7 +108,7 @@ public class PropertyValueGroupMapping
 
 			for (AbstractPropertyValue pv : source.getOwnedPropertyValues()) {
 				Property property = UMLFactory.eINSTANCE.createProperty();
-				MappingUtils.generateUID(getAlgo(), source, property, this);
+				MappingUtils.generateUID(getAlgo(), pv, property, this);
 				stereo.getOwnedAttributes().add(property);
 				property.setType(importPrimitiveType);
 				property.setName(pv.getName());

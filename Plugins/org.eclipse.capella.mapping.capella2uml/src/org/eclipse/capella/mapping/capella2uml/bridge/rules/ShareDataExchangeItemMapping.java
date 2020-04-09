@@ -13,10 +13,16 @@ import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.PackageableElement;
+import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.polarsys.capella.core.data.capellacore.CapellaElement;
+import org.polarsys.capella.core.data.capellacore.PropertyValueGroup;
+import org.polarsys.capella.core.data.capellacore.PropertyValuePkg;
 import org.polarsys.capella.core.data.cs.BlockArchitecture;
 import org.polarsys.capella.core.data.information.DataPkg;
 import org.polarsys.capella.core.data.information.ExchangeItem;
@@ -76,21 +82,10 @@ public class ShareDataExchangeItemMapping extends CommonExchangeItemMapping<Bloc
 	public Object compute(Object eaContainer, ExchangeItem source) {
 		Class classTarget = UMLFactory.eINSTANCE.createClass();
 		MappingUtils.generateUID(getAlgo(), source, classTarget, this);
-		Resource eResource = source.eResource();
-		String sysMLID = MappingUtils.getSysMLID(eResource, source);
-		element createElement = XMIExtensionsUtils.addElement(classTarget, getAlgo().getXMIExtension(), sysMLID,
-				"entity");
-
-		CapellaElement ce = (CapellaElement) source;
-		if (CapellaUtils.hasStereotype(ce)) {
-			XMIExtensionsUtils.createStereotypeProperties(createElement, CapellaUtils.getSterotypeName(ce), "Entity");
-		}
-
 		classTarget.setName(source.getName());
-
-		Object capellaObjectFromAllRules = MappingRulesManager.getCapellaObjectFromAllRules(source.eContainer());
-		if (capellaObjectFromAllRules instanceof org.eclipse.uml2.uml.Package) {
-			((org.eclipse.uml2.uml.Package) capellaObjectFromAllRules).getPackagedElements().add(classTarget);
+		Object capellaObjectFromAllRules0 = MappingRulesManager.getCapellaObjectFromAllRules(source.eContainer());
+		if (capellaObjectFromAllRules0 instanceof org.eclipse.uml2.uml.Package) {
+			((org.eclipse.uml2.uml.Package) capellaObjectFromAllRules0).getPackagedElements().add(classTarget);
 		}
 
 		else if (eaContainer instanceof Model) {
@@ -100,6 +95,38 @@ public class ShareDataExchangeItemMapping extends CommonExchangeItemMapping<Bloc
 					((org.eclipse.uml2.uml.Package) ownedMember).getPackagedElements().add(classTarget);
 			}
 		}
+		Resource eResource = source.eResource();
+		String sysMLID = MappingUtils.getSysMLID(eResource, source);
+		element createElement = XMIExtensionsUtils.addElement(classTarget, getAlgo().getXMIExtension(), sysMLID,
+				"entity");
+
+		CapellaElement ce = (CapellaElement) source;
+		if (CapellaUtils.hasStereotype(ce)) {
+			XMIExtensionsUtils.createStereotypeProperties(createElement, CapellaUtils.getSterotypeName(ce), "Entity");
+			EList<PropertyValueGroup> pvgs = ce.getOwnedPropertyValueGroups();
+			for (PropertyValueGroup propertyValueGroup : pvgs) {
+				PropertyValuePkg propertyValuePkgFromName = SpecificUtils
+						.getProfilePropertyValueGroup(ProjectExt.getProject(source), propertyValueGroup.getName());
+				Profile capellaObjectFromAllRules = (Profile) MappingRulesManager
+						.getCapellaObjectFromAllRules(propertyValuePkgFromName);
+
+				Stereotype ownedStereotype = capellaObjectFromAllRules
+						.getOwnedStereotype(propertyValueGroup.getName().split("\\.")[1]);
+
+				getAlgo().getStereotypes().add(ownedStereotype);
+
+				String typeBase = "Entity";
+
+				Class compStereo = UMLFactory.eINSTANCE.createClass();
+				SpecificUtils.createCustoStereotypeApplication((Element) eaContainer, classTarget,
+						SpecificUtils.getModel(classTarget,source), propertyValueGroup, typeBase, compStereo, getAlgo());
+
+			}
+		}
+
+	
+
+		
 
 		return classTarget;
 	}

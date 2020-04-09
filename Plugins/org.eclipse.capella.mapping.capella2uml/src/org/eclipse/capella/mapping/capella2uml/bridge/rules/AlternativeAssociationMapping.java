@@ -55,7 +55,6 @@ public class AlternativeAssociationMapping extends CommonComponentExchangeMappin
 		// TODO Auto-generated constructor stub
 	}
 
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -74,6 +73,9 @@ public class AlternativeAssociationMapping extends CommonComponentExchangeMappin
 				.getCapellaObjectFromAllRules(sourcePort);
 		org.eclipse.uml2.uml.Port tp = (org.eclipse.uml2.uml.Port) MappingRulesManager
 				.getCapellaObjectFromAllRules(targetPort);
+		if (sp == null || tp == null) {
+			return null;
+		}
 
 		Interface sourceV = (Interface) SpecificUtils.getCustomFeature(sp, "required", "provided");
 		Interface targetV = (Interface) SpecificUtils.getCustomFeature(tp, "required", "provided");

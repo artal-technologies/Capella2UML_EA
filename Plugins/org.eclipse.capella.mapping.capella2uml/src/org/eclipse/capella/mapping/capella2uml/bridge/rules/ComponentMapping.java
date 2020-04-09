@@ -6,25 +6,38 @@ package org.eclipse.capella.mapping.capella2uml.bridge.rules;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
 import org.eclipse.capella.mapping.capella2uml.bridge.rules.utils.SpecificUtils;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.ExtendedMetaData;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.uml2.uml.Component;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.polarsys.capella.core.data.capellacore.AbstractPropertyValue;
+import org.polarsys.capella.core.data.capellacore.BooleanPropertyValue;
 import org.polarsys.capella.core.data.capellacore.CapellaElement;
+import org.polarsys.capella.core.data.capellacore.EnumerationPropertyLiteral;
+import org.polarsys.capella.core.data.capellacore.EnumerationPropertyValue;
+import org.polarsys.capella.core.data.capellacore.FloatPropertyValue;
+import org.polarsys.capella.core.data.capellacore.IntegerPropertyValue;
 import org.polarsys.capella.core.data.capellacore.PropertyValueGroup;
 import org.polarsys.capella.core.data.capellacore.PropertyValuePkg;
+import org.polarsys.capella.core.data.capellacore.StringPropertyValue;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.cs.SystemComponent;
-import org.polarsys.capella.core.data.information.Class;
+import org.polarsys.capella.core.data.pa.PhysicalArchitecture;
 import org.polarsys.capella.core.data.pa.PhysicalComponent;
 import org.polarsys.capella.core.model.helpers.ProjectExt;
 
@@ -90,28 +103,46 @@ public class ComponentMapping extends CommonComponentMapping<Capella2UMLAlgo> {
 
 				Stereotype ownedStereotype = capellaObjectFromAllRules
 						.getOwnedStereotype(propertyValueGroup.getName().split("\\.")[1]);
-				//
-				// PropertyValueGroup stereotypePropertyValueGroup = SpecificUtils
-				// .getStereotypePropertyValueGroup(ProjectExt.getProject(source),
-				// propertyValueGroup.getName());
-
-				// Object capellaObjectFromAllRules2 = MappingRulesManager
-				// .getCapellaObjectFromAllRules(stereotypePropertyValueGroup);
-
-				// model.
 
 				SpecificUtils.applyStereotypeAttribute(propertyValueGroup, createElement, targetComponent);
 
-				targetComponent.applyStereotype((Stereotype) ownedStereotype);
-				// Capella2UMLElementOperations.applyStereotype(targetComponent,
-				// ownedStereotype);
+				getAlgo().getStereotypes().add(ownedStereotype);
+
+				String typeBase = "Component";
+
+				Component compStereo = UMLFactory.eINSTANCE.createComponent();
+				SpecificUtils.createCustoStereotypeApplication((Element) eaContainer, targetComponent, model,
+						propertyValueGroup, typeBase, compStereo, getAlgo());
+
 			}
 		}
 		if (source instanceof PhysicalComponent) {
-			stereoNames.add("Physical Component");
+
+			PhysicalArchitecture physicalArchitecture = CapellaUtils.getPhysicalArchitecture(source);
+			Profile capellaObjectFromAllRules = (Profile) MappingRulesManager
+					.getCapellaObjectFromAllRules(physicalArchitecture);
+			Stereotype ownedStereotype = capellaObjectFromAllRules.getOwnedStereotype("Physical_Component");
+			getAlgo().getStereotypes().add(ownedStereotype);
+			stereoNames.add("Physical_Architecture::Physical_Component");
 			XMIExtensionsUtils.createStereotypeProperties(createElement, stereoNames, "Component", sysMLID);
 
 			SpecificUtils.applyPhysicalStereotypeAttribute(createElement, (PhysicalComponent) source, targetComponent);
+
+			Component compStereo = UMLFactory.eINSTANCE.createComponent();
+
+			XMIResource res = (XMIResource) ((Element) eaContainer).eResource();
+			SpecificUtils.addCustoRef(res, model, "Physical_Architecture:Physical_Component", compStereo, false, true);
+			getAlgo().getStereoNames().add("Physical_Architecture:Physical_Component");
+
+			String sysMLID2 = MappingUtils.getSysMLID(res, targetComponent);
+			if (sysMLID2 != null)
+				SpecificUtils.addCustoAttr(res, compStereo, "base_Component" /* + typeBase */, sysMLID2);
+
+			String kind = ((PhysicalComponent) source).getKind().getLiteral();
+			String nature = ((PhysicalComponent) source).getNature().getLiteral();
+
+			SpecificUtils.addCustoAttr(res, compStereo, "Kind", kind);
+			SpecificUtils.addCustoAttr(res, compStereo, "Nature", nature);
 
 		}
 		return targetComponent;

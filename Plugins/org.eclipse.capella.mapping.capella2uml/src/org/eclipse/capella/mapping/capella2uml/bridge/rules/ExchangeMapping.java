@@ -253,6 +253,7 @@ public class ExchangeMapping extends CommonComponentExchangeMapping<Capella2UMLA
 				} else {
 					XMIExtensionsUtils.createPropertiesWithStereotype(addElement, false, false, "ProxyConnector", 0,
 							"public", false, false, CapellaUtils.getSterotypeName(ce));
+					
 				}
 				addElement.setClassifier(targetConnector);
 

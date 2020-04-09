@@ -82,13 +82,6 @@ public class PhysicalRootMapping extends AbstractDynamicMapping<Project, Project
 
 		((AbstractEditableModelScope) targetDataSet).add(extensionObject);
 
-		// ResourceSet targetResourceSet =
-		// MappingUtils.getTargetResourceSet((AbstractEditableModelScope)
-		// targetDataSet);
-		// model.applyProfile(getProfile("pathmap://UML_PROFILES/Ecore.profile.uml",
-		// targetResourceSet));
-		// model.applyProfile(getProfile("pathmap://UML_PROFILES/Standard.profile.uml",
-		// targetResourceSet));
 		return model;
 
 	}

@@ -6,10 +6,9 @@ package org.eclipse.capella.mapping.capella2uml.bridge;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
-import org.eclipse.capella.mapping.capella2uml.bridge.rules.utils.SpecificUtils;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
@@ -31,6 +30,7 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.polarsys.capella.core.data.capellamodeller.Project;
@@ -70,30 +70,30 @@ public class Capella2UMLBridgeJob extends UMLBridgeJob<Project> {
 		saveOptions.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
 		saveOptions.put(XMIResource.OPTION_SAVE_TYPE_INFORMATION, new XMLTypeInfo() {
 			public boolean shouldSaveType(EClass objectType, EClassifier featureType, EStructuralFeature feature) {
-				if (feature.getName().equals("provided") || feature.getName().equals("required")) {
+
+				Set<String> stereoNames = ((Capella2UMLAlgo) getAlgo()).getStereoNames();
+				if (feature.getName().equals("provided") || feature.getName().equals("required")
+						|| stereoNames.contains(feature.getName())) {
 					return false;
 				}
 				return objectType != XMLTypePackage.eINSTANCE.getAnyType();
 			}
 
-			
 			public boolean shouldSaveType(EClass objectType, EClass featureType, EStructuralFeature feature) {
 				return true;
 			}
-			
-			
+
 		});
 		saveOptions.put(XMIResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
 		saveOptions.put(XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.FALSE);
 
-		// saveOptions.put(XMLResource.OPTION_SKIP_ESCAPE, Boolean.TRUE);
 
 		final ExtendedMetaData ext = new BasicExtendedMetaData(ExtendedMetaData.ANNOTATION_URI,
 				EPackage.Registry.INSTANCE, new HashMap<>());
 		ext.setQualified(UMLPackage.eINSTANCE, true);
 		ext.setFeatureKind(UMLPackage.eINSTANCE.getTypedElement_Type(), ExtendedMetaData.ELEMENT_FEATURE);
-
 		saveOptions.put(XMLResource.OPTION_EXTENDED_META_DATA, ext);
+
 	}
 
 	/**
@@ -104,15 +104,27 @@ public class Capella2UMLBridgeJob extends UMLBridgeJob<Project> {
 	}
 
 	protected XMLHelper createOwnedXMLHelper(XMIResource resource) {
-		return new XMIHelperImpl(resource) {
-
-		};
+		return new XMIHelperImpl(resource) ;
 	}
 
 	@Override
 	public XMLSave createOwnXMLSave(XMLHelper xmlHelper) {
 		// TODO Auto-generated method stub
 		return new XMISaveImpl(xmlHelper) {
+
+			@Override
+			public void addNamespaceDeclarations() {
+
+				super.addNamespaceDeclarations();
+				List<Profile> stereotypes = ((Capella2UMLAlgo) getAlgo()).getProfiles();
+				for (Profile stereotype : stereotypes) {
+					// ((Element)currentNode).setAttributeNS(ExtendedMetaData.XMLNS_URI,
+					// "xmlns:"+stereotype.getName(), "http://"+stereotype.getName());
+					String name = stereotype.getName().replace("?", "").replace(" ", "");
+					doc.addAttribute("xmlns:" + name, "http://" + name);
+				}
+			}
+
 			/*
 			 * (non-Javadoc)
 			 * 
