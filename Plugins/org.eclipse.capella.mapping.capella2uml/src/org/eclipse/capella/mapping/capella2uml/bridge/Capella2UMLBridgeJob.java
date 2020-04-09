@@ -6,6 +6,7 @@ package org.eclipse.capella.mapping.capella2uml.bridge;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -31,7 +32,6 @@ import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Property;
-import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.w3c.dom.Element;
@@ -71,7 +71,7 @@ public class Capella2UMLBridgeJob extends UMLBridgeJob<Project> {
 		saveOptions.put(XMIResource.OPTION_SAVE_TYPE_INFORMATION, new XMLTypeInfo() {
 			public boolean shouldSaveType(EClass objectType, EClassifier featureType, EStructuralFeature feature) {
 
-				List<String> stereoNames = ((Capella2UMLAlgo) getAlgo()).getStereoNames();
+				Set<String> stereoNames = ((Capella2UMLAlgo) getAlgo()).getStereoNames();
 				if (feature.getName().equals("provided") || feature.getName().equals("required")
 						|| stereoNames.contains(feature.getName())) {
 					return false;
@@ -87,14 +87,12 @@ public class Capella2UMLBridgeJob extends UMLBridgeJob<Project> {
 		saveOptions.put(XMIResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
 		saveOptions.put(XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.FALSE);
 
-		// saveOptions.put(XMLResource.OPTION_SKIP_ESCAPE, Boolean.TRUE);
 
 		final ExtendedMetaData ext = new BasicExtendedMetaData(ExtendedMetaData.ANNOTATION_URI,
 				EPackage.Registry.INSTANCE, new HashMap<>());
 		ext.setQualified(UMLPackage.eINSTANCE, true);
 		ext.setFeatureKind(UMLPackage.eINSTANCE.getTypedElement_Type(), ExtendedMetaData.ELEMENT_FEATURE);
 		saveOptions.put(XMLResource.OPTION_EXTENDED_META_DATA, ext);
-		// ext.getXMLNSPrefixMapFeature(eClass)
 
 	}
 
@@ -106,22 +104,7 @@ public class Capella2UMLBridgeJob extends UMLBridgeJob<Project> {
 	}
 
 	protected XMLHelper createOwnedXMLHelper(XMIResource resource) {
-		return new XMIHelperImpl(resource) {
-			@Override
-			public EPackage[] packages() {
-
-				// List<Stereotype> stereotys = ((Capella2UMLAlgo) getAlgo()).getStereotypes();
-				// for (Stereotype stereo : stereotys) {
-				// EPackage ePackage = stereo.eClass().getEPackage();
-				// stereo.getProfile().eClass().getEPackage();
-				// EPackage demandPackage = extendedMetaData.demandPackage(stereo.getName());
-				// packages.put(demandPackage, stereo.getName());
-				// }
-
-				return super.packages();
-			}
-
-		};
+		return new XMIHelperImpl(resource) ;
 	}
 
 	@Override

@@ -84,7 +84,7 @@ public class OperationExchangeItemMapping extends
 
 				Operation compStereo = UMLFactory.eINSTANCE.createOperation();
 				SpecificUtils.createCustoStereotypeApplication((Element) eaContainer, targetOperation,
-						SpecificUtils.getModel(source), propertyValueGroup, typeBase, compStereo, getAlgo());
+						SpecificUtils.getModel(targetOperation,source), propertyValueGroup, typeBase, compStereo, getAlgo());
 
 			}
 		}

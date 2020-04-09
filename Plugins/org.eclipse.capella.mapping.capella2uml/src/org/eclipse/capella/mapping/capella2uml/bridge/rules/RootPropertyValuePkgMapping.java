@@ -94,7 +94,6 @@ public class RootPropertyValuePkgMapping extends AbstractDynamicMapping<Project,
 		profiles.getProfile().add(profile);
 		// Package packageProfile = UMLFactory.eINSTANCE.createPackage();
 		// MappingUtils.generateUID(getAlgo(), source, packageProfile, this);
-		Model mode = (Model) MappingRulesManager.getCapellaObjectFromAllRules(ProjectExt.getProject(source));
 
 		MappingUtils.generateUID(getAlgo(), source, profile, this);
 		for (AbstractPropertyValue pv : source.getAppliedPropertyValues()) {
@@ -131,9 +130,9 @@ public class RootPropertyValuePkgMapping extends AbstractDynamicMapping<Project,
 			PropertyValueGroupMapping pvgMapping = new PropertyValueGroupMapping(getAlgo(), pvp, getMappingExucution());
 			manager.add(PropertyValueGroupMapping.class.getName() + pvp.getId(), pvgMapping);
 
-			EnumerationPropertyValueMapping epvMapping = new EnumerationPropertyValueMapping(getAlgo(), pvp,
-					getMappingExucution());
-			manager.add(EnumerationPropertyValueMapping.class.getName() + pvp.getId(), epvMapping);
+//			EnumerationPropertyValueMapping epvMapping = new EnumerationPropertyValueMapping(getAlgo(), pvp,
+//					getMappingExucution());
+//			manager.add(EnumerationPropertyValueMapping.class.getName() + pvp.getId(), epvMapping);
 
 		}
 

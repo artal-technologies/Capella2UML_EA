@@ -80,7 +80,7 @@ public class ActorMapping extends CommonsActorMapping<Capella2UMLAlgo> {
 
 				Actor compStereo = UMLFactory.eINSTANCE.createActor();
 				SpecificUtils.createCustoStereotypeApplication((Element) eaContainer, targetActor,
-						SpecificUtils.getModel(source), propertyValueGroup, typeBase, compStereo, getAlgo());
+						SpecificUtils.getModel(targetActor,source), propertyValueGroup, typeBase, compStereo, getAlgo());
 
 			}
 		}

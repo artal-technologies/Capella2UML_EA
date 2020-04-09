@@ -106,6 +106,7 @@ public class AlternativeExchangeMapping extends CommonComponentExchangeMapping<C
 		String sysMLID = MappingUtils.getSysMLID(eResource, source);
 		CapellaElement ce = (CapellaElement) source;
 		List<String> stereoNames = new ArrayList<String>();
+		Model model = SpecificUtils.getModel(createInterface,source);
 		if (CapellaUtils.hasStereotype(ce)) {
 			String sterotypeName = CapellaUtils.getSterotypeName(ce);
 			stereoNames.add(sterotypeName);
@@ -126,7 +127,7 @@ public class AlternativeExchangeMapping extends CommonComponentExchangeMapping<C
 
 				Interface compStereo = UMLFactory.eINSTANCE.createInterface();
 				SpecificUtils.createCustoStereotypeApplication((Element) eaContainer, createInterface,
-						SpecificUtils.getModel(source), propertyValueGroup, typeBase, compStereo, getAlgo());
+						model, propertyValueGroup, typeBase, compStereo, getAlgo());
 
 			}
 		}
@@ -144,7 +145,7 @@ public class AlternativeExchangeMapping extends CommonComponentExchangeMapping<C
 		Interface compStereo = UMLFactory.eINSTANCE.createInterface();
 
 		XMIResource res = (XMIResource) ((Element) eaContainer).eResource();
-		SpecificUtils.addCustoRef(res, SpecificUtils.getModel(source), "Physical_Architecture:Exchange_Interface", compStereo, false, true);
+		SpecificUtils.addCustoRef(res, model, "Physical_Architecture:Exchange_Interface", compStereo, false, true);
 		getAlgo().getStereoNames().add("Physical_Architecture:Exchange_Interface");
 
 		String sysMLID2 = MappingUtils.getSysMLID(res, createInterface);

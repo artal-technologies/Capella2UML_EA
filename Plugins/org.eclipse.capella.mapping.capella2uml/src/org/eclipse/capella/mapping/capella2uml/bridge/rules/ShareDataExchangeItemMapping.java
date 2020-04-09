@@ -119,7 +119,7 @@ public class ShareDataExchangeItemMapping extends CommonExchangeItemMapping<Bloc
 
 				Class compStereo = UMLFactory.eINSTANCE.createClass();
 				SpecificUtils.createCustoStereotypeApplication((Element) eaContainer, classTarget,
-						SpecificUtils.getModel(source), propertyValueGroup, typeBase, compStereo, getAlgo());
+						SpecificUtils.getModel(classTarget,source), propertyValueGroup, typeBase, compStereo, getAlgo());
 
 			}
 		}

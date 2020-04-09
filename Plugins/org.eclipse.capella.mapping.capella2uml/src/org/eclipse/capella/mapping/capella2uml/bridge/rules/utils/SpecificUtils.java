@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.util.BasicFeatureMap;
 import org.eclipse.emf.ecore.util.FeatureMap;
+import org.eclipse.emf.ecore.util.FeatureMapUtil;
 import org.eclipse.emf.ecore.util.FeatureMap.Entry;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xml.type.AnyType;
@@ -255,7 +256,23 @@ public class SpecificUtils {
 								return null;
 
 							}
+							public boolean add(EStructuralFeature feature, Object object) {
+
+							    boolean isFeatureMap = FeatureMapUtil.isFeatureMap(feature);
+							    if (isMany(feature))
+							    {
+							      if (feature.isUnique() && contains(feature, object))
+							      {
+							        return false;
+							      }
+							    }
+
+							    return doAdd(isFeatureMap ? (Entry)object : createEntry(feature, object));
+							  
+							}
 						};
+						
+						
 					}
 					return mixed;
 				}
@@ -271,6 +288,21 @@ public class SpecificUtils {
 
 								return null;
 
+							}
+							
+							public boolean add(EStructuralFeature feature, Object object) {
+
+							    boolean isFeatureMap = FeatureMapUtil.isFeatureMap(feature);
+							    if (isMany(feature))
+							    {
+							      if (feature.isUnique() && contains(feature, object))
+							      {
+							        return false;
+							      }
+							    }
+
+							    return doAdd(isFeatureMap ? (Entry)object : createEntry(feature, object));
+							  
 							}
 						};
 					}
@@ -403,7 +435,7 @@ public class SpecificUtils {
 
 		String sysMLID = MappingUtils.getSysMLID(res, targetComponent);
 		if (sysMLID != null)
-			SpecificUtils.addCustoAttr(res, compStereo, "base_Class" /*+ typeBase*/, sysMLID);
+			SpecificUtils.addCustoAttr(res, compStereo, "base_Class" /* + typeBase */, sysMLID);
 		EList<AbstractPropertyValue> ownedPropertyValues = propertyValueGroup.getOwnedPropertyValues();
 		for (AbstractPropertyValue abstractPropertyValue : ownedPropertyValues) {
 			String pvName = abstractPropertyValue.getName();
@@ -432,7 +464,11 @@ public class SpecificUtils {
 		}
 	}
 
-	static public Model getModel(CapellaElement ce) {
+	static public Model getModel(Element element, CapellaElement ce) {
+		Model model = element.getModel();
+		if (model != null) {
+			return model;
+		}
 		Project project = ProjectExt.getProject(ce);
 		return ((Model) MappingRulesManager.getCapellaObjectFromAllRules(project));
 	}

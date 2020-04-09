@@ -19,6 +19,7 @@ import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.EncapsulatedClassifier;
 import org.eclipse.uml2.uml.Interface;
+import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
@@ -117,6 +118,7 @@ public class PortMapping extends CommonPortMapping<Capella2UMLAlgo> {
 		element targetelement = XMIExtensionsUtils.createElement(targetPort, getAlgo().getXMIExtension());
 
 		CapellaElement ce = (CapellaElement) source;
+		Model model = SpecificUtils.getModel(targetPort,source);
 		if (CapellaUtils.hasStereotype(ce)) {
 			XMIExtensionsUtils.createStereotypeProperties(targetelement, CapellaUtils.getSterotypeName(ce), "Port");
 			EList<PropertyValueGroup> pvgs = ce.getOwnedPropertyValueGroups();
@@ -135,7 +137,7 @@ public class PortMapping extends CommonPortMapping<Capella2UMLAlgo> {
 
 				Port compStereo = UMLFactory.eINSTANCE.createPort();
 				SpecificUtils.createCustoStereotypeApplication((Element) eaContainer, targetPort,
-						SpecificUtils.getModel(source), propertyValueGroup, typeBase, compStereo, getAlgo());
+						model, propertyValueGroup, typeBase, compStereo, getAlgo());
 
 			}
 		}
@@ -156,7 +158,7 @@ public class PortMapping extends CommonPortMapping<Capella2UMLAlgo> {
 			Port compStereo = UMLFactory.eINSTANCE.createPort();
 
 			XMIResource res = (XMIResource) ((Element) eaContainer).eResource();
-			SpecificUtils.addCustoRef(res, SpecificUtils.getModel(source), "Physical_Architecture:Component_Port", compStereo, false, true);
+			SpecificUtils.addCustoRef(res, model, "Physical_Architecture:Component_Port", compStereo, false, true);
 			getAlgo().getStereoNames().add("Physical_Architecture:Component_Port");
 
 			String sysMLID2 = MappingUtils.getSysMLID(res, targetPort);

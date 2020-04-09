@@ -82,7 +82,7 @@ public class ClassMapping extends CommonClassMapping<Capella2UMLAlgo> {
 
 				DataType compStereo = UMLFactory.eINSTANCE.createDataType();
 				SpecificUtils.createCustoStereotypeApplication((Element) eaContainer, targetdataType,
-						SpecificUtils.getModel(source), propertyValueGroup, typeBase, compStereo, getAlgo());
+						SpecificUtils.getModel(targetdataType,source), propertyValueGroup, typeBase, compStereo, getAlgo());
 
 			}
 		}

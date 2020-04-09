@@ -4,19 +4,13 @@
 package org.eclipse.capella.mapping.capella2uml.bridge;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import org.eclipse.capella.mapping.capella2uml.bridge.rules.utils.SpecificUtils;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EFactory;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
-import org.eclipse.uml2.uml.UMLPackage;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 
 import com.artal.capella.mapping.mix.AbstractMappingAlgoMix;
@@ -38,7 +32,7 @@ public class Capella2UMLAlgo extends UMLBridgeAlgo<Project> {
 	private Extension _xmiExtension;
 	private List<Profile> _profiles;
 	private List<Stereotype> _stereotypes;
-	private List<String> _stereoNames;
+	private Set<String> _stereoNames;
 	// private EClass typeClass;
 	// private EFactory bookFactoryInstance;
 	// private EReference typeRef;
@@ -112,9 +106,9 @@ public class Capella2UMLAlgo extends UMLBridgeAlgo<Project> {
 		return _stereotypes;
 	}
 
-	public List<String> getStereoNames() {
+	public Set<String> getStereoNames() {
 		if (_stereoNames == null) {
-			_stereoNames = new ArrayList<String>();
+			_stereoNames = new HashSet<String>();
 		}
 		return _stereoNames;
 	}

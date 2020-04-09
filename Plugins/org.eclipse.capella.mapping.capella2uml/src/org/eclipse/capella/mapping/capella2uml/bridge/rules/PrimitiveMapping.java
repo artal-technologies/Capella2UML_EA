@@ -120,7 +120,7 @@ public class PrimitiveMapping extends CommonDatatypeMapping<Capella2UMLAlgo> {
 
 				org.eclipse.uml2.uml.DataType compStereo = UMLFactory.eINSTANCE.createDataType();
 				SpecificUtils.createCustoStereotypeApplication((Element) eaContainer, targetPrimitiveType,
-						SpecificUtils.getModel(source), propertyValueGroup, typeBase, compStereo, getAlgo());
+						SpecificUtils.getModel(targetPrimitiveType,source), propertyValueGroup, typeBase, compStereo, getAlgo());
 
 			}
 		}

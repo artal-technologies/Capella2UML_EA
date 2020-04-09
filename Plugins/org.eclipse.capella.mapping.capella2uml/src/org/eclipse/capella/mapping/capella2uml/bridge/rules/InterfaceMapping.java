@@ -89,7 +89,8 @@ public class InterfaceMapping extends CommonInterfaceMapping<Capella2UMLAlgo> {
 
 				org.eclipse.uml2.uml.Interface compStereo = UMLFactory.eINSTANCE.createInterface();
 				SpecificUtils.createCustoStereotypeApplication((Element) eaContainer, targetInterface,
-						SpecificUtils.getModel(source), propertyValueGroup, typeBase, compStereo, getAlgo());
+						SpecificUtils.getModel(targetInterface, source), propertyValueGroup, typeBase, compStereo,
+						getAlgo());
 
 			}
 		}

@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
@@ -97,7 +98,8 @@ public class AlternativeExchangeItemMapping extends CommonExchangeItemMapping<Co
 		Operation compStereo = UMLFactory.eINSTANCE.createOperation();
 
 		XMIResource res = (XMIResource) ((Element) eaContainer).eResource();
-		SpecificUtils.addCustoRef(res, SpecificUtils.getModel(source), "Physical_Architecture:Capella", compStereo, false, true);
+		Model model = SpecificUtils.getModel(targetOperation,source);
+		SpecificUtils.addCustoRef(res, model, "Physical_Architecture:Capella", compStereo, false, true);
 		getAlgo().getStereoNames().add("Physical_Architecture:Capella");
 		String sysMLID2 = MappingUtils.getSysMLID(res, targetOperation);
 		if (sysMLID2 != null)
@@ -124,7 +126,7 @@ public class AlternativeExchangeItemMapping extends CommonExchangeItemMapping<Co
 
 				Operation compStereo2 = UMLFactory.eINSTANCE.createOperation();
 				SpecificUtils.createCustoStereotypeApplication((Element) eaContainer, targetOperation,
-						SpecificUtils.getModel(source), propertyValueGroup, typeBase, compStereo2, getAlgo());
+						model, propertyValueGroup, typeBase, compStereo2, getAlgo());
 
 			}
 		}
