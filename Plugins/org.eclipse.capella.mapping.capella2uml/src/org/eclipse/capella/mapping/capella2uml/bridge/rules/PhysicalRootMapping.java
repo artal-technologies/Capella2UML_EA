@@ -72,7 +72,8 @@ public class PhysicalRootMapping extends AbstractDynamicMapping<Project, Project
 		model.setVisibility(VisibilityKind.PUBLIC_LITERAL);
 		Package createPackage = UMLFactory.eINSTANCE.createPackage();
 		createPackage.setName(SpecificUtils.getCapellaImportName(this));
-		String sysMLID2 = MappingUtils.getSysMLID(eResource, capellaContainer);
+		PhysicalArchitecture physicalArchitecture = CapellaUtils.getPhysicalArchitecture(capellaContainer);
+		String sysMLID2 = MappingUtils.getSysMLID(eResource, physicalArchitecture);
 		getAlgo().putId(createPackage, this, sysMLID2);
 		model.getPackagedElements().add(createPackage);
 
