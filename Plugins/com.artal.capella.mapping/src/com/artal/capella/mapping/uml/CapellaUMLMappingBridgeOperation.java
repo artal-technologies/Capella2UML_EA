@@ -42,9 +42,9 @@ public class CapellaUMLMappingBridgeOperation extends UMLMappingBridgeOperation 
 		return new CapellaQueryExecution();
 	}
 
-	protected void handleRuleForTargetCreation(IRule<?, ?, ?> rule_p, IBridge<?, ?> bridge_p, Object source_p,
+	protected void handleRuleForTargetCreation(IRule<?, ?> rule_p, IBridge<?, ?> bridge_p, Object source_p,
 			Object targetDataSet_p, QueryExecution queryExecution_p, MappingExecution execution_p) {
-		RuleWrapper<?, ?, ?> mirrorRule = new RuleWrapper<>(rule_p, queryExecution_p);
+		RuleWrapper<?, ?> mirrorRule = new RuleWrapper<>(rule_p, queryExecution_p);
 		super.handleRuleForTargetCreation(mirrorRule, bridge_p, source_p, targetDataSet_p, queryExecution_p,
 				execution_p);
 
@@ -80,7 +80,7 @@ public class CapellaUMLMappingBridgeOperation extends UMLMappingBridgeOperation 
 	}
 
 	@Override
-	protected void registerProfileData(IUMLRule<?, ?, ?> rule_p, Object source_p, PendingDefinition pendingDef_p,
+	protected void registerProfileData(IUMLRule<?, ?> rule_p, Object source_p, PendingDefinition pendingDef_p,
 			MappingExecution execution_p, Object targetDataSet_p, EObject application_p) {
 		if (execution_p.getTrace() != null) {
 			super.registerProfileData(rule_p, source_p, pendingDef_p, execution_p, targetDataSet_p, application_p);

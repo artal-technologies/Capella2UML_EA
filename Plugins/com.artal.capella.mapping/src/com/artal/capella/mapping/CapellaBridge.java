@@ -53,7 +53,7 @@ public class CapellaBridge<SD, CD>
 
 	@Override
 	public MappingExecution createExecution(Editable trace_p) {
-		_capellaMappingExecution = new CapellaMappingExecution(trace_p, getLogger());
+		_capellaMappingExecution = new CapellaMappingExecution(trace_p);
 		return _capellaMappingExecution;
 	}
 

@@ -13,10 +13,12 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.diffmerge.api.scopes.IEditableModelScope;
 import org.eclipse.emf.diffmerge.bridge.api.IBridgeTrace.Editable;
+import org.eclipse.emf.diffmerge.bridge.api.incremental.IIncrementalBridge;
 import org.eclipse.emf.diffmerge.bridge.api.incremental.IIncrementalBridgeExecution;
 import org.eclipse.emf.diffmerge.bridge.interactive.BridgeJob;
 import org.eclipse.emf.diffmerge.bridge.interactive.EMFInteractiveBridge;
@@ -37,6 +39,10 @@ import org.eclipse.emf.ecore.xmi.impl.EMOFResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIHelperImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMISaveImpl;
+import org.eclipse.jface.action.Action;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.progress.IProgressConstants;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -221,20 +227,159 @@ public class UMLBridgeJob<SD> extends BridgeJob<SD> {
 		return resource;
 	}
 
-	@Override
-	protected void saveAndClose(IIncrementalBridgeExecution execution_p, Resource targetResource_p,
-			Resource traceResource_p, IProgressMonitor monitor_p) {
-		// Save and unload
-		monitor_p.subTask(Messages.BridgeJob_Step_Completion);
-		monitor_p.worked(1);
-		if (!execution_p.isActuallyIncremental())
-			setTrace(traceResource_p, execution_p.getTrace());
-		if (!traceResource_p.getContents().isEmpty())
-			ResourceUtil.makePersistent(traceResource_p);
-		ResourceUtil.closeResource(traceResource_p);
-		if (isSaveAndCloseTarget()) {
-			makePersistent(targetResource_p);
-			ResourceUtil.closeResource(targetResource_p);
+	// @Override
+	// protected void saveAndClose(IIncrementalBridgeExecution execution_p,
+	// Resource targetResource_p,
+	// Resource traceResource_p, IProgressMonitor monitor_p) {
+	// // Save and unload
+	// monitor_p.subTask(Messages.BridgeJob_Step_Completion);
+	// monitor_p.worked(1);
+	// if (!execution_p.isActuallyIncremental())
+	// setTrace(traceResource_p, execution_p.getTrace());
+	// if (!traceResource_p.getContents().isEmpty())
+	// ResourceUtil.makePersistent(traceResource_p);
+	// ResourceUtil.closeResource(traceResource_p);
+	// if (isSaveAndCloseTarget()) {
+	// makePersistent(targetResource_p);
+	// ResourceUtil.closeResource(targetResource_p);
+	// }
+	// }
+
+	/**
+	 * An action that triggers the deferred completion of the execution of a
+	 * bridge.
+	 */
+	protected static class CapellaDeferredBridgeExecutionAction extends Action
+			implements ActionFactory.IWorkbenchAction {
+		/** The initially non-null bridge */
+		private IIncrementalBridge<?, ?, ?> _bridge;
+		/** The initially non-null ongoing execution */
+		private IIncrementalBridgeExecution _execution;
+		/** The initially non-null target resource */
+		private Resource _targetResource;
+		/** The initially non-null trace resource */
+		private Resource _traceResource;
+		/** Whether the target must be saved and closed when done */
+		private boolean _isSaveAndCloseTarget;
+		/** The initially null execution status */
+		private IStatus _status;
+		/** The initially non-null progress monitor */
+		private SubMonitor _monitor;
+		private UMLBridgeJob<?> _bridgeJob;
+
+		/**
+		 * Constructor
+		 * 
+		 * @param bridge_p
+		 *            the non-null bridge whose execution has to be completed
+		 * @param execution_p
+		 *            the non-null ongoing execution of the bridge
+		 * @param monitor_p
+		 *            a non-null progress monitor
+		 */
+		public CapellaDeferredBridgeExecutionAction(IIncrementalBridge<?, ?, ?> bridge_p,
+				IIncrementalBridgeExecution execution_p, Resource targetResource_p, Resource traceResource_p,
+				boolean isSaveAndCloseTarget_p, SubMonitor monitor_p, UMLBridgeJob<?> bridgeJob) {
+			super(Messages.BridgeJob_ActionText);
+			_bridge = bridge_p;
+			_execution = execution_p;
+			_targetResource = targetResource_p;
+			_traceResource = traceResource_p;
+			_isSaveAndCloseTarget = isSaveAndCloseTarget_p;
+			_status = null;
+			_monitor = monitor_p;
+			_bridgeJob = bridgeJob;
+		}
+
+		/**
+		 * @see org.eclipse.ui.actions.ActionFactory.IWorkbenchAction#dispose()
+		 */
+		public void dispose() {
+			if (_execution instanceof IIncrementalBridgeExecution.Editable)
+				((IIncrementalBridgeExecution.Editable) _execution).setInteractiveMergeData(null);
+			_bridge = null;
+			_execution = null;
+			_targetResource = null;
+			_traceResource = null;
+			_monitor = null;
+			_status = null;
+			setEnabled(false);
+		}
+
+		/**
+		 * Return the status of the execution of the action
+		 * 
+		 * @return a potentially null object
+		 */
+		public IStatus getStatus() {
+			return _status;
+		}
+
+		/**
+		 * @see org.eclipse.jface.action.Action#run()
+		 */
+		@Override
+		public void run() {
+			// Interactive merge
+			_status = _bridge.mergeInteractively(_execution, _monitor);
+			if (_status.isOK()) {
+				// Save and unload
+				_monitor.subTask(Messages.BridgeJob_Step_Completion);
+				_monitor.worked(1);
+				if (!_execution.isActuallyIncremental())
+					setTrace(_traceResource, _execution.getTrace());
+				if (!_traceResource.getContents().isEmpty())
+					ResourceUtil.makePersistent(_traceResource);
+				ResourceUtil.closeResource(_traceResource);
+				if (_isSaveAndCloseTarget) {
+					_bridgeJob.makePersistent(_targetResource);
+					ResourceUtil.closeResource(_targetResource);
+				}
+			}
+			if (_status.isOK() || _status.getSeverity() == IStatus.CANCEL || _status.getSeverity() == IStatus.INFO
+					&& EMFInteractiveBridge.STATUS_SWITCH_TO_EDITOR.equals(_status.getMessage())) {
+				_monitor.done();
+				dispose();
+			}
+		}
+	}
+
+	protected void handleDeferrablePart(IIncrementalBridge<?, ?, ?> bridge_p,
+			final IIncrementalBridgeExecution execution_p, Resource targetResource_p, Resource traceResource_p,
+			final SubMonitor monitor_p) {
+		monitor_p.subTask(Messages.BridgeJob_Step_InteractiveUpdate);
+		// Defining the remaining part of the bridge process in a deferrable
+		// action
+		CapellaDeferredBridgeExecutionAction deferrableAction = new CapellaDeferredBridgeExecutionAction(bridge_p,
+				execution_p, targetResource_p, traceResource_p, isSaveAndCloseTarget(), monitor_p, this);
+		setProperty(IProgressConstants.KEEP_PROPERTY, Boolean.TRUE);
+		setProperty(IProgressConstants.ACTION_PROPERTY, deferrableAction);
+		if (isModal()) {
+			// The user has waited: immediate execution
+			logger.info(Messages.BridgeLogger_InteractiveMergeStepMessage);
+			deferrableAction.run();
+			IStatus status = deferrableAction.getStatus();
+			if (status != null) {
+				if (status.getSeverity() == IStatus.CANCEL) {
+					deferrableAction.dispose();
+				} else if (status.getSeverity() == IStatus.INFO) {
+					// Still ongoing: show progress view if possible
+					final Display display = Display.getDefault();
+					display.syncExec(new Runnable() {
+						/**
+						 * @see java.lang.Runnable#run()
+						 */
+						public void run() {
+							try {
+								PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+										.showView(IProgressConstants.PROGRESS_VIEW_ID);
+							} catch (Exception e) {
+								// Proceed
+							}
+						}
+					});
+				}
+			}
 		}
 	}
 
