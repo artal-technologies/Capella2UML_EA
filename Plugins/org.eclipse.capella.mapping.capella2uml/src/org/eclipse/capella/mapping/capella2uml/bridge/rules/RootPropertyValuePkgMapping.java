@@ -106,6 +106,7 @@ public class RootPropertyValuePkgMapping extends AbstractDynamicMapping<Project,
 			}
 		}
 
+		getAlgo().getProfiles().add(profile);
 
 		return profile;
 

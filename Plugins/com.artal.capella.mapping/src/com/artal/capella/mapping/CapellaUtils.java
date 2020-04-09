@@ -56,7 +56,7 @@ public class CapellaUtils {
 
 	public static String getSterotypeName(CapellaElement ce) {// TODO: To improve (search for a Helper?)
 		for (PropertyValueGroup pvg : ce.getOwnedPropertyValueGroups()) {
-			return pvg.getName();
+			return pvg.getName().replace(".", "::");
 		}
 		return null;
 	}
@@ -64,7 +64,7 @@ public class CapellaUtils {
 	public static List<String> getListStereotypeName(CapellaElement ce) {// TODO: To improve (search for a Helper?)
 		List<String> results = new ArrayList<String>();
 		for (PropertyValueGroup pvg : ce.getOwnedPropertyValueGroups()) {
-			results.add(pvg.getName());
+			results.add(pvg.getName().replace(".", "::"));
 		}
 		return results;
 	}
@@ -399,9 +399,5 @@ public class CapellaUtils {
 		return referencers;
 
 	}
-	
-	
-	
-	
 
 }

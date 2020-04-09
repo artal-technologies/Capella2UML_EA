@@ -6,12 +6,21 @@ package org.eclipse.capella.mapping.capella2uml.bridge.rules;
 import java.util.List;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
+import org.eclipse.capella.mapping.capella2uml.bridge.rules.utils.SpecificUtils;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.uml2.uml.Actor;
+import org.eclipse.uml2.uml.Component;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.polarsys.capella.core.data.capellacore.CapellaElement;
+import org.polarsys.capella.core.data.capellacore.PropertyValueGroup;
+import org.polarsys.capella.core.data.capellacore.PropertyValuePkg;
 import org.polarsys.capella.core.data.cs.AbstractActor;
 import org.polarsys.capella.core.data.fa.AbstractFunctionalStructure;
+import org.polarsys.capella.core.model.helpers.ProjectExt;
 
 import com.artal.capella.mapping.CapellaUtils;
 import com.artal.capella.mapping.MappingUtils;
@@ -50,20 +59,31 @@ public class ActorMapping extends CommonsActorMapping<Capella2UMLAlgo> {
 		targetActor.setName(source.getName());
 
 		CapellaElement ce = (CapellaElement) source;
-		if (CapellaUtils.hasStereotype(ce)) {
-			XMIExtensionsUtils.createStereotypeProperties(targetelement, CapellaUtils.getSterotypeName(ce), "Actor");
-		}
 
 		((org.eclipse.uml2.uml.Package) eaContainer).getPackagedElements().add(targetActor);
-		// if (eaContainer instanceof Model) {
-		// EList<PackageableElement> packagedElements = ((Model)
-		// eaContainer).getPackagedElements();
-		// for (PackageableElement packageableElement : packagedElements) {
-		// if
-		// (packageableElement.getName().equals(SpecificUtils.getCapellaImportName(this)))
-		// ((Package) packageableElement).getPackagedElements().add(targetActor);
-		// }
-		// }
+		if (CapellaUtils.hasStereotype(ce)) {
+			XMIExtensionsUtils.createStereotypeProperties(targetelement, CapellaUtils.getSterotypeName(ce), "Actor");
+
+			EList<PropertyValueGroup> pvgs = ce.getOwnedPropertyValueGroups();
+			for (PropertyValueGroup propertyValueGroup : pvgs) {
+				PropertyValuePkg propertyValuePkgFromName = SpecificUtils
+						.getProfilePropertyValueGroup(ProjectExt.getProject(source), propertyValueGroup.getName());
+				Profile capellaObjectFromAllRules = (Profile) MappingRulesManager
+						.getCapellaObjectFromAllRules(propertyValuePkgFromName);
+
+				Stereotype ownedStereotype = capellaObjectFromAllRules
+						.getOwnedStereotype(propertyValueGroup.getName().split("\\.")[1]);
+
+				getAlgo().getStereotypes().add(ownedStereotype);
+
+				String typeBase = "Actor";
+
+				Actor compStereo = UMLFactory.eINSTANCE.createActor();
+				SpecificUtils.createCustoStereotypeApplication((Element) eaContainer, targetActor,
+						SpecificUtils.getModel(source), propertyValueGroup, typeBase, compStereo, getAlgo());
+
+			}
+		}
 		return targetActor;
 	}
 

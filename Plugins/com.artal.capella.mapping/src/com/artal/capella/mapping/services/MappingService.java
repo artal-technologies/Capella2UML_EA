@@ -9,7 +9,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.diffmerge.bridge.interactive.BridgeJob;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Group;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 
 import com.artal.capella.mapping.mix.AbstractMappingAlgoMix;
@@ -30,5 +29,7 @@ public interface MappingService {
 	Control getOrCreateSpecificView(Composite specificGroup);
 
 	String getExtension();
+
+	void postProcess(String _outputPath);
 
 }

@@ -13,18 +13,27 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.uml2.uml.Actor;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
+import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.polarsys.capella.common.helpers.EObjectExt;
 import org.polarsys.capella.core.data.capellacore.CapellaElement;
+import org.polarsys.capella.core.data.capellacore.PropertyValueGroup;
+import org.polarsys.capella.core.data.capellacore.PropertyValuePkg;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.cs.Component;
 import org.polarsys.capella.core.data.fa.ComponentExchange;
 import org.polarsys.capella.core.data.fa.FaPackage;
+import org.polarsys.capella.core.data.information.Port;
 import org.polarsys.capella.core.data.la.LogicalComponent;
+import org.polarsys.capella.core.data.pa.PhysicalArchitecture;
 import org.polarsys.capella.core.data.pa.PhysicalComponent;
 import org.polarsys.capella.core.model.helpers.ProjectExt;
 
@@ -90,23 +99,66 @@ public class AlternativeExchangeMapping extends CommonComponentExchangeMapping<C
 	public Object compute(Object eaContainer, ComponentExchange source) {
 		Interface createInterface = UMLFactory.eINSTANCE.createInterface();
 		MappingUtils.generateUID(getAlgo(), source, createInterface, this);
+		((Package) eaContainer).getPackagedElements().add(createInterface);
 		createInterface.setName(source.getName());
 		element targetelement = XMIExtensionsUtils.createElement(createInterface, getAlgo().getXMIExtension());
 		Resource eResource = source.eResource();
 		String sysMLID = MappingUtils.getSysMLID(eResource, source);
 		CapellaElement ce = (CapellaElement) source;
-		List<String>stereoNames = new ArrayList<String>();
+		List<String> stereoNames = new ArrayList<String>();
 		if (CapellaUtils.hasStereotype(ce)) {
 			String sterotypeName = CapellaUtils.getSterotypeName(ce);
 			stereoNames.add(sterotypeName);
-			XMIExtensionsUtils.createStereotypeProperties(targetelement, stereoNames,
-					"Interface",sysMLID);
+			XMIExtensionsUtils.createStereotypeProperties(targetelement, stereoNames, "Interface", sysMLID);
+			EList<PropertyValueGroup> pvgs = ce.getOwnedPropertyValueGroups();
+			for (PropertyValueGroup propertyValueGroup : pvgs) {
+				PropertyValuePkg propertyValuePkgFromName = SpecificUtils
+						.getProfilePropertyValueGroup(ProjectExt.getProject(source), propertyValueGroup.getName());
+				Profile capellaObjectFromAllRules = (Profile) MappingRulesManager
+						.getCapellaObjectFromAllRules(propertyValuePkgFromName);
+
+				Stereotype ownedStereotype = capellaObjectFromAllRules
+						.getOwnedStereotype(propertyValueGroup.getName().split("\\.")[1]);
+
+				getAlgo().getStereotypes().add(ownedStereotype);
+
+				String typeBase = "Interface";
+
+				Interface compStereo = UMLFactory.eINSTANCE.createInterface();
+				SpecificUtils.createCustoStereotypeApplication((Element) eaContainer, createInterface,
+						SpecificUtils.getModel(source), propertyValueGroup, typeBase, compStereo, getAlgo());
+
+			}
 		}
-		stereoNames.add("Exchange Interface");
+
+		PhysicalArchitecture physicalArchitecture = CapellaUtils.getPhysicalArchitecture(source);
+		Profile capellaObjectFromAllRules = (Profile) MappingRulesManager
+				.getCapellaObjectFromAllRules(physicalArchitecture);
+		Stereotype ownedStereotype = capellaObjectFromAllRules.getOwnedStereotype("Exchange_Interface");
+		getAlgo().getStereotypes().add(ownedStereotype);
+
+		stereoNames.add("Physical_Architecture::Exchange_Interface");
 		XMIExtensionsUtils.createStereotypeProperties(targetelement, stereoNames, "Interface", sysMLID);
 		SpecificUtils.applyComponentExchangeStereotypeAttribute(targetelement, source, createInterface);
 
-		((Package) eaContainer).getPackagedElements().add(createInterface);
+		Interface compStereo = UMLFactory.eINSTANCE.createInterface();
+
+		XMIResource res = (XMIResource) ((Element) eaContainer).eResource();
+		SpecificUtils.addCustoRef(res, SpecificUtils.getModel(source), "Physical_Architecture:Exchange_Interface", compStereo, false, true);
+		getAlgo().getStereoNames().add("Physical_Architecture:Exchange_Interface");
+
+		String sysMLID2 = MappingUtils.getSysMLID(res, createInterface);
+		if (sysMLID2 != null)
+			SpecificUtils.addCustoAttr(res, compStereo, "base_Interface" /* + typeBase */, sysMLID2);
+
+		Port sourcePort = source.getSourcePort();
+		String sysMLIDSource = MappingUtils.getSysMLID(eResource, sourcePort);
+
+		Port targetPort = source.getTargetPort();
+		String sysMLIDTarget = MappingUtils.getSysMLID(eResource, targetPort);
+
+		SpecificUtils.addCustoAttr(res, compStereo, "SrcCapellaID", sysMLIDSource);
+		SpecificUtils.addCustoAttr(res, compStereo, "TargetCapellaID", sysMLIDTarget);
 
 		return createInterface;
 	}

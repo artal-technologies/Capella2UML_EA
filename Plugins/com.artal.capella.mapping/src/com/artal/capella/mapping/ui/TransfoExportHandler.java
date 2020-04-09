@@ -123,6 +123,9 @@ public class TransfoExportHandler extends AbstractHandler {
 		if (f.exists()) {
 			f.delete();
 		}
+		
+		dialog.postProcess();
+		
 		return null;
 	}
 

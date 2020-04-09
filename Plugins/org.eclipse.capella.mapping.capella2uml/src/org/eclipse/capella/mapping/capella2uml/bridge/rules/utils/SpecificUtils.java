@@ -3,10 +3,9 @@
  */
 package org.eclipse.capella.mapping.capella2uml.bridge.rules.utils;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
+import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EDataType;
@@ -22,23 +21,22 @@ import org.eclipse.emf.ecore.impl.EcoreFactoryImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.util.BasicFeatureMap;
-import org.eclipse.emf.ecore.util.ExtendedMetaData;
 import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.ecore.util.FeatureMap.Entry;
 import org.eclipse.emf.ecore.xmi.XMIResource;
-import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xml.type.AnyType;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 import org.eclipse.emf.ecore.xml.type.impl.AnyTypeImpl;
 import org.eclipse.uml2.uml.Actor;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.resource.UMLResource;
 import org.polarsys.capella.core.data.capellacore.AbstractPropertyValue;
 import org.polarsys.capella.core.data.capellacore.BooleanPropertyValue;
+import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.capellacore.EnumerationPropertyLiteral;
 import org.polarsys.capella.core.data.capellacore.EnumerationPropertyValue;
 import org.polarsys.capella.core.data.capellacore.FloatPropertyValue;
@@ -55,11 +53,13 @@ import org.polarsys.capella.core.data.information.Port;
 import org.polarsys.capella.core.data.pa.PhysicalComponent;
 import org.polarsys.capella.core.data.pa.PhysicalComponentKind;
 import org.polarsys.capella.core.data.pa.PhysicalComponentNature;
+import org.polarsys.capella.core.model.helpers.ProjectExt;
 
 import com.artal.capella.mapping.CapellaBridgeAlgo;
 import com.artal.capella.mapping.MappingUtils;
 import com.artal.capella.mapping.mix.AbstractMappingAlgoMix;
 import com.artal.capella.mapping.rules.AbstractMapping;
+import com.artal.capella.mapping.rules.MappingRulesManager;
 
 import xmi.element;
 import xmi.util.XMIExtensionsUtils;
@@ -384,6 +384,57 @@ public class SpecificUtils {
 			}
 		}
 		return value;
+	}
+
+	/**
+	 * @param eaContainer
+	 * @param targetComponent
+	 * @param model
+	 * @param propertyValueGroup
+	 * @param typeBase
+	 * @param compStereo
+	 */
+	static public void createCustoStereotypeApplication(Element eaContainer, Element targetComponent, Model model,
+			PropertyValueGroup propertyValueGroup, String typeBase, Element compStereo, Capella2UMLAlgo algo) {
+		XMIResource res = (XMIResource) (eaContainer).eResource();
+		String name = propertyValueGroup.getName().replace(".", ":").replace("?", "").replace(" ", "");
+		SpecificUtils.addCustoRef(res, model, name, compStereo, false, true);
+		algo.getStereoNames().add(name);
+
+		String sysMLID = MappingUtils.getSysMLID(res, targetComponent);
+		if (sysMLID != null)
+			SpecificUtils.addCustoAttr(res, compStereo, "base_Class" /*+ typeBase*/, sysMLID);
+		EList<AbstractPropertyValue> ownedPropertyValues = propertyValueGroup.getOwnedPropertyValues();
+		for (AbstractPropertyValue abstractPropertyValue : ownedPropertyValues) {
+			String pvName = abstractPropertyValue.getName();
+			String value = null;
+			if (abstractPropertyValue instanceof StringPropertyValue) {
+				value = ((StringPropertyValue) abstractPropertyValue).getValue();
+			}
+			if (abstractPropertyValue instanceof BooleanPropertyValue) {
+				value = ((BooleanPropertyValue) abstractPropertyValue).isValue() + "#NOTES#Values: true,false&#xA;";
+			}
+			if (abstractPropertyValue instanceof EnumerationPropertyValue) {
+
+				EnumerationPropertyLiteral valueLiteral = ((EnumerationPropertyValue) abstractPropertyValue).getValue();
+				if (valueLiteral != null) {
+					value = valueLiteral.getFullLabel();
+				}
+			}
+			if (abstractPropertyValue instanceof FloatPropertyValue) {
+				value = "" + ((FloatPropertyValue) abstractPropertyValue).getValue();
+			}
+			if (abstractPropertyValue instanceof IntegerPropertyValue) {
+				value = "" + ((IntegerPropertyValue) abstractPropertyValue).getValue();
+			}
+			if (value != null)
+				SpecificUtils.addCustoAttr(res, compStereo, pvName, value);
+		}
+	}
+
+	static public Model getModel(CapellaElement ce) {
+		Project project = ProjectExt.getProject(ce);
+		return ((Model) MappingRulesManager.getCapellaObjectFromAllRules(project));
 	}
 
 }

@@ -33,7 +33,7 @@ import xmi.util.XMIExtensionsUtils;
  * @author binot
  *
  */
-public class EnumerationMapping extends CommonDatatypeMapping< Capella2UMLAlgo> {
+public class EnumerationMapping extends CommonDatatypeMapping<Capella2UMLAlgo> {
 
 	/**
 	 * @param algo
@@ -75,14 +75,16 @@ public class EnumerationMapping extends CommonDatatypeMapping< Capella2UMLAlgo> 
 
 		element addElement = XMIExtensionsUtils.createElement(enumerationTarget, getAlgo().getXMIExtension());
 
-		CapellaElement ce= (CapellaElement) source;
+		CapellaElement ce = (CapellaElement) source;
 		if (!CapellaUtils.hasStereotype(ce)) {
 			XMIExtensionsUtils.createProperties(addElement, false, false, "Enumeration", 0, "public", false, false);
 		} else {
-			XMIExtensionsUtils.createPropertiesWithStereotype(addElement, false, false, "Enumeration", 0, "public", false, false, CapellaUtils.getSterotypeName(ce));
+			XMIExtensionsUtils.createPropertiesWithStereotype(addElement, false, false, "Enumeration", 0, "public",
+					false, false, CapellaUtils.getSterotypeName(ce));
 		}
-		
-//		XMIExtensionsUtils.createProperties(addElement, false, false, "Enumeration", 0, "public", false, false);
+
+		// XMIExtensionsUtils.createProperties(addElement, false, false, "Enumeration",
+		// 0, "public", false, false);
 
 		enumerationTarget.setName(source.getName());
 
@@ -104,13 +106,6 @@ public class EnumerationMapping extends CommonDatatypeMapping< Capella2UMLAlgo> 
 		}
 
 		((org.eclipse.uml2.uml.Package) eaContainer).getPackagedElements().add(enumerationTarget);
-//		if (eaContainer instanceof Model) {
-//			EList<PackageableElement> ownedMembers = ((Model) eaContainer).getPackagedElements();
-//			for (PackageableElement ownedMember : ownedMembers) {
-//				if (ownedMember.getName().equals("Import Capella"))
-//					((org.eclipse.uml2.uml.Package) ownedMember).getPackagedElements().add(enumerationTarget);
-//			}
-//		}
 
 		return enumerationTarget;
 	}

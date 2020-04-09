@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMISaveImpl;
 import org.eclipse.ui.progress.IProgressConstants;
 import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
 

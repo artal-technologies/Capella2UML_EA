@@ -12,13 +12,19 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.PackageableElement;
+import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.Usage;
 import org.polarsys.capella.core.data.capellacore.CapellaElement;
+import org.polarsys.capella.core.data.capellacore.PropertyValueGroup;
+import org.polarsys.capella.core.data.capellacore.PropertyValuePkg;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.cs.Interface;
 import org.polarsys.capella.core.data.cs.InterfacePkg;
@@ -59,13 +65,33 @@ public class InterfaceMapping extends CommonInterfaceMapping<Capella2UMLAlgo> {
 	public Object compute(Object eaContainer, Interface source) {
 		org.eclipse.uml2.uml.Interface targetInterface = UMLFactory.eINSTANCE.createInterface();
 		MappingUtils.generateUID(getAlgo(), source, targetInterface, this);
-
+		Object capellaObjectFromAllRules0 = MappingRulesManager.getCapellaObjectFromAllRules(source.eContainer());
+		((org.eclipse.uml2.uml.Package) capellaObjectFromAllRules0).getPackagedElements().add(targetInterface);
 		element targetelement = XMIExtensionsUtils.createElement(targetInterface, getAlgo().getXMIExtension());
 
 		CapellaElement ce = (CapellaElement) source;
 		if (CapellaUtils.hasStereotype(ce)) {
 			XMIExtensionsUtils.createStereotypeProperties(targetelement, CapellaUtils.getSterotypeName(ce),
 					"Interface");
+			EList<PropertyValueGroup> pvgs = ce.getOwnedPropertyValueGroups();
+			for (PropertyValueGroup propertyValueGroup : pvgs) {
+				PropertyValuePkg propertyValuePkgFromName = SpecificUtils
+						.getProfilePropertyValueGroup(ProjectExt.getProject(source), propertyValueGroup.getName());
+				Profile capellaObjectFromAllRules = (Profile) MappingRulesManager
+						.getCapellaObjectFromAllRules(propertyValuePkgFromName);
+
+				Stereotype ownedStereotype = capellaObjectFromAllRules
+						.getOwnedStereotype(propertyValueGroup.getName().split("\\.")[1]);
+
+				getAlgo().getStereotypes().add(ownedStereotype);
+
+				String typeBase = "Interface";
+
+				org.eclipse.uml2.uml.Interface compStereo = UMLFactory.eINSTANCE.createInterface();
+				SpecificUtils.createCustoStereotypeApplication((Element) eaContainer, targetInterface,
+						SpecificUtils.getModel(source), propertyValueGroup, typeBase, compStereo, getAlgo());
+
+			}
 		}
 
 		targetInterface.setName(source.getName());
@@ -108,20 +134,6 @@ public class InterfaceMapping extends CommonInterfaceMapping<Capella2UMLAlgo> {
 
 			}
 		}
-
-		Object capellaObjectFromAllRules = MappingRulesManager.getCapellaObjectFromAllRules(source.eContainer());
-		((org.eclipse.uml2.uml.Package) capellaObjectFromAllRules).getPackagedElements().add(targetInterface);
-
-		// if (eaContainer instanceof Model) {
-		// EList<PackageableElement> ownedMembers = ((Model)
-		// eaContainer).getPackagedElements();
-		// for (PackageableElement ownedMember : ownedMembers) {
-		// if (ownedMember.getName().equals("Import Capella"))
-		// ((org.eclipse.uml2.uml.Package)
-		// ownedMember).getPackagedElements().add(targetInterface);
-		// }
-		//
-		// }
 
 		return targetInterface;
 	}
