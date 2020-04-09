@@ -75,7 +75,8 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 
 		Package createPackage = UMLFactory.eINSTANCE.createPackage();
 		createPackage.setName(SpecificUtils.getCapellaImportName(this));
-		String sysMLID2 = MappingUtils.getSysMLID(eResource, capellaContainer);
+		LogicalArchitecture logicalArchitecture = CapellaUtils.getLogicalArchitecture(capellaContainer);
+		String sysMLID2 = MappingUtils.getSysMLID(eResource, logicalArchitecture);
 		getAlgo().putId(createPackage, this, sysMLID2);
 		model.getPackagedElements().add(createPackage);
 

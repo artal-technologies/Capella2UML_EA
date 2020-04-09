@@ -34,7 +34,7 @@ public class AlternativePhysicalArchitectureMix extends AbstractMappingAlgoMix<P
 
 	@Override
 	public String getMixName() {
-		return "Alternative Physical Arcitecture";
+		return "Alternative Physical Architecture";
 	}
 
 }
