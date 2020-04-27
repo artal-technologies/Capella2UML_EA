@@ -25,7 +25,7 @@
 		<repository>
 			<id>capella</id>
 			<layout>p2</layout>
-			<url>https://download.eclipse.org/capella/core/updates/releases/1.2.1-R20180601-102021/org.polarsys.capella.rcp.site/
+			<url>https://download.eclipse.org/capella/core/updates/releases/1.2.0-R20171103-050121/org.polarsys.capella.rcp.site/
 			</url>
 		</repository>
 		<repository>
