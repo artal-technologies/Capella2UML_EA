@@ -85,6 +85,78 @@ public interface XmiFactory extends EFactory {
 	properties createproperties();
 
 	/**
+	 * Returns a new object of class '<em>Packaged Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Packaged Element</em>'.
+	 * @generated
+	 */
+	PackagedElement createPackagedElement();
+
+	/**
+	 * Returns a new object of class '<em>uml Profile</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>uml Profile</em>'.
+	 * @generated
+	 */
+	umlProfile createumlProfile();
+
+	/**
+	 * Returns a new object of class '<em>owned End</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>owned End</em>'.
+	 * @generated
+	 */
+	ownedEnd createownedEnd();
+
+	/**
+	 * Returns a new object of class '<em>package Import</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>package Import</em>'.
+	 * @generated
+	 */
+	packageImport createpackageImport();
+
+	/**
+	 * Returns a new object of class '<em>imported Package</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>imported Package</em>'.
+	 * @generated
+	 */
+	importedPackage createimportedPackage();
+
+	/**
+	 * Returns a new object of class '<em>owned Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>owned Attribute</em>'.
+	 * @generated
+	 */
+	ownedAttribute createownedAttribute();
+
+	/**
+	 * Returns a new object of class '<em>type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>type</em>'.
+	 * @generated
+	 */
+	type createtype();
+
+	/**
+	 * Returns a new object of class '<em>extended Properties</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>extended Properties</em>'.
+	 * @generated
+	 */
+	extendedProperties createextendedProperties();
+
+	/**
 	 * Returns a new object of class '<em>attributes</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -155,6 +227,69 @@ public interface XmiFactory extends EFactory {
 	 * @generated
 	 */
 	model createmodel();
+
+	/**
+	 * Returns a new object of class '<em>source</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>source</em>'.
+	 * @generated
+	 */
+	source createsource();
+
+	/**
+	 * Returns a new object of class '<em>target</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>target</em>'.
+	 * @generated
+	 */
+	target createtarget();
+
+	/**
+	 * Returns a new object of class '<em>role</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>role</em>'.
+	 * @generated
+	 */
+	role createrole();
+
+	/**
+	 * Returns a new object of class '<em>tags</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>tags</em>'.
+	 * @generated
+	 */
+	tags createtags();
+
+	/**
+	 * Returns a new object of class '<em>tag</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>tag</em>'.
+	 * @generated
+	 */
+	tag createtag();
+
+	/**
+	 * Returns a new object of class '<em>operations</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>operations</em>'.
+	 * @generated
+	 */
+	operations createoperations();
+
+	/**
+	 * Returns a new object of class '<em>operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>operation</em>'.
+	 * @generated
+	 */
+	operation createoperation();
 
 	/**
 	 * Returns the package supported by this factory.

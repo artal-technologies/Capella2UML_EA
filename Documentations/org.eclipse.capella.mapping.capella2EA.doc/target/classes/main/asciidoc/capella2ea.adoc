@@ -16,78 +16,78 @@ v1.0, 2020/02/28: First Draft
 
 
 == Introduction
-This document constitutes the user guide of the Capella to Enterprise Architect extension.
+Here is the user guide of the Capella to Enterprise Architect extension.
 
-The extension allows to transform a Capella model to an Enterprise Architect model.
-This manual is composed to three sections:
+This extension allows to transform a Capella model to an Enterprise Architect model.
+This manual is composed of three sections:
 
-- *Installation* : description of the extension installation
+- *Installation*: description of the extension installation
 
-- *Capella using* : description of the capella extension
+- *Capella*: description of the capella extension and how to use it
 
-- *EA using*: description of the procedures to import the Capella exported model to Enterprise Architect.
+- *Enterprise Architect*: explains how to import the model exported from Capella into Enterprise Architect.
 
 <<<
 
 == Procedure installation
 === Product description
-The product is delivered as a ZIP archive: *Delivery_CapellaEABridge_X.Y.Z.zip*, where  X.Y.Z the version of the current extension.
+The product is delivered as a ZIP archive: *Delivery_CapellaEABridge_X.Y.Z.zip*, where "X.Y.Z" represents the current version of the extension.
 
-The ZIP archive contains the extension products for the both *1.3.X and 1.4.x capella* versions
+The ZIP archive contains the extension products for the both *1.3.x* and *1.4.x* Capella versions.
 
 image::CAPUML_Delivery_versions.JPG[CAPUML_Delivery_versions.JPG,title="Compatible Capella versions."] 
 
 
-For each capella version, a *dropin* and an *update-site* are delivered.
+For each Capella version, a *drop-in* and an *update site* are delivered.
 
 image::CAPUML_dropins_udaptesites.JPG[CAPUML_dropins_udaptesites.JPG,title="Dropins and Update-site are delivered."] 
 
-A dropin is delivered as ZIP archive: *CapellaEABridge_VP-X.Y.Z-dropins.zip*, where X.Y.Z the version of the current extension.
+A drop-in is delivered as ZIP archive: *CapellaEABridge_VP-X.Y.Z-dropins.zip*, where X.Y.Z is the version of the extension.
 
 image::CAPUML_dropins.JPG[CAPUML_dropins.JPG, title="Dropin delivery."] 
 
-An update site is delivered as ZIP archive: *CapellaEABridge_X.Y.Z_updatesite.zip*, where X.Y.Z the version of the current extension.
+An update site is delivered as ZIP archive: *CapellaEABridge_X.Y.Z_updatesite.zip*, where X.Y.Z the version of the extension.
 
 image::CAPUML_updatesites.JPG[CAPUML_updatesites.JPG,title="Update-site delivery."] 
 
 <<<
 
 
-=== Dropin installation
-Extract Delivery_CapellaEABridge_X.Y.Z.zip archive.
+=== Drop-in installation
+Unzip the Delivery_CapellaEABridge_X.Y.Z.zip archive.
 
 image::CAPUML_Extract_delivery.JPG[CAPUML_Extract_delivery.JPG,title="Delivery Extraction."] 
 
-Open the dropin directory.
+Open the *dropins* directory.
 
 image::CAPUML_dropin_to_copied.JPG[CAPUML_dropin_to_copied.JPG,title="Dropin to copied"] 
 
-Copy/paste  and extract the CapellaEABridge_X.Y.Z-dropins.zip into the dropins directory of the Capella_X.Y.Z installation.
+Copy/paste and unzip the CapellaEABridge_X.Y.Z-dropins.zip into the *dropins* directory of the Capella_X.Y.Z installation.
 
 image::CAPUML_Extract_dropin.JPG[CAPUML_Extract_dropin.JPG,title="Extract dropin."] 
 
-After, the CapellaEABridge_X.Y.Z-dropins.zip archive can be remove of the dropins directory.
+It is then possible to delete the CapellaEABridge_X.Y.Z-dropins.zip archive.
 
 
 
 === UpdateSite installation
 
-Extract Delivery_CapellaEABridge_X.Y.Z.zip archive.
+Unzip Delivery_CapellaEABridge_X.Y.Z.zip archive.
 
 image::CAPUML_Extract_delivery.JPG[CAPUML_Extract_delivery.JPG,title="Delivery Extraction."] 
 
-Launch Capella_X.Y.Z.
+Execute the Capella software.
 
 In the Capella "Help" menu, select "Install New Software...".
 
 image::CAPUML_install_software.JPG[CAPUML_install_software.JPG,title="Menu to install new update site."] 
 
-In the opened wizard, select the "Add..." button and choose the CapellaEABridge_X.Y.Z_updatesite.zip update site archive.
-Set CapellaEABridge in the Field "Name".
+In the opened wizard, click on the "Add..." button and choose the *CapellaEABridge_X.Y.Z_updatesite.zip* archive.
+Set CapellaEABridge in the "Name" field.
 
 image::CAPUML_Add_Repo.JPG[CAPUML_Add_Repo.JPG,title="Add CapellaEABridge repository."] 
 
-Select the CapellaEABridge feature and click on "Next" button.
+Select the CapellaEABridge feature and click on the "Next" button.
 
 image::CAPUML_SelectFeature.JPG[CAPUML_SelectFeature.JPG,title="Select the new feature."] 
 
@@ -99,11 +99,11 @@ Accept the terms of the licence agreement and click on the "Finish" button.
 
 image::CAPUML_Licenses.JPG[CAPUML_Licenses.JPG, title="Accept license agreement."] 
 
-After the CapellaEABridge udapte site installation, close Capella_X.Y.Z.
+Once the CapellaEABridge udapte site is installed, you must restart Capella to activate it.
 
 <<<
 
-=== Launch Capella
+=== Check extension installation
 
 After installation procedure, launch Capella.
 
@@ -121,19 +121,15 @@ Check the Capella to Enterprise Architecture feature exists.
 
 image::CAPUML_Installation.JPG[CAPUML_Installation.JPG, title="Capella to Enterprise feature."] 
 
-
 <<<
-
-
-
 
 == Export from Capella
 
 === Pre-requisite
 
-- A Capella Project:  The goal of the Capella to Enterprise Architect is to transform a existing capella project to a new EA model persisted in a XMI/UML file.
+- A Capella Project: the goal of the Capella to Enterprise Architect extension is to transform an existing capella project into a EA model stored in a XMI/UML file.
 
-In the following sections, the *Camera SysML2 Example* Capella project is used to illustrate the descriptions.
+In the following sections, the *Camera SysML2 Example* Capella project is used to illustrate the process.
 
 image::CAPUML_CapellaProject.JPG[CAPUML_CapellaProject.JPG, title="Capella project example."] 
 
@@ -141,53 +137,115 @@ image::CAPUML_CapellaProject.JPG[CAPUML_CapellaProject.JPG, title="Capella proje
 
 === Launch the Export model
 
-==== Open Contextual Exports menu
+==== Open Contextual "Model transformation" menu
 
-Right click on a Capella Element, and select the "Exports" menu.
+Right click on a Capella Element, and select the "Model transformation" menu.
 
 image::CAPUML_ExportsMenu.JPG[CAPUML_ExportsMenu.JPG, title="Exports menu"] 
 
 ==== Configure the Export wizard
 
-A wizard is opened. This wizard shall be filled with:
+The opened wizard shall be filled with:
 
-- A type of transformation.
-- A target path file.
-- Select a predefined alternative algorithm.
+- The type of the transformation.
+- The path of the target file.
+- The (predefined) algorithm to use.
 
 image::CAPUML_ExportWizard.JPG[CAPUML_ExportWizard.JPG, title="Export wizard."] 
 
 
-Select a type of transformation: The field proposes the "Capella to Enterprise Architect" type.
+Select the type of the transformation: the field proposes the "Capella to Enterprise Architect" type.
 
 image::CAPUML_TypeTransfo.JPG[CAPUML_TypeTransfo.JPG, title="Type of transformation."] 
 
-
-Select a target file. Set the target path or click on the "Browse.." button.
-A file selection wizard is opened. All the existing xml file are displayed.
+Select a target file: set the target path or click on the "Browse..." button.
+Using the opened wizard, all the existing xml files are displayed.
 
 image::CAPUML_targetpath.JPG[CAPUML_targetpath.JPG, title="Selection output file."] 
 
-Select an existing xml file, or set a new file name. Click on "Open" button.
+Select an existing xml file, or set a new file name. Click on the "Open" button.
 
 image::CAPUML_SelectTargetPathWizard.JPG[CAPUML_SelectTargetPathWizard.JPG, title="Export wizard."]
 
-Select a predefined alternative algorithm.
+Select a predefined algorithm.
 
 image::CAPUML_AlgoSelection.JPG[CAPUML_AlgoSelection.JPG, title="Algorithm selection."]
 
-
 The OK button is available only when the three fields are filled.
 
-image::CAPUML_FilledWizard.JPG[CAPUML_FilledWizard.JPG, title="filled Exports wizard"] 
+image::CAPUML_FilledWizard.JPG[CAPUML_FilledWizard.JPG, title="Filled Exports wizard"] 
+
 
 Click on the "OK" button.
 
-The Enterprise Architect is built and persisted in the generated output xml file.
+The Enterprise Architect model is built and persisted in the generated output xml file.
+
+==== PVMT and Physical Architecture options
+
+In the "Model transformation" wizard, in the case where "Capella to Enterprise Architect" type is selected, a check button "Export profiles" appears. 
+
+image::CAPUML_ExportProfile.JPG[CAPUML_ExportProfile.JPG,title="Export profiles."]
+
+This option allows to export PVMT data as UML profile.
+
+image::CAPUML_PVMTtoProfiles.JPG[CAPUML_PVMTtoProfiles.JPG,title="PVMT data to UML profiles."]
+
+The profiles will be exported into a XML file naming "MDG_CapellaProfile_xxxxx" with xxxx is the export date.
+This file is exported in the same path than the target file.
+   
+
 
 <<<
 
 == Import to Enterprise Architect
+
+=== Import MDG technologies
+In the case where profiles has been exported from Capella (<PVMT options>), It's necessary to import these profiles in Enterprise Architect.
+In this way, the user can use this profile in Enterprise Architect software.
+
+Start Enterprise Architect.
+In the Enterprise Architect ribbon, select "Start -> Share -> Resources" menu.
+
+The Resources browser is displayed.
+
+image::EA_Resources.JPG[EA_Resources.JPG, title="EA Resources."] 
+ 
+In the "MDG Technologies" node, right click and select the "Import Technology" menu.
+
+image::EA_ImportTechnology.JPG[EA_ImportTechnology.JPG,title="Import Technology."]
+ 
+"Import MDG Technology" wizard is displayed. In the "Filename" field, select the MGG_CapellaProfile_xxxx.xml exported from Capella.
+
+image::EA_ImportMDGTechnologyWizard.JPG[EA_ImportMDGTechnologyWizard.JPG,title="Import MDG Technology wizard."]
+
+In this wizard, the others fields are automatically filled.
+Click on "OK" button.
+
+image::EA_CapellaProfile.JPG[EA_CapellaProfile.JPG,title="Capella profiles added."]
+
+In the EA project, create a new Component.
+
+Select this component. In the "Properties" view, select the Stereotype field.
+
+image::EA_StereoWizard.JPG[EA_StereoWizard.JPG,"Stereotypes wizard."]
+
+In the "Perpective" field, select "Specialized -> Model Technologies" value.
+
+image::EA_ModelTechnologies.JPG[EA_ModelTechnologies.JPG,title="Model Technologies perspective."]
+
+In the "Profile" field, several profiles are available In the "Profile" field, several profiles are available, including profiles imported from Capella.
+
+image::EA_ProfileCapella.JPG[EA_ProfileCapella.JPG, title="Profiles from Capella."]
+
+In this list, select a profile.
+All the compatible stereotypes from the profile with selected element are displayed. 
+
+image::EA_StereoCapella.JPG[EA_StereoCapella.JPG,title="Stereotypes from Capella."]
+
+Select stereotype and click on "OK" button.
+The stereotype is applied on the Component.
+
+
 
 === Create a new Enterprise Architect Project.
 
@@ -205,7 +263,7 @@ image::EA_CreateProject.JPG[EA_CreateProject.JPG, title="Create a new project."]
 
 In the "Browser" explorer, select the "Model" node. 
 
-In the Enterprise Architect Ribbon, select "Publish -> Model Exchange -> Import XMI -> Import Package from XMI" menu.
+In the Enterprise Architect ribbon, select "Publish -> Model Exchange -> Import XMI -> Import Package from XMI" menu.
 
 image::EA_Import.JPG[EA_Import.JPG, title="Import XML file."] 
 
@@ -223,13 +281,13 @@ image::EA_NewBaseLine.JPG[EA_NewBaseLine.JPG, title="New Baseline."]
 === Inspect Import results
 
 In the "Browser" explorer, the imported data are displayed.
-Under the "Model" node, "Import Capella" package is created. This package contains all imported datas from Capella.
+Under the "Model" node, "Import Capella" package is created. This package contains all imported data from Capella.
 
 image::EA_Model.JPG[EA_Model.JPG, title="EA model."] 
 
 <<<
 
-Create a Component diagram and drag and drop all components inside.
+Create a component diagram and drag and drop all components inside.
 
 image::EA_Component_diagram.JPG[EA_Component_diagram.JPG, title="Component diagram."] 
 
@@ -239,10 +297,118 @@ Create a Class diagram and drag and drop all others elements.
 
 image::EA_ClassDiagram.JPG[EA_ClassDiagram.JPG, title="Class diagram."] 
 
+<<<
+
+=== Merge in Enterprise Architect
+
+
+image::MergeScenario.JPG[MergeScenario.JPG,title="Merge scenario."] 
+
+This schema shows the different steps to execute a merge in Enterprise Architect.
+The merge process allows to compare the last version of the EA model with a previous version and to choose to keep old or new data. 
+
+
+In Capella software, modify the name of the following Capella elements:
+
+-  "Camera power button" component name to "Camera power button from Capella"
+
+-  "Sensor Command" exchange item name to "Sensor Command from Capella"
+
+-  "Timestamp" class name to "Timestamp from Capella".
+
+
+Export the Capella model as it's describe in the <<Export from Capella>> section.
+
+
+In Enterprise Architect, in the previously imported model, modify the name of the following EA elements:
+
+- "Camera power button" component to "Camera power button from EA"
+
+- "Sensor Command" operation to "Sensor Command from EA"
+
+- "Explosure Triangle"  datatype to "Explosure Triangle from EA".
+
+It's very important to increment the version of the Enterprise Architect model after the last modification.
+This version allows to have a tag to compare with the new import to merge.
+
+In the Enterprise Architect ribbon, select "Design -> Model -> Manage -> Manage Baselines..." menu.
+
+image::EA_ManageBaselines.JPG[EA_ManageBaselines.JPG, title="Manage Baselines..."] 
+
+In the displayed Baselines dialog:
+
+image::EA_BaselineDialog.JPG[EA_BaselineDialog.JPG, title="Baselines dialog."]
+
+Select the "New Baseline" button. In the "New Baseline" dialog, type the new version name in the version field.
+
+image::EA_NewBaselineWizard.JPG[EA_NewBaselineWizard.JPG, title="New Baseline."]
+
+In the Baselines dialog, the new version is added in the top of the list.
+
+image::EA_NewVersion.JPG[EA_NewVersion.JPG,title="New version."]
+
+And click in "Close" Button.
+
+
+Select the Import Capella package in the "Browser" explorer and import the last version of the Capella export file as describe in the <<Import Enterprise Architect model>> section.
+ 
+image::EA_NewImportForMerge.JPG[EA_NewImportForMerge.JPG,title="Import Package from XML"] 
+ 
+In the Import Package from XML dialog, after to configure when describe in the above screeshot, click on the "Import" Button. 
+*Warning* don't use the "Merge" Button. The exported Capella file is write in XMI 2.1/ UML 2.1 format. The EA merge doesn't support XMI and UML version upper than 1.3.
+
+After the import, the "New Baseline" is displayed. In the "Version" field, type a new name version.
+
+image::NewBaseLinesForMerge.JPG[NewBaseLinesForMerge.JPG,title="New BaseLine."]
+
+Click on "OK" button. And Click on "Close" button in the "Import Package from XML" dialog.
+
+In the "Browser" explorer, all the data modified before the last import are removed.
+
+In the Enterprise Architect ribbon, select "Design -> Model -> Manage -> Manage Baselines..." menu.
+
+image::EA_BaselineVersionToMerge.JPG[EA_BaselineVersionToMerge.JPG, title="Baselines."]
+
+In the displayed dialog, select the version before the last import.
+
+image::EA_SelectLastVersion.JPG[EA_SelectLastVersion.JPG, title="Select previous version."]
+
+And click on the "Show Differences" button.
+
+The "Baseline Comparison" view is opened and display the differences between the two compared versions.
+
+*Warning:* In the Capella software, the both created and modified dates aren't managed for the Capella element.
+For this reason, in Enterprise Architect is possible to ignore the dates differences.
+In the "Baseline Comparison" toolbar, click on the "Baseline comparison options" button.
+
+image::EA_ComparisonButton.JPG[EA_ComparisonButton.JPG,title="Comparison options."]
+
+Check the both "Supress Date Modified" and "Supress Date Created" options. These options allow to ignore the dates informations in the "Baseline Comparison" view.
+ 
+ 
+image::EA_Baseline_Comparison.JPG[EA_Baseline_Comparison.JPG,title="Baseline comparison."]  
+ 
+If the Enterprise Architect user want keep the old value, select the element in the "Model Elements" explorer and click on the green arrow.
+
+image::EA_keepoldversion.JPG[EA_keepoldversion.JPG,title="Keep old version."] 
+
+Click on the "OK" button in the opened message dialog.
+
+The element is removed from the "Baseline Comparison" view and is updated in the EA model.
+
+image::EA_UpdatedModel.JPG[EA_UpdatedModel.JPG,title="Updated model."] 
+
+The last step, is to create a new Baselines after the merge.
+
 
 == Transformation rules
+
+=== Logical Architecture transformation
 
 image::TableRule.JPG[TableRule.JPG] 
 
 
- 
+=== Alternative Physical Architecture transformation
+
+image::AlternativeTransfo.JPG[AlternativeTransfo.JPG] 
+

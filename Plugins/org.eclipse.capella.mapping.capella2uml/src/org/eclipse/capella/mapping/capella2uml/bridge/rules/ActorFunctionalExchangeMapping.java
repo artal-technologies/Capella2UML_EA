@@ -30,7 +30,7 @@ import com.artal.capella.mapping.rules.commons.CommonFunctionalExchangeMapping;
  * @author binot
  *
  */
-public class ActorFunctionalExchangeMapping extends CommonFunctionalExchangeMapping<LogicalComponent, Capella2UMLAlgo> {
+public class ActorFunctionalExchangeMapping extends CommonFunctionalExchangeMapping<Component, Capella2UMLAlgo> {
 
 	public ActorFunctionalExchangeMapping(Capella2UMLAlgo algo, LogicalComponent parent,
 			IMappingExecution mappingExecution) {
@@ -39,7 +39,7 @@ public class ActorFunctionalExchangeMapping extends CommonFunctionalExchangeMapp
 
 
 	@Override
-	public List<FunctionalExchange> findSourceElements(LogicalComponent capellaContainer) {
+	public List<FunctionalExchange> findSourceElements(Component capellaContainer) {
 
 		List<FunctionalExchange> findSourceElements = super.findSourceElements(capellaContainer);
 		List<FunctionalExchange> collect = findSourceElements.stream().filter(lf -> isInActor(lf, capellaContainer))
@@ -48,7 +48,7 @@ public class ActorFunctionalExchangeMapping extends CommonFunctionalExchangeMapp
 		return collect;
 	}
 
-	public boolean isInActor(FunctionalExchange lf, LogicalComponent capellaContainer) {
+	public boolean isInActor(FunctionalExchange lf, Component capellaContainer) {
 		FunctionOutputPort sourceFunctionOutputPort = lf.getSourceFunctionOutputPort();
 		FunctionInputPort targetFunctionInputPort = lf.getTargetFunctionInputPort();
 

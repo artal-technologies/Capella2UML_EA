@@ -3,28 +3,40 @@
  */
 package org.eclipse.capella.mapping.capella2uml.bridge.rules;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
+import org.eclipse.capella.mapping.capella2uml.bridge.rules.utils.SpecificUtils;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.PackageableElement;
+import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.Usage;
+import org.polarsys.capella.core.data.capellacore.CapellaElement;
+import org.polarsys.capella.core.data.capellacore.PropertyValueGroup;
+import org.polarsys.capella.core.data.capellacore.PropertyValuePkg;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.cs.Interface;
 import org.polarsys.capella.core.data.cs.InterfacePkg;
 import org.polarsys.capella.core.data.information.ExchangeItem;
 import org.polarsys.capella.core.model.helpers.ProjectExt;
 
+import com.artal.capella.mapping.CapellaUtils;
 import com.artal.capella.mapping.MappingUtils;
 import com.artal.capella.mapping.rules.MappingRulesManager;
 import com.artal.capella.mapping.rules.commons.CommonInterfaceMapping;
 
+import xmi.element;
 import xmi.util.XMIExtensionsUtils;
 
 /**
@@ -53,46 +65,75 @@ public class InterfaceMapping extends CommonInterfaceMapping<Capella2UMLAlgo> {
 	public Object compute(Object eaContainer, Interface source) {
 		org.eclipse.uml2.uml.Interface targetInterface = UMLFactory.eINSTANCE.createInterface();
 		MappingUtils.generateUID(getAlgo(), source, targetInterface, this);
-		XMIExtensionsUtils.createElement(targetInterface, getAlgo().getXMIExtension());
+		Object capellaObjectFromAllRules0 = MappingRulesManager.getCapellaObjectFromAllRules(source.eContainer());
+		((org.eclipse.uml2.uml.Package) capellaObjectFromAllRules0).getPackagedElements().add(targetInterface);
+		element targetelement = XMIExtensionsUtils.createElement(targetInterface, getAlgo().getXMIExtension());
+
+		CapellaElement ce = (CapellaElement) source;
+		if (CapellaUtils.hasStereotype(ce)) {
+			XMIExtensionsUtils.createStereotypeProperties(targetelement, CapellaUtils.getSterotypeName(ce),
+					"Interface");
+			EList<PropertyValueGroup> pvgs = ce.getOwnedPropertyValueGroups();
+			for (PropertyValueGroup propertyValueGroup : pvgs) {
+				PropertyValuePkg propertyValuePkgFromName = SpecificUtils
+						.getProfilePropertyValueGroup(ProjectExt.getProject(source), propertyValueGroup.getName());
+				Profile capellaObjectFromAllRules = (Profile) MappingRulesManager
+						.getCapellaObjectFromAllRules(propertyValuePkgFromName);
+
+				Stereotype ownedStereotype = capellaObjectFromAllRules
+						.getOwnedStereotype(propertyValueGroup.getName().split("\\.")[1]);
+
+				getAlgo().getStereotypes().add(ownedStereotype);
+
+				String typeBase = "Interface";
+
+				org.eclipse.uml2.uml.Interface compStereo = UMLFactory.eINSTANCE.createInterface();
+				SpecificUtils.createCustoStereotypeApplication((Element) eaContainer, targetInterface,
+						SpecificUtils.getModel(targetInterface, source), propertyValueGroup, typeBase, compStereo,
+						getAlgo());
+
+			}
+		}
+
 		targetInterface.setName(source.getName());
 
-		EList<ExchangeItem> exchangeItems = source.getExchangeItems();
+		Resource eResource = source.eResource();
+		String sysMLID = MappingUtils.getSysMLID(eResource, source);
+		String beginId = sysMLID.substring(0, 10);
 
+		EList<ExchangeItem> exchangeItems = source.getExchangeItems();
 		for (ExchangeItem exchangeItem : exchangeItems) {
+			String sysMLID2 = MappingUtils.getSysMLID(eResource, exchangeItem);
+			String endID = sysMLID2.substring(10);
 			Object capellaObjectFromAllRules = MappingRulesManager.getCapellaObjectFromAllRules(exchangeItem);
 			if (capellaObjectFromAllRules instanceof Classifier) {
 				Property createProperty = UMLFactory.eINSTANCE.createProperty();
 				createProperty.setName(exchangeItem.getName());
-				MappingUtils.generateUID(getAlgo(), exchangeItem, createProperty, this, "property");
+				MappingUtils.generateNamesUID(getAlgo(), createProperty, this, beginId + endID + "property");
 				XMIExtensionsUtils.createElement(createProperty, getAlgo().getXMIExtension());
 				targetInterface.getOwnedAttributes().add(createProperty);
 				createProperty.setType((Classifier) capellaObjectFromAllRules);
 
 				if (capellaObjectFromAllRules != null) {
 					Usage createUsage = UMLFactory.eINSTANCE.createUsage();
-					MappingUtils.generateUID(getAlgo(), exchangeItem, createUsage, this, "us");
+					MappingUtils.generateNamesUID(getAlgo(), createUsage, this, beginId + endID + "us");
 
 					createUsage.getClients().add((org.eclipse.uml2.uml.Interface) targetInterface);
 					createUsage.getSuppliers().add((org.eclipse.uml2.uml.Type) capellaObjectFromAllRules);
 
-					EList<PackageableElement> packagedElements = ((Model) eaContainer).getPackagedElements();
+					Project project = ProjectExt.getProject(source);
+					Object capellaObjectFromAllRules2 = MappingRulesManager.getCapellaObjectFromAllRules(project);
+
+					EList<PackageableElement> packagedElements = ((Model) capellaObjectFromAllRules2)
+							.getPackagedElements();
 					for (PackageableElement ownedMember : packagedElements) {
-						if (ownedMember.getName().equals("Import Capella"))
+						if (ownedMember.getName().equals(SpecificUtils.getCapellaImportName(this)))
 							((org.eclipse.uml2.uml.Package) ownedMember).getPackagedElements().add(createUsage);
 					}
 
 				}
 
 			}
-		}
-
-		if (eaContainer instanceof Model) {
-			EList<PackageableElement> ownedMembers = ((Model) eaContainer).getPackagedElements();
-			for (PackageableElement ownedMember : ownedMembers) {
-				if (ownedMember.getName().equals("Import Capella"))
-					((org.eclipse.uml2.uml.Package) ownedMember).getPackagedElements().add(targetInterface);
-			}
-
 		}
 
 		return targetInterface;

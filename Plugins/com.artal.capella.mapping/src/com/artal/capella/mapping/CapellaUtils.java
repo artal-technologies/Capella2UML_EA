@@ -3,6 +3,7 @@
  */
 package com.artal.capella.mapping;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -14,10 +15,13 @@ import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
+import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.capellacore.ModellingArchitecture;
+import org.polarsys.capella.core.data.capellacore.PropertyValueGroup;
 import org.polarsys.capella.core.data.capellamodeller.ModelRoot;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.capellamodeller.SystemEngineering;
+import org.polarsys.capella.core.data.cs.BlockArchitecture;
 import org.polarsys.capella.core.data.cs.Component;
 import org.polarsys.capella.core.data.cs.InterfacePkg;
 import org.polarsys.capella.core.data.cs.Part;
@@ -29,6 +33,8 @@ import org.polarsys.capella.core.data.la.LogicalArchitecture;
 import org.polarsys.capella.core.data.la.LogicalComponent;
 import org.polarsys.capella.core.data.la.LogicalComponentPkg;
 import org.polarsys.capella.core.data.la.LogicalFunctionPkg;
+import org.polarsys.capella.core.data.pa.PhysicalArchitecture;
+import org.polarsys.capella.core.data.pa.PhysicalComponent;
 
 /**
  * @author binot
@@ -41,6 +47,25 @@ public class CapellaUtils {
 			return true;
 		}
 		return false;
+	}
+
+	public static boolean hasStereotype(CapellaElement ce) {
+		return ce.getOwnedPropertyValueGroups().size() > 0;
+	}
+
+	public static String getSterotypeName(CapellaElement ce) {// TODO: To improve (search for a Helper?)
+		for (PropertyValueGroup pvg : ce.getOwnedPropertyValueGroups()) {
+			return pvg.getName().replace(".", "::");
+		}
+		return null;
+	}
+
+	public static List<String> getListStereotypeName(CapellaElement ce) {// TODO: To improve (search for a Helper?)
+		List<String> results = new ArrayList<String>();
+		for (PropertyValueGroup pvg : ce.getOwnedPropertyValueGroups()) {
+			results.add(pvg.getName().replace(".", "::"));
+		}
+		return results;
 	}
 
 	/**
@@ -80,6 +105,37 @@ public class CapellaUtils {
 	 * @param source_p the semantic object
 	 * @return the logical component root
 	 */
+	public static PhysicalComponent getPhysicalSystemRoot(EObject source_p) {
+		ResourceSet resourceSet = source_p.eResource().getResourceSet();
+		URI semanticResourceURI = source_p.eResource().getURI().trimFileExtension()
+				.appendFileExtension("melodymodeller");
+		Resource semanticResource = resourceSet.getResource(semanticResourceURI, false);
+		if (semanticResource != null) {
+			EObject root = semanticResource.getContents().get(0);
+			if (root instanceof Project) {
+				EList<ModelRoot> ownedModelRoots = ((Project) root).getOwnedModelRoots();
+				for (ModelRoot modelRoot : ownedModelRoots) {
+					if (modelRoot instanceof SystemEngineering) {
+						EList<ModellingArchitecture> containedLogicalArchitecture = ((SystemEngineering) modelRoot)
+								.getOwnedArchitectures();
+						for (ModellingArchitecture arch : containedLogicalArchitecture) {
+							if (arch instanceof PhysicalArchitecture)
+								return (PhysicalComponent) ((PhysicalArchitecture) arch).getSystem();
+						}
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the logical component system root given a semantic object
+	 * 
+	 * @param source_p
+	 *            the semantic object
+	 * @return the logical component root
+	 */
 	public static LogicalComponentPkg getLogicalComponentPkg(EObject source_p) {
 		ResourceSet resourceSet = source_p.eResource().getResourceSet();
 		URI semanticResourceURI = source_p.eResource().getURI().trimFileExtension()
@@ -103,6 +159,37 @@ public class CapellaUtils {
 		}
 		return null;
 	}
+
+//	/**
+//	 * Returns the logical component system root given a semantic object
+//	 * 
+//	 * @param source_p
+//	 *            the semantic object
+//	 * @return the logical component root
+//	 */
+//	public static PhysicalActorPkg getPhysicalActorPkg(EObject source_p) {
+//		ResourceSet resourceSet = source_p.eResource().getResourceSet();
+//		URI semanticResourceURI = source_p.eResource().getURI().trimFileExtension()
+//				.appendFileExtension("melodymodeller");
+//		Resource semanticResource = resourceSet.getResource(semanticResourceURI, false);
+//		if (semanticResource != null) {
+//			EObject root = semanticResource.getContents().get(0);
+//			if (root instanceof Project) {
+//				EList<ModelRoot> ownedModelRoots = ((Project) root).getOwnedModelRoots();
+//				for (ModelRoot modelRoot : ownedModelRoots) {
+//					if (modelRoot instanceof SystemEngineering) {
+//						EList<ModellingArchitecture> containedLogicalArchitecture = ((SystemEngineering) modelRoot)
+//								.getOwnedArchitectures();
+//						for (ModellingArchitecture arch : containedLogicalArchitecture) {
+//							if (arch instanceof PhysicalArchitecture)
+//								return ((PhysicalArchitecture) arch).getOwnedPhysicalActorPkg();
+//						}
+//					}
+//				}
+//			}
+//		}
+//		return null;
+//	}
 
 	/**
 	 * Returns the logical architecture system root given a semantic object
@@ -136,13 +223,13 @@ public class CapellaUtils {
 	}
 
 	/**
-	 * Returns the interface package given a semantic object
+	 * Returns the logical architecture system root given a semantic object
 	 * 
 	 * @param source_p
 	 *            the semantic object
-	 * @return the data pkg root
+	 * @return the logical component root
 	 */
-	public static InterfacePkg getInterfacePkgRoot(EObject source_p) {
+	public static PhysicalArchitecture getPhysicalArchitecture(EObject source_p) {
 		ResourceSet resourceSet = source_p.eResource().getResourceSet();
 		URI semanticResourceURI = source_p.eResource().getURI().trimFileExtension()
 				.appendFileExtension("melodymodeller");
@@ -156,8 +243,39 @@ public class CapellaUtils {
 						EList<ModellingArchitecture> containedLogicalArchitecture = ((SystemEngineering) modelRoot)
 								.getOwnedArchitectures();
 						for (ModellingArchitecture arch : containedLogicalArchitecture) {
-							if (arch instanceof LogicalArchitecture)
-								return ((LogicalArchitecture) arch).getOwnedInterfacePkg();
+							if (arch instanceof PhysicalArchitecture)
+								return ((PhysicalArchitecture) arch);
+						}
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the interface package given a semantic object
+	 * 
+	 * @param source_p
+	 *            the semantic object
+	 * @return the data pkg root
+	 */
+	public static InterfacePkg getInterfacePkgRoot(EObject source_p, Class<?> clazz) {
+		ResourceSet resourceSet = source_p.eResource().getResourceSet();
+		URI semanticResourceURI = source_p.eResource().getURI().trimFileExtension()
+				.appendFileExtension("melodymodeller");
+		Resource semanticResource = resourceSet.getResource(semanticResourceURI, false);
+		if (semanticResource != null) {
+			EObject root = semanticResource.getContents().get(0);
+			if (root instanceof Project) {
+				EList<ModelRoot> ownedModelRoots = ((Project) root).getOwnedModelRoots();
+				for (ModelRoot modelRoot : ownedModelRoots) {
+					if (modelRoot instanceof SystemEngineering) {
+						EList<ModellingArchitecture> containedLogicalArchitecture = ((SystemEngineering) modelRoot)
+								.getOwnedArchitectures();
+						for (ModellingArchitecture arch : containedLogicalArchitecture) {
+							if (/* arch instanceof LogicalArchitecture */clazz.isInstance(arch))
+								return ((BlockArchitecture) arch).getOwnedInterfacePkg();
 						}
 					}
 				}
@@ -173,7 +291,7 @@ public class CapellaUtils {
 	 *            the semantic object
 	 * @return the data pkg root
 	 */
-	public static DataPkg getDataPkgRoot(EObject source_p) {
+	public static DataPkg getDataPkgRoot(EObject source_p, Class<?> clazz) {
 		ResourceSet resourceSet = source_p.eResource().getResourceSet();
 		URI semanticResourceURI = source_p.eResource().getURI().trimFileExtension()
 				.appendFileExtension("melodymodeller");
@@ -187,8 +305,8 @@ public class CapellaUtils {
 						EList<ModellingArchitecture> containedLogicalArchitecture = ((SystemEngineering) modelRoot)
 								.getOwnedArchitectures();
 						for (ModellingArchitecture arch : containedLogicalArchitecture) {
-							if (arch instanceof LogicalArchitecture)
-								return ((LogicalArchitecture) arch).getOwnedDataPkg();
+							if (clazz.isInstance(arch))
+								return ((BlockArchitecture) arch).getOwnedDataPkg();
 						}
 					}
 				}

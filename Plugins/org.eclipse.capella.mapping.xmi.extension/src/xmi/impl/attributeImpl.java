@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import xmi.XmiPackage;
 import xmi.attribute;
+import xmi.extendedProperties;
 import xmi.stereotype;
 
 /**
@@ -28,6 +29,8 @@ import xmi.stereotype;
  *   <li>{@link xmi.impl.attributeImpl#getXmiidref <em>Xmiidref</em>}</li>
  *   <li>{@link xmi.impl.attributeImpl#getName <em>Name</em>}</li>
  *   <li>{@link xmi.impl.attributeImpl#getScope <em>Scope</em>}</li>
+ *   <li>{@link xmi.impl.attributeImpl#getExtendedProperties <em>Extended Properties</em>}</li>
+ *   <li>{@link xmi.impl.attributeImpl#getTagged <em>Tagged</em>}</li>
  * </ul>
  *
  * @generated
@@ -92,6 +95,36 @@ public class attributeImpl extends MinimalEObjectImpl.Container implements attri
 	 * @ordered
 	 */
 	protected String scope = SCOPE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getExtendedProperties() <em>Extended Properties</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExtendedProperties()
+	 * @generated
+	 * @ordered
+	 */
+	protected extendedProperties extendedProperties;
+
+	/**
+	 * The default value of the '{@link #getTagged() <em>Tagged</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTagged()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TAGGED_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getTagged() <em>Tagged</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTagged()
+	 * @generated
+	 * @ordered
+	 */
+	protected String tagged = TAGGED_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -240,11 +273,77 @@ public class attributeImpl extends MinimalEObjectImpl.Container implements attri
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public extendedProperties getExtendedProperties() {
+		return extendedProperties;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetExtendedProperties(extendedProperties newExtendedProperties, NotificationChain msgs) {
+		extendedProperties oldExtendedProperties = extendedProperties;
+		extendedProperties = newExtendedProperties;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XmiPackage.ATTRIBUTE__EXTENDED_PROPERTIES, oldExtendedProperties, newExtendedProperties);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setExtendedProperties(extendedProperties newExtendedProperties) {
+		if (newExtendedProperties != extendedProperties) {
+			NotificationChain msgs = null;
+			if (extendedProperties != null)
+				msgs = ((InternalEObject)extendedProperties).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XmiPackage.ATTRIBUTE__EXTENDED_PROPERTIES, null, msgs);
+			if (newExtendedProperties != null)
+				msgs = ((InternalEObject)newExtendedProperties).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XmiPackage.ATTRIBUTE__EXTENDED_PROPERTIES, null, msgs);
+			msgs = basicSetExtendedProperties(newExtendedProperties, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, XmiPackage.ATTRIBUTE__EXTENDED_PROPERTIES, newExtendedProperties, newExtendedProperties));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getTagged() {
+		return tagged;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTagged(String newTagged) {
+		String oldTagged = tagged;
+		tagged = newTagged;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, XmiPackage.ATTRIBUTE__TAGGED, oldTagged, tagged));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case XmiPackage.ATTRIBUTE__STEREOTYPE:
 				return basicSetStereotype(null, msgs);
+			case XmiPackage.ATTRIBUTE__EXTENDED_PROPERTIES:
+				return basicSetExtendedProperties(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -266,6 +365,10 @@ public class attributeImpl extends MinimalEObjectImpl.Container implements attri
 				return getName();
 			case XmiPackage.ATTRIBUTE__SCOPE:
 				return getScope();
+			case XmiPackage.ATTRIBUTE__EXTENDED_PROPERTIES:
+				return getExtendedProperties();
+			case XmiPackage.ATTRIBUTE__TAGGED:
+				return getTagged();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -289,6 +392,12 @@ public class attributeImpl extends MinimalEObjectImpl.Container implements attri
 				return;
 			case XmiPackage.ATTRIBUTE__SCOPE:
 				setScope((String)newValue);
+				return;
+			case XmiPackage.ATTRIBUTE__EXTENDED_PROPERTIES:
+				setExtendedProperties((extendedProperties)newValue);
+				return;
+			case XmiPackage.ATTRIBUTE__TAGGED:
+				setTagged((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -314,6 +423,12 @@ public class attributeImpl extends MinimalEObjectImpl.Container implements attri
 			case XmiPackage.ATTRIBUTE__SCOPE:
 				setScope(SCOPE_EDEFAULT);
 				return;
+			case XmiPackage.ATTRIBUTE__EXTENDED_PROPERTIES:
+				setExtendedProperties((extendedProperties)null);
+				return;
+			case XmiPackage.ATTRIBUTE__TAGGED:
+				setTagged(TAGGED_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -334,6 +449,10 @@ public class attributeImpl extends MinimalEObjectImpl.Container implements attri
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case XmiPackage.ATTRIBUTE__SCOPE:
 				return SCOPE_EDEFAULT == null ? scope != null : !SCOPE_EDEFAULT.equals(scope);
+			case XmiPackage.ATTRIBUTE__EXTENDED_PROPERTIES:
+				return extendedProperties != null;
+			case XmiPackage.ATTRIBUTE__TAGGED:
+				return TAGGED_EDEFAULT == null ? tagged != null : !TAGGED_EDEFAULT.equals(tagged);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -352,6 +471,8 @@ public class attributeImpl extends MinimalEObjectImpl.Container implements attri
 		result.append(name);
 		result.append(", scope: ");
 		result.append(scope);
+		result.append(", tagged: ");
+		result.append(tagged);
 		result.append(')');
 		return result.toString();
 	}

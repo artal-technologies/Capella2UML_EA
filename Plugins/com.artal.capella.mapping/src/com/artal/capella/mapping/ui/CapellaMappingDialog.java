@@ -164,10 +164,10 @@ public class CapellaMappingDialog extends TitleAreaDialog {
 		defaultComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
 		defaultComposite.setLayout(new GridLayout());
 
-		for (MappingService mappingService : listServices) {
-			mappingService.getOrCreateSpecificView(specificGroup);
-
-		}
+		// for (MappingService mappingService : listServices) {
+		// mappingService.getOrCreateSpecificView(specificGroup);
+		//
+		// }
 		stackLayout.topControl = defaultComposite;
 
 		GridData layoutData = new GridData(GridData.FILL_BOTH);
@@ -323,6 +323,11 @@ public class CapellaMappingDialog extends TitleAreaDialog {
 	public BridgeJob<?> createBridgeJob(String jobName_p, Project sourceDataSet_p, URI targetURI_p,
 			AbstractMappingAlgoMix<?, ?> mix) {
 		return _selectedTransfo.createBridgeJob(jobName_p, sourceDataSet_p, targetURI_p, mix);
+	}
+
+	public void postProcess() {
+		_selectedTransfo.postProcess(_outputPath);
+
 	}
 
 }

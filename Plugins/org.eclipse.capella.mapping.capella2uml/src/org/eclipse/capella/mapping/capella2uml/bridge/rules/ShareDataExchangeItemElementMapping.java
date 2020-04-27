@@ -6,9 +6,11 @@ package org.eclipse.capella.mapping.capella2uml.bridge.rules;
 import java.util.List;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
+import org.eclipse.capella.mapping.capella2uml.bridge.rules.utils.SpecificUtils;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Property;
@@ -17,10 +19,13 @@ import org.eclipse.uml2.uml.VisibilityKind;
 import org.polarsys.capella.core.data.capellacore.Type;
 import org.polarsys.capella.core.data.information.ExchangeItem;
 import org.polarsys.capella.core.data.information.ExchangeItemElement;
+import org.polarsys.capella.core.model.helpers.ProjectExt;
 
 import com.artal.capella.mapping.MappingUtils;
 import com.artal.capella.mapping.rules.MappingRulesManager;
 import com.artal.capella.mapping.rules.commons.CommonExchangeItemElement;
+
+import xmi.util.XMIExtensionsUtils;
 
 /**
  * @author binot
@@ -73,13 +78,18 @@ public class ShareDataExchangeItemElementMapping extends CommonExchangeItemEleme
 		if (capellaObjectFromAllRules != null) {
 			Dependency createDependency = UMLFactory.eINSTANCE.createDependency();
 			MappingUtils.generateUID(getAlgo(), source, createDependency, this, "d");
-
 			createDependency.getClients().add((org.eclipse.uml2.uml.Class) eaContainer);
 			createDependency.getSuppliers().add((org.eclipse.uml2.uml.Type) capellaObjectFromAllRules);
+			Resource eResource = source.eResource();
+			String sysMLID = MappingUtils.getSysMLID(eResource, source);
+			XMIExtensionsUtils.addConnector(createDependency, getAlgo().getXMIExtension(), sysMLID, "Unspecified",
+					"Dependency", (org.eclipse.uml2.uml.Class) eaContainer,
+					(org.eclipse.uml2.uml.Type) capellaObjectFromAllRules, false);
+
 			EList<PackageableElement> packagedElements = ((org.eclipse.uml2.uml.Class) eaContainer).getModel()
 					.getPackagedElements();
 			for (PackageableElement ownedMember : packagedElements) {
-				if (ownedMember.getName().equals("Import Capella"))
+				if (ownedMember.getName().equals(SpecificUtils.getCapellaImportName(this)))
 					((org.eclipse.uml2.uml.Package) ownedMember).getPackagedElements().add(createDependency);
 			}
 		}

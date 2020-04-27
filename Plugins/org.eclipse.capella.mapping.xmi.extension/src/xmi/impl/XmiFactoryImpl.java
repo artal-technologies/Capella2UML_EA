@@ -63,6 +63,14 @@ public class XmiFactoryImpl extends EFactoryImpl implements XmiFactory {
 			case XmiPackage.XREFS: return createxrefs();
 			case XmiPackage.PROFILES: return createprofiles();
 			case XmiPackage.PROPERTIES: return createproperties();
+			case XmiPackage.PACKAGED_ELEMENT: return createPackagedElement();
+			case XmiPackage.UML_PROFILE: return createumlProfile();
+			case XmiPackage.OWNED_END: return createownedEnd();
+			case XmiPackage.PACKAGE_IMPORT: return createpackageImport();
+			case XmiPackage.IMPORTED_PACKAGE: return createimportedPackage();
+			case XmiPackage.OWNED_ATTRIBUTE: return createownedAttribute();
+			case XmiPackage.TYPE: return createtype();
+			case XmiPackage.EXTENDED_PROPERTIES: return createextendedProperties();
 			case XmiPackage.ATTRIBUTES: return createattributes();
 			case XmiPackage.ATTRIBUTE: return createattribute();
 			case XmiPackage.STEREOTYPE: return createstereotype();
@@ -71,6 +79,13 @@ public class XmiFactoryImpl extends EFactoryImpl implements XmiFactory {
 			case XmiPackage.CONNECTORS: return createconnectors();
 			case XmiPackage.CONNECTOR: return createconnector();
 			case XmiPackage.MODEL: return createmodel();
+			case XmiPackage.SOURCE: return createsource();
+			case XmiPackage.TARGET: return createtarget();
+			case XmiPackage.ROLE: return createrole();
+			case XmiPackage.TAGS: return createtags();
+			case XmiPackage.TAG: return createtag();
+			case XmiPackage.OPERATIONS: return createoperations();
+			case XmiPackage.OPERATION: return createoperation();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -151,6 +166,86 @@ public class XmiFactoryImpl extends EFactoryImpl implements XmiFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public PackagedElement createPackagedElement() {
+		PackagedElementImpl packagedElement = new PackagedElementImpl();
+		return packagedElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public umlProfile createumlProfile() {
+		umlProfileImpl umlProfile = new umlProfileImpl();
+		return umlProfile;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ownedEnd createownedEnd() {
+		ownedEndImpl ownedEnd = new ownedEndImpl();
+		return ownedEnd;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public packageImport createpackageImport() {
+		packageImportImpl packageImport = new packageImportImpl();
+		return packageImport;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public importedPackage createimportedPackage() {
+		importedPackageImpl importedPackage = new importedPackageImpl();
+		return importedPackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ownedAttribute createownedAttribute() {
+		ownedAttributeImpl ownedAttribute = new ownedAttributeImpl();
+		return ownedAttribute;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public type createtype() {
+		typeImpl type = new typeImpl();
+		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public extendedProperties createextendedProperties() {
+		extendedPropertiesImpl extendedProperties = new extendedPropertiesImpl();
+		return extendedProperties;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public attributes createattributes() {
 		attributesImpl attributes = new attributesImpl();
 		return attributes;
@@ -224,6 +319,76 @@ public class XmiFactoryImpl extends EFactoryImpl implements XmiFactory {
 	public model createmodel() {
 		modelImpl model = new modelImpl();
 		return model;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public source createsource() {
+		sourceImpl source = new sourceImpl();
+		return source;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public target createtarget() {
+		targetImpl target = new targetImpl();
+		return target;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public role createrole() {
+		roleImpl role = new roleImpl();
+		return role;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public tags createtags() {
+		tagsImpl tags = new tagsImpl();
+		return tags;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public tag createtag() {
+		tagImpl tag = new tagImpl();
+		return tag;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public operations createoperations() {
+		operationsImpl operations = new operationsImpl();
+		return operations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public operation createoperation() {
+		operationImpl operation = new operationImpl();
+		return operation;
 	}
 
 	/**

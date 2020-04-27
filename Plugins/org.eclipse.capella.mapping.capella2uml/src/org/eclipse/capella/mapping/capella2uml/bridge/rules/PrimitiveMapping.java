@@ -7,14 +7,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
+import org.eclipse.capella.mapping.capella2uml.bridge.rules.utils.SpecificUtils;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.uml2.uml.Actor;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.LiteralInteger;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.PackageableElement;
+import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.polarsys.capella.common.helpers.EObjectExt;
+import org.polarsys.capella.core.data.capellacore.CapellaElement;
+import org.polarsys.capella.core.data.capellacore.PropertyValueGroup;
+import org.polarsys.capella.core.data.capellacore.PropertyValuePkg;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.information.DataPkg;
 import org.polarsys.capella.core.data.information.datatype.BooleanType;
@@ -27,6 +35,7 @@ import org.polarsys.capella.core.data.information.datavalue.LiteralNumericValue;
 import org.polarsys.capella.core.data.information.datavalue.NumericValue;
 import org.polarsys.capella.core.model.helpers.ProjectExt;
 
+import com.artal.capella.mapping.CapellaUtils;
 import com.artal.capella.mapping.MappingUtils;
 import com.artal.capella.mapping.rules.MappingRulesManager;
 import com.artal.capella.mapping.rules.commons.CommonDatatypeMapping;
@@ -39,7 +48,7 @@ import xmi.util.XMIExtensionsUtils;
  * @author binot
  *
  */
-public class PrimitiveMapping extends CommonDatatypeMapping<DataPkg, Capella2UMLAlgo> {
+public class PrimitiveMapping extends CommonDatatypeMapping<Capella2UMLAlgo> {
 
 	/**
 	 * @param algo
@@ -89,7 +98,33 @@ public class PrimitiveMapping extends CommonDatatypeMapping<DataPkg, Capella2UML
 		}
 
 		MappingUtils.generateUID(getAlgo(), source, targetPrimitiveType, this);
+		((org.eclipse.uml2.uml.Package) eaContainer).getPackagedElements().add(targetPrimitiveType);
 		element createElement = XMIExtensionsUtils.createElement(targetPrimitiveType, getAlgo().getXMIExtension());
+
+		CapellaElement ce = (CapellaElement) source;
+		if (CapellaUtils.hasStereotype(ce)) {
+			XMIExtensionsUtils.createStereotypeProperties(createElement, CapellaUtils.getSterotypeName(ce), "DataType");
+			EList<PropertyValueGroup> pvgs = ce.getOwnedPropertyValueGroups();
+			for (PropertyValueGroup propertyValueGroup : pvgs) {
+				PropertyValuePkg propertyValuePkgFromName = SpecificUtils
+						.getProfilePropertyValueGroup(ProjectExt.getProject(source), propertyValueGroup.getName());
+				Profile capellaObjectFromAllRules = (Profile) MappingRulesManager
+						.getCapellaObjectFromAllRules(propertyValuePkgFromName);
+
+				Stereotype ownedStereotype = capellaObjectFromAllRules
+						.getOwnedStereotype(propertyValueGroup.getName().split("\\.")[1]);
+
+				getAlgo().getStereotypes().add(ownedStereotype);
+
+				String typeBase = "DataType";
+
+				org.eclipse.uml2.uml.DataType compStereo = UMLFactory.eINSTANCE.createDataType();
+				SpecificUtils.createCustoStereotypeApplication((Element) eaContainer, targetPrimitiveType,
+						SpecificUtils.getModel(targetPrimitiveType,source), propertyValueGroup, typeBase, compStereo, getAlgo());
+
+			}
+		}
+
 		targetPrimitiveType.setName(source.getName());
 
 		constraints createConstraints = XMIExtensionsUtils.createConstraints(createElement);
@@ -112,17 +147,6 @@ public class PrimitiveMapping extends CommonDatatypeMapping<DataPkg, Capella2UML
 				minInteger.setValue(1);
 				String label = ((LiteralNumericValue) ownedMinValue).getValue();
 				XMIExtensionsUtils.addConstraint(createConstraints, "min = " + label, "Invariant", "0,00", "Approved");
-			}
-		}
-		if (source instanceof BooleanType) {
-			// UMLFactory.eINSTANCE.create
-		}
-
-		if (eaContainer instanceof Model) {
-			EList<PackageableElement> ownedMembers = ((Model) eaContainer).getPackagedElements();
-			for (PackageableElement ownedMember : ownedMembers) {
-				if (ownedMember.getName().equals("Import Capella"))
-					((org.eclipse.uml2.uml.Package) ownedMember).getPackagedElements().add(targetPrimitiveType);
 			}
 		}
 

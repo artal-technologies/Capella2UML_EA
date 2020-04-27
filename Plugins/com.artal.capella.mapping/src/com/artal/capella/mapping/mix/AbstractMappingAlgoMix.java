@@ -14,15 +14,13 @@ import com.artal.capella.mapping.rules.MappingRulesManager;
  */
 abstract public class AbstractMappingAlgoMix<SOURCE, ALGO extends CapellaBridgeAlgo<?>> {
 
-	MappingRulesManager _managerRules = new MappingRulesManager();
 
-	String _mixName = "";
+	MappingRulesManager _managerRules= new MappingRulesManager();
+
 
 	abstract public void launch(ALGO algo, SOURCE source, IMappingExecution execution);
 
-	public String getMixName() {
-		return _mixName;
-	}
+	abstract public String getMixName();
 
 	public MappingRulesManager getManagerRules() {
 		return _managerRules;

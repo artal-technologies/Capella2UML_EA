@@ -5,11 +5,14 @@ package xmi.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import xmi.XmiPackage;
+import xmi.ownedAttribute;
+import xmi.ownedEnd;
 import xmi.properties;
 
 /**
@@ -27,8 +30,16 @@ import xmi.properties;
  *   <li>{@link xmi.impl.propertiesImpl#isIsRoot <em>Is Root</em>}</li>
  *   <li>{@link xmi.impl.propertiesImpl#isIsLeaf <em>Is Leaf</em>}</li>
  *   <li>{@link xmi.impl.propertiesImpl#isIsAbstract <em>Is Abstract</em>}</li>
+ *   <li>{@link xmi.impl.propertiesImpl#getXmiid <em>Xmiid</em>}</li>
+ *   <li>{@link xmi.impl.propertiesImpl#getName <em>Name</em>}</li>
+ *   <li>{@link xmi.impl.propertiesImpl#getPrefix <em>Prefix</em>}</li>
+ *   <li>{@link xmi.impl.propertiesImpl#getOwnedEnd <em>Owned End</em>}</li>
+ *   <li>{@link xmi.impl.propertiesImpl#getXmitype <em>Xmitype</em>}</li>
+ *   <li>{@link xmi.impl.propertiesImpl#getOwnedAttribute <em>Owned Attribute</em>}</li>
  *   <li>{@link xmi.impl.propertiesImpl#getEa_type <em>Ea type</em>}</li>
  *   <li>{@link xmi.impl.propertiesImpl#getDirection <em>Direction</em>}</li>
+ *   <li>{@link xmi.impl.propertiesImpl#getStereotype <em>Stereotype</em>}</li>
+ *   <li>{@link xmi.impl.propertiesImpl#getDocumentation <em>Documentation</em>}</li>
  * </ul>
  *
  * @generated
@@ -175,6 +186,106 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 	protected boolean isAbstract = IS_ABSTRACT_EDEFAULT;
 
 	/**
+	 * The default value of the '{@link #getXmiid() <em>Xmiid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getXmiid()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String XMIID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getXmiid() <em>Xmiid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getXmiid()
+	 * @generated
+	 * @ordered
+	 */
+	protected String xmiid = XMIID_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getPrefix() <em>Prefix</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPrefix()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String PREFIX_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getPrefix() <em>Prefix</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPrefix()
+	 * @generated
+	 * @ordered
+	 */
+	protected String prefix = PREFIX_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getOwnedEnd() <em>Owned End</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedEnd()
+	 * @generated
+	 * @ordered
+	 */
+	protected ownedEnd ownedEnd;
+
+	/**
+	 * The default value of the '{@link #getXmitype() <em>Xmitype</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getXmitype()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String XMITYPE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getXmitype() <em>Xmitype</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getXmitype()
+	 * @generated
+	 * @ordered
+	 */
+	protected String xmitype = XMITYPE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getOwnedAttribute() <em>Owned Attribute</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedAttribute()
+	 * @generated
+	 * @ordered
+	 */
+	protected ownedAttribute ownedAttribute;
+
+	/**
 	 * The default value of the '{@link #getEa_type() <em>Ea type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -213,6 +324,46 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 	 * @ordered
 	 */
 	protected String direction = DIRECTION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getStereotype() <em>Stereotype</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStereotype()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String STEREOTYPE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getStereotype() <em>Stereotype</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStereotype()
+	 * @generated
+	 * @ordered
+	 */
+	protected String stereotype = STEREOTYPE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDocumentation() <em>Documentation</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDocumentation()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DOCUMENTATION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDocumentation() <em>Documentation</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDocumentation()
+	 * @generated
+	 * @ordered
+	 */
+	protected String documentation = DOCUMENTATION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -385,6 +536,166 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getXmiid() {
+		return xmiid;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setXmiid(String newXmiid) {
+		String oldXmiid = xmiid;
+		xmiid = newXmiid;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, XmiPackage.PROPERTIES__XMIID, oldXmiid, xmiid));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, XmiPackage.PROPERTIES__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getPrefix() {
+		return prefix;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPrefix(String newPrefix) {
+		String oldPrefix = prefix;
+		prefix = newPrefix;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, XmiPackage.PROPERTIES__PREFIX, oldPrefix, prefix));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ownedEnd getOwnedEnd() {
+		if (ownedEnd != null && ownedEnd.eIsProxy()) {
+			InternalEObject oldOwnedEnd = (InternalEObject)ownedEnd;
+			ownedEnd = (ownedEnd)eResolveProxy(oldOwnedEnd);
+			if (ownedEnd != oldOwnedEnd) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, XmiPackage.PROPERTIES__OWNED_END, oldOwnedEnd, ownedEnd));
+			}
+		}
+		return ownedEnd;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ownedEnd basicGetOwnedEnd() {
+		return ownedEnd;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwnedEnd(ownedEnd newOwnedEnd) {
+		ownedEnd oldOwnedEnd = ownedEnd;
+		ownedEnd = newOwnedEnd;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, XmiPackage.PROPERTIES__OWNED_END, oldOwnedEnd, ownedEnd));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getXmitype() {
+		return xmitype;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setXmitype(String newXmitype) {
+		String oldXmitype = xmitype;
+		xmitype = newXmitype;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, XmiPackage.PROPERTIES__XMITYPE, oldXmitype, xmitype));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ownedAttribute getOwnedAttribute() {
+		if (ownedAttribute != null && ownedAttribute.eIsProxy()) {
+			InternalEObject oldOwnedAttribute = (InternalEObject)ownedAttribute;
+			ownedAttribute = (ownedAttribute)eResolveProxy(oldOwnedAttribute);
+			if (ownedAttribute != oldOwnedAttribute) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, XmiPackage.PROPERTIES__OWNED_ATTRIBUTE, oldOwnedAttribute, ownedAttribute));
+			}
+		}
+		return ownedAttribute;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ownedAttribute basicGetOwnedAttribute() {
+		return ownedAttribute;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwnedAttribute(ownedAttribute newOwnedAttribute) {
+		ownedAttribute oldOwnedAttribute = ownedAttribute;
+		ownedAttribute = newOwnedAttribute;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, XmiPackage.PROPERTIES__OWNED_ATTRIBUTE, oldOwnedAttribute, ownedAttribute));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getEa_type() {
 		return ea_type;
 	}
@@ -427,6 +738,48 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getStereotype() {
+		return stereotype;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStereotype(String newStereotype) {
+		String oldStereotype = stereotype;
+		stereotype = newStereotype;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, XmiPackage.PROPERTIES__STEREOTYPE, oldStereotype, stereotype));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getDocumentation() {
+		return documentation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDocumentation(String newDocumentation) {
+		String oldDocumentation = documentation;
+		documentation = newDocumentation;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, XmiPackage.PROPERTIES__DOCUMENTATION, oldDocumentation, documentation));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -444,10 +797,28 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 				return isIsLeaf();
 			case XmiPackage.PROPERTIES__IS_ABSTRACT:
 				return isIsAbstract();
+			case XmiPackage.PROPERTIES__XMIID:
+				return getXmiid();
+			case XmiPackage.PROPERTIES__NAME:
+				return getName();
+			case XmiPackage.PROPERTIES__PREFIX:
+				return getPrefix();
+			case XmiPackage.PROPERTIES__OWNED_END:
+				if (resolve) return getOwnedEnd();
+				return basicGetOwnedEnd();
+			case XmiPackage.PROPERTIES__XMITYPE:
+				return getXmitype();
+			case XmiPackage.PROPERTIES__OWNED_ATTRIBUTE:
+				if (resolve) return getOwnedAttribute();
+				return basicGetOwnedAttribute();
 			case XmiPackage.PROPERTIES__EA_TYPE:
 				return getEa_type();
 			case XmiPackage.PROPERTIES__DIRECTION:
 				return getDirection();
+			case XmiPackage.PROPERTIES__STEREOTYPE:
+				return getStereotype();
+			case XmiPackage.PROPERTIES__DOCUMENTATION:
+				return getDocumentation();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -481,11 +852,35 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 			case XmiPackage.PROPERTIES__IS_ABSTRACT:
 				setIsAbstract((Boolean)newValue);
 				return;
+			case XmiPackage.PROPERTIES__XMIID:
+				setXmiid((String)newValue);
+				return;
+			case XmiPackage.PROPERTIES__NAME:
+				setName((String)newValue);
+				return;
+			case XmiPackage.PROPERTIES__PREFIX:
+				setPrefix((String)newValue);
+				return;
+			case XmiPackage.PROPERTIES__OWNED_END:
+				setOwnedEnd((ownedEnd)newValue);
+				return;
+			case XmiPackage.PROPERTIES__XMITYPE:
+				setXmitype((String)newValue);
+				return;
+			case XmiPackage.PROPERTIES__OWNED_ATTRIBUTE:
+				setOwnedAttribute((ownedAttribute)newValue);
+				return;
 			case XmiPackage.PROPERTIES__EA_TYPE:
 				setEa_type((String)newValue);
 				return;
 			case XmiPackage.PROPERTIES__DIRECTION:
 				setDirection((String)newValue);
+				return;
+			case XmiPackage.PROPERTIES__STEREOTYPE:
+				setStereotype((String)newValue);
+				return;
+			case XmiPackage.PROPERTIES__DOCUMENTATION:
+				setDocumentation((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -520,11 +915,35 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 			case XmiPackage.PROPERTIES__IS_ABSTRACT:
 				setIsAbstract(IS_ABSTRACT_EDEFAULT);
 				return;
+			case XmiPackage.PROPERTIES__XMIID:
+				setXmiid(XMIID_EDEFAULT);
+				return;
+			case XmiPackage.PROPERTIES__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case XmiPackage.PROPERTIES__PREFIX:
+				setPrefix(PREFIX_EDEFAULT);
+				return;
+			case XmiPackage.PROPERTIES__OWNED_END:
+				setOwnedEnd((ownedEnd)null);
+				return;
+			case XmiPackage.PROPERTIES__XMITYPE:
+				setXmitype(XMITYPE_EDEFAULT);
+				return;
+			case XmiPackage.PROPERTIES__OWNED_ATTRIBUTE:
+				setOwnedAttribute((ownedAttribute)null);
+				return;
 			case XmiPackage.PROPERTIES__EA_TYPE:
 				setEa_type(EA_TYPE_EDEFAULT);
 				return;
 			case XmiPackage.PROPERTIES__DIRECTION:
 				setDirection(DIRECTION_EDEFAULT);
+				return;
+			case XmiPackage.PROPERTIES__STEREOTYPE:
+				setStereotype(STEREOTYPE_EDEFAULT);
+				return;
+			case XmiPackage.PROPERTIES__DOCUMENTATION:
+				setDocumentation(DOCUMENTATION_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -552,10 +971,26 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 				return isLeaf != IS_LEAF_EDEFAULT;
 			case XmiPackage.PROPERTIES__IS_ABSTRACT:
 				return isAbstract != IS_ABSTRACT_EDEFAULT;
+			case XmiPackage.PROPERTIES__XMIID:
+				return XMIID_EDEFAULT == null ? xmiid != null : !XMIID_EDEFAULT.equals(xmiid);
+			case XmiPackage.PROPERTIES__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case XmiPackage.PROPERTIES__PREFIX:
+				return PREFIX_EDEFAULT == null ? prefix != null : !PREFIX_EDEFAULT.equals(prefix);
+			case XmiPackage.PROPERTIES__OWNED_END:
+				return ownedEnd != null;
+			case XmiPackage.PROPERTIES__XMITYPE:
+				return XMITYPE_EDEFAULT == null ? xmitype != null : !XMITYPE_EDEFAULT.equals(xmitype);
+			case XmiPackage.PROPERTIES__OWNED_ATTRIBUTE:
+				return ownedAttribute != null;
 			case XmiPackage.PROPERTIES__EA_TYPE:
 				return EA_TYPE_EDEFAULT == null ? ea_type != null : !EA_TYPE_EDEFAULT.equals(ea_type);
 			case XmiPackage.PROPERTIES__DIRECTION:
 				return DIRECTION_EDEFAULT == null ? direction != null : !DIRECTION_EDEFAULT.equals(direction);
+			case XmiPackage.PROPERTIES__STEREOTYPE:
+				return STEREOTYPE_EDEFAULT == null ? stereotype != null : !STEREOTYPE_EDEFAULT.equals(stereotype);
+			case XmiPackage.PROPERTIES__DOCUMENTATION:
+				return DOCUMENTATION_EDEFAULT == null ? documentation != null : !DOCUMENTATION_EDEFAULT.equals(documentation);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -584,10 +1019,22 @@ public class propertiesImpl extends MinimalEObjectImpl.Container implements prop
 		result.append(isLeaf);
 		result.append(", isAbstract: ");
 		result.append(isAbstract);
+		result.append(", xmiid: ");
+		result.append(xmiid);
+		result.append(", name: ");
+		result.append(name);
+		result.append(", prefix: ");
+		result.append(prefix);
+		result.append(", xmitype: ");
+		result.append(xmitype);
 		result.append(", ea_type: ");
 		result.append(ea_type);
 		result.append(", direction: ");
 		result.append(direction);
+		result.append(", stereotype: ");
+		result.append(stereotype);
+		result.append(", documentation: ");
+		result.append(documentation);
 		result.append(')');
 		return result.toString();
 	}

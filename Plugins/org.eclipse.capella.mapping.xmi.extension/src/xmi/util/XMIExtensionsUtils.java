@@ -3,8 +3,11 @@
  */
 package xmi.util;
 
+import java.util.List;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import xmi.Documentation;
 import xmi.Extension;
@@ -17,8 +20,15 @@ import xmi.constraints;
 import xmi.element;
 import xmi.elements;
 import xmi.model;
+import xmi.operation;
+import xmi.operations;
 import xmi.properties;
+import xmi.role;
+import xmi.source;
 import xmi.stereotype;
+import xmi.tag;
+import xmi.tags;
+import xmi.target;
 import xmi.xrefs;
 
 /**
@@ -45,12 +55,13 @@ public class XMIExtensionsUtils {
 		xrefs xrefs = XmiFactory.eINSTANCE.createxrefs();
 		xmielement.setXrefs(xrefs);
 		if (ids != null) {
-			setXRefsValue(xrefs, ids + name, name);
+			setXRefsValue(xrefs, ids, name);
 		}
 		return xmielement;
 	}
 
-	public static void addConnector(EObject connector, Extension extension, String ids, String direction, String type) {
+	public static void addConnector(EObject connector, Extension extension, String ids, String direction, String type,
+			EObject source, EObject target, boolean properties) {
 		EList<connectors> connectors = extension.getConnectors();
 		if (connectors.size() == 0) {
 			xmi.connectors xmiconnectors = XmiFactory.eINSTANCE.createconnectors();
@@ -60,10 +71,67 @@ public class XMIExtensionsUtils {
 		xmi.connector xmiconnector = XmiFactory.eINSTANCE.createconnector();
 		xmiconnector.setXmiidref(connector);
 		xmiConnectors.getConnector().add(xmiconnector);
-		xmi.properties xmiproperties = XmiFactory.eINSTANCE.createproperties();
-		xmiproperties.setEa_type(type);
-		xmiproperties.setDirection(direction);
-		xmiconnector.setProperties(xmiproperties);
+		if (properties) {
+			xmi.properties xmiproperties = XmiFactory.eINSTANCE.createproperties();
+			xmiproperties.setEa_type(type);
+			xmiproperties.setDirection(direction);
+			xmiconnector.setProperties(xmiproperties);
+		}
+		source createsource = XmiFactory.eINSTANCE.createsource();
+		createsource.setXmiidref(source);
+		role createrolesource = XmiFactory.eINSTANCE.createrole();
+		createrolesource.setVisibility("Public");
+		createsource.setRole(createrolesource);
+
+		target createtarget = XmiFactory.eINSTANCE.createtarget();
+		createtarget.setXmiidref(target);
+		role createroletarget = XmiFactory.eINSTANCE.createrole();
+		createroletarget.setVisibility("Public");
+		createtarget.setRole(createroletarget);
+
+		xmiconnector.setSource(createsource);
+		xmiconnector.setTarget(createtarget);
+
+	}
+
+	public static element getElementFromEObject(EObject object, Extension extension) {
+
+		EList<elements> elements = extension.getElements();
+		for (elements elements2 : elements) {
+			EList<xmi.element> element2 = elements2.getElement();
+			for (element element3 : element2) {
+				EObject xmiidref = element3.getXmiidref();
+				if (object.equals(xmiidref)) {
+					return element3;
+				}
+			}
+		}
+		return null;
+
+	}
+
+	public static operation createOperation(element element, EObject object, List<String> stereoNames, String ids) {
+		operations operations = element.getOperations();
+		if (operations == null) {
+			operations = XmiFactory.eINSTANCE.createoperations();
+			element.setOperations(operations);
+		}
+
+		operation operation = XmiFactory.eINSTANCE.createoperation();
+		operation.setXmiidref(object);
+		if (stereoNames != null && !stereoNames.isEmpty()) {
+			stereotype createstereotype = XmiFactory.eINSTANCE.createstereotype();
+			createstereotype.setStereotype(stereoNames.get(0));
+			operation.setStereotype(createstereotype);
+
+			xrefs createxrefs = XmiFactory.eINSTANCE.createxrefs();
+			setXRefsValue(createxrefs, ids, stereoNames, "operation property");
+			operation.setXrefs(createxrefs);
+
+		}
+
+		operations.getOperation().add(operation);
+		return operation;
 
 	}
 
@@ -87,12 +155,53 @@ public class XMIExtensionsUtils {
 		String value = null;
 		// value = "$XREFPROP=$XID={"+ids+"}$XID;$NAM=Stereotypes$NAM;$TYP=element
 		// property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=sign;GUID={1D3CEB02-60D8-41c9-9D8A-168ACA9D8E5E};@ENDSTEREO;$DES;$CLT={528D2027-4A69-48e6-8F05-CE3F31EC978D}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;";
-		value = "$XREFPROP=$XID={" + ids
+		value = "$XREFPROP=$XID={" + ids + name
 				+ "}$XID;$NAM=Stereotypes$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name="
-				+ name
-				+ ";GUID={25076860-6280-4441-B4D3-B21668224ABF};@ENDSTEREO;$DES;$CLT={361DF415-5446-4841-88A0-64AE880F5A6E}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;";
+				+ name + ";GUID={25076860-6280-4441-B4D3-B21668224ABF};@ENDSTEREO;$DES;$CLT={" + ids
+				+ "}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;";
 
 		xrefs.setValue(value);
+	}
+
+	static public void setXRefsValue(xrefs xrefs, String ids, List<String> names, String typeProperty) {
+		String value = null;
+		// value = "$XREFPROP=$XID={"+ids+"}$XID;$NAM=Stereotypes$NAM;$TYP=element
+		// property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=sign;GUID={1D3CEB02-60D8-41c9-9D8A-168ACA9D8E5E};@ENDSTEREO;$DES;$CLT={528D2027-4A69-48e6-8F05-CE3F31EC978D}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;";
+		value = "$XREFPROP=$XID={" + ids + names.get(0) + "}$XID;$NAM=Stereotypes$NAM;$TYP=" + typeProperty
+				+ "$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES="/*
+															 * @STEREO; Name=" + name +
+															 * ";GUID={25076860-6280-4441-B4D3-B21668224ABF};@ENDSTEREO;$DES;$CLT={"
+															 * +ids+ "}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"
+															 */;
+
+		for (String string : names) {
+			value += "@STEREO;Name=" + string + ";GUID={25076860-6280-4441-B4D3-B21668224ABF};@ENDSTEREO;";
+		}
+		value += "$DES;$CLT={" + ids + "}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;";
+
+		xrefs.setValue(value);
+	}
+
+	static public void addXredPropIsConjugated(EObject element, Extension extension) {
+
+		EList<elements> elements = extension.getElements();
+		for (elements elements2 : elements) {
+			EList<xmi.element> element2 = elements2.getElement();
+			for (element element3 : element2) {
+				EObject xmiidref = element3.getXmiidref();
+				if (element.equals(xmiidref)) {
+					xrefs xrefs = element3.getXrefs();
+					String value = xrefs.getValue();
+					if (value == null) {
+						value = "";
+					}
+
+					value += "$XREFPROP=$XID={179361D8-0C7C-4a86-86E0-03DE8F85851A}$XID;$NAM=CustomProperties$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@PROP=@NAME=isConjugated@ENDNAME;@TYPE=Boolean@ENDTYPE;@VALU=-1@ENDVALU;@PRMT=@ENDPRMT;@ENDPROP;$DES;$CLT={009A954E-FF9A-43dd-9F03-A9A7D664FB86}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;";
+					xrefs.setValue(value);
+				}
+			}
+		}
+
 	}
 
 	static public void createProperties(element addElement, boolean isAbstract, boolean isLeaf, String sType, int nType,
@@ -105,6 +214,95 @@ public class XMIExtensionsUtils {
 		createproperties.setScope(scope);
 		createproperties.setIsRoot(isRoot);
 		createproperties.setIsSpecification(isSpecification);
+		addElement.setProperties(createproperties);
+	}
+
+	static public void setDocumentation(EObject element, Extension extension, String documentation, String sType) {
+
+		EList<elements> elements = extension.getElements();
+		for (elements elements2 : elements) {
+			EList<xmi.element> element2 = elements2.getElement();
+			for (element element3 : element2) {
+				EObject xmiidref = element3.getXmiidref();
+				if (element.equals(xmiidref)) {
+					setDocumentation(element3, documentation, sType);
+				}
+			}
+		}
+
+	}
+
+	static public void setDocumentation(element element, String description, String sType) {
+		properties properties = element.getProperties();
+		if (properties == null) {
+			properties = XmiFactory.eINSTANCE.createproperties();
+			element.setProperties(properties);
+		}
+		properties.setSType(sType);
+		properties.setDocumentation(description);
+	}
+
+	static public void createStereotypeProperties(element addElement, String stereotype, String sType) {
+		properties createproperties = XmiFactory.eINSTANCE.createproperties();
+		createproperties.setStereotype(stereotype);
+		createproperties.setSType(sType);
+		addElement.setProperties(createproperties);
+	}
+
+	static public void createStereotypeProperties(element addElement, List<String> stereotypes, String sType,
+			String ids) {
+
+		properties createproperties = addElement.getProperties();
+		if (createproperties == null) {
+			createproperties = XmiFactory.eINSTANCE.createproperties();
+			createproperties.setStereotype(stereotypes.get(0));
+			createproperties.setSType(sType);
+			addElement.setProperties(createproperties);
+		}
+		xrefs xrefs = XmiFactory.eINSTANCE.createxrefs();
+		addElement.setXrefs(xrefs);
+		setXRefsValue(xrefs, ids, stereotypes, "element property");
+	}
+
+	static public void createStereotypeProperties(operation operation, List<String> stereotypes, String sType,
+			String ids) {
+
+		xrefs xrefs = XmiFactory.eINSTANCE.createxrefs();
+		operation.setXrefs(xrefs);
+		setXRefsValue(xrefs, ids, stereotypes, "operation property");
+	}
+
+	static public tag addTag(element element, String name, String value, EObject targetComponent, String id,String suffix) {
+		tags tags = element.getTags();
+		if (tags == null) {
+			tags = XmiFactory.eINSTANCE.createtags();
+			element.setTags(tags);
+		}
+
+		tag createtag = XmiFactory.eINSTANCE.createtag();
+		tags.getTag().add(createtag);
+		if (id == null) {
+			id = value;
+		}
+		createtag.setXmiid("EAID_" + id+suffix);
+		createtag.setName(name);
+		createtag.setValue(value);
+		createtag.setModelElement(targetComponent);
+		return createtag;
+
+	}
+
+	static public void createPropertiesWithStereotype(element addElement, boolean isAbstract, boolean isLeaf,
+			String sType, int nType, String scope, boolean isRoot, boolean isSpecification, String stereotype) {
+		properties createproperties = XmiFactory.eINSTANCE.createproperties();
+		createproperties.setIsAbstract(isAbstract);
+		createproperties.setIsLeaf(isLeaf);
+		createproperties.setSType(sType);
+		createproperties.setNType(nType);
+		createproperties.setScope(scope);
+		createproperties.setIsRoot(isRoot);
+		createproperties.setIsSpecification(isSpecification);
+		createproperties.setStereotype(stereotype);
 		addElement.setProperties(createproperties);
 	}
 

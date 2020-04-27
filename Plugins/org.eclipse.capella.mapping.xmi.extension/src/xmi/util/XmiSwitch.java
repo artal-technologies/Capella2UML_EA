@@ -108,6 +108,54 @@ public class XmiSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case XmiPackage.PACKAGED_ELEMENT: {
+				PackagedElement packagedElement = (PackagedElement)theEObject;
+				T result = casePackagedElement(packagedElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case XmiPackage.UML_PROFILE: {
+				umlProfile umlProfile = (umlProfile)theEObject;
+				T result = caseumlProfile(umlProfile);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case XmiPackage.OWNED_END: {
+				ownedEnd ownedEnd = (ownedEnd)theEObject;
+				T result = caseownedEnd(ownedEnd);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case XmiPackage.PACKAGE_IMPORT: {
+				packageImport packageImport = (packageImport)theEObject;
+				T result = casepackageImport(packageImport);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case XmiPackage.IMPORTED_PACKAGE: {
+				importedPackage importedPackage = (importedPackage)theEObject;
+				T result = caseimportedPackage(importedPackage);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case XmiPackage.OWNED_ATTRIBUTE: {
+				ownedAttribute ownedAttribute = (ownedAttribute)theEObject;
+				T result = caseownedAttribute(ownedAttribute);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case XmiPackage.TYPE: {
+				type type = (type)theEObject;
+				T result = casetype(type);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case XmiPackage.EXTENDED_PROPERTIES: {
+				extendedProperties extendedProperties = (extendedProperties)theEObject;
+				T result = caseextendedProperties(extendedProperties);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case XmiPackage.ATTRIBUTES: {
 				attributes attributes = (attributes)theEObject;
 				T result = caseattributes(attributes);
@@ -153,6 +201,48 @@ public class XmiSwitch<T> extends Switch<T> {
 			case XmiPackage.MODEL: {
 				model model = (model)theEObject;
 				T result = casemodel(model);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case XmiPackage.SOURCE: {
+				source source = (source)theEObject;
+				T result = casesource(source);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case XmiPackage.TARGET: {
+				target target = (target)theEObject;
+				T result = casetarget(target);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case XmiPackage.ROLE: {
+				role role = (role)theEObject;
+				T result = caserole(role);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case XmiPackage.TAGS: {
+				tags tags = (tags)theEObject;
+				T result = casetags(tags);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case XmiPackage.TAG: {
+				tag tag = (tag)theEObject;
+				T result = casetag(tag);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case XmiPackage.OPERATIONS: {
+				operations operations = (operations)theEObject;
+				T result = caseoperations(operations);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case XmiPackage.OPERATION: {
+				operation operation = (operation)theEObject;
+				T result = caseoperation(operation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -262,6 +352,126 @@ public class XmiSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseproperties(properties object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Packaged Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Packaged Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePackagedElement(PackagedElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>uml Profile</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>uml Profile</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseumlProfile(umlProfile object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>owned End</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>owned End</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseownedEnd(ownedEnd object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>package Import</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>package Import</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casepackageImport(packageImport object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>imported Package</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>imported Package</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseimportedPackage(importedPackage object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>owned Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>owned Attribute</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseownedAttribute(ownedAttribute object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casetype(type object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>extended Properties</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>extended Properties</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseextendedProperties(extendedProperties object) {
 		return null;
 	}
 
@@ -382,6 +592,111 @@ public class XmiSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casemodel(model object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>source</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>source</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casesource(source object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>target</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>target</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casetarget(target object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>role</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>role</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caserole(role object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>tags</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>tags</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casetags(tags object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>tag</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>tag</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casetag(tag object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>operations</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>operations</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseoperations(operations object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>operation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseoperation(operation object) {
 		return null;
 	}
 

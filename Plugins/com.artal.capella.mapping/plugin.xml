@@ -8,7 +8,7 @@
             locationURI="popup:org.eclipse.ui.popup.any?after=additions">
          <command
                commandId="com.artal.capella.mapping.exporter"
-               label="Exports"
+               label="Model transformation"
                style="push">
             <visibleWhen
                   checkEnabled="false">

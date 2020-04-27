@@ -20,8 +20,16 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link xmi.properties#isIsRoot <em>Is Root</em>}</li>
  *   <li>{@link xmi.properties#isIsLeaf <em>Is Leaf</em>}</li>
  *   <li>{@link xmi.properties#isIsAbstract <em>Is Abstract</em>}</li>
+ *   <li>{@link xmi.properties#getXmiid <em>Xmiid</em>}</li>
+ *   <li>{@link xmi.properties#getName <em>Name</em>}</li>
+ *   <li>{@link xmi.properties#getPrefix <em>Prefix</em>}</li>
+ *   <li>{@link xmi.properties#getOwnedEnd <em>Owned End</em>}</li>
+ *   <li>{@link xmi.properties#getXmitype <em>Xmitype</em>}</li>
+ *   <li>{@link xmi.properties#getOwnedAttribute <em>Owned Attribute</em>}</li>
  *   <li>{@link xmi.properties#getEa_type <em>Ea type</em>}</li>
  *   <li>{@link xmi.properties#getDirection <em>Direction</em>}</li>
+ *   <li>{@link xmi.properties#getStereotype <em>Stereotype</em>}</li>
+ *   <li>{@link xmi.properties#getDocumentation <em>Documentation</em>}</li>
  * </ul>
  *
  * @see xmi.XmiPackage#getproperties()
@@ -212,6 +220,162 @@ public interface properties extends EObject {
 	void setIsAbstract(boolean value);
 
 	/**
+	 * Returns the value of the '<em><b>Xmiid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Xmiid</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Xmiid</em>' attribute.
+	 * @see #setXmiid(String)
+	 * @see xmi.XmiPackage#getproperties_Xmiid()
+	 * @model
+	 * @generated
+	 */
+	String getXmiid();
+
+	/**
+	 * Sets the value of the '{@link xmi.properties#getXmiid <em>Xmiid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Xmiid</em>' attribute.
+	 * @see #getXmiid()
+	 * @generated
+	 */
+	void setXmiid(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see xmi.XmiPackage#getproperties_Name()
+	 * @model
+	 * @generated
+	 */
+	String getName();
+
+	/**
+	 * Sets the value of the '{@link xmi.properties#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
+	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Prefix</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Prefix</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Prefix</em>' attribute.
+	 * @see #setPrefix(String)
+	 * @see xmi.XmiPackage#getproperties_Prefix()
+	 * @model
+	 * @generated
+	 */
+	String getPrefix();
+
+	/**
+	 * Sets the value of the '{@link xmi.properties#getPrefix <em>Prefix</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Prefix</em>' attribute.
+	 * @see #getPrefix()
+	 * @generated
+	 */
+	void setPrefix(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned End</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned End</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned End</em>' reference.
+	 * @see #setOwnedEnd(ownedEnd)
+	 * @see xmi.XmiPackage#getproperties_OwnedEnd()
+	 * @model
+	 * @generated
+	 */
+	ownedEnd getOwnedEnd();
+
+	/**
+	 * Sets the value of the '{@link xmi.properties#getOwnedEnd <em>Owned End</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned End</em>' reference.
+	 * @see #getOwnedEnd()
+	 * @generated
+	 */
+	void setOwnedEnd(ownedEnd value);
+
+	/**
+	 * Returns the value of the '<em><b>Xmitype</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Xmitype</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Xmitype</em>' attribute.
+	 * @see #setXmitype(String)
+	 * @see xmi.XmiPackage#getproperties_Xmitype()
+	 * @model
+	 * @generated
+	 */
+	String getXmitype();
+
+	/**
+	 * Sets the value of the '{@link xmi.properties#getXmitype <em>Xmitype</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Xmitype</em>' attribute.
+	 * @see #getXmitype()
+	 * @generated
+	 */
+	void setXmitype(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Attribute</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Attribute</em>' reference.
+	 * @see #setOwnedAttribute(ownedAttribute)
+	 * @see xmi.XmiPackage#getproperties_OwnedAttribute()
+	 * @model
+	 * @generated
+	 */
+	ownedAttribute getOwnedAttribute();
+
+	/**
+	 * Sets the value of the '{@link xmi.properties#getOwnedAttribute <em>Owned Attribute</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Attribute</em>' reference.
+	 * @see #getOwnedAttribute()
+	 * @generated
+	 */
+	void setOwnedAttribute(ownedAttribute value);
+
+	/**
 	 * Returns the value of the '<em><b>Ea type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -262,5 +426,57 @@ public interface properties extends EObject {
 	 * @generated
 	 */
 	void setDirection(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Stereotype</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Stereotype</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Stereotype</em>' attribute.
+	 * @see #setStereotype(String)
+	 * @see xmi.XmiPackage#getproperties_Stereotype()
+	 * @model
+	 * @generated
+	 */
+	String getStereotype();
+
+	/**
+	 * Sets the value of the '{@link xmi.properties#getStereotype <em>Stereotype</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Stereotype</em>' attribute.
+	 * @see #getStereotype()
+	 * @generated
+	 */
+	void setStereotype(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Documentation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Documentation</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Documentation</em>' attribute.
+	 * @see #setDocumentation(String)
+	 * @see xmi.XmiPackage#getproperties_Documentation()
+	 * @model
+	 * @generated
+	 */
+	String getDocumentation();
+
+	/**
+	 * Sets the value of the '{@link xmi.properties#getDocumentation <em>Documentation</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Documentation</em>' attribute.
+	 * @see #getDocumentation()
+	 * @generated
+	 */
+	void setDocumentation(String value);
 
 } // properties

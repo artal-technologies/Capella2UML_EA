@@ -137,9 +137,9 @@ image::CAPUML_CapellaProject.JPG[CAPUML_CapellaProject.JPG, title="Capella proje
 
 === Launch the Export model
 
-==== Open Contextual "Exports" menu
+==== Open Contextual "Model transformation" menu
 
-Right click on a Capella Element, and select the "Exports" menu.
+Right click on a Capella Element, and select the "Model transformation" menu.
 
 image::CAPUML_ExportsMenu.JPG[CAPUML_ExportsMenu.JPG, title="Exports menu"] 
 
@@ -175,13 +175,77 @@ The OK button is available only when the three fields are filled.
 
 image::CAPUML_FilledWizard.JPG[CAPUML_FilledWizard.JPG, title="Filled Exports wizard"] 
 
+
 Click on the "OK" button.
 
 The Enterprise Architect model is built and persisted in the generated output xml file.
 
+==== PVMT and Physical Architecture options
+
+In the "Model transformation" wizard, in the case where "Capella to Enterprise Architect" type is selected, a check button "Export profiles" appears. 
+
+image::CAPUML_ExportProfile.JPG[CAPUML_ExportProfile.JPG,title="Export profiles."]
+
+This option allows to export PVMT data as UML profile.
+
+image::CAPUML_PVMTtoProfiles.JPG[CAPUML_PVMTtoProfiles.JPG,title="PVMT data to UML profiles."]
+
+The profiles will be exported into a XML file naming "MDG_CapellaProfile_xxxxx" with xxxx is the export date.
+This file is exported in the same path than the target file.
+   
+
+
 <<<
 
 == Import to Enterprise Architect
+
+=== Import MDG technologies
+In the case where profiles has been exported from Capella (<PVMT options>), It's necessary to import these profiles in Enterprise Architect.
+In this way, the user can use this profile in Enterprise Architect software.
+
+Start Enterprise Architect.
+In the Enterprise Architect ribbon, select "Start -> Share -> Resources" menu.
+
+The Resources browser is displayed.
+
+image::EA_Resources.JPG[EA_Resources.JPG, title="EA Resources."] 
+ 
+In the "MDG Technologies" node, right click and select the "Import Technology" menu.
+
+image::EA_ImportTechnology.JPG[EA_ImportTechnology.JPG,title="Import Technology."]
+ 
+"Import MDG Technology" wizard is displayed. In the "Filename" field, select the MGG_CapellaProfile_xxxx.xml exported from Capella.
+
+image::EA_ImportMDGTechnologyWizard.JPG[EA_ImportMDGTechnologyWizard.JPG,title="Import MDG Technology wizard."]
+
+In this wizard, the others fields are automatically filled.
+Click on "OK" button.
+
+image::EA_CapellaProfile.JPG[EA_CapellaProfile.JPG,title="Capella profiles added."]
+
+In the EA project, create a new Component.
+
+Select this component. In the "Properties" view, select the Stereotype field.
+
+image::EA_StereoWizard.JPG[EA_StereoWizard.JPG,"Stereotypes wizard."]
+
+In the "Perpective" field, select "Specialized -> Model Technologies" value.
+
+image::EA_ModelTechnologies.JPG[EA_ModelTechnologies.JPG,title="Model Technologies perspective."]
+
+In the "Profile" field, several profiles are available In the "Profile" field, several profiles are available, including profiles imported from Capella.
+
+image::EA_ProfileCapella.JPG[EA_ProfileCapella.JPG, title="Profiles from Capella."]
+
+In this list, select a profile.
+All the compatible stereotypes from the profile with selected element are displayed. 
+
+image::EA_StereoCapella.JPG[EA_StereoCapella.JPG,title="Stereotypes from Capella."]
+
+Select stereotype and click on "OK" button.
+The stereotype is applied on the Component.
+
+
 
 === Create a new Enterprise Architect Project.
 
@@ -235,6 +299,116 @@ image::EA_ClassDiagram.JPG[EA_ClassDiagram.JPG, title="Class diagram."]
 
 <<<
 
+=== Merge in Enterprise Architect
+
+
+image::MergeScenario.JPG[MergeScenario.JPG,title="Merge scenario."] 
+
+This schema shows the different steps to execute a merge in Enterprise Architect.
+The merge process allows to compare the last version of the EA model with a previous version and to choose to keep old or new data. 
+
+
+In Capella software, modify the name of the following Capella elements:
+
+-  "Camera power button" component name to "Camera power button from Capella"
+
+-  "Sensor Command" exchange item name to "Sensor Command from Capella"
+
+-  "Timestamp" class name to "Timestamp from Capella".
+
+
+Export the Capella model as it's describe in the <<Export from Capella>> section.
+
+
+In Enterprise Architect, in the previously imported model, modify the name of the following EA elements:
+
+- "Camera power button" component to "Camera power button from EA"
+
+- "Sensor Command" operation to "Sensor Command from EA"
+
+- "Explosure Triangle"  datatype to "Explosure Triangle from EA".
+
+It's very important to increment the version of the Enterprise Architect model after the last modification.
+This version allows to have a tag to compare with the new import to merge.
+
+In the Enterprise Architect ribbon, select "Design -> Model -> Manage -> Manage Baselines..." menu.
+
+image::EA_ManageBaselines.JPG[EA_ManageBaselines.JPG, title="Manage Baselines..."] 
+
+In the displayed Baselines dialog:
+
+image::EA_BaselineDialog.JPG[EA_BaselineDialog.JPG, title="Baselines dialog."]
+
+Select the "New Baseline" button. In the "New Baseline" dialog, type the new version name in the version field.
+
+image::EA_NewBaselineWizard.JPG[EA_NewBaselineWizard.JPG, title="New Baseline."]
+
+In the Baselines dialog, the new version is added in the top of the list.
+
+image::EA_NewVersion.JPG[EA_NewVersion.JPG,title="New version."]
+
+And click in "Close" Button.
+
+
+Select the Import Capella package in the "Browser" explorer and import the last version of the Capella export file as describe in the <<Import Enterprise Architect model>> section.
+ 
+image::EA_NewImportForMerge.JPG[EA_NewImportForMerge.JPG,title="Import Package from XML"] 
+ 
+In the Import Package from XML dialog, after to configure when describe in the above screeshot, click on the "Import" Button. 
+*Warning* don't use the "Merge" Button. The exported Capella file is write in XMI 2.1/ UML 2.1 format. The EA merge doesn't support XMI and UML version upper than 1.3.
+
+After the import, the "New Baseline" is displayed. In the "Version" field, type a new name version.
+
+image::NewBaseLinesForMerge.JPG[NewBaseLinesForMerge.JPG,title="New BaseLine."]
+
+Click on "OK" button. And Click on "Close" button in the "Import Package from XML" dialog.
+
+In the "Browser" explorer, all the data modified before the last import are removed.
+
+In the Enterprise Architect ribbon, select "Design -> Model -> Manage -> Manage Baselines..." menu.
+
+image::EA_BaselineVersionToMerge.JPG[EA_BaselineVersionToMerge.JPG, title="Baselines."]
+
+In the displayed dialog, select the version before the last import.
+
+image::EA_SelectLastVersion.JPG[EA_SelectLastVersion.JPG, title="Select previous version."]
+
+And click on the "Show Differences" button.
+
+The "Baseline Comparison" view is opened and display the differences between the two compared versions.
+
+*Warning:* In the Capella software, the both created and modified dates aren't managed for the Capella element.
+For this reason, in Enterprise Architect is possible to ignore the dates differences.
+In the "Baseline Comparison" toolbar, click on the "Baseline comparison options" button.
+
+image::EA_ComparisonButton.JPG[EA_ComparisonButton.JPG,title="Comparison options."]
+
+Check the both "Supress Date Modified" and "Supress Date Created" options. These options allow to ignore the dates informations in the "Baseline Comparison" view.
+ 
+ 
+image::EA_Baseline_Comparison.JPG[EA_Baseline_Comparison.JPG,title="Baseline comparison."]  
+ 
+If the Enterprise Architect user want keep the old value, select the element in the "Model Elements" explorer and click on the green arrow.
+
+image::EA_keepoldversion.JPG[EA_keepoldversion.JPG,title="Keep old version."] 
+
+Click on the "OK" button in the opened message dialog.
+
+The element is removed from the "Baseline Comparison" view and is updated in the EA model.
+
+image::EA_UpdatedModel.JPG[EA_UpdatedModel.JPG,title="Updated model."] 
+
+The last step, is to create a new Baselines after the merge.
+
+
 == Transformation rules
 
+=== Logical Architecture transformation
+
 image::TableRule.JPG[TableRule.JPG] 
+
+
+=== Alternative Physical Architecture transformation
+
+image::AlternativeTransfo.JPG[AlternativeTransfo.JPG] 
+

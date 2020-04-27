@@ -183,4 +183,7 @@ public abstract class CapellaBridgeAlgo<SD> {
 		this._mix = _mix;
 	}
 
+	public AbstractMappingAlgoMix<SD, CapellaBridgeAlgo<?>> getMix() {
+		return _mix;
+	}
 }
