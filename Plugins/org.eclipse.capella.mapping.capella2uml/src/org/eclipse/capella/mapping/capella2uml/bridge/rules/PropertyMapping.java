@@ -180,8 +180,13 @@ public class PropertyMapping extends AbstractDynamicMapping<Classifier, Property
 				targetProp.setAssociation(targetAssociation);
 				parent.getOwnedAttributes().add(subProp);
 
-				XMIExtensionsUtils.addConnector(targetAssociation, getAlgo().getXMIExtension(), sysMLID, "Unspecified",
-						"Association", subProp, targetProp, true);
+				if (source.getAggregationKind() == AggregationKind.ASSOCIATION) {
+					XMIExtensionsUtils.addConnector(targetAssociation, getAlgo().getXMIExtension(), sysMLID,
+							"Destination -&gt; Source", "Association", subProp, targetProp, true);
+				} else {
+					XMIExtensionsUtils.addConnector(targetAssociation, getAlgo().getXMIExtension(), sysMLID,
+							"Unspecified", "Association", subProp, targetProp, true);
+				}
 			}
 		}
 		if (eaContainer instanceof Component) {
