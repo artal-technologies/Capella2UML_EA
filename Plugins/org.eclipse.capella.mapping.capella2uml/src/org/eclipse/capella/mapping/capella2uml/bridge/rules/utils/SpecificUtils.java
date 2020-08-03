@@ -185,7 +185,7 @@ public class SpecificUtils {
 
 				EnumerationPropertyLiteral valueLiteral = ((EnumerationPropertyValue) abstractPropertyValue).getValue();
 				if (valueLiteral != null) {
-					value = valueLiteral.getFullLabel();
+					value = valueLiteral.getLabel();
 				}
 			}
 			if (abstractPropertyValue instanceof FloatPropertyValue) {
@@ -236,7 +236,7 @@ public class SpecificUtils {
 
 	static public String getCapellaImportName(AbstractMapping rule) {
 		AbstractMappingAlgoMix<?, CapellaBridgeAlgo<?>> mix = rule.getAlgo().getMix();
-		return mix.getMixName();
+		return mix.getPackageName();
 	}
 
 	static public AnyType getOrCreateCustomizationList(XMIResource res, EObject sourceItem) {
@@ -450,7 +450,7 @@ public class SpecificUtils {
 
 				EnumerationPropertyLiteral valueLiteral = ((EnumerationPropertyValue) abstractPropertyValue).getValue();
 				if (valueLiteral != null) {
-					value = valueLiteral.getFullLabel();
+					value = valueLiteral.getLabel();
 				}
 			}
 			if (abstractPropertyValue instanceof FloatPropertyValue) {

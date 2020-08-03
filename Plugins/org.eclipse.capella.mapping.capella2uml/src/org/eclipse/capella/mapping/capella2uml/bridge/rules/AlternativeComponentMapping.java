@@ -37,6 +37,10 @@ public class AlternativeComponentMapping extends ComponentMapping {
 			manager.add(AlternativeComponentMapping.class.getName() + logicalComponent.getId(), componentMapping);
 			manager.add(PortMapping.class.getName() + logicalComponent.getId(), portMapping);
 
+
+			PropertyMapping propertyMapping = new PropertyMapping(getAlgo(), logicalComponent, getMappingExucution());
+			manager.add(propertyMapping.getClass().getName() + logicalComponent.getId(), propertyMapping);
+			
 		}
 
 		for (org.polarsys.capella.core.data.cs.Component logicalComponent : _capellaSource) {

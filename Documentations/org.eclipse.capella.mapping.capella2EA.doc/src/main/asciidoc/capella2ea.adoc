@@ -105,6 +105,9 @@ Once the CapellaEABridge udapte site is installed, you must restart Capella to a
 
 === Check extension installation
 
+*Note:* this chapter describes the check of the installation only for the update site installation case. 
+In order to check the dropin installation, check that the Model transformation menu is available as it is described in the <<Open Contextual "Model transformation" menu>> section. 
+
 After installation procedure, launch Capella.
 
 Check in the plugins installation CapellaEABridge is correctly installed.
@@ -199,7 +202,19 @@ This file is exported in the same path than the target file.
 
 == Import to Enterprise Architect
 
-=== Import MDG technologies
+=== Create a new Enterprise Architect Project.
+
+Start Enterprise Architect.
+Click on the "New File" menu.
+
+image::EA_NewProject.JPG[EA_NewProject.JPG, title="New project..."] 
+
+In the displayed standard Windows file browser dialog, locate a suitable folder for your project and, in the "File name" field, type in a distinctive name.
+Click on the "Save" button.
+
+image::EA_CreateProject.JPG[EA_CreateProject.JPG, title="Create a new project."] 
+
+=== Import PVMT profile into a UML profile
 In the case where profiles has been exported from Capella (<PVMT options>), It's necessary to import these profiles in Enterprise Architect.
 In this way, the user can use this profile in Enterprise Architect software.
 
@@ -212,7 +227,7 @@ image::EA_Resources.JPG[EA_Resources.JPG, title="EA Resources."]
  
 In the "MDG Technologies" node, right click and select the "Import Technology" menu.
 
-image::EA_ImportTechnology.JPG[EA_ImportTechnology.JPG,title="Import Technology."]
+image::EA_ImportTechnologie.JPG[EA_ImportTechnologie.JPG,title="Import Technology."]
  
 "Import MDG Technology" wizard is displayed. In the "Filename" field, select the MGG_CapellaProfile_xxxx.xml exported from Capella.
 
@@ -245,19 +260,6 @@ image::EA_StereoCapella.JPG[EA_StereoCapella.JPG,title="Stereotypes from Capella
 Select stereotype and click on "OK" button.
 The stereotype is applied on the Component.
 
-
-
-=== Create a new Enterprise Architect Project.
-
-Start Enterprise Architect.
-Click on the "New File" menu.
-
-image::EA_NewProject.JPG[EA_NewProject.JPG, title="New project..."] 
-
-In the displayed standard Windows file browser dialog, locate a suitable folder for your project and, in the "File name" field, type in a distinctive name.
-Click on the "Save" button.
-
-image::EA_CreateProject.JPG[EA_CreateProject.JPG, title="Create a new project."] 
 
 === Import Enterprise Architect model
 
@@ -331,6 +333,7 @@ In Enterprise Architect, in the previously imported model, modify the name of th
 It's very important to increment the version of the Enterprise Architect model after the last modification.
 This version allows to have a tag to compare with the new import to merge.
 
+In the "Browser/Project" explorer, select the root package item (Logical Architecture in the example).
 In the Enterprise Architect ribbon, select "Design -> Model -> Manage -> Manage Baselines..." menu.
 
 image::EA_ManageBaselines.JPG[EA_ManageBaselines.JPG, title="Manage Baselines..."] 
@@ -349,8 +352,7 @@ image::EA_NewVersion.JPG[EA_NewVersion.JPG,title="New version."]
 
 And click in "Close" Button.
 
-
-Select the Import Capella package in the "Browser" explorer and import the last version of the Capella export file as describe in the <<Import Enterprise Architect model>> section.
+Select the root package item in the "Browser/Project" explorer (Logical Architecture in the example) and import the last version of the Capella export file as described in the <<Import Enterprise Architect model>> section.
  
 image::EA_NewImportForMerge.JPG[EA_NewImportForMerge.JPG,title="Import Package from XML"] 
  

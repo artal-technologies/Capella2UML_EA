@@ -27,6 +27,11 @@ public class DefaultCapella2UMLMix extends AbstractMappingAlgoMix<Project, Capel
 
 	@Override
 	public String getMixName() {
+		return "Import Capella LA/Interfaces from Capella Interfaces";
+	}
+	
+	@Override
+	public String getPackageName() {
 		return "Logical Architecture";
 	}
 
