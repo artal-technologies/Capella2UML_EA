@@ -21,6 +21,8 @@ abstract public class AbstractMappingAlgoMix<SOURCE, ALGO extends CapellaBridgeA
 	abstract public void launch(ALGO algo, SOURCE source, IMappingExecution execution);
 
 	abstract public String getMixName();
+	
+	abstract public String getPackageName();
 
 	public MappingRulesManager getManagerRules() {
 		return _managerRules;

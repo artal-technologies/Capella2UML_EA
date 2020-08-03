@@ -28,7 +28,13 @@ public class PhysicalArchitectureCapella2UMLMix extends AbstractMappingAlgoMix<P
 
 	@Override
 	public String getMixName() {
-		return "Physical Architecture";
+		return "Import Capella PA/Interfaces from Capella Interfaces";
 	}
 
+	
+	@Override
+	public String getPackageName() {
+		return "Physical Architecture";
+	}
+	
 }
