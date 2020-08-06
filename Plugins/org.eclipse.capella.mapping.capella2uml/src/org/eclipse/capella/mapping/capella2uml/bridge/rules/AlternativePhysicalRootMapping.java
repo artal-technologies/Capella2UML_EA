@@ -145,6 +145,19 @@ public class AlternativePhysicalRootMapping extends AbstractDynamicMapping<Proje
 		PhysicalProfileMapping ppMapping = new PhysicalProfileMapping(getAlgo(), project, getMappingExucution());
 		manager.add(PhysicalProfileMapping.class.getName() + project.getId(), ppMapping);
 
+		
+		DataPkgMapping dataPkgMapping = new DataPkgMapping(getAlgo(), physicalArchitecture, getMappingExucution());
+		manager.add(dataPkgMapping.getClass().getName() + physicalArchitecture.getId(), dataPkgMapping);
+		
+		DataPkg dataPkgRoot = CapellaUtils.getDataPkgRoot(project, PhysicalArchitecture.class);
+		List<Class> classes = EObjectExt.getAll(dataPkgRoot, InformationPackage.Literals.CLASS).stream()
+				.map(Class.class::cast).collect(Collectors.toList());
+		for (Class class1 : classes) {
+			PropertyMapping propertyMapping = new PropertyMapping(getAlgo(), class1, getMappingExucution());
+			manager.add(propertyMapping.getClass().getName() + class1.getId(), propertyMapping);
+		}
+
+		
 		PhysicalComponent physicalSystemRoot = CapellaUtils.getPhysicalSystemRoot(project);
 		AlternativeExchangeMapping alternativeExchangeMapping = new AlternativeExchangeMapping(getAlgo(),
 				physicalSystemRoot, getMappingExucution());
@@ -155,6 +168,11 @@ public class AlternativePhysicalRootMapping extends AbstractDynamicMapping<Proje
 				getMappingExucution());
 		manager.add(componentMapping.getClass().getName() + physicalArchitecture.getId(), componentMapping);
 
+		
+		ActorPkgMapping actorPkgMapping = new ActorPkgMapping(getAlgo(), physicalArchitecture, getMappingExucution());
+		manager.add(actorPkgMapping.getClass().getName() + physicalArchitecture.getId(), actorPkgMapping);
+		
+		
 		List<Component> collect = EObjectExt.getAll(physicalArchitecture, CsPackage.Literals.COMPONENT).stream()
 				.map(Component.class::cast).collect(Collectors.toList());
 		for (Component component : collect) {
