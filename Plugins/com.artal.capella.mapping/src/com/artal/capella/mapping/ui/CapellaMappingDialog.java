@@ -63,7 +63,7 @@ public class CapellaMappingDialog extends TitleAreaDialog {
 	@Override
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
-		newShell.setText("Launch Export Capella to external format");
+		newShell.setText("Transform model");
 	}
 
 	@Override
@@ -95,6 +95,21 @@ public class CapellaMappingDialog extends TitleAreaDialog {
 
 		createComboListeners(container, comboTransitions, combo, specificGroup, stackLayout);
 
+		if(listServices.size()>0) {
+			comboTransitions.getCombo().select(0);
+			_selectedTransfo = listServices.get(0);
+			combo.getCombo().removeAll();
+
+			List<AbstractMappingAlgoMix<?, ?>> mixes = _selectedTransfo.getMixes();
+			for (AbstractMappingAlgoMix mix : mixes) {
+				combo.add(mix);
+			}
+			stackLayout.topControl = _selectedTransfo.getOrCreateSpecificView(specificGroup);
+			specificGroup.layout(true);
+			container.layout(true);
+			
+		}
+		
 		return container;
 	}
 
@@ -182,7 +197,7 @@ public class CapellaMappingDialog extends TitleAreaDialog {
 	public ComboViewer createMixCombo(Group selectGroup) {
 		Label mixLabel = new Label(selectGroup, SWT.NONE);
 		mixLabel.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		mixLabel.setText("Select a predefined alternative algorithm");
+		mixLabel.setText("Algorithm transformation");
 
 		ComboViewer combo = new ComboViewer(selectGroup, SWT.NONE);
 		combo.getCombo().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -207,7 +222,7 @@ public class CapellaMappingDialog extends TitleAreaDialog {
 	public ComboViewer createTransfoCombo(Group selectGroup, List<MappingService> listServices) {
 		Label transitionLabel = new Label(selectGroup, SWT.NONE);
 		transitionLabel.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		transitionLabel.setText("Select a type of transformation.");
+		transitionLabel.setText("Transformation type");
 
 		ComboViewer comboTransitions = new ComboViewer(selectGroup, SWT.NONE);
 		comboTransitions.getCombo().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -236,7 +251,7 @@ public class CapellaMappingDialog extends TitleAreaDialog {
 
 		Label label = new Label(selectGroup, SWT.NONE);
 		label.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		label.setText("Select a target file");
+		label.setText("Target file");
 
 		Text text = new Text(selectGroup, SWT.BORDER);
 		text.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
