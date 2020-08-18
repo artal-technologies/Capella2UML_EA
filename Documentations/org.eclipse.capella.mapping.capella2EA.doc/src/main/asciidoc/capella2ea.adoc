@@ -141,9 +141,9 @@ image::CAPUML_CapellaProject.JPG[CAPUML_CapellaProject.JPG, title="Capella proje
 
 === Launch the Export model
 
-==== Open Contextual "Model transformation" menu
+==== Open Contextual "Transform model" menu
 
-Right click on a Capella Element, and select the "Model transformation" menu.
+Right click on a Capella Element, and select the "Transform model" menu.
 
 image::CAPUML_ExportsMenu.JPG[CAPUML_ExportsMenu.JPG, title="Exports menu"] 
 
@@ -151,7 +151,7 @@ image::CAPUML_ExportsMenu.JPG[CAPUML_ExportsMenu.JPG, title="Exports menu"]
 
 The opened wizard shall be filled with:
 
-- The type of the transformation.
+- The type of the transformation (the first available transformation is selected by default).
 - The path of the target file.
 - The (predefined) algorithm to use.
 
@@ -358,7 +358,7 @@ Select the root package item in the "Browser/Project" explorer (Logical Architec
  
 image::EA_NewImportForMerge.JPG[EA_NewImportForMerge.JPG,title="Import Package from XML"] 
  
-In the Import Package from XML dialog, after to configure when describe in the above screeshot, click on the "Import" Button. 
+In the Import Package from XML dialog, after to configure when describe in the above screenshot, click on the "Import" Button. 
 *Warning* don't use the "Merge" Button. The exported Capella file is write in XMI 2.1/ UML 2.1 format. The EA merge doesn't support XMI and UML version upper than 1.3.
 
 After the import, the "New Baseline" is displayed. In the "Version" field, type a new name version.
@@ -387,7 +387,7 @@ In the "Baseline Comparison" toolbar, click on the "Baseline comparison options"
 
 image::EA_ComparisonButton.JPG[EA_ComparisonButton.JPG,title="Comparison options."]
 
-Check the both "Supress Date Modified" and "Supress Date Created" options. These options allow to ignore the dates informations in the "Baseline Comparison" view.
+Check the both "Suppress Date Modified" and "Suppress Date Created" options. These options allow to ignore the dates informations in the "Baseline Comparison" view.
  
  
 image::EA_Baseline_Comparison.JPG[EA_Baseline_Comparison.JPG,title="Baseline comparison."]  
@@ -415,4 +415,34 @@ image::TableRule.JPG[TableRule.JPG]
 === Alternative Physical Architecture transformation
 
 image::AlternativeTransfo.JPG[AlternativeTransfo.JPG] 
+
+== Limitations
+
+=== Limitation 1:
+
+When in Capella the Components are in Component packages, the bridge does not export these Components packages because Enterprise Architect cannot build packages under Commponents. 
+
+=== Limitation 2:
+
+The bridge does not transit some data types
+
+=== Limitation 3:
+
+The bridge does not transit some Exchange items
+
+=== Limitation 4:
+
+The bridge does not keep the order of the model ekelents in Enterprise Architect as in Capella.
+
+=== Limitation 5:
+
+In Capella, it is possible to use the data, Exchange Items and Interfaces of a superior Arcadia perspective (for example, In PA, it is possible to reference data coming from SA or LA). The bridge transit only the data, Exchange Items and Interfaces of the selected Arcadia perspective (for example, if the physical architecture is transited, only the data, Exchange Items and Interfaces of this PA will be transited)
+
+=== Limitation 6:
+
+In Enterprise Architect, when a Capella profile has been imported into Enterprise Architect via MDG technology it is not possible to see the content of this profile (but it is possible to use it). 
+
+=== Limitation 7:
+
+The iterative process is not fully efficient in order to take account the differences coming from EA (OK from Capella): in the documentation, the process describes the last baseline of the EA model is the model coming from the transition of the Capella model  ; the process says to display the differences between the previous baseline (the last updated EA model) and the new baseline. So in these differences, we retrieve the differences coming from the last Capella model but all the differences coming from the all updates (of all iterations) of the EA models. 
 
