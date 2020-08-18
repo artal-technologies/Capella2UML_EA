@@ -3,17 +3,16 @@
  */
 package org.eclipse.capella.mapping.capella2uml.bridge.rules;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
 import org.eclipse.capella.mapping.capella2uml.bridge.rules.utils.SpecificUtils;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
-import org.eclipse.uml2.uml.Actor;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Model;
-import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -56,7 +55,9 @@ public class ClassMapping extends CommonClassMapping<Capella2UMLAlgo> {
 	 */
 	@Override
 	public Object compute(Object eaContainer, Class source) {
-
+		Resource eResource = source.eResource();
+		String sysMLID = MappingUtils.getSysMLID(eResource, source);
+		
 		DataType targetdataType = UMLFactory.eINSTANCE.createDataType();
 
 		MappingUtils.generateUID(getAlgo(), source, targetdataType, this);
@@ -65,7 +66,9 @@ public class ClassMapping extends CommonClassMapping<Capella2UMLAlgo> {
 		((org.eclipse.uml2.uml.Package) eaContainer).getPackagedElements().add(targetdataType);
 		CapellaElement ce = (CapellaElement) source;
 		if (CapellaUtils.hasStereotype(ce)) {
-			XMIExtensionsUtils.createStereotypeProperties(targetelement, CapellaUtils.getSterotypeName(ce), "Class");
+			List<String> stereoNames = new ArrayList<String>();
+			stereoNames.addAll(CapellaUtils.getListStereotypeName(ce));
+			XMIExtensionsUtils.createStereotypeProperties(targetelement, stereoNames, "Class",sysMLID);
 			EList<PropertyValueGroup> pvgs = ce.getOwnedPropertyValueGroups();
 			for (PropertyValueGroup propertyValueGroup : pvgs) {
 				PropertyValuePkg propertyValuePkgFromName = SpecificUtils
@@ -76,6 +79,8 @@ public class ClassMapping extends CommonClassMapping<Capella2UMLAlgo> {
 				Stereotype ownedStereotype = capellaObjectFromAllRules
 						.getOwnedStereotype(propertyValueGroup.getName().split("\\.")[1]);
 
+				SpecificUtils.applyStereotypeAttribute(propertyValueGroup, targetelement, targetdataType);
+				
 				getAlgo().getStereotypes().add(ownedStereotype);
 
 				String typeBase = "Class";
