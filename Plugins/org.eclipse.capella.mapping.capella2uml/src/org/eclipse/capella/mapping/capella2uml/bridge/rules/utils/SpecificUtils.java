@@ -256,23 +256,21 @@ public class SpecificUtils {
 								return null;
 
 							}
+
 							public boolean add(EStructuralFeature feature, Object object) {
 
-							    boolean isFeatureMap = FeatureMapUtil.isFeatureMap(feature);
-							    if (isMany(feature))
-							    {
-							      if (feature.isUnique() && contains(feature, object))
-							      {
-							        return false;
-							      }
-							    }
+								boolean isFeatureMap = FeatureMapUtil.isFeatureMap(feature);
+								if (isMany(feature)) {
+									if (feature.isUnique() && contains(feature, object)) {
+										return false;
+									}
+								}
 
-							    return doAdd(isFeatureMap ? (Entry)object : createEntry(feature, object));
-							  
+								return doAdd(isFeatureMap ? (Entry) object : createEntry(feature, object));
+
 							}
 						};
-						
-						
+
 					}
 					return mixed;
 				}
@@ -289,20 +287,18 @@ public class SpecificUtils {
 								return null;
 
 							}
-							
+
 							public boolean add(EStructuralFeature feature, Object object) {
 
-							    boolean isFeatureMap = FeatureMapUtil.isFeatureMap(feature);
-							    if (isMany(feature))
-							    {
-							      if (feature.isUnique() && contains(feature, object))
-							      {
-							        return false;
-							      }
-							    }
+								boolean isFeatureMap = FeatureMapUtil.isFeatureMap(feature);
+								if (isMany(feature)) {
+									if (feature.isUnique() && contains(feature, object)) {
+										return false;
+									}
+								}
 
-							    return doAdd(isFeatureMap ? (Entry)object : createEntry(feature, object));
-							  
+								return doAdd(isFeatureMap ? (Entry) object : createEntry(feature, object));
+
 							}
 						};
 					}
@@ -318,17 +314,12 @@ public class SpecificUtils {
 	/**
 	 * Add a custom reference
 	 *
-	 * @param res
-	 *            concerned UML resource
-	 * @param sourceItem
-	 *            item to customize
-	 * @param featureName
-	 *            name of the new attribute
-	 * @param targetItem
-	 *            customization to add on the sourceItem
-	 * @param displayType
-	 *            indicate if the object type must be displayed in a "xmi:type"
-	 *            attribute
+	 * @param res         concerned UML resource
+	 * @param sourceItem  item to customize
+	 * @param featureName name of the new attribute
+	 * @param targetItem  customization to add on the sourceItem
+	 * @param displayType indicate if the object type must be displayed in a
+	 *                    "xmi:type" attribute
 	 */
 	static public void addCustoRef(XMIResource res, EObject sourceItem, String featureName, EObject targetItem,
 			boolean displayType, boolean isContainment) {
@@ -353,14 +344,10 @@ public class SpecificUtils {
 	/**
 	 * Add a custom attribute
 	 *
-	 * @param res
-	 *            concerned UML resource
-	 * @param sourceItem
-	 *            item to customize
-	 * @param featureName
-	 *            name of the new attribute
-	 * @param value
-	 *            string value to display
+	 * @param res         concerned UML resource
+	 * @param sourceItem  item to customize
+	 * @param featureName name of the new attribute
+	 * @param value       string value to display
 	 */
 	static public void addCustoAttr(XMIResource res, EObject sourceItem, String featureName, String value) {
 		// New Attribute
@@ -401,17 +388,21 @@ public class SpecificUtils {
 	static public Object getCustomFeature(EObject sp, String... featureNames) {
 		Object value = null;
 		XMIResource res = (XMIResource) sp.eResource();
-		Map<EObject, AnyType> eObjectToExtensionMap = res.getEObjectToExtensionMap();
-		AnyType anyType = eObjectToExtensionMap.get(sp);
-		FeatureMap any = anyType.getMixed();
+		if (res != null) {
+			Map<EObject, AnyType> eObjectToExtensionMap = res.getEObjectToExtensionMap();
+			AnyType anyType = eObjectToExtensionMap.get(sp);
+			if (anyType != null) {
+				FeatureMap any = anyType.getMixed();
 
-		for (String featureName : featureNames) {
-			for (int i = 0; i < any.size(); i++) {
-				Entry entry = any.get(i);
+				for (String featureName : featureNames) {
+					for (int i = 0; i < any.size(); i++) {
+						Entry entry = any.get(i);
 
-				EStructuralFeature eStructuralFeature = entry.getEStructuralFeature();
-				if (eStructuralFeature.getName().equals(featureName)) {
-					value = entry.getValue();
+						EStructuralFeature eStructuralFeature = entry.getEStructuralFeature();
+						if (eStructuralFeature.getName().equals(featureName)) {
+							value = entry.getValue();
+						}
+					}
 				}
 			}
 		}
