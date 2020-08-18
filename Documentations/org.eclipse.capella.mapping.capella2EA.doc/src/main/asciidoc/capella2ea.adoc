@@ -106,7 +106,7 @@ Once the CapellaEABridge udapte site is installed, you must restart Capella to a
 === Check extension installation
 
 *Note:* This chapter describes the check of the installation in the case of the update site installation. 
-For check the dropin installation, check the Model transformation menu is available as it is describes in the <<Open Contextual "Model transformation" menu>> section. 
+For check the dropin installation, check the Model transformation menu is available as it is describes in the <<Open Contextual "Transform model" menu>> section. 
 
 
 After installation procedure, launch Capella.
@@ -404,6 +404,7 @@ image::EA_UpdatedModel.JPG[EA_UpdatedModel.JPG,title="Updated model."]
 
 The last step, is to create a new Baselines after the merge.
 
+<<<
 
 == Transformation rules
 
@@ -415,6 +416,9 @@ image::TableRule.JPG[TableRule.JPG]
 === Alternative Physical Architecture transformation
 
 image::AlternativeTransfo.JPG[AlternativeTransfo.JPG] 
+
+
+<<<
 
 == Limitations
 
@@ -432,7 +436,7 @@ The bridge does not transit some Exchange items
 
 === Limitation 4:
 
-The bridge does not keep the order of the model ekelents in Enterprise Architect as in Capella.
+The bridge does not keep the order of the model elements in Enterprise Architect as in Capella.
 
 === Limitation 5:
 
