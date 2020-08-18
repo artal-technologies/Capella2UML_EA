@@ -3,7 +3,7 @@
  */
 package org.eclipse.capella.mapping.capella2uml.bridge.rules;
 
-import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
@@ -12,7 +12,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
@@ -63,6 +62,8 @@ public class InterfaceMapping extends CommonInterfaceMapping<Capella2UMLAlgo> {
 	 */
 	@Override
 	public Object compute(Object eaContainer, Interface source) {
+		Resource eResource = source.eResource();
+		String sysMLID = MappingUtils.getSysMLID(eResource, source);
 		org.eclipse.uml2.uml.Interface targetInterface = UMLFactory.eINSTANCE.createInterface();
 		MappingUtils.generateUID(getAlgo(), source, targetInterface, this);
 		Object capellaObjectFromAllRules0 = MappingRulesManager.getCapellaObjectFromAllRules(source.eContainer());
@@ -71,8 +72,10 @@ public class InterfaceMapping extends CommonInterfaceMapping<Capella2UMLAlgo> {
 
 		CapellaElement ce = (CapellaElement) source;
 		if (CapellaUtils.hasStereotype(ce)) {
-			XMIExtensionsUtils.createStereotypeProperties(targetelement, CapellaUtils.getSterotypeName(ce),
-					"Interface");
+			List<String> stereoNames = new ArrayList<String>();
+			stereoNames.addAll(CapellaUtils.getListStereotypeName(ce));
+			XMIExtensionsUtils.createStereotypeProperties(targetelement, stereoNames,
+					"Interface", sysMLID);
 			EList<PropertyValueGroup> pvgs = ce.getOwnedPropertyValueGroups();
 			for (PropertyValueGroup propertyValueGroup : pvgs) {
 				PropertyValuePkg propertyValuePkgFromName = SpecificUtils
@@ -82,6 +85,8 @@ public class InterfaceMapping extends CommonInterfaceMapping<Capella2UMLAlgo> {
 
 				Stereotype ownedStereotype = capellaObjectFromAllRules
 						.getOwnedStereotype(propertyValueGroup.getName().split("\\.")[1]);
+				
+				SpecificUtils.applyStereotypeAttribute(propertyValueGroup, targetelement, targetInterface);
 
 				getAlgo().getStereotypes().add(ownedStereotype);
 
@@ -97,8 +102,6 @@ public class InterfaceMapping extends CommonInterfaceMapping<Capella2UMLAlgo> {
 
 		targetInterface.setName(source.getName());
 
-		Resource eResource = source.eResource();
-		String sysMLID = MappingUtils.getSysMLID(eResource, source);
 		String beginId = sysMLID.substring(0, 10);
 
 		EList<ExchangeItem> exchangeItems = source.getExchangeItems();

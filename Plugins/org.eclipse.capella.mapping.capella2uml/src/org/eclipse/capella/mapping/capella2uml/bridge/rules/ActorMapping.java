@@ -3,6 +3,7 @@
  */
 package org.eclipse.capella.mapping.capella2uml.bridge.rules;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
@@ -10,8 +11,8 @@ import org.eclipse.capella.mapping.capella2uml.bridge.rules.utils.SpecificUtils;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.Actor;
-import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
@@ -49,6 +50,9 @@ public class ActorMapping extends CommonsActorMapping<Capella2UMLAlgo> {
 	 */
 	@Override
 	public Object compute(Object eaContainer, org.polarsys.capella.core.data.cs.Component source) {
+		
+		Resource eResource = source.eResource();
+		String sysMLID = MappingUtils.getSysMLID(eResource, source);
 		Actor targetActor = UMLFactory.eINSTANCE.createActor();
 
 		Capella2UMLAlgo algo = getAlgo();
@@ -62,7 +66,10 @@ public class ActorMapping extends CommonsActorMapping<Capella2UMLAlgo> {
 
 		((org.eclipse.uml2.uml.Package) eaContainer).getPackagedElements().add(targetActor);
 		if (CapellaUtils.hasStereotype(ce)) {
-			XMIExtensionsUtils.createStereotypeProperties(targetelement, CapellaUtils.getSterotypeName(ce), "Actor");
+			List<String> stereoNames = new ArrayList<String>();
+			stereoNames.addAll(CapellaUtils.getListStereotypeName(ce));
+			
+			XMIExtensionsUtils.createStereotypeProperties(targetelement, stereoNames, "Actor", sysMLID);
 
 			EList<PropertyValueGroup> pvgs = ce.getOwnedPropertyValueGroups();
 			for (PropertyValueGroup propertyValueGroup : pvgs) {
@@ -73,6 +80,7 @@ public class ActorMapping extends CommonsActorMapping<Capella2UMLAlgo> {
 
 				Stereotype ownedStereotype = capellaObjectFromAllRules
 						.getOwnedStereotype(propertyValueGroup.getName().split("\\.")[1]);
+				SpecificUtils.applyStereotypeAttribute(propertyValueGroup, targetelement, targetActor);
 
 				getAlgo().getStereotypes().add(ownedStereotype);
 

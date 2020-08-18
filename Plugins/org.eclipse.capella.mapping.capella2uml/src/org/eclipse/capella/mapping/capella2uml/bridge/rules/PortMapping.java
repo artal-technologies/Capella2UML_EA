@@ -99,6 +99,8 @@ public class PortMapping extends CommonPortMapping<Capella2UMLAlgo> {
 		// if (source.eContainer() instanceof AbstractActor) {
 		// return null;
 		// }
+		Resource eResource = source.eResource();
+		String sysMLID = MappingUtils.getSysMLID(eResource, source);
 		Port targetPort = UMLFactory.eINSTANCE.createPort();
 		MappingUtils.generateUID(getAlgo(), source, targetPort, this);
 		if (eaContainer instanceof EncapsulatedClassifier) {
@@ -116,7 +118,9 @@ public class PortMapping extends CommonPortMapping<Capella2UMLAlgo> {
 		CapellaElement ce = (CapellaElement) source;
 		Model model = SpecificUtils.getModel(targetPort,source);
 		if (CapellaUtils.hasStereotype(ce)) {
-			XMIExtensionsUtils.createStereotypeProperties(targetelement, CapellaUtils.getSterotypeName(ce), "Port");
+			List<String> stereoNames = new ArrayList<String>();
+			stereoNames.addAll(CapellaUtils.getListStereotypeName(ce));
+			XMIExtensionsUtils.createStereotypeProperties(targetelement, stereoNames, "Port",sysMLID);
 			EList<PropertyValueGroup> pvgs = ce.getOwnedPropertyValueGroups();
 			for (PropertyValueGroup propertyValueGroup : pvgs) {
 				PropertyValuePkg propertyValuePkgFromName = SpecificUtils
@@ -127,6 +131,8 @@ public class PortMapping extends CommonPortMapping<Capella2UMLAlgo> {
 				Stereotype ownedStereotype = capellaObjectFromAllRules
 						.getOwnedStereotype(propertyValueGroup.getName().split("\\.")[1]);
 
+				SpecificUtils.applyStereotypeAttribute(propertyValueGroup,targetelement, targetPort);
+				
 				getAlgo().getStereotypes().add(ownedStereotype);
 
 				String typeBase = "Port";
@@ -146,8 +152,7 @@ public class PortMapping extends CommonPortMapping<Capella2UMLAlgo> {
 			
 			List<String> stereoNames = new ArrayList<String>();
 			stereoNames.add("Physical_Architecture::Component_Port");
-			Resource eResource = source.eResource();
-			String sysMLID = MappingUtils.getSysMLID(eResource, source);
+			
 			XMIExtensionsUtils.createStereotypeProperties(targetelement, stereoNames, "Port", sysMLID);
 			SpecificUtils.applyComponentPortStereotypeAttribute(targetelement, source, targetPort);
 			
