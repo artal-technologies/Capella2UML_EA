@@ -83,8 +83,12 @@ public class AlternativeAssociationMapping extends CommonComponentExchangeMappin
 		Usage createUsage = UMLFactory.eINSTANCE.createUsage();
 		MappingUtils.generateUID(getAlgo(), source, createUsage, this, "us");
 
-		createUsage.getClients().add(sourceV);
-		createUsage.getSuppliers().add(targetV);
+		if (sourceV != null) {
+			createUsage.getClients().add(sourceV);
+		}
+		if (targetV != null) {
+			createUsage.getSuppliers().add(targetV);
+		}
 
 		Project project = ProjectExt.getProject(source);
 		Object capellaObjectFromAllRules2 = MappingRulesManager.getCapellaObjectFromAllRules(project);

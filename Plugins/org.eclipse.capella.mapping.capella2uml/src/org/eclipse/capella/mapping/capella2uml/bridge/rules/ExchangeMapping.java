@@ -32,6 +32,7 @@ import org.polarsys.capella.core.data.fa.ComponentExchange;
 import org.polarsys.capella.core.data.fa.ComponentPort;
 import org.polarsys.capella.core.data.fa.OrientationPortKind;
 import org.polarsys.capella.core.data.information.Port;
+import org.polarsys.capella.core.data.pa.AbstractPhysicalComponent;
 
 import com.artal.capella.mapping.CapellaUtils;
 import com.artal.capella.mapping.MappingUtils;
@@ -74,8 +75,18 @@ public class ExchangeMapping extends CommonComponentExchangeMapping<Capella2UMLA
 		org.eclipse.uml2.uml.Port targetUMLPort = (org.eclipse.uml2.uml.Port) MappingRulesManager
 				.getCapellaObjectFromAllRules(targetPort);
 
-		SystemComponent logicalSystemRoot = CapellaUtils.getLogicalSystemRoot(source);
-		Component container = (Component) MappingRulesManager.getCapellaObjectFromAllRules(logicalSystemRoot);
+		SystemComponent logicalSystemRoot = null;
+		Component container = null;
+		if(sourcePort.eContainer() instanceof AbstractPhysicalComponent) {
+			 logicalSystemRoot = CapellaUtils.getPhysicalSystemRoot(source);
+			 container = (Component) MappingRulesManager.getCapellaObjectFromAllRules(logicalSystemRoot);
+		}
+		else {
+			 logicalSystemRoot = CapellaUtils.getLogicalSystemRoot(source);
+			 container = (Component) MappingRulesManager.getCapellaObjectFromAllRules(logicalSystemRoot);
+		}
+		
+		
 		Resource eResource = source.eResource();
 		String sysMLID = MappingUtils.getSysMLID(eResource, source);
 
