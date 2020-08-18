@@ -101,13 +101,15 @@ public class PropertyMapping extends AbstractDynamicMapping<Classifier, Property
 	 */
 	@Override
 	public Object compute(Object eaContainer, Property source) {
-
+		Type type = source.getType();
+		Object capellaObjectFromAllRules = MappingRulesManager.getCapellaObjectFromAllRules(type);
+		if (((type instanceof org.polarsys.capella.core.data.information.Class)
+				&& ((org.polarsys.capella.core.data.information.Class) type).isIsPrimitive())) {
+			
 		org.eclipse.uml2.uml.Property targetProperty = UMLFactory.eINSTANCE.createProperty();
 		MappingUtils.generateUID(getAlgo(), source, targetProperty, this);
 		targetProperty.setName(source.getName());
 
-		Type type = source.getType();
-		Object capellaObjectFromAllRules = MappingRulesManager.getCapellaObjectFromAllRules(type);
 		targetProperty.setType((org.eclipse.uml2.uml.Type) capellaObjectFromAllRules);
 
 		LiteralInteger minInteger = UMLFactory.eINSTANCE.createLiteralInteger();
@@ -123,6 +125,22 @@ public class PropertyMapping extends AbstractDynamicMapping<Classifier, Property
 
 		if (eaContainer instanceof org.eclipse.uml2.uml.DataType) {
 			((org.eclipse.uml2.uml.DataType) eaContainer).getOwnedAttributes().add(targetProperty);
+		}
+		if (eaContainer instanceof Component) {
+			((Component) eaContainer).getOwnedAttributes().add(targetProperty);
+		}
+		if (eaContainer instanceof Actor) {
+			Resource resource = (Resource) ((Actor) eaContainer).eResource();
+			if (resource instanceof XMIResource) {
+				SpecificUtils.addCustoRef((XMIResource) resource, (Actor) eaContainer, "ownedAttribute", targetProperty,
+						true, true);
+			}
+		}
+		
+		return targetProperty;
+	}
+	if (eaContainer instanceof org.eclipse.uml2.uml.DataType) {
+//		((org.eclipse.uml2.uml.DataType) eaContainer).getOwnedAttributes().add(targetProperty);
 			if (!(type instanceof org.polarsys.capella.core.data.information.Class)
 					|| ((type instanceof org.polarsys.capella.core.data.information.Class)
 							&& ((org.polarsys.capella.core.data.information.Class) type).isIsPrimitive())) {
@@ -190,7 +208,7 @@ public class PropertyMapping extends AbstractDynamicMapping<Classifier, Property
 			}
 		}
 		if (eaContainer instanceof Component) {
-			((Component) eaContainer).getOwnedAttributes().add(targetProperty);
+//			((Component) eaContainer).getOwnedAttributes().add(targetProperty);
 			if (!(type instanceof org.polarsys.capella.core.data.information.Class)
 					|| ((type instanceof org.polarsys.capella.core.data.information.Class)
 							&& ((org.polarsys.capella.core.data.information.Class) type).isIsPrimitive())) {
@@ -251,14 +269,14 @@ public class PropertyMapping extends AbstractDynamicMapping<Classifier, Property
 						"Association", subProp, targetProp, true);
 			}
 		}
-		if (eaContainer instanceof Actor) {
-			Resource resource = (Resource) ((Actor) eaContainer).eResource();
-			if (resource instanceof XMIResource) {
-				SpecificUtils.addCustoRef((XMIResource) resource, (Actor) eaContainer, "ownedAttribute", targetProperty,true,true);
-			}
-		}
+//		if (eaContainer instanceof Actor) {
+//			Resource resource = (Resource) ((Actor) eaContainer).eResource();
+//			if (resource instanceof XMIResource) {
+//				SpecificUtils.addCustoRef((XMIResource) resource, (Actor) eaContainer, "ownedAttribute", targetProperty,true,true);
+//			}
+//		}
 
-		return targetProperty;
+		return null;
 	}
 
 	/*
