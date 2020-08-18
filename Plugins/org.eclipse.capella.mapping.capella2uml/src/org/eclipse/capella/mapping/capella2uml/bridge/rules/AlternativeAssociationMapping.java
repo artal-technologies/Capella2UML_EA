@@ -83,8 +83,12 @@ public class AlternativeAssociationMapping extends CommonComponentExchangeMappin
 		Usage createUsage = UMLFactory.eINSTANCE.createUsage();
 		MappingUtils.generateUID(getAlgo(), source, createUsage, this, "us");
 
-		createUsage.getClients().add(sourceV);
-		createUsage.getSuppliers().add(targetV);
+		if (sourceV != null) {
+			createUsage.getClients().add(sourceV);
+		}
+		if (targetV != null) {
+			createUsage.getSuppliers().add(targetV);
+		}
 
 		Project project = ProjectExt.getProject(source);
 		Object capellaObjectFromAllRules2 = MappingRulesManager.getCapellaObjectFromAllRules(project);
@@ -101,8 +105,8 @@ public class AlternativeAssociationMapping extends CommonComponentExchangeMappin
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#executeSubRules(java.
-	 * util.List, com.artal.capella.mapping.rules.MappingRulesManager)
+	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#executeSubRules(
+	 * java. util.List, com.artal.capella.mapping.rules.MappingRulesManager)
 	 */
 	@Override
 	public void executeSubRules(List<ComponentExchange> _capellaSource, MappingRulesManager manager) {
@@ -114,8 +118,8 @@ public class AlternativeAssociationMapping extends CommonComponentExchangeMappin
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#getUID(org.eclipse.emf
-	 * .ecore.EObject, java.lang.String)
+	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#getUID(org.eclipse
+	 * .emf .ecore.EObject, java.lang.String)
 	 */
 	@Override
 	public String getUID(EObject key, String id) {

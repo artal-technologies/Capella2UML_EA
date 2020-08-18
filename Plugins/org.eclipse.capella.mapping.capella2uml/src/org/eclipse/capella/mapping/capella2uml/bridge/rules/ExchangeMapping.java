@@ -12,26 +12,22 @@ import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.Actor;
-import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.ConnectorEnd;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
-import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Realization;
 import org.eclipse.uml2.uml.StructuredClassifier;
-import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.polarsys.capella.core.data.capellacore.CapellaElement;
-import org.polarsys.capella.core.data.cs.AbstractActor;
 import org.polarsys.capella.core.data.cs.Interface;
 import org.polarsys.capella.core.data.cs.SystemComponent;
 import org.polarsys.capella.core.data.fa.ComponentExchange;
 import org.polarsys.capella.core.data.fa.ComponentPort;
 import org.polarsys.capella.core.data.fa.OrientationPortKind;
 import org.polarsys.capella.core.data.information.Port;
+import org.polarsys.capella.core.data.pa.AbstractPhysicalComponent;
 
 import com.artal.capella.mapping.CapellaUtils;
 import com.artal.capella.mapping.MappingUtils;
@@ -74,8 +70,17 @@ public class ExchangeMapping extends CommonComponentExchangeMapping<Capella2UMLA
 		org.eclipse.uml2.uml.Port targetUMLPort = (org.eclipse.uml2.uml.Port) MappingRulesManager
 				.getCapellaObjectFromAllRules(targetPort);
 
-		SystemComponent logicalSystemRoot = CapellaUtils.getLogicalSystemRoot(source);
-		Component container = (Component) MappingRulesManager.getCapellaObjectFromAllRules(logicalSystemRoot);
+		SystemComponent logicalSystemRoot = null;
+		Component container = null;
+		if(sourcePort.eContainer() instanceof AbstractPhysicalComponent) {
+			 logicalSystemRoot = CapellaUtils.getPhysicalSystemRoot(source);
+			 container = (Component) MappingRulesManager.getCapellaObjectFromAllRules(logicalSystemRoot);
+		}
+		else {
+			 logicalSystemRoot = CapellaUtils.getLogicalSystemRoot(source);
+			 container = (Component) MappingRulesManager.getCapellaObjectFromAllRules(logicalSystemRoot);
+		}
+		
 		Resource eResource = source.eResource();
 		String sysMLID = MappingUtils.getSysMLID(eResource, source);
 

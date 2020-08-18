@@ -256,23 +256,21 @@ public class SpecificUtils {
 								return null;
 
 							}
+
 							public boolean add(EStructuralFeature feature, Object object) {
 
-							    boolean isFeatureMap = FeatureMapUtil.isFeatureMap(feature);
-							    if (isMany(feature))
-							    {
-							      if (feature.isUnique() && contains(feature, object))
-							      {
-							        return false;
-							      }
-							    }
+								boolean isFeatureMap = FeatureMapUtil.isFeatureMap(feature);
+								if (isMany(feature)) {
+									if (feature.isUnique() && contains(feature, object)) {
+										return false;
+									}
+								}
 
-							    return doAdd(isFeatureMap ? (Entry)object : createEntry(feature, object));
-							  
+								return doAdd(isFeatureMap ? (Entry) object : createEntry(feature, object));
+
 							}
 						};
-						
-						
+
 					}
 					return mixed;
 				}
@@ -289,20 +287,18 @@ public class SpecificUtils {
 								return null;
 
 							}
-							
+
 							public boolean add(EStructuralFeature feature, Object object) {
 
-							    boolean isFeatureMap = FeatureMapUtil.isFeatureMap(feature);
-							    if (isMany(feature))
-							    {
-							      if (feature.isUnique() && contains(feature, object))
-							      {
-							        return false;
-							      }
-							    }
+								boolean isFeatureMap = FeatureMapUtil.isFeatureMap(feature);
+								if (isMany(feature)) {
+									if (feature.isUnique() && contains(feature, object)) {
+										return false;
+									}
+								}
 
-							    return doAdd(isFeatureMap ? (Entry)object : createEntry(feature, object));
-							  
+								return doAdd(isFeatureMap ? (Entry) object : createEntry(feature, object));
+
 							}
 						};
 					}
@@ -401,17 +397,21 @@ public class SpecificUtils {
 	static public Object getCustomFeature(EObject sp, String... featureNames) {
 		Object value = null;
 		XMIResource res = (XMIResource) sp.eResource();
-		Map<EObject, AnyType> eObjectToExtensionMap = res.getEObjectToExtensionMap();
-		AnyType anyType = eObjectToExtensionMap.get(sp);
-		FeatureMap any = anyType.getMixed();
+		if (res != null) {
+			Map<EObject, AnyType> eObjectToExtensionMap = res.getEObjectToExtensionMap();
+			AnyType anyType = eObjectToExtensionMap.get(sp);
+			if (anyType != null) {
+				FeatureMap any = anyType.getMixed();
 
-		for (String featureName : featureNames) {
-			for (int i = 0; i < any.size(); i++) {
-				Entry entry = any.get(i);
+				for (String featureName : featureNames) {
+					for (int i = 0; i < any.size(); i++) {
+						Entry entry = any.get(i);
 
-				EStructuralFeature eStructuralFeature = entry.getEStructuralFeature();
-				if (eStructuralFeature.getName().equals(featureName)) {
-					value = entry.getValue();
+						EStructuralFeature eStructuralFeature = entry.getEStructuralFeature();
+						if (eStructuralFeature.getName().equals(featureName)) {
+							value = entry.getValue();
+						}
+					}
 				}
 			}
 		}
