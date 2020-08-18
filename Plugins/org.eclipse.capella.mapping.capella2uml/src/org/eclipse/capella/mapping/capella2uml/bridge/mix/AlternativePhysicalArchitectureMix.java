@@ -34,12 +34,12 @@ public class AlternativePhysicalArchitectureMix extends AbstractMappingAlgoMix<P
 
 	@Override
 	public String getMixName() {
-		return "Import Capella PA/Interfaces from Capella CE ";
+		return "Physical Architecture Component Exchanges to Interfaces (partially)";
 	}
 	
 	@Override
 	public String getPackageName() {
-		return "Alternative Physical Architecture";
+		return "Transformed from Capella PA CE to Interfaces";
 	}
 
 }
