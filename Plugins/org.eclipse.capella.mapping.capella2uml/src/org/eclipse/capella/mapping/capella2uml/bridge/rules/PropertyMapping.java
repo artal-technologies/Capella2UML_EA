@@ -99,7 +99,7 @@ public class PropertyMapping extends AbstractDynamicMapping<Classifier, Property
 	public Object compute(Object eaContainer, Property source) {
 		Type type = source.getType();
 		Object capellaObjectFromAllRules = MappingRulesManager.getCapellaObjectFromAllRules(type);
-		if (((type instanceof org.polarsys.capella.core.data.information.Class)
+		if (!(type instanceof org.polarsys.capella.core.data.information.Class)||((type instanceof org.polarsys.capella.core.data.information.Class)
 				&& ((org.polarsys.capella.core.data.information.Class) type).isIsPrimitive())) {
 			
 		org.eclipse.uml2.uml.Property targetProperty = UMLFactory.eINSTANCE.createProperty();
