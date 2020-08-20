@@ -3,7 +3,7 @@ Automatic-Module-Name: org.eclipse.capella.mapping.capella2EA.doc
 Bundle-SymbolicName: org.eclipse.capella.mapping.capella2EA.doc;single
  ton:=true
 Bundle-Name: Doc
-Bundle-Version: 1.0.8.202008181232
+Bundle-Version: 1.0.8.202008201204
 Require-Bundle: org.eclipse.help
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
