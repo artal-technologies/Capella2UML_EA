@@ -199,7 +199,7 @@ public class CapellaMappingDialog extends TitleAreaDialog {
 	public ComboViewer createMixCombo(Group selectGroup) {
 		Label mixLabel = new Label(selectGroup, SWT.NONE);
 		mixLabel.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		mixLabel.setText("Algorithm transformation");
+		mixLabel.setText("Transformation algorithm");
 
 		ComboViewer combo = new ComboViewer(selectGroup, SWT.NONE);
 		combo.getCombo().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
