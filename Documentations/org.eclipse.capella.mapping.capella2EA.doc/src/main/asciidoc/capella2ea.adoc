@@ -134,6 +134,8 @@ image::CAPUML_Installation.JPG[CAPUML_Installation.JPG, title="Capella to Enterp
 
 In the following sections, the *Camera SysML2 Example* Capella project is used to illustrate the process.
 
+*Note:* In case of Team4Capella environment, the projects hosted in remote server shall be downloaded locally before to launch of the Enterprise Architect export.
+
 image::CAPUML_CapellaProject.JPG[CAPUML_CapellaProject.JPG, title="Capella project example."] 
 
 <<<
