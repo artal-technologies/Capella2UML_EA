@@ -12,7 +12,6 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.diffmerge.bridge.capella.integration.policies.Messages;
 import org.eclipse.emf.diffmerge.bridge.interactive.BridgeJob;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -25,7 +24,6 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.capellamodeller.Project;
-import org.polarsys.capella.core.data.la.LogicalArchitecture;
 
 import com.artal.capella.mapping.mix.AbstractMappingAlgoMix;
 
@@ -48,7 +46,7 @@ public class TransfoExportHandler extends AbstractHandler {
 		int status = dialog.open();
 
 		String umlPath = null;
-		AbstractMappingAlgoMix<?, ?> mix = null;
+		AbstractMappingAlgoMix<?, ?,?> mix = null;
 
 		if (status == IStatus.OK) {
 

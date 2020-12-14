@@ -121,7 +121,7 @@ public class CapellaTestUtils {
 	static public void launchCapella2EA(Project model, File targetFile, String traceFile) {
 		URI targetUri = URI.createFileURI(targetFile.getAbsolutePath());
 		Capella2UMLBridgeJob cameo2CapellaBridgeJob = new Capella2UMLBridgeJob("", model, targetUri,
-				new DefaultCapella2UMLMix());
+				new DefaultCapella2UMLMix(null));
 		cameo2CapellaBridgeJob.run(new NullProgressMonitor());
 	}
 

@@ -90,7 +90,7 @@ public class ComponentMapping extends CommonComponentMapping<Capella2UMLAlgo> {
 			XMIExtensionsUtils.addModel(createElement, (Component) eaContainer, pack);
 		}
 		List<String> stereoNames = new ArrayList<String>();
-		if (CapellaUtils.hasStereotype(ce)) {
+		if (CapellaUtils.hasStereotype(ce) && getAlgo().isPVMTExport()) {
 			stereoNames.addAll(CapellaUtils.getListStereotypeName(ce));
 			XMIExtensionsUtils.createStereotypeProperties(createElement, stereoNames, "Component", sysMLID);
 
@@ -100,6 +100,7 @@ public class ComponentMapping extends CommonComponentMapping<Capella2UMLAlgo> {
 						.getProfilePropertyValueGroup(ProjectExt.getProject(source), propertyValueGroup.getName());
 				Profile capellaObjectFromAllRules = (Profile) MappingRulesManager
 						.getCapellaObjectFromAllRules(propertyValuePkgFromName);
+
 
 				Stereotype ownedStereotype = capellaObjectFromAllRules
 						.getOwnedStereotype(propertyValueGroup.getName().split("\\.")[1]);

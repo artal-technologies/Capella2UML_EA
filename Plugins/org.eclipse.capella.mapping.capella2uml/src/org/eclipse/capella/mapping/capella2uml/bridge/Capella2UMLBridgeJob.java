@@ -49,7 +49,7 @@ import xmi.XmiPackage;
 public class Capella2UMLBridgeJob extends UMLBridgeJob<Project> {
 
 	public Capella2UMLBridgeJob(String jobName_p, Project sourceDataSet_p, URI targetURI_p,
-			AbstractMappingAlgoMix<?, ?> mix) {
+			AbstractMappingAlgoMix<?, ?,?> mix) {
 		super(sourceDataSet_p, targetURI_p, new Capella2UMLAlgo(mix));
 	}
 

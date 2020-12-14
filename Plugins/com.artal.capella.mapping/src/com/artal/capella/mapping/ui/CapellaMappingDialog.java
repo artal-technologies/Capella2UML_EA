@@ -47,7 +47,7 @@ public class CapellaMappingDialog extends TitleAreaDialog {
 
 	private String _outputPath = "";
 
-	private AbstractMappingAlgoMix<?, ?> _selectedMix = null;
+	private AbstractMappingAlgoMix<?, ?,?> _selectedMix = null;
 
 	private MappingService _selectedTransfo;
 
@@ -100,7 +100,7 @@ public class CapellaMappingDialog extends TitleAreaDialog {
 			_selectedTransfo = listServices.get(0);
 			combo.getCombo().removeAll();
 
-			List<AbstractMappingAlgoMix<?, ?>> mixes = _selectedTransfo.getMixes();
+			List<AbstractMappingAlgoMix<?, ?,?>> mixes = _selectedTransfo.getMixes();
 			for (AbstractMappingAlgoMix mix : mixes) {
 				combo.add(mix);
 			}
@@ -140,7 +140,7 @@ public class CapellaMappingDialog extends TitleAreaDialog {
 			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 				IStructuredSelection selection = (IStructuredSelection) event.getSelection();
-				AbstractMappingAlgoMix<?, ?> firstElement = (AbstractMappingAlgoMix<?, ?>) selection.getFirstElement();
+				AbstractMappingAlgoMix<?, ?,?> firstElement = (AbstractMappingAlgoMix<?, ?,?>) selection.getFirstElement();
 				_selectedMix = firstElement;
 				validate();
 			}
@@ -157,7 +157,7 @@ public class CapellaMappingDialog extends TitleAreaDialog {
 					_selectedTransfo = firstElement;
 					combo.getCombo().removeAll();
 
-					List<AbstractMappingAlgoMix<?, ?>> mixes = _selectedTransfo.getMixes();
+					List<AbstractMappingAlgoMix<?, ?,?>> mixes = _selectedTransfo.getMixes();
 					for (AbstractMappingAlgoMix mix : mixes) {
 						combo.add(mix);
 					}
@@ -205,8 +205,8 @@ public class CapellaMappingDialog extends TitleAreaDialog {
 		combo.setLabelProvider(new LabelProvider() {
 			@Override
 			public String getText(Object element) {
-				if (element instanceof AbstractMappingAlgoMix<?, ?>) {
-					return ((AbstractMappingAlgoMix<?, ?>) element).getMixName();
+				if (element instanceof AbstractMappingAlgoMix<?, ?,?>) {
+					return ((AbstractMappingAlgoMix<?, ?,?>) element).getMixName();
 				}
 				return super.getText(element);
 			}
@@ -332,12 +332,12 @@ public class CapellaMappingDialog extends TitleAreaDialog {
 		}
 	}
 
-	public AbstractMappingAlgoMix<?, ?> getMix() {
+	public AbstractMappingAlgoMix<?, ?,?> getMix() {
 		return _selectedMix;
 	}
 
 	public BridgeJob<?> createBridgeJob(String jobName_p, Project sourceDataSet_p, URI targetURI_p,
-			AbstractMappingAlgoMix<?, ?> mix) {
+			AbstractMappingAlgoMix<?, ?,?> mix) {
 		return _selectedTransfo.createBridgeJob(jobName_p, sourceDataSet_p, targetURI_p, mix);
 	}
 

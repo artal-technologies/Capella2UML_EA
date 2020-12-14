@@ -45,16 +45,18 @@ import xmi.util.XMIExtensionsUtils;
  */
 public class RootMapping extends AbstractDynamicMapping<Project, Project, Capella2UMLAlgo> {
 
-	public RootMapping(Capella2UMLAlgo algo, Project parent, IMappingExecution execution) {
+	private boolean _pvmtExport = false;
+
+	public RootMapping(Capella2UMLAlgo algo, Project parent, IMappingExecution execution, boolean pvmtExport) {
 		super(algo, parent, execution);
+		_pvmtExport = pvmtExport;
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.capella.mapping.capella2uml.bridge.rules.AbstractDynamicMapping#
-	 * getEAContainer(java.lang.Object)
+	 * @see org.eclipse.capella.mapping.capella2uml.bridge.rules.
+	 * AbstractDynamicMapping# getEAContainer(java.lang.Object)
 	 */
 	@Override
 	public Object computeTargetContainer(Project capellaContainer) {
@@ -92,9 +94,8 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.capella.mapping.capella2uml.bridge.rules.AbstractDynamicMapping#
-	 * getCapellaSource(java.lang.Object)
+	 * @see org.eclipse.capella.mapping.capella2uml.bridge.rules.
+	 * AbstractDynamicMapping# getCapellaSource(java.lang.Object)
 	 */
 	@Override
 	public List<Project> findSourceElements(Project capellaContainer) {
@@ -106,9 +107,8 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.capella.mapping.capella2uml.bridge.rules.AbstractDynamicMapping#
-	 * compute(java.lang.Object, java.util.List)
+	 * @see org.eclipse.capella.mapping.capella2uml.bridge.rules.
+	 * AbstractDynamicMapping# compute(java.lang.Object, java.util.List)
 	 */
 	@Override
 	public Object compute(Object eaContainer, Project source) {
@@ -118,9 +118,8 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.capella.mapping.capella2uml.bridge.rules.AbstractDynamicMapping#
-	 * executeSubRules(java.util.List)
+	 * @see org.eclipse.capella.mapping.capella2uml.bridge.rules.
+	 * AbstractDynamicMapping# executeSubRules(java.util.List)
 	 */
 	@Override
 	public void executeSubRules(List<Project> _capellaSource, MappingRulesManager manager) {
@@ -129,14 +128,16 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 
 		DataPkg dataPkgRoot = CapellaUtils.getDataPkgRoot(project, LogicalArchitecture.class);
 		LogicalArchitecture logicalArchitecture = CapellaUtils.getLogicalArchitecture(project);
-		// EnumerationMapping enumerationMapping = new EnumerationMapping(getAlgo(),
+		// EnumerationMapping enumerationMapping = new
+		// EnumerationMapping(getAlgo(),
 		// dataPkgRoot, getMappingExucution());
 		// manager.add(EnumerationMapping.class.getName() + dataPkgRoot.getId(),
 		// enumerationMapping);
 		//
 		// PrimitiveMapping primitiveMapping = new PrimitiveMapping(getAlgo(),
 		// dataPkgRoot, getMappingExucution());
-		// manager.add(primitiveMapping.getClass().getName() + dataPkgRoot.getId(),
+		// manager.add(primitiveMapping.getClass().getName() +
+		// dataPkgRoot.getId(),
 		// primitiveMapping);
 		//
 		// ClassMapping classMapping = new ClassMapping(getAlgo(), dataPkgRoot,
@@ -144,9 +145,11 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 		// manager.add(ClassMapping.class.getName() + dataPkgRoot.getId(),
 		// classMapping);
 
-		RootPropertyValuePkgMapping pvpMapping = new RootPropertyValuePkgMapping(getAlgo(), project,
-				getMappingExucution());
-		manager.add(RootPropertyValuePkgMapping.class.getName() + project.getId(), pvpMapping);
+		if (_pvmtExport) {
+			RootPropertyValuePkgMapping pvpMapping = new RootPropertyValuePkgMapping(getAlgo(), project,
+					getMappingExucution());
+			manager.add(RootPropertyValuePkgMapping.class.getName() + project.getId(), pvpMapping);
+		}
 		DataPkgMapping dataPkgMapping = new DataPkgMapping(getAlgo(), logicalArchitecture, getMappingExucution());
 		manager.add(dataPkgMapping.getClass().getName() + logicalArchitecture.getId(), dataPkgMapping);
 
@@ -188,17 +191,22 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 			manager.add(mapping.getClass().getName() + component.getId(), mapping);
 		}
 
-		// LogicalActorPkg logicalActorPkg = CapellaUtils.getLogicalActorPkg(project);
-		// ActorMapping actorMapping = new ActorMapping(getAlgo(), logicalActorPkg,
+		// LogicalActorPkg logicalActorPkg =
+		// CapellaUtils.getLogicalActorPkg(project);
+		// ActorMapping actorMapping = new ActorMapping(getAlgo(),
+		// logicalActorPkg,
 		// getMappingExucution());
-		// manager.add(logicalActorPkg.getClass().getName() + logicalActorPkg.getId(),
+		// manager.add(logicalActorPkg.getClass().getName() +
+		// logicalActorPkg.getId(),
 		// actorMapping);
 
-		// List<AbstractActor> ownedLogicalActors = EObjectExt.getAll(logicalActorPkg,
+		// List<AbstractActor> ownedLogicalActors =
+		// EObjectExt.getAll(logicalActorPkg,
 		// CsPackage.Literals.ABSTRACT_ACTOR)
 		// .stream().map(AbstractActor.class::cast).collect(Collectors.toList());
 		// for (AbstractActor actor : ownedLogicalActors) {
-		// PropertyMapping propertyMapping = new PropertyMapping(getAlgo(), actor,
+		// PropertyMapping propertyMapping = new PropertyMapping(getAlgo(),
+		// actor,
 		// getMappingExucution());
 		// manager.add(propertyMapping.getClass().getName() + actor.getId(),
 		// propertyMapping);

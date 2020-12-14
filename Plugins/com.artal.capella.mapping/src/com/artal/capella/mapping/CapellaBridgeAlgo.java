@@ -35,13 +35,13 @@ public abstract class CapellaBridgeAlgo<SD> {
 
 	ManageUIDs _manageUIDs = new ManageUIDs();
 
-	private AbstractMappingAlgoMix<SD, CapellaBridgeAlgo<?>> _mix;
+	private AbstractMappingAlgoMix<SD, CapellaBridgeAlgo<?>, ?> _mix;
 
 	public CapellaBridgeAlgo() {
 		this(null);
 	}
 
-	public CapellaBridgeAlgo(AbstractMappingAlgoMix<SD, CapellaBridgeAlgo<?>> mix) {
+	public CapellaBridgeAlgo(AbstractMappingAlgoMix<SD, CapellaBridgeAlgo<?>, ?> mix) {
 		_mix = mix;
 		init();
 	}
@@ -99,8 +99,8 @@ public abstract class CapellaBridgeAlgo<SD> {
 	}
 
 	/**
-	 * Indicate that the given item was created during the algo and is not contained
-	 * by any parent ("add" method automatically called)
+	 * Indicate that the given item was created during the algo and is not
+	 * contained by any parent ("add" method automatically called)
 	 * 
 	 * @param unique
 	 *            identifier of the created item (must be stable throw calls)
@@ -113,8 +113,8 @@ public abstract class CapellaBridgeAlgo<SD> {
 	}
 
 	/**
-	 * Just "attach" the given item. The method "add" must also be called on this
-	 * item.
+	 * Just "attach" the given item. The method "add" must also be called on
+	 * this item.
 	 * 
 	 * @param item
 	 *            EObject to attach
@@ -178,12 +178,12 @@ public abstract class CapellaBridgeAlgo<SD> {
 		}
 
 	}
-	
-	public void setMix(AbstractMappingAlgoMix<SD, CapellaBridgeAlgo<?>> _mix) {
+
+	public void setMix(AbstractMappingAlgoMix<SD, CapellaBridgeAlgo<?>, ?> _mix) {
 		this._mix = _mix;
 	}
 
-	public AbstractMappingAlgoMix<SD, CapellaBridgeAlgo<?>> getMix() {
+	public AbstractMappingAlgoMix<SD, CapellaBridgeAlgo<?>, ?> getMix() {
 		return _mix;
 	}
 }

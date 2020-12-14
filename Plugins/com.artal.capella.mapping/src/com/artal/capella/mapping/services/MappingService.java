@@ -22,9 +22,9 @@ public interface MappingService {
 	String getTransfoName();
 
 	BridgeJob<?> createBridgeJob(String jobName_p, Project sourceDataSet_p, URI targetURI_p,
-			AbstractMappingAlgoMix<?, ?> mix);
+			AbstractMappingAlgoMix<?, ?, ? > mix);
 
-	List<AbstractMappingAlgoMix<?, ?>> getMixes();
+	List<AbstractMappingAlgoMix<?, ?, ?>> getMixes();
 
 	Control getOrCreateSpecificView(Composite specificGroup);
 

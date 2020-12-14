@@ -52,7 +52,7 @@
 		<repository>
 			<id>amalgam</id>
 			<layout>p2</layout>
-			<url>http://download.eclipse.org/modeling/amalgam/updates/nightly/1.8.0-N20161128-035928/mars</url>
+			<url>https://download.eclipse.org/modeling/amalgam/updates/stable/1.8.0-S20180215/mars/</url>
 		</repository>
 		<repository>
 			<id>diffmerge</id>

@@ -66,7 +66,7 @@ public class OperationExchangeItemMapping extends
 		element targetelement = XMIExtensionsUtils.createElement(targetOperation, getAlgo().getXMIExtension());
 
 		CapellaElement ce = (CapellaElement) source;
-		if (CapellaUtils.hasStereotype(ce)) {
+		if (CapellaUtils.hasStereotype(ce) && getAlgo().isPVMTExport()) {
 			XMIExtensionsUtils.createStereotypeProperties(targetelement, CapellaUtils.getSterotypeName(ce), "Object");
 			EList<PropertyValueGroup> pvgs = ce.getOwnedPropertyValueGroups();
 			for (PropertyValueGroup propertyValueGroup : pvgs) {
