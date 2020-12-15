@@ -68,19 +68,19 @@ public class EAMappingService implements MappingService {
 	 */
 	@Override
 	public BridgeJob<?> createBridgeJob(String jobName_p, Project sourceDataSet_p, URI targetURI_p,
-			AbstractMappingAlgoMix<?, ?> mix) {
+			AbstractMappingAlgoMix<?, ?, ?> mix) {
 		Capella2UMLBridgeJob job = new Capella2UMLBridgeJob("", sourceDataSet_p, targetURI_p, mix);
 		_algo = (Capella2UMLAlgo) job.getAlgo();
 		return job;
 	}
 
 	@Override
-	public List<AbstractMappingAlgoMix<?, ?>> getMixes() {
-		List<AbstractMappingAlgoMix<?, ?>> results = new ArrayList<AbstractMappingAlgoMix<?, ?>>();
+	public List<AbstractMappingAlgoMix<?, ?, ?>> getMixes() {
+		List<AbstractMappingAlgoMix<?, ?, ?>> results = new ArrayList<AbstractMappingAlgoMix<?, ?, ?>>();
 
-		DefaultCapella2UMLMix mix = new DefaultCapella2UMLMix();
-		PhysicalArchitectureCapella2UMLMix pamix = new PhysicalArchitectureCapella2UMLMix();
-		AlternativePhysicalArchitectureMix altMix = new AlternativePhysicalArchitectureMix();
+		DefaultCapella2UMLMix mix = new DefaultCapella2UMLMix(this);
+		PhysicalArchitectureCapella2UMLMix pamix = new PhysicalArchitectureCapella2UMLMix(this);
+		AlternativePhysicalArchitectureMix altMix = new AlternativePhysicalArchitectureMix(this);
 		results.add(mix);
 		results.add(pamix);
 		results.add(altMix);
@@ -131,5 +131,8 @@ public class EAMappingService implements MappingService {
 			exporter.export();
 		}
 	}
-
+	
+	public boolean isExportProfile() {
+		return _isExportProfile;
+	}
 }

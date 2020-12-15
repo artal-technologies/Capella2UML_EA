@@ -4,6 +4,7 @@
 package org.eclipse.capella.mapping.capella2uml.bridge.mix;
 
 import org.eclipse.capella.mapping.capella2uml.bridge.Capella2UMLAlgo;
+import org.eclipse.capella.mapping.capella2uml.bridge.EAMappingService;
 import org.eclipse.capella.mapping.capella2uml.bridge.rules.RootMapping;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.polarsys.capella.core.data.capellamodeller.Project;
@@ -13,13 +14,17 @@ import com.artal.capella.mapping.mix.AbstractMappingAlgoMix;
 /**
  * @author binot
  */
-public class DefaultCapella2UMLMix extends AbstractMappingAlgoMix<Project, Capella2UMLAlgo> {
+public class DefaultCapella2UMLMix extends AbstractMappingAlgoMix<Project, Capella2UMLAlgo, EAMappingService> {
 
 	// MappingRulesManager _manager = new MappingRulesManager();
-
+	
+	public DefaultCapella2UMLMix(EAMappingService mappingService) {
+		super(mappingService);
+	}
+	
 	@Override
 	public void launch(Capella2UMLAlgo algo, Project source, IMappingExecution execution) {
-		RootMapping rootMapping = new RootMapping(algo, source, execution);
+		RootMapping rootMapping = new RootMapping(algo, source, execution, getMappingService().isExportProfile());
 		getManagerRules().add(rootMapping.getClass().getName(), rootMapping);
 
 		getManagerRules().executeRules();

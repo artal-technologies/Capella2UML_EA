@@ -235,7 +235,7 @@ public class SpecificUtils {
 	}
 
 	static public String getCapellaImportName(AbstractMapping rule) {
-		AbstractMappingAlgoMix<?, CapellaBridgeAlgo<?>> mix = rule.getAlgo().getMix();
+		AbstractMappingAlgoMix<?, CapellaBridgeAlgo<?>, ?> mix = rule.getAlgo().getMix();
 		return mix.getPackageName();
 	}
 
@@ -428,6 +428,7 @@ public class SpecificUtils {
 		if (sysMLID != null)
 			SpecificUtils.addCustoAttr(res, compStereo, "base_Class" /* + typeBase */, sysMLID);
 		EList<AbstractPropertyValue> ownedPropertyValues = propertyValueGroup.getOwnedPropertyValues();
+		int eaStereoAttrCount = 0;
 		for (AbstractPropertyValue abstractPropertyValue : ownedPropertyValues) {
 			String pvName = abstractPropertyValue.getName();
 			String value = null;
@@ -450,8 +451,16 @@ public class SpecificUtils {
 			if (abstractPropertyValue instanceof IntegerPropertyValue) {
 				value = "" + ((IntegerPropertyValue) abstractPropertyValue).getValue();
 			}
-			if (value != null)
+			if (value != null) {
+				if(pvName.contains(" ")){
+					String replace = pvName.replace(" ", "_").replace("/", " ");
+					eaStereoAttrCount++;
+					addCustoAttr(res, compStereo, "__EAStereoName"+((eaStereoAttrCount!=1)?eaStereoAttrCount:""), pvName);
+					pvName = replace;
+				}
 				SpecificUtils.addCustoAttr(res, compStereo, pvName, value);
+				
+			}
 		}
 	}
 

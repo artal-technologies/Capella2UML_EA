@@ -65,7 +65,7 @@ public class ActorMapping extends CommonsActorMapping<Capella2UMLAlgo> {
 		CapellaElement ce = (CapellaElement) source;
 
 		((org.eclipse.uml2.uml.Package) eaContainer).getPackagedElements().add(targetActor);
-		if (CapellaUtils.hasStereotype(ce)) {
+		if (CapellaUtils.hasStereotype(ce) && getAlgo().isPVMTExport()) {
 			List<String> stereoNames = new ArrayList<String>();
 			stereoNames.addAll(CapellaUtils.getListStereotypeName(ce));
 			

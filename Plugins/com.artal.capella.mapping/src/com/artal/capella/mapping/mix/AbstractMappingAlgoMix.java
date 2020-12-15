@@ -12,9 +12,10 @@ import com.artal.capella.mapping.rules.MappingRulesManager;
  * @author binot
  *
  */
-abstract public class AbstractMappingAlgoMix<SOURCE, ALGO extends CapellaBridgeAlgo<?>> {
+abstract public class AbstractMappingAlgoMix<SOURCE, ALGO extends CapellaBridgeAlgo<?>,MAPPINGSERVICE> {
 
-
+	MAPPINGSERVICE mappingService;
+	
 	MappingRulesManager _managerRules= new MappingRulesManager();
 
 
@@ -24,8 +25,16 @@ abstract public class AbstractMappingAlgoMix<SOURCE, ALGO extends CapellaBridgeA
 	
 	abstract public String getPackageName();
 
+	public AbstractMappingAlgoMix(MAPPINGSERVICE mappingService ) {
+		this.mappingService = mappingService;
+	}
+	
 	public MappingRulesManager getManagerRules() {
 		return _managerRules;
+	}
+	
+	public MAPPINGSERVICE getMappingService() {
+		return mappingService;
 	}
 	
 }

@@ -250,7 +250,7 @@ public class ExchangeMapping extends CommonComponentExchangeMapping<Capella2UMLA
 
 				element addElement = XMIExtensionsUtils.createElement(createClass, getAlgo().getXMIExtension());
 				CapellaElement ce = (CapellaElement) interface1;
-				if (!CapellaUtils.hasStereotype(ce)) {
+				if (!CapellaUtils.hasStereotype(ce)||!getAlgo().isPVMTExport()) {
 					XMIExtensionsUtils.createProperties(addElement, false, false, "ProxyConnector", 0, "public", false,
 							false);
 				} else {

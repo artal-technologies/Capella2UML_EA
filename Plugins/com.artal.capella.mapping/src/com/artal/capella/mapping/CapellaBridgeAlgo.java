@@ -35,13 +35,13 @@ public abstract class CapellaBridgeAlgo<SD> {
 
 	ManageUIDs _manageUIDs = new ManageUIDs();
 
-	private AbstractMappingAlgoMix<SD, CapellaBridgeAlgo<?>> _mix;
+	private AbstractMappingAlgoMix<SD, CapellaBridgeAlgo<?>,?> _mix;
 
 	public CapellaBridgeAlgo() {
 		this(null);
 	}
 
-	public CapellaBridgeAlgo(AbstractMappingAlgoMix<SD, CapellaBridgeAlgo<?>> mix) {
+	public CapellaBridgeAlgo(AbstractMappingAlgoMix<SD, CapellaBridgeAlgo<?>,?> mix) {
 		_mix = mix;
 		init();
 	}
@@ -179,11 +179,11 @@ public abstract class CapellaBridgeAlgo<SD> {
 
 	}
 	
-	public void setMix(AbstractMappingAlgoMix<SD, CapellaBridgeAlgo<?>> _mix) {
+	public void setMix(AbstractMappingAlgoMix<SD, CapellaBridgeAlgo<?>,?> _mix) {
 		this._mix = _mix;
 	}
 
-	public AbstractMappingAlgoMix<SD, CapellaBridgeAlgo<?>> getMix() {
+	public AbstractMappingAlgoMix<SD, CapellaBridgeAlgo<?>,?> getMix() {
 		return _mix;
 	}
 }

@@ -107,7 +107,7 @@ public class AlternativeExchangeMapping extends CommonComponentExchangeMapping<C
 		CapellaElement ce = (CapellaElement) source;
 		List<String> stereoNames = new ArrayList<String>();
 		Model model = SpecificUtils.getModel(createInterface,source);
-		if (CapellaUtils.hasStereotype(ce)) {
+		if (CapellaUtils.hasStereotype(ce) && getAlgo().isPVMTExport()) {
 			String sterotypeName = CapellaUtils.getSterotypeName(ce);
 			stereoNames.add(sterotypeName);
 			XMIExtensionsUtils.createStereotypeProperties(targetelement, stereoNames, "Interface", sysMLID);
