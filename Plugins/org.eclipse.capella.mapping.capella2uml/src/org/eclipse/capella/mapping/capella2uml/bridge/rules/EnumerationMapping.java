@@ -76,7 +76,7 @@ public class EnumerationMapping extends CommonDatatypeMapping<Capella2UMLAlgo> {
 		element addElement = XMIExtensionsUtils.createElement(enumerationTarget, getAlgo().getXMIExtension());
 
 		CapellaElement ce = (CapellaElement) source;
-		if (!CapellaUtils.hasStereotype(ce)) {
+		if (!CapellaUtils.hasStereotype(ce)|| !getAlgo().isPVMTExport()) {
 			XMIExtensionsUtils.createProperties(addElement, false, false, "Enumeration", 0, "public", false, false);
 		} else {
 			XMIExtensionsUtils.createPropertiesWithStereotype(addElement, false, false, "Enumeration", 0, "public",

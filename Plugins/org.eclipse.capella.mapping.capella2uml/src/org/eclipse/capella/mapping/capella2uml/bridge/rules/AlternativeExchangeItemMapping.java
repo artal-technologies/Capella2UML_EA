@@ -105,7 +105,7 @@ public class AlternativeExchangeItemMapping extends CommonExchangeItemMapping<Co
 		if (sysMLID2 != null)
 			SpecificUtils.addCustoAttr(res, compStereo, "base_Operation" /* + typeBase */, sysMLID2);
 
-		if (CapellaUtils.hasStereotype(ce)) {
+		if (CapellaUtils.hasStereotype(ce) && getAlgo().isPVMTExport()) {
 			String sterotypeName = CapellaUtils.getSterotypeName(ce);
 			stereoNames.add(sterotypeName);
 			XMIExtensionsUtils.createStereotypeProperties(operation, stereoNames, "Object", sysMLID);

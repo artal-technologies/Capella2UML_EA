@@ -25,7 +25,7 @@ import xmi.Extension;
  */
 public class Capella2UMLAlgo extends UMLBridgeAlgo<Project> {
 
-	public Capella2UMLAlgo(AbstractMappingAlgoMix<?, ?> mix) {
+	public Capella2UMLAlgo(AbstractMappingAlgoMix<?, ?, ?> mix) {
 		super(mix);
 	}
 
@@ -127,4 +127,8 @@ public class Capella2UMLAlgo extends UMLBridgeAlgo<Project> {
 		return true;
 	}
 
+	public boolean isPVMTExport(){
+		return ((EAMappingService)getMix().getMappingService()).isExportProfile();
+	}
+	
 }

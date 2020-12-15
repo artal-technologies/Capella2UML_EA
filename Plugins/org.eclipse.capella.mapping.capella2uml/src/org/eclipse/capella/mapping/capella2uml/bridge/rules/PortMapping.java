@@ -121,7 +121,7 @@ public class PortMapping extends CommonPortMapping<Capella2UMLAlgo> {
 
 		CapellaElement ce = (CapellaElement) source;
 		Model model = SpecificUtils.getModel(targetPort,source);
-		if (CapellaUtils.hasStereotype(ce)) {
+		if (CapellaUtils.hasStereotype(ce) && getAlgo().isPVMTExport()) {
 			List<String> stereoNames = new ArrayList<String>();
 			stereoNames.addAll(CapellaUtils.getListStereotypeName(ce));
 			XMIExtensionsUtils.createStereotypeProperties(targetelement, stereoNames, "Port",sysMLID);

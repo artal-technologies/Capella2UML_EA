@@ -48,7 +48,7 @@ public class TransfoExportHandler extends AbstractHandler {
 		int status = dialog.open();
 
 		String umlPath = null;
-		AbstractMappingAlgoMix<?, ?> mix = null;
+		AbstractMappingAlgoMix<?, ?,?> mix = null;
 
 		if (status == IStatus.OK) {
 

@@ -65,7 +65,7 @@ public class ClassMapping extends CommonClassMapping<Capella2UMLAlgo> {
 		targetdataType.setName(source.getName());
 		((org.eclipse.uml2.uml.Package) eaContainer).getPackagedElements().add(targetdataType);
 		CapellaElement ce = (CapellaElement) source;
-		if (CapellaUtils.hasStereotype(ce)) {
+		if (CapellaUtils.hasStereotype(ce) && getAlgo().isPVMTExport()) {
 			List<String> stereoNames = new ArrayList<String>();
 			stereoNames.addAll(CapellaUtils.getListStereotypeName(ce));
 			XMIExtensionsUtils.createStereotypeProperties(targetelement, stereoNames, "Class",sysMLID);

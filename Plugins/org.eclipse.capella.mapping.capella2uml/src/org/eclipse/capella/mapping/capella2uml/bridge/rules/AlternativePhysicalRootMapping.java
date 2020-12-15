@@ -39,8 +39,12 @@ import xmi.util.XMIExtensionsUtils;
 
 public class AlternativePhysicalRootMapping extends AbstractDynamicMapping<Project, Project, Capella2UMLAlgo> {
 
-	public AlternativePhysicalRootMapping(Capella2UMLAlgo algo, Project parent, IMappingExecution execution) {
+	private boolean _pvmtExport = false;
+	
+	public AlternativePhysicalRootMapping(Capella2UMLAlgo algo, Project parent, IMappingExecution execution,
+			boolean exportPVMT) {
 		super(algo, parent, execution);
+		_pvmtExport = exportPVMT;
 	}
 
 	/*
@@ -138,10 +142,11 @@ public class AlternativePhysicalRootMapping extends AbstractDynamicMapping<Proje
 
 		PhysicalArchitecture physicalArchitecture = CapellaUtils.getPhysicalArchitecture(project);
 
-		RootPropertyValuePkgMapping pvpMapping = new RootPropertyValuePkgMapping(getAlgo(), project,
-				getMappingExucution());
-		manager.add(RootPropertyValuePkgMapping.class.getName() + project.getId(), pvpMapping);
-
+		if (_pvmtExport) {
+			RootPropertyValuePkgMapping pvpMapping = new RootPropertyValuePkgMapping(getAlgo(), project,
+					getMappingExucution());
+			manager.add(RootPropertyValuePkgMapping.class.getName() + project.getId(), pvpMapping);
+		}
 		PhysicalProfileMapping ppMapping = new PhysicalProfileMapping(getAlgo(), project, getMappingExucution());
 		manager.add(PhysicalProfileMapping.class.getName() + project.getId(), ppMapping);
 

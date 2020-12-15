@@ -52,7 +52,7 @@
 		<repository>
 			<id>amalgam</id>
 			<layout>p2</layout>
-			<url>https://download.eclipse.org/modeling/amalgam/updates/nightly/1.8.0/oxygen/</url>
+			<url>https://download.eclipse.org/modeling/amalgam/updates/releases/1.8.0/oxygen/</url>
 		</repository>
 		<repository>
 			<id>diffmerge</id>

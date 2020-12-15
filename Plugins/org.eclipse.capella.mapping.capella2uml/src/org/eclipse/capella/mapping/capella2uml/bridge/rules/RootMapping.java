@@ -45,6 +45,13 @@ import xmi.util.XMIExtensionsUtils;
  */
 public class RootMapping extends AbstractDynamicMapping<Project, Project, Capella2UMLAlgo> {
 
+	private boolean _pvmtExport = false;
+
+	public RootMapping(Capella2UMLAlgo algo, Project parent, IMappingExecution execution, boolean pvmtExport) {
+		super(algo, parent, execution);
+		_pvmtExport = pvmtExport;
+	}
+	
 	public RootMapping(Capella2UMLAlgo algo, Project parent, IMappingExecution execution) {
 		super(algo, parent, execution);
 	}
@@ -144,9 +151,11 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 		// manager.add(ClassMapping.class.getName() + dataPkgRoot.getId(),
 		// classMapping);
 
-		RootPropertyValuePkgMapping pvpMapping = new RootPropertyValuePkgMapping(getAlgo(), project,
-				getMappingExucution());
-		manager.add(RootPropertyValuePkgMapping.class.getName() + project.getId(), pvpMapping);
+		if (_pvmtExport) {
+			RootPropertyValuePkgMapping pvpMapping = new RootPropertyValuePkgMapping(getAlgo(), project,
+					getMappingExucution());
+			manager.add(RootPropertyValuePkgMapping.class.getName() + project.getId(), pvpMapping);
+		}
 		DataPkgMapping dataPkgMapping = new DataPkgMapping(getAlgo(), logicalArchitecture, getMappingExucution());
 		manager.add(dataPkgMapping.getClass().getName() + logicalArchitecture.getId(), dataPkgMapping);
 
