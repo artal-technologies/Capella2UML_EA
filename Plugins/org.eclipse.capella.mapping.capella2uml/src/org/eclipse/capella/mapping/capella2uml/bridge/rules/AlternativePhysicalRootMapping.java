@@ -141,7 +141,13 @@ public class AlternativePhysicalRootMapping extends AbstractDynamicMapping<Proje
 		Project project = _capellaSource.get(0);
 
 		PhysicalArchitecture physicalArchitecture = CapellaUtils.getPhysicalArchitecture(project);
-		if (_pvmtExport) {
+		if(physicalArchitecture == null)
+		{
+			return;
+		}
+		
+		if (_pvmtExport)
+		{
 			RootPropertyValuePkgMapping pvpMapping = new RootPropertyValuePkgMapping(getAlgo(), project,
 					getMappingExucution());
 			manager.add(RootPropertyValuePkgMapping.class.getName() + project.getId(), pvpMapping);
@@ -162,15 +168,17 @@ public class AlternativePhysicalRootMapping extends AbstractDynamicMapping<Proje
 
 		
 		PhysicalComponent physicalSystemRoot = CapellaUtils.getPhysicalSystemRoot(project);
-		AlternativeExchangeMapping alternativeExchangeMapping = new AlternativeExchangeMapping(getAlgo(),
-				physicalSystemRoot, getMappingExucution());
-		manager.add(alternativeExchangeMapping.getClass().getName() + physicalSystemRoot.getId(),
-				alternativeExchangeMapping);
-
+		if(physicalSystemRoot != null)
+		{
+			AlternativeExchangeMapping alternativeExchangeMapping = new AlternativeExchangeMapping(getAlgo(),
+					physicalSystemRoot, getMappingExucution());
+			manager.add(alternativeExchangeMapping.getClass().getName() + physicalSystemRoot.getId(),
+					alternativeExchangeMapping);
+		}
+		
 		ComponentMapping componentMapping = new AlternativeComponentMapping(getAlgo(), physicalArchitecture,
 				getMappingExucution());
 		manager.add(componentMapping.getClass().getName() + physicalArchitecture.getId(), componentMapping);
-
 
 		ActorPkgMapping actorPkgMapping = new ActorPkgMapping(getAlgo(), physicalArchitecture, getMappingExucution());
 		manager.add(actorPkgMapping.getClass().getName() + physicalArchitecture.getId(), actorPkgMapping);

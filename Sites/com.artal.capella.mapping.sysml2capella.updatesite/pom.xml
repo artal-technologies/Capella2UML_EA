@@ -10,7 +10,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>CapellArtal_EA-UMLBridge_Cap${capella-version}_v${project.version}-site</artifactId>
+	<artifactId>CapellaMapping_VP_1_2_1</artifactId>
 	<version>1.0.8</version>
 	<packaging>eclipse-repository</packaging>
 	<parent>
@@ -32,11 +32,11 @@
 							<target unless="maven.test.skip">
 								<echo message="Create Dropin from CapellaMapping dropin" />
 
-								<zip destfile="${basedir}/target/CapellArtal_EA-UMLBridge_Cap${capella-version}_v${project.version}-dropin.zip">
+								<zip destfile="${basedir}/target/Capella_SysMLBridge_${capella-version}_${project.version}-dropin.zip">
 									<zipfileset dir="target/repository/features/"
-										prefix="CapellArtal_EA-UMLBridge_v${project.version}/features/" />
+										prefix="CapellaSysMLBridge_${capella-version}_${project.version}/features/" />
 									<zipfileset dir="target/repository/plugins/"
-										prefix="CapellArtal_EA-UMLBridge_v${project.version}/plugins/" />
+										prefix="CapellaSysMLBridge_${capella-version}_${project.version}/plugins/" />
 								</zip>
 							</target>
 						</configuration>
