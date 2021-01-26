@@ -64,16 +64,22 @@ public abstract class AbstractDynamicMapping<SOURCE_CONTAINER, SOURCE_ELEMENT, A
 		}
 		Object eaContainer = computeTargetContainer(_sourceContainer);
 		List<SOURCE_ELEMENT> capellaSource = findSourceElements(_sourceContainer);
-		if (eaContainer != null && capellaSource != null && !capellaSource.isEmpty()) {
-			for (SOURCE_ELEMENT capella_SOURCE : capellaSource) {
-				Object object = compute(eaContainer, capella_SOURCE);
-				if (object != null) {
-					toTrace(capella_SOURCE, object);
-				}
-			}
 
-			executeSubRules(capellaSource, _manager);
-			_manager.executeRules();
+		if (eaContainer != null && capellaSource != null)
+		{
+			capellaSource.remove(null);
+			if(!capellaSource.isEmpty())
+			{
+				for (SOURCE_ELEMENT capella_SOURCE : capellaSource) {
+					Object object = compute(eaContainer, capella_SOURCE);
+					if (object != null) {
+						toTrace(capella_SOURCE, object);
+					}
+				}
+
+				executeSubRules(capellaSource, _manager);
+				_manager.executeRules();
+			}
 		}
 
 	}

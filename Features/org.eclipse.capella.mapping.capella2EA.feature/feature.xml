@@ -62,6 +62,10 @@ Java and all Java-based trademarks are trademarks of Oracle Corporation in the U
          id="org.eclipse.uml2"
          version="0.0.0"/>
 
+   <includes
+         id="com.artal.licensing.feature"
+         version="0.0.0"/>
+
    <plugin
          id="com.artal.capella.mapping"
          download-size="0"

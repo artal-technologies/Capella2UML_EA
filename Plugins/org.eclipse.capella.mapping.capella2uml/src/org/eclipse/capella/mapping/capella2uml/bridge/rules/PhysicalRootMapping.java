@@ -134,9 +134,14 @@ public class PhysicalRootMapping extends AbstractDynamicMapping<Project, Project
 	public void executeSubRules(List<Project> _capellaSource, MappingRulesManager manager) {
 
 		Project project = _capellaSource.get(0);
-
-		DataPkg dataPkgRoot = CapellaUtils.getDataPkgRoot(project, PhysicalArchitecture.class);
+		
 		PhysicalArchitecture physicalArchitecture = CapellaUtils.getPhysicalArchitecture(project);
+		if(physicalArchitecture == null)
+		{
+			return;
+		}
+		
+		DataPkg dataPkgRoot = CapellaUtils.getDataPkgRoot(project, PhysicalArchitecture.class);
 		if (_pvmtExport) {
 			RootPropertyValuePkgMapping pvpMapping = new RootPropertyValuePkgMapping(getAlgo(), project,
 					getMappingExucution());
@@ -181,8 +186,11 @@ public class PhysicalRootMapping extends AbstractDynamicMapping<Project, Project
 				eventExchangeItemMapping);
 
 		InterfacePkg interfacePkg = CapellaUtils.getInterfacePkgRoot(project, PhysicalArchitecture.class);
-		InterfaceMapping interfaceMapping = new InterfaceMapping(getAlgo(), interfacePkg, getMappingExucution());
-		manager.add(InterfaceMapping.class.getName() + interfacePkg.getId(), interfaceMapping);
+		if(interfacePkg != null)
+		{
+			InterfaceMapping interfaceMapping = new InterfaceMapping(getAlgo(), interfacePkg, getMappingExucution());
+			manager.add(InterfaceMapping.class.getName() + interfacePkg.getId(), interfaceMapping);
+		}
 
 		ComponentMapping componentMapping = new ComponentMapping(getAlgo(), physicalArchitecture,
 				getMappingExucution());

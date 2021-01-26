@@ -51,10 +51,6 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 		super(algo, parent, execution);
 		_pvmtExport = pvmtExport;
 	}
-	
-	public RootMapping(Capella2UMLAlgo algo, Project parent, IMappingExecution execution) {
-		super(algo, parent, execution);
-	}
 
 	/*
 	 * (non-Javadoc)
@@ -134,8 +130,13 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 
 		Project project = _capellaSource.get(0);
 
-		DataPkg dataPkgRoot = CapellaUtils.getDataPkgRoot(project, LogicalArchitecture.class);
 		LogicalArchitecture logicalArchitecture = CapellaUtils.getLogicalArchitecture(project);
+		if(logicalArchitecture == null)
+		{
+			return;
+		}
+		
+		DataPkg dataPkgRoot = CapellaUtils.getDataPkgRoot(project, LogicalArchitecture.class);
 		// EnumerationMapping enumerationMapping = new EnumerationMapping(getAlgo(),
 		// dataPkgRoot, getMappingExucution());
 		// manager.add(EnumerationMapping.class.getName() + dataPkgRoot.getId(),
@@ -181,8 +182,11 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 				eventExchangeItemMapping);
 
 		InterfacePkg interfacePkg = CapellaUtils.getInterfacePkgRoot(project, LogicalArchitecture.class);
+		if(interfacePkg != null)
+		{
 		InterfaceMapping interfaceMapping = new InterfaceMapping(getAlgo(), interfacePkg, getMappingExucution());
 		manager.add(InterfaceMapping.class.getName() + interfacePkg.getId(), interfaceMapping);
+		}
 
 		ComponentMapping componentMapping = new ComponentMapping(getAlgo(), logicalArchitecture, getMappingExucution());
 		manager.add(componentMapping.getClass().getName() + logicalArchitecture.getId(), componentMapping);
@@ -192,7 +196,8 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 
 		List<Component> collect = EObjectExt.getAll(logicalArchitecture, CsPackage.Literals.COMPONENT).stream()
 				.map(Component.class::cast).collect(Collectors.toList());
-		for (Component component : collect) {
+		for (Component component : collect)
+		{
 			ExchangeMapping mapping = new ExchangeMapping(getAlgo(), component, getMappingExucution());
 			manager.add(mapping.getClass().getName() + component.getId(), mapping);
 		}
