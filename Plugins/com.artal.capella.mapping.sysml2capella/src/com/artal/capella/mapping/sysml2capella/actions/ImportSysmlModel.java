@@ -39,6 +39,9 @@ import com.artal.capella.mapping.CapellaExtensionBridgeJob;
 import com.artal.capella.mapping.sysml2capella.Sysml2CapellaAlgo;
 import com.artal.capella.mapping.sysml2capella.preferences.ConfigParser;
 import com.artal.capella.mapping.sysml2capella.preferences.SysMLConfiguration;
+import com.artal.licensing.ArtalFeature;
+import com.artal.licensing.InvalidPrivilegeException;
+import com.artal.licensing.LicenseUtils;
 
 /**
  * @author YBI
@@ -55,6 +58,32 @@ public class ImportSysmlModel extends AbstractHandler {
 	 */
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
+		try {
+			LicenseUtils.runWithPrivileges(new Runnable() {
+
+				@Override
+				public void run() {
+					try {
+						protectedLaunch(event);
+					} catch (ExecutionException e) {
+						MessageDialog.openError(Display.getCurrent().getActiveShell(), "Execution exception", e.getMessage());
+					}
+				}
+			}, new ArtalFeature() {
+
+				@Override
+				public int getId() {
+					return 4;
+				}
+			});
+		} catch (InvalidPrivilegeException e1) {
+			MessageDialog.openError(Display.getCurrent().getActiveShell(), "Invalid Privilege", e1.getMessage());
+		}
+		return null;
+	}
+	
+	public void  protectedLaunch(ExecutionEvent event) throws ExecutionException
+	{
 		StructuredSelection currentSelection = (StructuredSelection) HandlerUtil.getCurrentSelection(event);
 
 		LogicalArchitecture firstElement = (LogicalArchitecture) currentSelection.getFirstElement();
@@ -75,7 +104,7 @@ public class ImportSysmlModel extends AbstractHandler {
 
 		// if no model input, stop the mapping.
 		if (filePath == null || filePath.isEmpty()) {
-			return null;
+			return;
 		}
 
 		// Create the configuration from configuration file.
@@ -125,8 +154,6 @@ public class ImportSysmlModel extends AbstractHandler {
 		} else {
 			throw new ExecutionException("Execution context not found");
 		}
-
-		return null;
 	}
 
 }

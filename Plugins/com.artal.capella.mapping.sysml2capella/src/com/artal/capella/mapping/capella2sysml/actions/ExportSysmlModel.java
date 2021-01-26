@@ -35,6 +35,9 @@ import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.la.LogicalArchitecture;
 
 import com.artal.capella.mapping.capella2sysml.Capella2SysmlBridgeJob;
+import com.artal.licensing.ArtalFeature;
+import com.artal.licensing.InvalidPrivilegeException;
+import com.artal.licensing.LicenseUtils;
 
 /**
  * @author YBI
@@ -51,6 +54,32 @@ public class ExportSysmlModel extends AbstractHandler {
 	 */
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
+		try {
+			LicenseUtils.runWithPrivileges(new Runnable() {
+
+				@Override
+				public void run() {
+					try {
+						protectedLaunch(event);
+					} catch (ExecutionException e) {
+						MessageDialog.openError(Display.getCurrent().getActiveShell(), "Execution exception", e.getMessage());
+					}
+				}
+			}, new ArtalFeature() {
+
+				@Override
+				public int getId() {
+					return 4;
+				}
+			});
+		} catch (InvalidPrivilegeException e1) {
+			MessageDialog.openError(Display.getCurrent().getActiveShell(), "Invalid Privilege", e1.getMessage());
+		}
+		return null;
+	}
+	
+	public void  protectedLaunch(ExecutionEvent event) throws ExecutionException
+	{
 		StructuredSelection currentSelection = (StructuredSelection) HandlerUtil.getCurrentSelection(event);
 
 		CapellaSysmlLaunchDialog dialog = new CapellaSysmlLaunchDialog(Display.getCurrent().getActiveShell());
@@ -63,7 +92,7 @@ public class ExportSysmlModel extends AbstractHandler {
 
 		// if no model input, stop the mapping.
 		if (filePath == null || filePath.isEmpty()) {
-			return null;
+			return ;
 		}
 		String folder = filePath.substring(0, filePath.lastIndexOf(File.separator));
 		URI targetUri = URI.createFileURI(filePath);
@@ -109,10 +138,9 @@ public class ExportSysmlModel extends AbstractHandler {
 				}
 			}
 		} else {
-			return null;
+			return;
 		}
 
-		return null;
+		return;
 	}
-
 }
