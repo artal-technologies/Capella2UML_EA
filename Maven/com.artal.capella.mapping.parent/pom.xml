@@ -11,6 +11,7 @@
 	<version>1.0.8-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<properties>
+		<capella-version>1.3.1</capella-version>
 		<tycho-version>0.26.0</tycho-version>
 		<platform-version-name>mars</platform-version-name>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -21,6 +22,11 @@
 			<id>Neon</id>
 			<layout>p2</layout>
 			<url>http://download.eclipse.org/releases/oxygen/</url>
+		</repository>
+		<repository>
+			<id>requirements</id>
+			<layout>p2</layout>
+			<url>http://odin.phedre.fr/p2_mirrors/capella_requirements/</url>
 		</repository>
 		<repository>
 			<id>capella</id>
@@ -66,6 +72,12 @@
 			<url>https://download.eclipse.org/diffmerge/releases/0.11.0/edm-coevolution-site/
 			</url>
 		</repository>
+		<repository>
+			<id>licensing</id>
+			<url>http://odin.phedre.fr/p2_mirrors/licensing/</url>
+			<layout>p2</layout>
+		</repository>
+		
 
 	</repositories>
 	<dependencies>
