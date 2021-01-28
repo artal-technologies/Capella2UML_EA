@@ -23,6 +23,11 @@
 			<url>http://download.eclipse.org/releases/oxygen/</url>
 		</repository>
 		<repository>
+			<id>requirements</id>
+			<layout>p2</layout>
+			<url>https://hudson.polarsys.org/capella/view/Capella%20Viewpoints/job/capella-requirements-viewpoint-v0.9.x/301/artifact/releng/org.polarsys.capella.vp.requirements.site/target/repository/</url>
+		</repository>
+		<repository>
 			<id>capella</id>
 			<layout>p2</layout>
 			<url>https://download.eclipse.org/capella/core/updates/releases/1.3.1-R20190520-182008/org.polarsys.capella.rcp.site/
