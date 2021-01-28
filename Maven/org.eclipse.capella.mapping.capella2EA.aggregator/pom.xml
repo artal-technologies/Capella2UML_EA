@@ -27,25 +27,23 @@
 		</plugins>
 	</build>
   <modules>
+  		<module>../com.artal.capella.mapping.parent</module>
+  		
+  		<module>../../Plugins/com.artal.capella.mapping</module>
+  		<module>../../Plugins/org.eclipse.capella.mapping.capella2uml</module>
+  		<module>../../Plugins/org.eclipse.capella.mapping.xmi.extension</module>
+  		
+  		<module>../../Features/org.eclipse.capella.mapping.capella2EA.feature</module>
+  		<module>../../Sites/org.eclipse.capella.mapping.capella2EA.updatesite</module>
+  		
+  	  	<module>../../Documentations/org.eclipse.capella.mapping.capella2EA.doc</module>
+  	  	
+  	  	  	<module>../com.artal.capella.mapping.parent</module>
   	
-  	
-  	<module>../com.artal.capella.mapping.parent</module>
-
   	<module>../../Plugins/com.artal.capella.mapping</module>
-  	<module>
-  		../../Features/org.eclipse.capella.mapping.capella2EA.feature
-  	</module>
-  	<module>
-  		../../Sites/org.eclipse.capella.mapping.capella2EA.updatesite
-  	</module>
-  	<module>
-  		../../Plugins/org.eclipse.capella.mapping.capella2uml
-  	</module>
-  	<module>
-  		../../Plugins/org.eclipse.capella.mapping.xmi.extension
-  	</module>
-  	<module>
-  		../../Documentations/org.eclipse.capella.mapping.capella2EA.doc
-  	</module>
-  </modules>
+  	<module>../../Plugins/com.artal.capella.mapping.sysml2capella</module>
+  	
+  	<module>../../Features/com.artal.capella.mapping.sysml2capella.feature</module>
+  	<module>../../Sites/com.artal.capella.mapping.sysml2capella.updatesite</module>
+  	</modules>
 </project>
