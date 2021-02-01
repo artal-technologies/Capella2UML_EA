@@ -28,6 +28,7 @@ import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.la.LogicalArchitecture;
 
 import com.artal.capella.mapping.mix.AbstractMappingAlgoMix;
+import com.artal.capella.mapping.services.BridgeLicenseCheck;
 import com.artal.licensing.ArtalFeature;
 import com.artal.licensing.InvalidPrivilegeException;
 import com.artal.licensing.LicenseUtils;
@@ -46,115 +47,95 @@ public class TransfoExportHandler extends AbstractHandler {
 	 */
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		
-		try {
-			LicenseUtils.runWithPrivileges(new Runnable() {
 
-				@Override
-				public void run() {
-					try {
-						protectedLaunch(event);
-					} catch (ExecutionException e) {
-						MessageDialog.openError(Display.getCurrent().getActiveShell(), "Execution exception", e.getMessage());
+		new BridgeLicenseCheck() {
+			@Override
+			public void action() throws ExecutionException {
+				StructuredSelection currentSelection = (StructuredSelection) HandlerUtil.getCurrentSelection(event);
+				CapellaMappingDialog dialog = new CapellaMappingDialog(Display.getCurrent().getActiveShell());
+				int status = dialog.open();
+
+				String umlPath = null;
+				AbstractMappingAlgoMix<?, ?, ?> mix = null;
+
+				if (status == IStatus.OK) {
+
+					umlPath = dialog.getOutputPath();
+
+					mix = dialog.getMix();
+				}
+
+				if (umlPath == null || mix == null) {
+					return;
+				}
+
+				File file = new File(umlPath);
+				if (file.exists()) {
+					boolean openConfirm = MessageDialog.openConfirm(Display.getCurrent().getActiveShell(),
+							"Overwritte existing output file",
+							"Are you sure to overwrite the existing " + file.getName() + " file ?");
+					if (!openConfirm) {
+						return;
+					} else {
+						file.delete();
+					}
+
+				}
+
+				// String folder = umlPath.substring(0, umlPath.lastIndexOf(File.separator));
+				URI targetUri = URI.createFileURI(umlPath);
+
+				CapellaElement firstElement = (CapellaElement) currentSelection.getFirstElement();
+				Resource capellaResource = firstElement.eResource();
+				ResourceSet resourceSet = capellaResource.getResourceSet();
+				URI semanticResourceURI = capellaResource.getURI().trimFileExtension()
+						.appendFileExtension("melodymodeller");
+				Resource semanticResource = resourceSet.getResource(semanticResourceURI, false);
+				Project context = null;
+				if (semanticResource != null) {
+					EObject root = semanticResource.getContents().get(0);
+					if (root instanceof Project) {
+						context = (Project) root;
 					}
 				}
-			}, new ArtalFeature() {
 
-				@Override
-				public int getId() {
-					return 4;
+				if (context != null) {
+					if (targetUri != null) {
+
+						// TODO
+						// Capella2UMLBridgeJob job = new Capella2UMLBridgeJob("", context, targetUri,
+						// mix);
+						// bridgeJob.setTargetParentFolder(folder);
+						BridgeJob<?> bridgeJob = dialog.createBridgeJob("", context, targetUri, mix);
+
+						ProgressMonitorDialog pmd = new ProgressMonitorDialog(Display.getCurrent().getActiveShell());
+						try {
+							pmd.run(false, false, new IRunnableWithProgress() {
+
+								@Override
+								public void run(IProgressMonitor monitor)
+										throws InvocationTargetException, InterruptedException {
+									bridgeJob.run(monitor);
+
+								}
+							});
+						} catch (InvocationTargetException e) {
+							e.printStackTrace();
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+
+					}
 				}
-			});
-		} catch (InvalidPrivilegeException e1) {
-			MessageDialog.openError(Display.getCurrent().getActiveShell(), "Invalid Privilege", e1.getMessage());
-		}
+				// for this moment the bridge trace is not saved
+				File f = new File(umlPath + ".bridgetraces");
+				if (f.exists()) {
+					f.delete();
+				}
+
+				dialog.postProcess();
+			}
+		};
 		return null;
 	}
-	
-	public void  protectedLaunch(ExecutionEvent event) throws ExecutionException
-	{
-		StructuredSelection currentSelection = (StructuredSelection) HandlerUtil.getCurrentSelection(event);
-		CapellaMappingDialog dialog = new CapellaMappingDialog(Display.getCurrent().getActiveShell());
-		int status = dialog.open();		
-		
-		String umlPath = null;
-		AbstractMappingAlgoMix<?, ?,?> mix = null;
-
-		if (status == IStatus.OK) {
-
-			umlPath = dialog.getOutputPath();
-
-			mix = dialog.getMix();
-		}
-
-		if (umlPath == null || mix == null) {
-			return;
-		}
-
-		File file = new File(umlPath);
-		if (file.exists()) {
-			boolean openConfirm = MessageDialog.openConfirm(Display.getCurrent().getActiveShell(),
-					"Overwritte existing output file",
-					"Are you sure to overwrite the existing " + file.getName() + " file ?");
-			if (!openConfirm) {
-				return;
-			} else {
-				file.delete();
-			}
-
-		}
-
-		// String folder = umlPath.substring(0, umlPath.lastIndexOf(File.separator));
-		URI targetUri = URI.createFileURI(umlPath);
-
-		CapellaElement firstElement = (CapellaElement) currentSelection.getFirstElement();
-		Resource capellaResource = firstElement.eResource();
-		ResourceSet resourceSet = capellaResource.getResourceSet();
-		URI semanticResourceURI = capellaResource.getURI().trimFileExtension().appendFileExtension("melodymodeller");
-		Resource semanticResource = resourceSet.getResource(semanticResourceURI, false);
-		Project context = null;
-		if (semanticResource != null) {
-			EObject root = semanticResource.getContents().get(0);
-			if (root instanceof Project) {
-				context = (Project) root;
-			}
-		}
-
-		if (context != null) {
-			if (targetUri != null) {
-
-				// TODO
-				// Capella2UMLBridgeJob job = new Capella2UMLBridgeJob("", context, targetUri,
-				// mix);
-				// bridgeJob.setTargetParentFolder(folder);
-				BridgeJob<?> bridgeJob = dialog.createBridgeJob("", context, targetUri, mix);
-
-				ProgressMonitorDialog pmd = new ProgressMonitorDialog(Display.getCurrent().getActiveShell());
-				try {
-					pmd.run(false, false, new IRunnableWithProgress() {
-
-						@Override
-						public void run(IProgressMonitor monitor)
-								throws InvocationTargetException, InterruptedException {
-							bridgeJob.run(monitor);
-
-						}
-					});
-				} catch (InvocationTargetException e) {
-					e.printStackTrace();
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-
-			}
-		}
-		// for this moment the bridge trace is not saved
-		File f = new File(umlPath + ".bridgetraces");
-		if (f.exists()) {
-			f.delete();
-		}
-		
-		dialog.postProcess();
-	}
-
 }

@@ -36,12 +36,10 @@ import org.polarsys.capella.common.ef.ExecutionManagerRegistry;
 import org.polarsys.capella.core.data.la.LogicalArchitecture;
 
 import com.artal.capella.mapping.CapellaExtensionBridgeJob;
+import com.artal.capella.mapping.services.BridgeLicenseCheck;
 import com.artal.capella.mapping.sysml2capella.Sysml2CapellaAlgo;
 import com.artal.capella.mapping.sysml2capella.preferences.ConfigParser;
 import com.artal.capella.mapping.sysml2capella.preferences.SysMLConfiguration;
-import com.artal.licensing.ArtalFeature;
-import com.artal.licensing.InvalidPrivilegeException;
-import com.artal.licensing.LicenseUtils;
 
 /**
  * @author YBI
@@ -49,111 +47,86 @@ import com.artal.licensing.LicenseUtils;
  */
 public class ImportSysmlModel extends AbstractHandler {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.core.commands.IHandler#execute(org.eclipse.core.commands.
-	 * ExecutionEvent)
-	 */
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		try {
-			LicenseUtils.runWithPrivileges(new Runnable() {
-
-				@Override
-				public void run() {
-					try {
-						protectedLaunch(event);
-					} catch (ExecutionException e) {
-						MessageDialog.openError(Display.getCurrent().getActiveShell(), "Execution exception", e.getMessage());
-					}
+		
+		new BridgeLicenseCheck()
+		{
+			@Override
+			public void action() throws ExecutionException
+			{
+				StructuredSelection currentSelection = (StructuredSelection) HandlerUtil.getCurrentSelection(event);
+		
+				LogicalArchitecture firstElement = (LogicalArchitecture) currentSelection.getFirstElement();
+				Resource capellaResource = firstElement.eResource();
+				URI targetUri = capellaResource.getURI();
+		
+				// launch dialog allowing to configure sysml/uml input and xml
+				// configuration
+				SysMLCapellaLaunchDialog dialog = new SysMLCapellaLaunchDialog(Display.getCurrent().getActiveShell());
+				int status = dialog.open();
+		
+				String filePath = null;
+				String configPath = null;
+				if (status == IStatus.OK) {
+					filePath = dialog.getUmlPath();
+					configPath = dialog.getConfigPath();
 				}
-			}, new ArtalFeature() {
-
-				@Override
-				public int getId() {
-					return 4;
+		
+				// if no model input, stop the mapping.
+				if (filePath == null || filePath.isEmpty()) {
+					return;
 				}
-			});
-		} catch (InvalidPrivilegeException e1) {
-			MessageDialog.openError(Display.getCurrent().getActiveShell(), "Invalid Privilege", e1.getMessage());
-		}
-		return null;
-	}
-	
-	public void  protectedLaunch(ExecutionEvent event) throws ExecutionException
-	{
-		StructuredSelection currentSelection = (StructuredSelection) HandlerUtil.getCurrentSelection(event);
-
-		LogicalArchitecture firstElement = (LogicalArchitecture) currentSelection.getFirstElement();
-		Resource capellaResource = firstElement.eResource();
-		URI targetUri = capellaResource.getURI();
-
-		// launch dialog allowing to configure sysml/uml input and xml
-		// configuration
-		SysMLCapellaLaunchDialog dialog = new SysMLCapellaLaunchDialog(Display.getCurrent().getActiveShell());
-		int status = dialog.open();
-
-		String filePath = null;
-		String configPath = null;
-		if (status == IStatus.OK) {
-			filePath = dialog.getUmlPath();
-			configPath = dialog.getConfigPath();
-		}
-
-		// if no model input, stop the mapping.
-		if (filePath == null || filePath.isEmpty()) {
-			return;
-		}
-
-		// Create the configuration from configuration file.
-		SysMLConfiguration configuration = null;
-		if (configPath != null && !configPath.isEmpty()) {
-			ConfigParser configParser = new ConfigParser(configPath);
-			configuration = configParser.parse();
-		}
-
-		URI fileURI = URI.createFileURI(filePath);
-
-		// load source resource
-		ExecutionManager manager = ExecutionManagerRegistry.getInstance().addNewManager();
-		TransactionalEditingDomain domain = manager.getEditingDomain();
-		ResourceSet resourceSet = domain.getResourceSet();
-		Resource resource = resourceSet.getResource(fileURI, true);
-
-		Model context = (Model) resource.getContents().get(0);
-		if (context != null) {
-			if (targetUri != null) {
-				CapellaExtensionBridgeJob<Model> cameo2CapellaBridgeJob = new CapellaExtensionBridgeJob<Model>(context,
-						targetUri, new Sysml2CapellaAlgo(configuration));
-				ProgressMonitorDialog pmd = new ProgressMonitorDialog(Display.getCurrent().getActiveShell());
-				try {
-					pmd.run(false, false, new IRunnableWithProgress() {
-
-						@Override
-						public void run(IProgressMonitor monitor)
-								throws InvocationTargetException, InterruptedException {
-							cameo2CapellaBridgeJob.run(monitor);
-
+		
+				// Create the configuration from configuration file.
+				SysMLConfiguration configuration = null;
+				if (configPath != null && !configPath.isEmpty()) {
+					ConfigParser configParser = new ConfigParser(configPath);
+					configuration = configParser.parse();
+				}
+		
+				URI fileURI = URI.createFileURI(filePath);
+		
+				// load source resource
+				ExecutionManager manager = ExecutionManagerRegistry.getInstance().addNewManager();
+				TransactionalEditingDomain domain = manager.getEditingDomain();
+				ResourceSet resourceSet = domain.getResourceSet();
+				Resource resource = resourceSet.getResource(fileURI, true);
+		
+				Model context = (Model) resource.getContents().get(0);
+				if (context != null) {
+					if (targetUri != null) {
+						CapellaExtensionBridgeJob<Model> cameo2CapellaBridgeJob = new CapellaExtensionBridgeJob<Model>(context,
+								targetUri, new Sysml2CapellaAlgo(configuration));
+						ProgressMonitorDialog pmd = new ProgressMonitorDialog(Display.getCurrent().getActiveShell());
+						try {
+							pmd.run(false, false, new IRunnableWithProgress() {
+		
+								@Override
+								public void run(IProgressMonitor monitor)
+										throws InvocationTargetException, InterruptedException {
+									cameo2CapellaBridgeJob.run(monitor);
+		
+								}
+							});
+						} catch (InvocationTargetException e) {
+							e.printStackTrace();
+						} catch (InterruptedException e) {
+							e.printStackTrace();
 						}
-					});
-				} catch (InvocationTargetException e) {
-					e.printStackTrace();
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-
-			} else {
-				Display display = Display.getCurrent();
-				if (display != null) {
-					Shell shell = display.getActiveShell();
-					MessageDialog.openError(shell, "Mapping error", "file " + filePath + " not found");
+		
+					} else {
+						Display display = Display.getCurrent();
+						if (display != null) {
+							Shell shell = display.getActiveShell();
+							MessageDialog.openError(shell, "Mapping error", "file " + filePath + " not found");
+						}
+					}
+				} else {
+					throw new ExecutionException("Execution context not found");
 				}
 			}
-		} else {
-			throw new ExecutionException("Execution context not found");
-		}
+		};
+		return null;
 	}
-
 }
