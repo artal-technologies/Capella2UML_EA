@@ -25,7 +25,7 @@
 		<repository>
 			<id>requirements</id>
 			<layout>p2</layout>
-			<url>file:////odin.phedre.fr/ERA_CROSSLAB/CITRUS/DEV/p2_mirrors/capella_requirements/</url>
+			<url>//odin.phedre.fr/ERA_CROSSLAB/CITRUS/DEV/p2_mirrors/capella_requirements/</url>
 		</repository>
 		<repository>
 			<id>capella</id>
