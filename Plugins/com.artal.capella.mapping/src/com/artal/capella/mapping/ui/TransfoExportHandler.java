@@ -28,6 +28,9 @@ import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.la.LogicalArchitecture;
 
 import com.artal.capella.mapping.mix.AbstractMappingAlgoMix;
+import com.artal.licensing.ArtalFeature;
+import com.artal.licensing.InvalidPrivilegeException;
+import com.artal.licensing.LicenseUtils;
 
 /**
  * @author binot
@@ -43,10 +46,37 @@ public class TransfoExportHandler extends AbstractHandler {
 	 */
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
+		
+		try {
+			LicenseUtils.runWithPrivileges(new Runnable() {
+
+				@Override
+				public void run() {
+					try {
+						protectedLaunch(event);
+					} catch (ExecutionException e) {
+						MessageDialog.openError(Display.getCurrent().getActiveShell(), "Execution exception", e.getMessage());
+					}
+				}
+			}, new ArtalFeature() {
+
+				@Override
+				public int getId() {
+					return 4;
+				}
+			});
+		} catch (InvalidPrivilegeException e1) {
+			MessageDialog.openError(Display.getCurrent().getActiveShell(), "Invalid Privilege", e1.getMessage());
+		}
+		return null;
+	}
+	
+	public void  protectedLaunch(ExecutionEvent event) throws ExecutionException
+	{
 		StructuredSelection currentSelection = (StructuredSelection) HandlerUtil.getCurrentSelection(event);
 		CapellaMappingDialog dialog = new CapellaMappingDialog(Display.getCurrent().getActiveShell());
-		int status = dialog.open();
-
+		int status = dialog.open();		
+		
 		String umlPath = null;
 		AbstractMappingAlgoMix<?, ?,?> mix = null;
 
@@ -58,7 +88,7 @@ public class TransfoExportHandler extends AbstractHandler {
 		}
 
 		if (umlPath == null || mix == null) {
-			return null;
+			return;
 		}
 
 		File file = new File(umlPath);
@@ -67,7 +97,7 @@ public class TransfoExportHandler extends AbstractHandler {
 					"Overwritte existing output file",
 					"Are you sure to overwrite the existing " + file.getName() + " file ?");
 			if (!openConfirm) {
-				return null;
+				return;
 			} else {
 				file.delete();
 			}
@@ -125,8 +155,6 @@ public class TransfoExportHandler extends AbstractHandler {
 		}
 		
 		dialog.postProcess();
-		
-		return null;
 	}
 
 }
