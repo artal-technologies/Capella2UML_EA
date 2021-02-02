@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Free
 Bundle-SymbolicName: com.artal.capella.mapping.free
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 1.0.8.qualifier
 Automatic-Module-Name: com.artal.capella.mapping.free
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Import-Package: org.osgi.service.component.annotations

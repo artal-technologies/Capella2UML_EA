@@ -59,10 +59,7 @@ public abstract class BridgeLicenseCheck
 				}
 			}
 		}
-	
-		        
-		    
-		    
+		
 		try
 		{
 			LicenseUtils.runWithPrivileges(new Runnable()
