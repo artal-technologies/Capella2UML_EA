@@ -79,13 +79,13 @@ public abstract class BridgeLicenseCheck
 				@Override
 				public int getId()
 				{
-					return 4;
+					return 1;
 				}
 			});
 		}
 		catch (InvalidPrivilegeException e1)
 		{
-			MessageDialog.openError(Display.getCurrent().getActiveShell(), "Invalid Privilege", e1.getMessage());
+			MessageDialog.openError(Display.getCurrent().getActiveShell(), "Invalid Privilege", "Not enough privilege to run the feature.");
 		}
 	}
 	
