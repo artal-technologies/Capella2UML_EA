@@ -15,7 +15,7 @@ import com.artal.licensing.LicenseUtils;
 
 public abstract class BridgeLicenseCheck
 {
-	private static String HASH = "35454B056CC335EA1AF2126E27807052";
+	private static String HASH = "9AB30B430B388E3FC67F7DFCF66FFBC3";
 	
 	public BridgeLicenseCheck()
 	{
@@ -35,9 +35,7 @@ public abstract class BridgeLicenseCheck
 				    byte[] digest = md.digest();
 				    String myHash = DatatypeConverter
 				      .printHexBinary(digest).toUpperCase();
-				     
-				    System.out.println(myHash);
-				  
+				    
 				    if(myHash.equals(HASH))
 				    {
 				    	try
