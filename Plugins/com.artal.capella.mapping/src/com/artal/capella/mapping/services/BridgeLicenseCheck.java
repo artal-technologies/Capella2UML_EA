@@ -81,7 +81,7 @@ public abstract class BridgeLicenseCheck
 				@Override
 				public int getId()
 				{
-					return 4;
+					return 1;
 				}
 			});
 		}
