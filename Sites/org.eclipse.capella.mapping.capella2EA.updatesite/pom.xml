@@ -11,7 +11,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>Capella2EA_VP_1.0.0</artifactId>
-	<version>1.4.1</version>
+	<version>1.0.8</version>
 	<packaging>eclipse-repository</packaging>
 	<parent>
 		<groupId>CapellaMapping</groupId>
