@@ -40,20 +40,11 @@
   		<module>../../Plugins/com.artal.capella.mapping</module>
   		<module>../../Plugins/org.eclipse.capella.mapping.capella2uml</module>
   		<module>../../Plugins/org.eclipse.capella.mapping.xmi.extension</module>
-  		
   		<module>../../Features/org.eclipse.capella.mapping.capella2EA.feature</module>
   		<module>../../Sites/org.eclipse.capella.mapping.capella2EA.updatesite</module>
-  		
   	  	<module>../../Documentations/org.eclipse.capella.mapping.capella2EA.doc</module>
   	  	
-  	  	
-  		<module>../../Plugins/com.artal.capella.mapping.sysml2capella</module>
-  	
-  		<module>../../Features/com.artal.capella.mapping.sysml2capella.feature</module>
-  		<module>../../Sites/com.artal.capella.mapping.sysml2capella.updatesite</module>
-  		
   		<module>../../Plugins/com.artal.capella.mapping.free</module>
   		<module>../../Features/com.artal.capella.bridge.free.feature</module>
-  		<module>../../Sites/com.artal.capella.bridge.sysml.site.free</module>
   	</modules>
 </project>
