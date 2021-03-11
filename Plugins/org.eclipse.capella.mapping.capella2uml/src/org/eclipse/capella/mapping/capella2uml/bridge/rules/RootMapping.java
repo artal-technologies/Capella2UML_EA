@@ -131,8 +131,13 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 
 		Project project = _capellaSource.get(0);
 
-		DataPkg dataPkgRoot = CapellaUtils.getDataPkgRoot(project, LogicalArchitecture.class);
 		LogicalArchitecture logicalArchitecture = CapellaUtils.getLogicalArchitecture(project);
+		if(logicalArchitecture == null)
+		{
+			return;
+		}
+		
+		DataPkg dataPkgRoot = CapellaUtils.getDataPkgRoot(project, LogicalArchitecture.class);
 		// EnumerationMapping enumerationMapping = new EnumerationMapping(getAlgo(),
 		// dataPkgRoot, getMappingExucution());
 		// manager.add(EnumerationMapping.class.getName() + dataPkgRoot.getId(),
@@ -177,9 +182,12 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 				eventExchangeItemMapping);
 
 		InterfacePkg interfacePkg = CapellaUtils.getInterfacePkgRoot(project, LogicalArchitecture.class);
-		InterfaceMapping interfaceMapping = new InterfaceMapping(getAlgo(), interfacePkg, getMappingExucution());
-		manager.add(InterfaceMapping.class.getName() + interfacePkg.getId(), interfaceMapping);
-
+		if(interfacePkg != null)
+		{
+			InterfaceMapping interfaceMapping = new InterfaceMapping(getAlgo(), interfacePkg, getMappingExucution());
+			manager.add(InterfaceMapping.class.getName() + interfacePkg.getId(), interfaceMapping);
+		}
+		
 		ComponentMapping componentMapping = new ComponentMapping(getAlgo(), logicalArchitecture, getMappingExucution());
 		manager.add(componentMapping.getClass().getName() + logicalArchitecture.getId(), componentMapping);
 
@@ -193,8 +201,11 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 			manager.add(mapping.getClass().getName() + component.getId(), mapping);
 		}
 		 LogicalComponent logicalSystemRoot = CapellaUtils.getLogicalSystemRoot(project);
-		 ExchangeMapping mapping = new ExchangeMapping(getAlgo(), (CapellaElement)logicalSystemRoot.eContainer(), getMappingExucution());
-			manager.add(mapping.getClass().getName() + ((CapellaElement)logicalSystemRoot.eContainer()).getId(), mapping);
+		 if(logicalSystemRoot != null)
+		 {
+			 ExchangeMapping mapping = new ExchangeMapping(getAlgo(), (CapellaElement)logicalSystemRoot.eContainer(), getMappingExucution());
+			 		manager.add(mapping.getClass().getName() + ((CapellaElement)logicalSystemRoot.eContainer()).getId(), mapping);
+		 }
 //		LogicalComponentPkg logicalComponentPkg = CapellaUtils.getLogicalComponentPkg(project);
 //		ActorMapping actorMapping = new ActorMapping(getAlgo(), logicalComponentPkg, getMappingExucution());
 //		manager.add(logicalComponentPkg.getClass().getName() + logicalComponentPkg.getId(), actorMapping);
