@@ -43,8 +43,5 @@
   		<module>../../Features/org.eclipse.capella.mapping.capella2EA.feature</module>
   		<module>../../Sites/org.eclipse.capella.mapping.capella2EA.updatesite</module>
   	  	<module>../../Documentations/org.eclipse.capella.mapping.capella2EA.doc</module>
-  	  	
-  		<module>../../Plugins/com.artal.capella.mapping.free</module>
-  		<module>../../Features/com.artal.capella.bridge.free.feature</module>
   	</modules>
 </project>
