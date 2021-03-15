@@ -11,12 +11,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>CapellArtal_EA-UMLBridge_Cap${capella-version}_v${project.version}-site</artifactId>
-	<version>1.0.8</version>
+	<version>1.0.9</version>
 	<packaging>eclipse-repository</packaging>
 	<parent>
 		<groupId>CapellaMapping</groupId>
 		<artifactId>com.artal.capella.mapping.parent</artifactId>
-		<version>1.0.8-SNAPSHOT</version>
+		<version>1.0.9-SNAPSHOT</version>
 		<relativePath>../../Maven/com.artal.capella.mapping.parent</relativePath>
 	</parent>
 	<build>
