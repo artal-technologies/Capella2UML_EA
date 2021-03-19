@@ -192,8 +192,11 @@ abstract public class ConstraintsMapping extends AbstractMapping {
 		if (sysMLContainer instanceof Activity) {
 			Map<Activity, List<CallBehaviorAction>> mapActivityToCallBehaviors = LogicalFunctionMapping
 					.getMapActivityToCallBehaviors();
-			List<CallBehaviorAction> list = mapActivityToCallBehaviors.get((sysMLContainer));
-			sysMLContainer = list.get(0);
+			List<CallBehaviorAction> list = mapActivityToCallBehaviors.get(sysMLContainer);
+			if(list != null)
+			{
+				sysMLContainer = list.get(0);
+			}
 		}
 		Object capellaObject = MappingRulesManager.getCapellaObjectFromAllRules(sysMLContainer);
 
