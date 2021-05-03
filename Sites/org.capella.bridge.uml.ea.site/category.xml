@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature id="org.eclipse.capella.mapping.capella2EA.feature"/>
+   <feature id="org.capella.bridge.uml.ea.feature"/>
    <category-def name="CapellaEABridge" label="Capella to Enterprise Architect bridge">
       <description>
          This feature provides the tools to transform a Capella model

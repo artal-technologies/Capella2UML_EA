@@ -3,6 +3,6 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Doc
 Bundle-SymbolicName: org.capella.bridge.uml.ea.doc;singleton:=true
 Bundle-Version: 1.0.9.qualifier
-Automatic-Module-Name: org.eclipse.capella.mapping.capella2EA.doc
+Automatic-Module-Name: org.capella.bridge.uml.ea.doc
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.help
