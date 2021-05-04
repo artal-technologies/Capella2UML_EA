@@ -47,13 +47,6 @@ public class AlternativeAssociationMapping extends CommonComponentExchangeMappin
 		// TODO Auto-generated constructor stub
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#compute(java.lang.
-	 * Object, java.lang.Object)
-	 */
 	@Override
 	public Object compute(Object eaContainer, ComponentExchange source) {
 
@@ -93,26 +86,12 @@ public class AlternativeAssociationMapping extends CommonComponentExchangeMappin
 		return null;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#executeSubRules(java.
-	 * util.List, com.artal.capella.mapping.rules.MappingRulesManager)
-	 */
 	@Override
 	public void executeSubRules(List<ComponentExchange> _capellaSource, MappingRulesManager manager) {
 		// TODO Auto-generated method stub
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#getUID(org.eclipse.emf
-	 * .ecore.EObject, java.lang.String)
-	 */
 	@Override
 	public String getUID(EObject key, String id) {
 		// TODO Auto-generated method stub

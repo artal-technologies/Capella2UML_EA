@@ -128,13 +128,6 @@ public class Capella2UMLBridgeJob extends UMLBridgeJob<Project> {
 				}
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see
-			 * org.eclipse.emf.ecore.xmi.impl.XMLSaveImpl#saveElementReferenceSingle(org.
-			 * eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EStructuralFeature)
-			 */
 			@Override
 			protected void saveElementReferenceSingle(EObject o, EStructuralFeature f) {
 				// TODO Auto-generated method stub

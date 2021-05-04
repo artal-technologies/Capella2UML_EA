@@ -57,11 +57,6 @@ public abstract class AbstractDynamicMapping<SOURCE_CONTAINER, SOURCE_ELEMENT, A
 		return _mappingExecution;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.artal.capella.mapping.rules.AbstractMapping#computeMapping()
-	 */
 	@Override
 	public void computeMapping() {
 		if (!isActivated()) {

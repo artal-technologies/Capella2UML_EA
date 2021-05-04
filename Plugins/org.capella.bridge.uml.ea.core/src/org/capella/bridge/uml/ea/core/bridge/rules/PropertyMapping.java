@@ -53,26 +53,12 @@ public class PropertyMapping extends AbstractDynamicMapping<Classifier, Property
 		super(algo, parent, mappingExecution);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#computeTargetContainer
-	 * (java.lang.Object)
-	 */
 	@Override
 	public Object computeTargetContainer(Classifier capellaContainer) {
 		Object capellaObjectFromAllRules = MappingRulesManager.getCapellaObjectFromAllRules(capellaContainer);
 		return capellaObjectFromAllRules;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#findSourceElements(
-	 * java.lang.Object)
-	 */
 	@Override
 	public List<Property> findSourceElements(Classifier capellaContainer) {
 
@@ -92,13 +78,6 @@ public class PropertyMapping extends AbstractDynamicMapping<Classifier, Property
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#compute(java.lang.
-	 * Object, java.lang.Object)
-	 */
 	@Override
 	public Object compute(Object eaContainer, Property source) {
 		Type type = source.getType();
@@ -281,26 +260,12 @@ public class PropertyMapping extends AbstractDynamicMapping<Classifier, Property
 		return null;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#executeSubRules(java.
-	 * util.List, com.artal.capella.mapping.rules.MappingRulesManager)
-	 */
 	@Override
 	public void executeSubRules(List<Property> _capellaSource, MappingRulesManager manager) {
 		// TODO Auto-generated method stub
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#getUID(org.eclipse.emf
-	 * .ecore.EObject, java.lang.String)
-	 */
 	@Override
 	public String getUID(EObject key, String id) {
 		return "EAID_" + id;

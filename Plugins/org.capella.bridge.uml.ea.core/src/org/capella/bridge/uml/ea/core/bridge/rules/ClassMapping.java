@@ -50,13 +50,6 @@ public class ClassMapping extends CommonClassMapping<Capella2UMLAlgo> {
 		super(algo, parent, mappingExecution);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#compute
-	 * (java.lang.Object, java.lang.Object)
-	 */
 	@Override
 	public Object compute(Object eaContainer, Class source) {
 		Resource eResource = source.eResource();
@@ -100,13 +93,6 @@ public class ClassMapping extends CommonClassMapping<Capella2UMLAlgo> {
 		return targetdataType;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * executeSubRules(java.util.List,
-	 * com.artal.capella.mapping.rules.MappingRulesManager)
-	 */
 	@Override
 	public void executeSubRules(List<Class> _capellaSource, MappingRulesManager manager) {
 

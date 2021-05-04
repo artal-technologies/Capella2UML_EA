@@ -55,13 +55,6 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 		_pvmtExport = pvmtExport;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.capella.mapping.capella2uml.bridge.rules.AbstractDynamicMapping#
-	 * getEAContainer(java.lang.Object)
-	 */
 	@Override
 	public Object computeTargetContainer(Project capellaContainer) {
 
@@ -95,13 +88,6 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.capella.mapping.capella2uml.bridge.rules.AbstractDynamicMapping#
-	 * getCapellaSource(java.lang.Object)
-	 */
 	@Override
 	public List<Project> findSourceElements(Project capellaContainer) {
 		List<Project> results = new ArrayList<Project>();
@@ -109,25 +95,11 @@ public class RootMapping extends AbstractDynamicMapping<Project, Project, Capell
 		return results;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.capella.mapping.capella2uml.bridge.rules.AbstractDynamicMapping#
-	 * compute(java.lang.Object, java.util.List)
-	 */
 	@Override
 	public Object compute(Object eaContainer, Project source) {
 		return eaContainer;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.capella.mapping.capella2uml.bridge.rules.AbstractDynamicMapping#
-	 * executeSubRules(java.util.List)
-	 */
 	@Override
 	public void executeSubRules(List<Project> _capellaSource, MappingRulesManager manager) {
 

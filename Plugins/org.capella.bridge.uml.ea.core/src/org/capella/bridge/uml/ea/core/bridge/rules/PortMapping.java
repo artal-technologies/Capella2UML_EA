@@ -91,13 +91,6 @@ public class PortMapping extends CommonPortMapping<Capella2UMLAlgo> {
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#compute
-	 * (java.lang.Object, java.lang.Object)
-	 */
 	@Override
 	public Object compute(Object eaContainer, ComponentPort source) {
 		// if (source.eContainer() instanceof AbstractActor) {
@@ -191,16 +184,8 @@ public class PortMapping extends CommonPortMapping<Capella2UMLAlgo> {
 		return "EAID_" + id;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * executeSubRules(java.util.List,
-	 * com.artal.capella.mapping.rules.MappingRulesManager)
-	 */
 	@Override
 	public void executeSubRules(List<ComponentPort> _capellaSource, MappingRulesManager manager) {
 
 	}
-
 }

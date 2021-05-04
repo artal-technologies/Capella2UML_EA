@@ -46,13 +46,6 @@ public class DataPkgMapping extends AbstractDynamicMapping<CapellaElement, DataP
 		// TODO Auto-generated constructor stub
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#computeTargetContainer
-	 * (java.lang.Object)
-	 */
 	@Override
 	public Object computeTargetContainer(CapellaElement capellaContainer) {
 		if (!(capellaContainer instanceof DataPkg)) {
@@ -67,13 +60,6 @@ public class DataPkgMapping extends AbstractDynamicMapping<CapellaElement, DataP
 		return MappingRulesManager.getCapellaObjectFromAllRules(capellaContainer);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#findSourceElements(
-	 * java.lang.Object)
-	 */
 	@Override
 	public List<DataPkg> findSourceElements(CapellaElement capellaContainer) {
 
@@ -89,13 +75,6 @@ public class DataPkgMapping extends AbstractDynamicMapping<CapellaElement, DataP
 		return results;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#compute(java.lang.
-	 * Object, java.lang.Object)
-	 */
 	@Override
 	public Object compute(Object eaContainer, DataPkg source) {
 		Package createPackage = UMLFactory.eINSTANCE.createPackage();
@@ -107,13 +86,6 @@ public class DataPkgMapping extends AbstractDynamicMapping<CapellaElement, DataP
 		return createPackage;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#executeSubRules(java.
-	 * util.List, com.artal.capella.mapping.rules.MappingRulesManager)
-	 */
 	@Override
 	public void executeSubRules(List<DataPkg> _capellaSource, MappingRulesManager manager) {
 		for (DataPkg interfacePkg : _capellaSource) {
@@ -132,13 +104,6 @@ public class DataPkgMapping extends AbstractDynamicMapping<CapellaElement, DataP
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#getUID(org.eclipse.emf
-	 * .ecore.EObject, java.lang.String)
-	 */
 	@Override
 	public String getUID(EObject key, String id) {
 		return "EAPK_" + id;

@@ -69,13 +69,6 @@ public class AlternativeExchangeItemMapping extends CommonExchangeItemMapping<Co
 		return operations;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#compute(java.lang.
-	 * Object, java.lang.Object)
-	 */
 	@Override
 	public Object compute(Object eaContainer, ExchangeItem source) {
 		Operation targetOperation = UMLFactory.eINSTANCE.createOperation();
@@ -137,13 +130,6 @@ public class AlternativeExchangeItemMapping extends CommonExchangeItemMapping<Co
 		return targetOperation;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#executeSubRules(java.
-	 * util.List, com.artal.capella.mapping.rules.MappingRulesManager)
-	 */
 	@Override
 	public void executeSubRules(List<ExchangeItem> _capellaSource, MappingRulesManager manager) {
 
@@ -155,13 +141,6 @@ public class AlternativeExchangeItemMapping extends CommonExchangeItemMapping<Co
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#getUID(org.eclipse.emf
-	 * .ecore.EObject, java.lang.String)
-	 */
 	@Override
 	public String getUID(EObject key, String id) {
 		return "EAID_" + id;

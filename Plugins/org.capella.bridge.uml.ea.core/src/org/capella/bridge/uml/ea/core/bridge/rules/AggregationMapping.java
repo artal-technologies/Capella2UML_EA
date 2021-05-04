@@ -45,26 +45,12 @@ public class AggregationMapping extends
 		super(algo, parent, mappingExecution);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#computeTargetContainer
-	 * (java.lang.Object)
-	 */
 	@Override
 	public Object computeTargetContainer(org.polarsys.capella.core.data.cs.Component capellaContainer) {
 		Component lc = (Component) MappingRulesManager.getCapellaObjectFromAllRules(capellaContainer);
 		return lc;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#findSourceElements(
-	 * java.lang.Object)
-	 */
 	@Override
 	public List<org.polarsys.capella.core.data.cs.Component> findSourceElements(
 			org.polarsys.capella.core.data.cs.Component capellaContainer) {
@@ -81,13 +67,6 @@ public class AggregationMapping extends
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#compute(java.lang.
-	 * Object, java.lang.Object)
-	 */
 	@Override
 	public Object compute(Object eaContainer, org.polarsys.capella.core.data.cs.Component source) {
 		// LogicalComponent sourceContainer = getSourceContainer();
@@ -122,13 +101,6 @@ public class AggregationMapping extends
 		return targetAssociation;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#executeSubRules(java.
-	 * util.List, com.artal.capella.mapping.rules.MappingRulesManager)
-	 */
 	@Override
 	public void executeSubRules(List<org.polarsys.capella.core.data.cs.Component> _capellaSource,
 			MappingRulesManager manager) {
@@ -136,13 +108,6 @@ public class AggregationMapping extends
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#getUID(org.eclipse.emf
-	 * .ecore.EObject, java.lang.String)
-	 */
 	@Override
 	public String getUID(EObject key, String id) {
 		return "EAID_" + id;

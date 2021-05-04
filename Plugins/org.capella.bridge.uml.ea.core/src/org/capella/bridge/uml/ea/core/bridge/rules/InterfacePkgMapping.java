@@ -46,13 +46,6 @@ public class InterfacePkgMapping extends AbstractDynamicMapping<CapellaElement, 
 		// TODO Auto-generated constructor stub
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#computeTargetContainer
-	 * (java.lang.Object)
-	 */
 	@Override
 	public Object computeTargetContainer(CapellaElement capellaContainer) {
 		if (!(capellaContainer instanceof InterfacePkg)) {
@@ -67,13 +60,6 @@ public class InterfacePkgMapping extends AbstractDynamicMapping<CapellaElement, 
 		return MappingRulesManager.getCapellaObjectFromAllRules(capellaContainer);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#findSourceElements(
-	 * java.lang.Object)
-	 */
 	@Override
 	public List<InterfacePkg> findSourceElements(CapellaElement capellaContainer) {
 
@@ -90,13 +76,6 @@ public class InterfacePkgMapping extends AbstractDynamicMapping<CapellaElement, 
 		return results;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#compute(java.lang.
-	 * Object, java.lang.Object)
-	 */
 	@Override
 	public Object compute(Object eaContainer, InterfacePkg source) {
 		Package createPackage = UMLFactory.eINSTANCE.createPackage();
@@ -108,13 +87,6 @@ public class InterfacePkgMapping extends AbstractDynamicMapping<CapellaElement, 
 		return createPackage;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#executeSubRules(java.
-	 * util.List, com.artal.capella.mapping.rules.MappingRulesManager)
-	 */
 	@Override
 	public void executeSubRules(List<InterfacePkg> _capellaSource, MappingRulesManager manager) {
 		for (InterfacePkg interfacePkg : _capellaSource) {
@@ -127,13 +99,6 @@ public class InterfacePkgMapping extends AbstractDynamicMapping<CapellaElement, 
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#getUID(org.eclipse.emf
-	 * .ecore.EObject, java.lang.String)
-	 */
 	@Override
 	public String getUID(EObject key, String id) {
 		return "EAPK_" + id;

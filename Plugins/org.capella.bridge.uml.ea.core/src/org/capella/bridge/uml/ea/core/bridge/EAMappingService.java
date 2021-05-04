@@ -49,25 +49,11 @@ public class EAMappingService implements MappingService {
 	public EAMappingService() {
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.artal.capella.mapping.services.MappingService#getTransfoName()
-	 */
 	@Override
 	public String getTransfoName() {
 		return "Capella to Enterprise Architect";
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.services.MappingService#createBridgeJob(java.lang.
-	 * String, org.polarsys.capella.core.data.capellamodeller.Project,
-	 * org.eclipse.emf.common.util.URI,
-	 * com.artal.capella.mapping.mix.AbstractMappingAlgoMix)
-	 */
 	@Override
 	public BridgeJob<?> createBridgeJob(String jobName_p, Project sourceDataSet_p, URI targetURI_p,
 			AbstractMappingAlgoMix<?, ?, ?> mix) {

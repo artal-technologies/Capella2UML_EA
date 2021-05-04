@@ -35,12 +35,6 @@ public abstract class CommonExchangeItemMapping<SOURCE_CONTAINER extends Capella
 		super(algo, parent, mappingExecution);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * computeEAContainer(java.lang.Object)
-	 */
 	@Override
 	public Object computeTargetContainer(SOURCE_CONTAINER capellaContainer) {
 		Project capellaProject = ProjectExt.getProject(capellaContainer);

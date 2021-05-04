@@ -90,13 +90,6 @@ public class AlternativeExchangeMapping extends CommonComponentExchangeMapping<C
 		return collect;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#compute(java.lang.
-	 * Object, java.lang.Object)
-	 */
 	@Override
 	public Object compute(Object eaContainer, ComponentExchange source) {
 		Interface createInterface = UMLFactory.eINSTANCE.createInterface();
@@ -166,13 +159,6 @@ public class AlternativeExchangeMapping extends CommonComponentExchangeMapping<C
 		return createInterface;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#executeSubRules(java.
-	 * util.List, com.artal.capella.mapping.rules.MappingRulesManager)
-	 */
 	@Override
 	public void executeSubRules(List<ComponentExchange> _capellaSource, MappingRulesManager manager) {
 		for (ComponentExchange componentExchange : _capellaSource) {
@@ -183,13 +169,6 @@ public class AlternativeExchangeMapping extends CommonComponentExchangeMapping<C
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#getUID(org.eclipse.emf
-	 * .ecore.EObject, java.lang.String)
-	 */
 	@Override
 	public String getUID(EObject key, String id) {
 		return "EAID_" + id;

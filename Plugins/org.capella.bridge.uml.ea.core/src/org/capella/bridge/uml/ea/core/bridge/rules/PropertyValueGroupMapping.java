@@ -49,12 +49,6 @@ public class PropertyValueGroupMapping
 		super(algo, pvp, mappingExecution);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * computeEAContainer(java.lang.Object)
-	 */
 	@Override
 	public Object computeTargetContainer(PropertyValuePkg capellaContainer) {
 
@@ -66,25 +60,12 @@ public class PropertyValueGroupMapping
 		return null;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * computeCapellaSource(java.lang.Object)
-	 */
 	@Override
 	public List<PropertyValueGroup> findSourceElements(PropertyValuePkg capellaContainer) {
 
 		return capellaContainer.getOwnedPropertyValueGroups();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#compute
-	 * (java.lang.Object, java.lang.Object)
-	 */
 	/**
 	 * Sub property value package are transformed into stereotype
 	 */
@@ -150,13 +131,6 @@ public class PropertyValueGroupMapping
 		return "EAID_" + id;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * executeSubRules(java.util.List,
-	 * com.artal.capella.mapping.rules.MappingRulesManager)
-	 */
 	@Override
 	public void executeSubRules(List<PropertyValueGroup> _capellaSource, MappingRulesManager manager) {
 

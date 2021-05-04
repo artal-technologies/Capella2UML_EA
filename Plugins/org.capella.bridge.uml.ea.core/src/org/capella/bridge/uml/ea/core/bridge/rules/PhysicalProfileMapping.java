@@ -46,12 +46,6 @@ public class PhysicalProfileMapping extends AbstractDynamicMapping<Project, Phys
 		super(algo, project, mappingExecution);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * computeEAContainer(java.lang.Object)
-	 */
 	@Override
 	public Object computeTargetContainer(Project capellaContainer) {
 
@@ -63,25 +57,12 @@ public class PhysicalProfileMapping extends AbstractDynamicMapping<Project, Phys
 		return extension.getProfiles();
 	}
 
-	// /*
-	// * (non-Javadoc)
-	// *
-	// * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	// * computeCapellaSource(java.lang.Object)
-	// */
 	// @Override
 	// public PhysicalArchitecture findSourceElements(Project capellaContainer) {
 	//
 	// return CapellaUtils.getPhysicalArchitecture(capellaContainer);
 	// }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#compute
-	 * (java.lang.Object, java.lang.Object)
-	 */
 	/**
 	 * Root property value package is transformed into profiles -> profile
 	 */

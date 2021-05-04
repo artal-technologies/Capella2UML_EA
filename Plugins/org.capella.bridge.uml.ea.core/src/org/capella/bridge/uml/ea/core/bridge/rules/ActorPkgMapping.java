@@ -88,13 +88,6 @@ public class ActorPkgMapping extends AbstractDynamicMapping<CapellaElement, Comp
 		return results;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#compute(java.lang.
-	 * Object, java.lang.Object)
-	 */
 	@Override
 	public Object compute(Object eaContainer, ComponentPkg source) {
 		Package createPackage = UMLFactory.eINSTANCE.createPackage();
@@ -106,13 +99,6 @@ public class ActorPkgMapping extends AbstractDynamicMapping<CapellaElement, Comp
 		return createPackage;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#executeSubRules(java.
-	 * util.List, com.artal.capella.mapping.rules.MappingRulesManager)
-	 */
 	@Override
 	public void executeSubRules(List<ComponentPkg> _capellaSource, MappingRulesManager manager) {
 		for (ComponentPkg interfacePkg : _capellaSource) {
@@ -124,13 +110,6 @@ public class ActorPkgMapping extends AbstractDynamicMapping<CapellaElement, Comp
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#getUID(org.eclipse.emf
-	 * .ecore.EObject, java.lang.String)
-	 */
 	@Override
 	public String getUID(EObject key, String id) {
 		return "EAPK_" + id;

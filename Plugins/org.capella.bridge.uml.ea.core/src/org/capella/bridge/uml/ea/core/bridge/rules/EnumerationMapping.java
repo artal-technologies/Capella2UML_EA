@@ -45,12 +45,6 @@ public class EnumerationMapping extends CommonDatatypeMapping<Capella2UMLAlgo> {
 		super(algo, parent, mappingExecution);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * computeCapellaSource(java.lang.Object)
-	 */
 	@Override
 	public List<DataType> findSourceElements(DataPkg capellaContainer) {
 		List<DataType> findSourceElements = super.findSourceElements(capellaContainer);
@@ -60,13 +54,6 @@ public class EnumerationMapping extends CommonDatatypeMapping<Capella2UMLAlgo> {
 		return enumerations;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#compute
-	 * (java.lang.Object, java.lang.Object)
-	 */
 	@Override
 	public Object compute(Object eaContainer, DataType source) {
 		Enumeration enumSource = (Enumeration) source;
@@ -111,26 +98,12 @@ public class EnumerationMapping extends CommonDatatypeMapping<Capella2UMLAlgo> {
 		return enumerationTarget;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * executeSubRules(java.util.List,
-	 * com.artal.capella.mapping.rules.MappingRulesManager)
-	 */
 	@Override
 	public void executeSubRules(List<DataType> _capellaSource, MappingRulesManager manager) {
 		// TODO Auto-generated method stub
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#getUID(
-	 * org.eclipse.emf.ecore.EObject, java.lang.String)
-	 */
 	@Override
 	public String getUID(EObject key, String id) {
 		// TODO Auto-generated method stub

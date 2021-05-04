@@ -45,13 +45,6 @@ public class ActorMapping extends CommonsActorMapping<Capella2UMLAlgo> {
 		super(algo, parent, mappingExecution);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#compute
-	 * (java.lang.Object, java.lang.Object)
-	 */
 	@Override
 	public Object compute(Object eaContainer, org.polarsys.capella.core.data.cs.Component source) {
 
@@ -105,13 +98,6 @@ public class ActorMapping extends CommonsActorMapping<Capella2UMLAlgo> {
 		return "EAID_" + id;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * executeSubRules(java.util.List,
-	 * com.artal.capella.mapping.rules.MappingRulesManager)
-	 */
 	@Override
 	public void executeSubRules(List<org.polarsys.capella.core.data.cs.Component> _capellaSource,
 			MappingRulesManager manager) {

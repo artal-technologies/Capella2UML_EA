@@ -45,13 +45,6 @@ public class EventExchangeItemElementMapping extends CommonExchangeItemElement<C
 		super(algo, parent, mappingExecution);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#compute
-	 * (java.lang.Object, java.lang.Object)
-	 */
 	@Override
 	public Object compute(Object eaContainer, ExchangeItemElement source) {
 		Property targetProperty = UMLFactory.eINSTANCE.createProperty();
@@ -95,26 +88,12 @@ public class EventExchangeItemElementMapping extends CommonExchangeItemElement<C
 		return targetProperty;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * executeSubRules(java.util.List,
-	 * com.artal.capella.mapping.rules.MappingRulesManager)
-	 */
 	@Override
 	public void executeSubRules(List<ExchangeItemElement> _capellaSource, MappingRulesManager manager) {
 		// TODO Auto-generated method stub
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#getUID(
-	 * org.eclipse.emf.ecore.EObject, java.lang.String)
-	 */
 	@Override
 	public String getUID(EObject key, String id) {
 		return "EAID_" + id;

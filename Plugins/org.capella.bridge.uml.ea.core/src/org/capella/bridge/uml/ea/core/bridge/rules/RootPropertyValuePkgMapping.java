@@ -37,12 +37,6 @@ public class RootPropertyValuePkgMapping extends AbstractDynamicMapping<Project,
 		super(algo, project, mappingExecution);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * computeEAContainer(java.lang.Object)
-	 */
 	@Override
 	public Object computeTargetContainer(Project capellaContainer) {
 
@@ -54,12 +48,6 @@ public class RootPropertyValuePkgMapping extends AbstractDynamicMapping<Project,
 		return extension.getProfiles();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * computeCapellaSource(java.lang.Object)
-	 */
 	@Override
 	public List<PropertyValuePkg> findSourceElements(Project capellaContainer) {
 
@@ -72,13 +60,6 @@ public class RootPropertyValuePkgMapping extends AbstractDynamicMapping<Project,
 		return null;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#compute
-	 * (java.lang.Object, java.lang.Object)
-	 */
 	/**
 	 * Root property value package is transformed into profiles -> profile
 	 */
@@ -112,13 +93,6 @@ public class RootPropertyValuePkgMapping extends AbstractDynamicMapping<Project,
 		return "EAID_" + id;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * executeSubRules(java.util.List,
-	 * com.artal.capella.mapping.rules.MappingRulesManager)
-	 */
 	@Override
 	public void executeSubRules(List<PropertyValuePkg> _capellaSource, MappingRulesManager manager) {
 

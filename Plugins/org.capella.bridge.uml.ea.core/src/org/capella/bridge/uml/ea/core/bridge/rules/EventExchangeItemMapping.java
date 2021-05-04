@@ -46,12 +46,6 @@ public class EventExchangeItemMapping extends CommonExchangeItemMapping<BlockArc
 		super(algo, parent, mappingExecution);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * computeCapellaSource(java.lang.Object)
-	 */
 	@Override
 	public List<ExchangeItem> findSourceElements(BlockArchitecture capellaContainer) {
 		List<ExchangeItem> findSourceElements = super.findSourceElements(capellaContainer);
@@ -60,13 +54,6 @@ public class EventExchangeItemMapping extends CommonExchangeItemMapping<BlockArc
 		return eventEIs;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#compute
-	 * (java.lang.Object, java.lang.Object)
-	 */
 	@Override
 	public Object compute(Object eaContainer, ExchangeItem source) {
 		Signal signalTarget = UMLFactory.eINSTANCE.createSignal();
@@ -94,13 +81,6 @@ public class EventExchangeItemMapping extends CommonExchangeItemMapping<BlockArc
 		return signalTarget;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * executeSubRules(java.util.List,
-	 * com.artal.capella.mapping.rules.MappingRulesManager)
-	 */
 	@Override
 	public void executeSubRules(List<ExchangeItem> _capellaSource, MappingRulesManager manager) {
 		for (ExchangeItem exchangeItem : _capellaSource) {
@@ -111,13 +91,6 @@ public class EventExchangeItemMapping extends CommonExchangeItemMapping<BlockArc
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#getUID(
-	 * org.eclipse.emf.ecore.EObject, java.lang.String)
-	 */
 	@Override
 	public String getUID(EObject key, String id) {
 		return "EAID_" + id;

@@ -42,38 +42,17 @@ public class PortInterfaceMapping extends AbstractDynamicMapping<ComponentPort, 
 		super(algo, parent, mappingExecution);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#computeTargetContainer
-	 * (java.lang.Object)
-	 */
 	@Override
 	public Object computeTargetContainer(ComponentPort capellaContainer) {
 		return MappingRulesManager.getCapellaObjectFromAllRules(capellaContainer);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#findSourceElements(
-	 * java.lang.Object)
-	 */
 	@Override
 	public List<ComponentExchange> findSourceElements(ComponentPort capellaContainer) {
 		EList<ComponentExchange> componentExchanges = capellaContainer.getComponentExchanges();
 		return componentExchanges;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#compute(java.lang.
-	 * Object, java.lang.Object)
-	 */
 	@Override
 	public Object compute(Object eaContainer, ComponentExchange source) {
 
@@ -110,26 +89,12 @@ public class PortInterfaceMapping extends AbstractDynamicMapping<ComponentPort, 
 		return null;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#executeSubRules(java.
-	 * util.List, com.artal.capella.mapping.rules.MappingRulesManager)
-	 */
 	@Override
 	public void executeSubRules(List<ComponentExchange> _capellaSource, MappingRulesManager manager) {
 		// TODO Auto-generated method stub
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#getUID(org.eclipse.emf
-	 * .ecore.EObject, java.lang.String)
-	 */
 	@Override
 	public String getUID(EObject key, String id) {
 		return "EAID_" + id;

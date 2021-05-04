@@ -46,12 +46,6 @@ public class EnumerationPropertyValueMapping
 		super(algo, pvp, mappingExecution);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * computeEAContainer(java.lang.Object)
-	 */
 	@Override
 	public Object computeTargetContainer(PropertyValuePkg capellaContainer) {
 
@@ -59,26 +53,12 @@ public class EnumerationPropertyValueMapping
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * computeCapellaSource(java.lang.Object)
-	 */
 	@Override
 	public List<EnumerationPropertyType> findSourceElements(PropertyValuePkg capellaContainer) {
 
 		return capellaContainer.getOwnedEnumerationPropertyTypes();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * compute (java.lang.Object, java.lang.Object)
-	 */
-	/**
-	 */
 	@Override
 	public Object compute(Object eaContainer, EnumerationPropertyType source) {
 		org.eclipse.uml2.uml.Enumeration enumerationTarget = UMLFactory.eINSTANCE.createEnumeration();
@@ -148,13 +128,6 @@ public class EnumerationPropertyValueMapping
 		return "EAID_" + id;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * executeSubRules(java.util.List,
-	 * com.artal.capella.mapping.rules.MappingRulesManager)
-	 */
 	@Override
 	public void executeSubRules(List<EnumerationPropertyType> _capellaSource, MappingRulesManager manager) {
 

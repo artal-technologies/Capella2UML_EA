@@ -61,13 +61,6 @@ public class PrimitiveMapping extends CommonDatatypeMapping<Capella2UMLAlgo> {
 		return (type instanceof NumericType) || type instanceof StringType || type instanceof BooleanType;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#findSourceElements(
-	 * java.lang.Object)
-	 */
 	@Override
 	public List<DataType> findSourceElements(DataPkg capellaContainer) {
 
@@ -78,13 +71,6 @@ public class PrimitiveMapping extends CommonDatatypeMapping<Capella2UMLAlgo> {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#compute(java.lang.
-	 * Object, java.lang.Object)
-	 */
 	@Override
 	public Object compute(Object eaContainer, DataType source) {
 		org.eclipse.uml2.uml.DataType targetPrimitiveType = null;
@@ -152,25 +138,11 @@ public class PrimitiveMapping extends CommonDatatypeMapping<Capella2UMLAlgo> {
 		return targetPrimitiveType;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#executeSubRules(java.
-	 * util.List, com.artal.capella.mapping.rules.MappingRulesManager)
-	 */
 	@Override
 	public void executeSubRules(List<DataType> _capellaSource, MappingRulesManager manager) {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.artal.capella.mapping.rules.AbstractDynamicMapping#getUID(org.eclipse.emf
-	 * .ecore.EObject, java.lang.String)
-	 */
 	@Override
 	public String getUID(EObject key, String id) {
 		return "EAID_" + id;

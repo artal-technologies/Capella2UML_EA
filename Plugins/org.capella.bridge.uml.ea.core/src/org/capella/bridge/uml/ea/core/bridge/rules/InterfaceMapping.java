@@ -57,13 +57,6 @@ public class InterfaceMapping extends CommonInterfaceMapping<Capella2UMLAlgo> {
 		super(algo, parent, mappingExecution);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#compute
-	 * (java.lang.Object, java.lang.Object)
-	 */
 	@Override
 	public Object compute(Object eaContainer, Interface source) {
 		Resource eResource = source.eResource();
@@ -145,13 +138,6 @@ public class InterfaceMapping extends CommonInterfaceMapping<Capella2UMLAlgo> {
 		return targetInterface;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * executeSubRules(java.util.List,
-	 * com.artal.capella.mapping.rules.MappingRulesManager)
-	 */
 	@Override
 	public void executeSubRules(List<Interface> _capellaSource, MappingRulesManager manager) {
 		for (Interface interface1 : _capellaSource) {
@@ -162,13 +148,6 @@ public class InterfaceMapping extends CommonInterfaceMapping<Capella2UMLAlgo> {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#getUID(
-	 * org.eclipse.emf.ecore.EObject, java.lang.String)
-	 */
 	@Override
 	public String getUID(EObject key, String id) {
 		return "EAID_" + id;

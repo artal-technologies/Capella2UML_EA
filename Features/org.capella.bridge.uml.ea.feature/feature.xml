@@ -9,12 +9,9 @@
    </description>
 
    <copyright url="http://www.example.com/copyright">
-      Copyright (c) Artal Technologies.\n\
-This program and the accompanying materials are made\n\
-available under the terms of the Eclipse Public License 2.0\n\
-which is available at https://www.eclipse.org/legal/epl-2.0/\n\
-\n\
-SPDX-License-Identifier: EPL-2.0\n
+Copyright (c) 2021 THALES GLOBAL SERVICES.
+All right reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0 which is available at https://www.eclipse.org/legal/epl-2.0/
+Contributors: Artal Technologies - initial API and implementation
    </copyright>
 
    <license url="Eclipse Foundation Software User Agreement">

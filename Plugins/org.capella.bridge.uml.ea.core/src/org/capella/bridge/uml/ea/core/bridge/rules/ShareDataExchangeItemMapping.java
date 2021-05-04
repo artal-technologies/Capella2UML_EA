@@ -41,7 +41,6 @@ import org.polarsys.capella.core.model.helpers.ProjectExt;
 
 /**
  * @author Artal
- *
  */
 public class ShareDataExchangeItemMapping extends CommonExchangeItemMapping<BlockArchitecture, Capella2UMLAlgo> {
 
@@ -55,12 +54,6 @@ public class ShareDataExchangeItemMapping extends CommonExchangeItemMapping<Bloc
 		super(algo, parent, mappingExecution);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * computeCapellaSource(java.lang.Object)
-	 */
 	@Override
 	public List<ExchangeItem> findSourceElements(BlockArchitecture capellaContainer) {
 
@@ -73,13 +66,6 @@ public class ShareDataExchangeItemMapping extends CommonExchangeItemMapping<Bloc
 		return eventEIs;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#compute
-	 * (java.lang.Object, java.lang.Object)
-	 */
 	@Override
 	public Object compute(Object eaContainer, ExchangeItem source) {
 		Class classTarget = UMLFactory.eINSTANCE.createClass();
@@ -130,13 +116,6 @@ public class ShareDataExchangeItemMapping extends CommonExchangeItemMapping<Bloc
 		return classTarget;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#
-	 * executeSubRules(java.util.List,
-	 * com.artal.capella.mapping.rules.MappingRulesManager)
-	 */
 	@Override
 	public void executeSubRules(List<ExchangeItem> _capellaSource, MappingRulesManager manager) {
 		for (ExchangeItem exchangeItem : _capellaSource) {
@@ -147,13 +126,6 @@ public class ShareDataExchangeItemMapping extends CommonExchangeItemMapping<Bloc
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.capella.mapping.capella2uml.toMove.AbstractDynamicMapping#getUID(
-	 * org.eclipse.emf.ecore.EObject, java.lang.String)
-	 */
 	@Override
 	public String getUID(EObject key, String id) {
 		return "EAID_" + id;
