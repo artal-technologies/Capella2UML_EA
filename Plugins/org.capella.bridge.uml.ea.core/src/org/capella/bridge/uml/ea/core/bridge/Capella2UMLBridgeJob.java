@@ -16,6 +16,7 @@ import java.util.Set;
 
 import org.capella.bridge.core.mix.AbstractMappingAlgoMix;
 import org.capella.bridge.core.uml.UMLBridgeJob;
+import org.capella.bridge.uml.ea.model.xmi.XmiPackage;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -44,8 +45,6 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-
-import xmi.XmiPackage;
 
 /**
  * @author Artal

@@ -17,12 +17,11 @@ import java.util.Set;
 import org.capella.bridge.core.mix.AbstractMappingAlgoMix;
 import org.capella.bridge.core.rules.MappingRulesManager;
 import org.capella.bridge.core.uml.UMLBridgeAlgo;
+import org.capella.bridge.uml.ea.model.xmi.Extension;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
 import org.polarsys.capella.core.data.capellamodeller.Project;
-
-import xmi.Extension;
 
 /**
  * @author Artal

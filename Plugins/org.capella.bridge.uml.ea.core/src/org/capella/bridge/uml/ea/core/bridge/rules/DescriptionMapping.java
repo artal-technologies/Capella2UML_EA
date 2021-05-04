@@ -15,13 +15,12 @@ import org.capella.bridge.core.rules.MappingRulesManager;
 import org.capella.bridge.core.rules.commons.CommonDescriptionMapping;
 import org.capella.bridge.uml.ea.core.bridge.Capella2UMLAlgo;
 import org.capella.bridge.uml.ea.core.bridge.rules.utils.SpecificUtils;
+import org.capella.bridge.uml.ea.model.XMIExtensionsUtils;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Element;
 import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.cs.BlockArchitecture;
-
-import xmi.util.XMIExtensionsUtils;
 
 /**
  * @author Artal

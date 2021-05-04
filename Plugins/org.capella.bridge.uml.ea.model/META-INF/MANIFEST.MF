@@ -6,11 +6,12 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Automatic-Module-Name: org.eclipse.capella.mapping.xmi.extension
+Automatic-Module-Name: org.capella.bridge.uml.ea.model
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: xmi,
- xmi.impl,
- xmi.util
+Export-Package: org.capella.bridge.uml.ea.model,
+ org.capella.bridge.uml.ea.model.xmi,
+ org.capella.bridge.uml.ea.model.xmi.impl,
+ org.capella.bridge.uml.ea.model.xmi.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.apache.commons.lang

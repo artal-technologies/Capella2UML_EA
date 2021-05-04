@@ -17,6 +17,10 @@ import org.capella.bridge.core.MappingUtils;
 import org.capella.bridge.core.rules.MappingRulesManager;
 import org.capella.bridge.core.rules.commons.CommonDatatypeMapping;
 import org.capella.bridge.uml.ea.core.bridge.Capella2UMLAlgo;
+import org.capella.bridge.uml.ea.model.XMIExtensionsUtils;
+import org.capella.bridge.uml.ea.model.xmi.attribute;
+import org.capella.bridge.uml.ea.model.xmi.attributes;
+import org.capella.bridge.uml.ea.model.xmi.element;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
@@ -26,11 +30,6 @@ import org.polarsys.capella.core.data.information.DataPkg;
 import org.polarsys.capella.core.data.information.datatype.DataType;
 import org.polarsys.capella.core.data.information.datatype.Enumeration;
 import org.polarsys.capella.core.data.information.datavalue.EnumerationLiteral;
-
-import xmi.attribute;
-import xmi.attributes;
-import xmi.element;
-import xmi.util.XMIExtensionsUtils;
 
 /**
  * @author Artal

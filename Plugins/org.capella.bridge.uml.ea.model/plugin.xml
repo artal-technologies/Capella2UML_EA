@@ -10,7 +10,7 @@
       <!-- @generated xmiextension -->
       <package
             uri="http://schema.omg.org/spec/XMI/2.1"
-            class="xmi.XmiPackage"
+            class="org.capella.bridge.uml.ea.model.xmi.XmiPackage"
             genModel="model/xmiextension.genmodel"/>
    </extension>
 

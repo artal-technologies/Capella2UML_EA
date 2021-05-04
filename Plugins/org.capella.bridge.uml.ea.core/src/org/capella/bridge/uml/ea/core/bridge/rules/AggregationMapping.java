@@ -16,6 +16,7 @@ import org.capella.bridge.core.MappingUtils;
 import org.capella.bridge.core.rules.AbstractDynamicMapping;
 import org.capella.bridge.core.rules.MappingRulesManager;
 import org.capella.bridge.uml.ea.core.bridge.Capella2UMLAlgo;
+import org.capella.bridge.uml.ea.model.XMIExtensionsUtils;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
@@ -26,8 +27,6 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.polarsys.capella.core.data.la.LogicalComponent;
 import org.polarsys.capella.core.data.pa.PhysicalComponent;
-
-import xmi.util.XMIExtensionsUtils;
 
 /**
  * @author Artal
