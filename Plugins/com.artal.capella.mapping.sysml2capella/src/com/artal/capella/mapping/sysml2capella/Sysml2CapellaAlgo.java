@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.capella.bridge.core.CapellaBridgeAlgo;
+import org.capella.bridge.core.rules.MappingRulesManager;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
@@ -29,8 +31,6 @@ import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.polarsys.capella.common.helpers.EObjectExt;
 
-import com.artal.capella.mapping.CapellaBridgeAlgo;
-import com.artal.capella.mapping.rules.MappingRulesManager;
 import com.artal.capella.mapping.sysml2capella.preferences.SysMLConfiguration;
 import com.artal.capella.mapping.sysml2capella.rules.ActorMapping;
 import com.artal.capella.mapping.sysml2capella.rules.AssociationActorUseCaseMapping;

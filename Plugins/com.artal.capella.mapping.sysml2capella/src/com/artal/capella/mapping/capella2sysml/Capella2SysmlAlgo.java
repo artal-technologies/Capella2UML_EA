@@ -9,6 +9,9 @@
  *******************************************************************************/
 package com.artal.capella.mapping.capella2sysml;
 
+import org.capella.bridge.core.rules.MappingRulesManager;
+import org.capella.bridge.core.uml.UMLBridge;
+import org.capella.bridge.core.uml.UMLBridgeAlgo;
 import org.eclipse.emf.diffmerge.api.scopes.IEditableModelScope;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EPackage;
@@ -30,11 +33,8 @@ import com.artal.capella.mapping.capella2sysml.rules.ModelAndStateMapping;
 import com.artal.capella.mapping.capella2sysml.rules.PartsMapping;
 import com.artal.capella.mapping.capella2sysml.rules.RequierementsMapping;
 import com.artal.capella.mapping.capella2sysml.rules.RootInitialMapping;
-import com.artal.capella.mapping.rules.MappingRulesManager;
 import com.artal.capella.mapping.sysml2capella.utils.SysML2CapellaUMLProfile;
 import com.artal.capella.mapping.sysml2capella.utils.Sysml2CapellaUtils;
-import com.artal.capella.mapping.uml.UMLBridge;
-import com.artal.capella.mapping.uml.UMLBridgeAlgo;
 
 /**
  * @author YBI

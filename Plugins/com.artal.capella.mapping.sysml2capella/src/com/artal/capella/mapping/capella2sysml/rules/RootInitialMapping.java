@@ -11,6 +11,8 @@ package com.artal.capella.mapping.capella2sysml.rules;
 
 import java.util.List;
 
+import org.capella.bridge.core.CapellaBridgeAlgo;
+import org.capella.bridge.core.rules.AbstractMapping;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.diffmerge.impl.scopes.AbstractEditableModelScope;
@@ -23,9 +25,7 @@ import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
 import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 
-import com.artal.capella.mapping.CapellaBridgeAlgo;
 import com.artal.capella.mapping.capella2sysml.Capella2SysmlAlgo;
-import com.artal.capella.mapping.rules.AbstractMapping;
 import com.artal.capella.mapping.sysml2capella.utils.SysML2CapellaUMLProfile;
 import com.artal.capella.mapping.sysml2capella.utils.Sysml2CapellaUtils;
 

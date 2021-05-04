@@ -14,6 +14,8 @@ package com.artal.capella.mapping.sysml2capella.actions;
 
 import java.lang.reflect.InvocationTargetException;
 
+import org.capella.bridge.core.CapellaExtensionBridgeJob;
+import org.capella.bridge.core.services.BridgeLicenseCheck;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -35,8 +37,6 @@ import org.polarsys.capella.common.ef.ExecutionManager;
 import org.polarsys.capella.common.ef.ExecutionManagerRegistry;
 import org.polarsys.capella.core.data.la.LogicalArchitecture;
 
-import com.artal.capella.mapping.CapellaExtensionBridgeJob;
-import com.artal.capella.mapping.services.BridgeLicenseCheck;
 import com.artal.capella.mapping.sysml2capella.Sysml2CapellaAlgo;
 import com.artal.capella.mapping.sysml2capella.preferences.ConfigParser;
 import com.artal.capella.mapping.sysml2capella.preferences.SysMLConfiguration;

@@ -17,6 +17,7 @@ import static org.eclipse.emf.diffmerge.impl.policies.ConfigurableMatchPolicy.Ma
 import java.io.File;
 import java.util.Collection;
 
+import org.capella.bridge.core.CapellaExtensionBridgeJob;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.diffmerge.api.IComparison;
@@ -63,7 +64,6 @@ import org.polarsys.capella.core.data.pa.PaPackage;
 import org.polarsys.capella.core.data.requirement.RequirementPackage;
 import org.polarsys.kitalpha.emde.model.EmdePackage;
 
-import com.artal.capella.mapping.CapellaExtensionBridgeJob;
 import com.artal.capella.mapping.sysml2capella.Sysml2CapellaAlgo;
 
 /**

@@ -9,6 +9,8 @@
  *******************************************************************************/
 package com.artal.capella.mapping.capella2sysml;
 
+import org.capella.bridge.core.uml.UMLBridge;
+import org.capella.bridge.core.uml.UMLBridgeJob;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.diffmerge.api.scopes.IEditableModelScope;
 import org.eclipse.emf.diffmerge.gmf.GMFDiffPolicy;
@@ -19,8 +21,6 @@ import org.eclipse.uml2.uml.Profile;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 
 import com.artal.capella.mapping.sysml2capella.utils.SysML2CapellaUMLProfile;
-import com.artal.capella.mapping.uml.UMLBridge;
-import com.artal.capella.mapping.uml.UMLBridgeJob;
 
 /**
  * @author YBI

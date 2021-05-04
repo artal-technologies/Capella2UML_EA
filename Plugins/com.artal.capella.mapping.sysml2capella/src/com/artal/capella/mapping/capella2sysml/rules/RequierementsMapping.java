@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.capella.bridge.core.CapellaBridgeAlgo;
+import org.capella.bridge.core.rules.AbstractMapping;
+import org.capella.bridge.core.rules.MappingRulesManager;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.api.scopes.IModelScope;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
@@ -37,10 +40,7 @@ import org.polarsys.kitalpha.vp.requirements.Requirements.AbstractRelation;
 import org.polarsys.kitalpha.vp.requirements.Requirements.RelationType;
 import org.polarsys.kitalpha.vp.requirements.Requirements.Requirement;
 
-import com.artal.capella.mapping.CapellaBridgeAlgo;
 import com.artal.capella.mapping.capella2sysml.Capella2SysmlAlgo;
-import com.artal.capella.mapping.rules.AbstractMapping;
-import com.artal.capella.mapping.rules.MappingRulesManager;
 import com.artal.capella.mapping.sysml2capella.utils.SysML2CapellaUMLProfile;
 import com.artal.capella.mapping.sysml2capella.utils.SysML2CapellaUMLProfile.UMLProfile;
 import com.artal.capella.mapping.sysml2capella.utils.Sysml2CapellaUtils;

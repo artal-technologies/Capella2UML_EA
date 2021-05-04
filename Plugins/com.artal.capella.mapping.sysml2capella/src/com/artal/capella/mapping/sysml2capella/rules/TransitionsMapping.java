@@ -15,6 +15,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
+import org.capella.bridge.core.rules.AbstractMapping;
+import org.capella.bridge.core.rules.MappingRulesManager;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -27,8 +29,6 @@ import org.polarsys.capella.core.data.capellacommon.AbstractState;
 import org.polarsys.capella.core.data.capellacommon.CapellacommonFactory;
 import org.polarsys.capella.core.data.capellacommon.StateTransition;
 
-import com.artal.capella.mapping.rules.AbstractMapping;
-import com.artal.capella.mapping.rules.MappingRulesManager;
 import com.artal.capella.mapping.sysml2capella.Sysml2CapellaAlgo;
 import com.artal.capella.mapping.sysml2capella.utils.Sysml2CapellaUtils;
 

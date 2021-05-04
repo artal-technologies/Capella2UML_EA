@@ -12,6 +12,7 @@ package com.artal.capella.mapping.capella2sysml.actions;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 
+import org.capella.bridge.core.services.BridgeLicenseCheck;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -32,7 +33,6 @@ import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.la.LogicalArchitecture;
 
 import com.artal.capella.mapping.capella2sysml.Capella2SysmlBridgeJob;
-import com.artal.capella.mapping.services.BridgeLicenseCheck;
 
 /**
  * @author YBI
