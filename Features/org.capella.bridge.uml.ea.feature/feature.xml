@@ -2,7 +2,7 @@
 <feature
       id="org.capella.bridge.uml.ea.feature"
       label="Capella to Enterprise Architect feature"
-      version="1.0.0.qualifier">
+      version="1.1.0.qualifier">
 
    <description url="http://www.example.com/description">
       This feature provides the tools to transform a Capella model to a XMI/UML file compatible with Enterprise Architect.

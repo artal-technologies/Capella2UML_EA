@@ -16,7 +16,7 @@ Contributors:
 	<parent>
 		<groupId>CapellaBridge</groupId>
 		<artifactId>org.capella.bridge.parent</artifactId>
-		<version>1.0.9-SNAPSHOT</version>
+		<version>1.1.0-SNAPSHOT</version>
 		<relativePath>../../Maven/org.capella.bridge.parent</relativePath>
 	</parent>
 	<properties>
