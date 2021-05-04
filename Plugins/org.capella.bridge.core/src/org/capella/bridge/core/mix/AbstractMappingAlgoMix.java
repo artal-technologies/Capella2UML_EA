@@ -14,23 +14,48 @@ import org.capella.bridge.core.rules.MappingRulesManager;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 
 /**
+ * Service dedicated to rules mix definition (allow to combine existing
+ * conversion rules)
+ * 
  * @author Artal
- *
  */
 abstract public class AbstractMappingAlgoMix<SOURCE, ALGO extends CapellaBridgeAlgo<?>, MAPPINGSERVICE> {
 
-	MAPPINGSERVICE mappingService;
+	/**
+	 * Concerned mapping service
+	 */
+	MAPPINGSERVICE _mappingService;
 
+	/**
+	 * Corresponding rules manager
+	 */
 	MappingRulesManager _managerRules = new MappingRulesManager();
 
+	/**
+	 * Launch the registering of rules and their execution
+	 * 
+	 * @param algo      concerned conversion algo
+	 * @param source    Source Capella model
+	 * @param execution IMapping Execution
+	 */
 	abstract public void launch(ALGO algo, SOURCE source, IMappingExecution execution);
 
+	/**
+	 * Get the name/description of the mix
+	 * 
+	 * @return a String short sentence
+	 */
 	abstract public String getMixName();
 
+	/**
+	 * Get the name/description of concerned Capella data
+	 * 
+	 * @return a String short sentence
+	 */
 	abstract public String getPackageName();
 
 	public AbstractMappingAlgoMix(MAPPINGSERVICE mappingService) {
-		this.mappingService = mappingService;
+		_mappingService = mappingService;
 	}
 
 	public MappingRulesManager getManagerRules() {
@@ -38,7 +63,7 @@ abstract public class AbstractMappingAlgoMix<SOURCE, ALGO extends CapellaBridgeA
 	}
 
 	public MAPPINGSERVICE getMappingService() {
-		return mappingService;
+		return _mappingService;
 	}
 
 }

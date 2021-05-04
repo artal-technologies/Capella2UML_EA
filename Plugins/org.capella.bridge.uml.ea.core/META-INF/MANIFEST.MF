@@ -17,7 +17,8 @@ Require-Bundle: org.eclipse.ui,
  org.capella.bridge.uml.ea.model,
  org.eclipse.osgi.services,
  org.apache.commons.lang
-Service-Component: OSGI-INF/org.eclipse.capella.mapping.capella2uml.bridge.EAMappingService.xml
+Service-Component: OSGI-INF/org.eclipse.capella.mapping.capella2uml.bridge.EAMappingService.xml,
+ OSGI-INF/org.capella.bridge.uml.ea.core.bridge.EAMappingService.xml
 Bundle-ActivationPolicy: lazy
 Export-Package: org.capella.bridge.uml.ea.core.bridge,
  org.capella.bridge.uml.ea.core.bridge.mix

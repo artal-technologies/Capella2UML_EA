@@ -42,7 +42,9 @@ import org.eclipse.uml2.uml.Profile;
 
 public class UMLBridge<SD, CD> extends UMLMappingBridge<SD, IEditableModelScope> {
 	private CapellaMappingExecution _capellaMappingExecution;
+
 	private UMLBridgeAlgo<SD> _algo;
+
 	UMLRule<SD, TupleN<TraceCheat<?>>> _umlRule;
 
 	public UMLBridge(UMLBridgeAlgo<SD> algo) {

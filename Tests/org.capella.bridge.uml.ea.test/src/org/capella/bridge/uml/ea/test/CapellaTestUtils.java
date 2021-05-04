@@ -22,12 +22,6 @@ import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.List;
 
-import org.capella.bridge.core.services.MappingService;
-import org.capella.bridge.core.services.OsgiServiceTrackerUtils;
-import org.capella.bridge.uml.ea.core.bridge.Capella2UMLBridgeJob;
-import org.capella.bridge.uml.ea.core.bridge.EAMappingService;
-import org.capella.bridge.uml.ea.core.bridge.mix.DefaultCapella2UMLMix;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.diffmerge.api.IComparison;
 import org.eclipse.emf.diffmerge.api.IMatchPolicy;
@@ -111,26 +105,6 @@ public class CapellaTestUtils {
 	}
 
 	/**
-	 * Launch the UML 2 capella mapping.
-	 * 
-	 * @param model      the source UML {@link Model}.
-	 * @param targetFile the Capella file containing the capella {@link Project} to
-	 *                   fill.
-	 * @param traceFile  the created bridge trace file.
-	 */
-	static public void launchCapella2EA(Project model, File targetFile, String traceFile) {
-
-		MappingService service = OsgiServiceTrackerUtils.getService(MappingService.class);
-
-		if (service instanceof EAMappingService) {
-			URI targetUri = URI.createFileURI(targetFile.getAbsolutePath());
-			Capella2UMLBridgeJob cameo2CapellaBridgeJob = new Capella2UMLBridgeJob("", model, targetUri,
-					new DefaultCapella2UMLMix((EAMappingService) service));
-			cameo2CapellaBridgeJob.run(new NullProgressMonitor());
-		}
-	}
-
-	/**
 	 * Load the capella {@link Project}.
 	 * 
 	 * @param path the path of the Capella melodymodeller
@@ -173,29 +147,22 @@ public class CapellaTestUtils {
 		res.getResourceFactoryRegistry().getExtensionToFactoryMap().put("melodymodeller",
 				new CapellamodellerResourceFactoryImpl());
 
-		res.getPackageRegistry().put("http://www.polarsys.org/capella/common/libraries/1.3.0",
-				LibrariesPackage.eINSTANCE);
-		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/common/1.3.0",
-				CapellacommonPackage.eINSTANCE);
-		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/core/1.3.0", CapellacorePackage.eINSTANCE);
-		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/modeller/1.3.0",
-				CapellamodellerPackage.eINSTANCE);
-		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/cs/1.3.0", CsPackage.eINSTANCE);
-		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/ctx/1.3.0", CtxPackage.eINSTANCE);
-		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/epbs/1.3.0", EpbsPackage.eINSTANCE);
-		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/fa/1.3.0", FaPackage.eINSTANCE);
-		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/information/1.3.0",
-				InformationPackage.eINSTANCE);
-		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/information/datatype/1.3.0",
-				DatatypePackage.eINSTANCE);
-		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/information/datavalue/1.3.0",
-				DatavaluePackage.eINSTANCE);
-		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/la/1.3.0", LaPackage.eINSTANCE);
-		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/oa/1.3.0", OaPackage.eINSTANCE);
-		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/pa/1.3.0", PaPackage.eINSTANCE);
-		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/requirement/1.3.0",
-				RequirementPackage.eINSTANCE);
-		res.getPackageRegistry().put("http://www.polarsys.org/kitalpha/patterns/emde/1.3.0", EmdePackage.eINSTANCE);
+		res.getPackageRegistry().put(LibrariesPackage.eNS_URI, LibrariesPackage.eINSTANCE);
+		res.getPackageRegistry().put(CapellacommonPackage.eNS_URI, CapellacommonPackage.eINSTANCE);
+		res.getPackageRegistry().put(CapellacorePackage.eNS_URI, CapellacorePackage.eINSTANCE);
+		res.getPackageRegistry().put(CapellamodellerPackage.eNS_URI, CapellamodellerPackage.eINSTANCE);
+		res.getPackageRegistry().put(CsPackage.eNS_URI, CsPackage.eINSTANCE);
+		res.getPackageRegistry().put(CtxPackage.eNS_URI, CtxPackage.eINSTANCE);
+		res.getPackageRegistry().put(EpbsPackage.eNS_URI, EpbsPackage.eINSTANCE);
+		res.getPackageRegistry().put(FaPackage.eNS_URI, FaPackage.eINSTANCE);
+		res.getPackageRegistry().put(InformationPackage.eNS_URI, InformationPackage.eINSTANCE);
+		res.getPackageRegistry().put(DatatypePackage.eNS_URI, DatatypePackage.eINSTANCE);
+		res.getPackageRegistry().put(DatavaluePackage.eNS_URI, DatavaluePackage.eINSTANCE);
+		res.getPackageRegistry().put(LaPackage.eNS_URI, LaPackage.eINSTANCE);
+		res.getPackageRegistry().put(OaPackage.eNS_URI, OaPackage.eINSTANCE);
+		res.getPackageRegistry().put(PaPackage.eNS_URI, PaPackage.eINSTANCE);
+		res.getPackageRegistry().put(RequirementPackage.eNS_URI, RequirementPackage.eINSTANCE);
+		res.getPackageRegistry().put(EmdePackage.eNS_URI, EmdePackage.eINSTANCE);
 		Resource resource = res.getResource(melodyModeller, true);
 		return resource;
 	}

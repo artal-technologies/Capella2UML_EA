@@ -12,7 +12,6 @@ package com.artal.capella.mapping.capella2sysml.actions;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 
-import org.capella.bridge.core.services.BridgeLicenseCheck;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -38,77 +37,69 @@ import com.artal.capella.mapping.capella2sysml.Capella2SysmlBridgeJob;
  * @author YBI
  *
  */
-public class ExportSysmlModel extends AbstractHandler
-{
+public class ExportSysmlModel extends AbstractHandler {
 	@Override
-	public Object execute(ExecutionEvent event) throws ExecutionException
-	{
-		new BridgeLicenseCheck()
-		{
-			@Override
-			public void action()
-			{
-				StructuredSelection currentSelection = (StructuredSelection) HandlerUtil.getCurrentSelection(event);
+	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-				CapellaSysmlLaunchDialog dialog = new CapellaSysmlLaunchDialog(Display.getCurrent().getActiveShell());
-				int status = dialog.open();
+		StructuredSelection currentSelection = (StructuredSelection) HandlerUtil.getCurrentSelection(event);
 
-				String filePath = null;
-				if (status == IStatus.OK) {
-					filePath = dialog.getUmlPath();
-				}
+		CapellaSysmlLaunchDialog dialog = new CapellaSysmlLaunchDialog(Display.getCurrent().getActiveShell());
+		int status = dialog.open();
 
-				// if no model input, stop the mapping.
-				if (filePath == null || filePath.isEmpty()) {
-					return;
-				}
-				String folder = filePath.substring(0, filePath.lastIndexOf(File.separator));
-				URI targetUri = URI.createFileURI(filePath);
+		String filePath = null;
+		if (status == IStatus.OK) {
+			filePath = dialog.getUmlPath();
+		}
 
-				LogicalArchitecture firstElement = (LogicalArchitecture) currentSelection.getFirstElement();
-				Resource capellaResource = firstElement.eResource();
-				ResourceSet resourceSet = capellaResource.getResourceSet();
-				URI semanticResourceURI = capellaResource.getURI().trimFileExtension().appendFileExtension("melodymodeller");
-				Resource semanticResource = resourceSet.getResource(semanticResourceURI, false);
-				Project context = null;
-				if (semanticResource != null) {
-					EObject root = semanticResource.getContents().get(0);
-					if (root instanceof Project) {
-						context = (Project) root;
-					}
-				}
+		// if no model input, stop the mapping.
+		if (filePath == null || filePath.isEmpty()) {
+			return null;
+		}
+		String folder = filePath.substring(0, filePath.lastIndexOf(File.separator));
+		URI targetUri = URI.createFileURI(filePath);
 
-				if (context != null) {
-					if (targetUri != null) {
-						Capella2SysmlBridgeJob job = new Capella2SysmlBridgeJob("", context, targetUri);
-						job.setTargetParentFolder(folder);
-						ProgressMonitorDialog pmd = new ProgressMonitorDialog(Display.getCurrent().getActiveShell());
-						try {
-							pmd.run(false, false, new IRunnableWithProgress() {
+		LogicalArchitecture firstElement = (LogicalArchitecture) currentSelection.getFirstElement();
+		Resource capellaResource = firstElement.eResource();
+		ResourceSet resourceSet = capellaResource.getResourceSet();
+		URI semanticResourceURI = capellaResource.getURI().trimFileExtension().appendFileExtension("melodymodeller");
+		Resource semanticResource = resourceSet.getResource(semanticResourceURI, false);
+		Project context = null;
+		if (semanticResource != null) {
+			EObject root = semanticResource.getContents().get(0);
+			if (root instanceof Project) {
+				context = (Project) root;
+			}
+		}
 
-								@Override
-								public void run(IProgressMonitor monitor)
-										throws InvocationTargetException, InterruptedException {
-									job.run(monitor);
+		if (context != null) {
+			if (targetUri != null) {
+				Capella2SysmlBridgeJob job = new Capella2SysmlBridgeJob("", context, targetUri);
+				job.setTargetParentFolder(folder);
+				ProgressMonitorDialog pmd = new ProgressMonitorDialog(Display.getCurrent().getActiveShell());
+				try {
+					pmd.run(false, false, new IRunnableWithProgress() {
 
-								}
-							});
-						} catch (InvocationTargetException e) {
-							e.printStackTrace();
-						} catch (InterruptedException e) {
-							e.printStackTrace();
+						@Override
+						public void run(IProgressMonitor monitor)
+								throws InvocationTargetException, InterruptedException {
+							job.run(monitor);
+
 						}
-					} else {
-						Display display = Display.getCurrent();
-						if (display != null) {
-							Shell shell = display.getActiveShell();
-							MessageDialog.openError(shell, "Mapping error", "file " + filePath + " not found");
-						}
-					}
+					});
+				} catch (InvocationTargetException e) {
+					e.printStackTrace();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			} else {
+				Display display = Display.getCurrent();
+				if (display != null) {
+					Shell shell = display.getActiveShell();
+					MessageDialog.openError(shell, "Mapping error", "file " + filePath + " not found");
 				}
 			}
-		};
-	
+		}
+
 		return null;
 	}
 }

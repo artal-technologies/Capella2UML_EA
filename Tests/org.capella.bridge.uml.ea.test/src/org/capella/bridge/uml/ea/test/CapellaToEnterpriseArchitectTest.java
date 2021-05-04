@@ -14,6 +14,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import org.capella.bridge.core.services.MappingService;
+import org.capella.bridge.core.services.OsgiServiceTrackerUtils;
+import org.capella.bridge.uml.ea.core.bridge.EAMappingService;
+import org.capella.bridge.uml.ea.core.bridge.mix.DefaultCapella2UMLMix;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.diffmerge.bridge.interactive.BridgeJob;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -22,22 +29,17 @@ import org.polarsys.capella.core.data.capellamodeller.Project;
 
 /**
  * @author Artal
- *
  */
 public class CapellaToEnterpriseArchitectTest {
 
-	/**
-	 * 
-	 */
 	public CapellaToEnterpriseArchitectTest() {
-		// TODO Auto-generated constructor stub
 	}
 
 	static private File fileTemp;
 
 	@BeforeClass
 	static public void setUp() throws IOException {
-		Path createTempDirectory = Files.createTempDirectory("cameoToEA");
+		Path createTempDirectory = Files.createTempDirectory("Capella_EA_Bridge");
 		fileTemp = createTempDirectory.toFile();
 	}
 
@@ -65,34 +67,41 @@ public class CapellaToEnterpriseArchitectTest {
 	}
 
 	private void launchTest(String pathCapellaProject, String pathReferenceModel, String nameTest) throws IOException {
-		Project model = CapellaTestUtils.loadCapellaModel(pathCapellaProject);
 
-		// load the reference capella project
+		MappingService service = OsgiServiceTrackerUtils.getService(MappingService.class);
 
-		File referenceFile = new File(pathReferenceModel);
+		if (service instanceof EAMappingService) {
+			Project model = CapellaTestUtils.loadCapellaModel(pathCapellaProject);
 
-		// load the empty capella project to fill.
-		// and copy them in the the os temp repository.
+			// load the reference capella project
 
-		// File targetFile = new File(pathEmptyProject);
-		String absolutePath = fileTemp.getAbsolutePath() + "/" + nameTest;
-		File d = new File(absolutePath);
-		absolutePath = absolutePath + "/" + nameTest + ".xml";
-		File tmpFile = new File(absolutePath);
+			File referenceFile = new File(pathReferenceModel);
 
-		if (!tmpFile.getParentFile().exists()) {
-			tmpFile.getParentFile().mkdirs();
+			// load the empty capella project to fill.
+			// and copy them in the the os temp repository.
+
+			// File targetFile = new File(pathEmptyProject);
+			File tmpFile = new File(fileTemp.getAbsolutePath() + "/" + nameTest,
+					nameTest + "." + service.getExtension());
+
+			if (!tmpFile.getParentFile().exists()) {
+				tmpFile.getParentFile().mkdirs();
+			}
+			tmpFile.createNewFile();
+
+			// Create and launch the bridge itself
+			URI targetUri = URI.createFileURI(tmpFile.getAbsolutePath());
+
+			BridgeJob<?> eaBridgeJob = service.createBridgeJob("", model, targetUri,
+					new DefaultCapella2UMLMix((EAMappingService) service));
+			eaBridgeJob.run(new NullProgressMonitor());
+
+			boolean compareTwoFiles = CapellaTestUtils.compareTwoFiles(referenceFile.getAbsolutePath(),
+					tmpFile.getAbsolutePath());
+			if (!compareTwoFiles) {
+				Assert.fail("");
+			}
 		}
-		tmpFile.createNewFile();
-
-		CapellaTestUtils.launchCapella2EA(model, tmpFile, null);
-
-		boolean compareTwoFiles = CapellaTestUtils.compareTwoFiles(referenceFile.getAbsolutePath(),
-				tmpFile.getAbsolutePath());
-		if (!compareTwoFiles) {
-			Assert.fail("");
-		}
-
 	}
 
 	////////////////////////// TESTS//////////////////////////////////
@@ -184,25 +193,6 @@ public class CapellaToEnterpriseArchitectTest {
 	@Test
 	public void Test_C2EA_15() throws IOException {
 		launchTest("resources/Test_C2EA_15/PrimitiveTest.melodymodeller", "resources/Test_C2EA_15/PrimitiveTest.xml",
-				"Test_C2EA_015");
+				"Test_C2EA_15");
 	}
-
-//	@Test
-//	public void Test_C2EA_16() throws IOException {
-//		launchTest("resources/Test_C2EA_16/Camera SysML2 Example.melodymodeller",
-//				"resources/Test_C2EA_16/Camera SysML2 Example.xml", "Test_C2EA_16");
-//	}
-//	
-//	@Test
-//	public void Test_C2EA_17() throws IOException {
-//		launchTest("resources/Test_C2EA_17/Camera SysML2 Example.melodymodeller",
-//				"resources/Test_C2EA_17/Camera SysML2 Example.xml", "Test_C2EA_17");
-//	}
-//	
-//	@Test
-//	public void Test_C2EA_18() throws IOException {
-//		launchTest("resources/Test_C2EA_18/Camera SysML2 Example.melodymodeller",
-//				"resources/Test_C2EA_18/Camera SysML2 Example.xml", "Test_C2EA_18");
-//	}
-
 }

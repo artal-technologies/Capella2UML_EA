@@ -19,22 +19,59 @@ import org.eclipse.swt.widgets.Control;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 
 /**
+ * Service dedicated to language mapping definition
+ * 
  * @author Artal
- *
  */
 public interface MappingService {
 
+	/**
+	 * Name of the mapping/bridge
+	 * 
+	 * @return the name
+	 */
 	String getTransfoName();
 
+	/**
+	 * Get all available mixes for this given bridge
+	 * 
+	 * @return
+	 */
+	List<AbstractMappingAlgoMix<?, ?, ?>> getMixes();
+
+	/**
+	 * Create the transformation bridge itself (to be executed to convert data)
+	 * 
+	 * @param jobName_p       name of the job
+	 * @param sourceDataSet_p source Capella project
+	 * @param targetURI_p     target URI
+	 * @param mix             The "rules" mix to be considered (selected by the
+	 *                        user)
+	 * @return the executable bridge
+	 */
 	BridgeJob<?> createBridgeJob(String jobName_p, Project sourceDataSet_p, URI targetURI_p,
 			AbstractMappingAlgoMix<?, ?, ?> mix);
 
-	List<AbstractMappingAlgoMix<?, ?, ?>> getMixes();
-
+	/**
+	 * Allow the injection of UI extension (bridge configuration dialog)
+	 * 
+	 * @param specificGroup Composite to be extended
+	 * @return the Control
+	 */
 	Control getOrCreateSpecificView(Composite specificGroup);
 
+	/**
+	 * Get file extension of the file to be generated
+	 * 
+	 * @return String extension (without the "dot". e.g : "xml")
+	 */
 	String getExtension();
 
+	/**
+	 * 
+	 * 
+	 * @param _outputPath
+	 */
 	void postProcess(String _outputPath);
 
 }
