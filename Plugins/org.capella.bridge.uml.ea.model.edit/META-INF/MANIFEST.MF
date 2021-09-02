@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.capella.bridge.uml.ea.model.edit;singleton:=true
+Automatic-Module-Name: org.capella.bridge.uml.ea.model.edit
+Bundle-Version: 1.0.0.qualifier
+Bundle-ClassPath: .
+Bundle-Activator: org.capella.bridge.uml.ea.model.xmi.provider.XmiextensionEditPlugin$Implementation
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: org.capella.bridge.uml.ea.model.xmi.provider
+Require-Bundle: org.eclipse.core.runtime,
+ org.capella.bridge.uml.ea.model;visibility:=reexport,
+ org.eclipse.emf.edit;visibility:=reexport
+Bundle-ActivationPolicy: lazy

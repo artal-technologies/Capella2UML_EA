@@ -14,6 +14,6 @@ Require-Bundle: org.eclipse.uml2.uml,
  org.eclipse.emf.diffmerge.bridge.interactive,
  org.junit,
  com.artal.capella.mapping.sysml2capella,
- org.capella.bridge.core,
+ com.artal.capella.bridge.core,
  org.polarsys.capella.core.compare
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

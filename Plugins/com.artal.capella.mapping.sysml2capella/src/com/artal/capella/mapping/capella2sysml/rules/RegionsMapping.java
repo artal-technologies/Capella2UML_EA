@@ -13,9 +13,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.capella.bridge.core.CapellaBridgeAlgo;
-import org.capella.bridge.core.rules.AbstractMapping;
-import org.capella.bridge.core.rules.MappingRulesManager;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.polarsys.capella.core.data.capellacommon.Region;
@@ -23,6 +20,9 @@ import org.polarsys.capella.core.data.capellacommon.State;
 import org.polarsys.capella.core.data.capellacommon.StateMachine;
 import org.polarsys.capella.core.data.capellacore.CapellaElement;
 
+import com.artal.capella.bridge.core.CapellaBridgeAlgo;
+import com.artal.capella.bridge.core.rules.AbstractMapping;
+import com.artal.capella.bridge.core.rules.MappingRulesManager;
 import com.artal.capella.mapping.sysml2capella.utils.Sysml2CapellaUtils;
 
 /**

@@ -9,9 +9,6 @@
  *******************************************************************************/
 package com.artal.capella.mapping.capella2sysml;
 
-import org.capella.bridge.core.rules.MappingRulesManager;
-import org.capella.bridge.core.uml.UMLBridge;
-import org.capella.bridge.core.uml.UMLBridgeAlgo;
 import org.eclipse.emf.diffmerge.api.scopes.IEditableModelScope;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
 import org.eclipse.emf.ecore.EPackage;
@@ -19,6 +16,9 @@ import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 
+import com.artal.capella.bridge.core.rules.MappingRulesManager;
+import com.artal.capella.bridge.core.uml.UMLBridge;
+import com.artal.capella.bridge.core.uml.UMLBridgeAlgo;
 import com.artal.capella.mapping.capella2sysml.rules.ActorsMapping;
 import com.artal.capella.mapping.capella2sysml.rules.CapabilitiesRealizationsMapping;
 import com.artal.capella.mapping.capella2sysml.rules.ClassesMapping;

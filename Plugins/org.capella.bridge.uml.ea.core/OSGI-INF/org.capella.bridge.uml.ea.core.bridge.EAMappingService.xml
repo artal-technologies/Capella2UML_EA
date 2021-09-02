@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.capella.bridge.uml.ea.core.bridge.EAMappingService">
-   <service>
-      <provide interface="org.capella.bridge.core.services.MappingService"/>
-   </service>
-   <implementation class="org.capella.bridge.uml.ea.core.bridge.EAMappingService"/>
-</scr:component>

@@ -17,9 +17,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Queue;
 
-import org.capella.bridge.core.CapellaBridgeAlgo;
-import org.capella.bridge.core.rules.AbstractMapping;
-import org.capella.bridge.core.rules.MappingRulesManager;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.api.scopes.IModelScope;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
@@ -43,6 +40,9 @@ import org.polarsys.capella.core.data.fa.ComponentPort;
 import org.polarsys.capella.core.data.fa.OrientationPortKind;
 import org.polarsys.capella.core.data.la.LogicalComponent;
 
+import com.artal.capella.bridge.core.CapellaBridgeAlgo;
+import com.artal.capella.bridge.core.rules.AbstractMapping;
+import com.artal.capella.bridge.core.rules.MappingRulesManager;
 import com.artal.capella.mapping.capella2sysml.Capella2SysmlAlgo;
 import com.artal.capella.mapping.sysml2capella.utils.SysML2CapellaUMLProfile;
 import com.artal.capella.mapping.sysml2capella.utils.SysML2CapellaUMLProfile.UMLProfile;

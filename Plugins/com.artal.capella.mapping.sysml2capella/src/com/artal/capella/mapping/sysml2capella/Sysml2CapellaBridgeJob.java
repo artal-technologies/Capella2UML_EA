@@ -12,12 +12,13 @@
  */
 package com.artal.capella.mapping.sysml2capella;
 
-import org.capella.bridge.core.CapellaExtensionBridgeJob;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.diffmerge.api.scopes.IEditableModelScope;
 import org.eclipse.emf.diffmerge.bridge.api.IBridge;
 import org.eclipse.emf.diffmerge.bridge.mapping.impl.emf.EMFMappingBridge;
 import org.eclipse.uml2.uml.Model;
+
+import com.artal.capella.bridge.core.CapellaExtensionBridgeJob;
 
 /**
  * {@link Sysml2CapellaBridgeJob} is an implementation of
