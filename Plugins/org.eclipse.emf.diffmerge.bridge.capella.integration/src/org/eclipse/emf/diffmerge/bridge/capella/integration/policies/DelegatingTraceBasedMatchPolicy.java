@@ -11,10 +11,10 @@
  **********************************************************************/
 package org.eclipse.emf.diffmerge.bridge.capella.integration.policies;
 
-import org.eclipse.emf.diffmerge.api.IMatchPolicy;
-import org.eclipse.emf.diffmerge.api.scopes.IModelScope;
 import org.eclipse.emf.diffmerge.bridge.api.IBridgeTrace;
 import org.eclipse.emf.diffmerge.bridge.incremental.BridgeTraceBasedMatchPolicy;
+import org.eclipse.emf.diffmerge.generic.api.IMatchPolicy;
+import org.eclipse.emf.diffmerge.generic.api.scopes.ITreeDataScope;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -22,13 +22,13 @@ import org.eclipse.emf.ecore.EObject;
  * match identifiers, when it cannot, it delegate to a second matching policy.
  * 
  */
-public class DelegatingTraceBasedMatchPolicy extends
-    BridgeTraceBasedMatchPolicy {
+public class DelegatingTraceBasedMatchPolicy<E> extends
+    BridgeTraceBasedMatchPolicy<E> {
 
   /**
    * The second match policy to delegate to
    */
-  private final IMatchPolicy delegate;
+  private final IMatchPolicy<E> delegate;
 
   /**
    * Default constructor
@@ -42,9 +42,9 @@ public class DelegatingTraceBasedMatchPolicy extends
    * @param delegate_p
    *          the non-null match policy to delegate to
    */
-  public DelegatingTraceBasedMatchPolicy(IModelScope createdScope_p,
+  public DelegatingTraceBasedMatchPolicy(ITreeDataScope<E> createdScope_p,
       IBridgeTrace createdTrace_p, IBridgeTrace existingTrace_p,
-      IMatchPolicy delegate_p) {
+      IMatchPolicy<E> delegate_p) {
     super(createdScope_p, createdTrace_p, existingTrace_p);
     this.delegate = delegate_p;
   }
@@ -54,7 +54,7 @@ public class DelegatingTraceBasedMatchPolicy extends
    *      org.eclipse.emf.diffmerge.api.scopes.IModelScope)
    */
   @Override
-  public Object getMatchID(EObject element_p, IModelScope scope_p) {
+  public Object getMatchID(E element_p, ITreeDataScope<E> scope_p) {
     IBridgeTrace trace = scope_p == _createdScope ? _createdTrace
         : _existingTrace;
     Object result = trace.getCause(element_p);
@@ -68,7 +68,7 @@ public class DelegatingTraceBasedMatchPolicy extends
    * 
    * @return the match policy delegate.
    */
-  protected IMatchPolicy getDelegate() {
+  protected IMatchPolicy<E> getDelegate() {
     return delegate;
   }
 }

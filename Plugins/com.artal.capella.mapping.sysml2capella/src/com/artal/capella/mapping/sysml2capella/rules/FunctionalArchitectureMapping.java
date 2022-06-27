@@ -35,9 +35,8 @@ import org.polarsys.capella.core.data.fa.FunctionInputPort;
 import org.polarsys.capella.core.data.fa.FunctionOutputPort;
 import org.polarsys.capella.core.data.fa.FunctionPort;
 import org.polarsys.capella.core.data.la.LaFactory;
-import org.polarsys.capella.core.data.la.LogicalActor;
-import org.polarsys.capella.core.data.la.LogicalActorPkg;
-import org.polarsys.capella.core.data.la.LogicalContext;
+import org.polarsys.capella.core.data.la.LogicalComponent;
+import org.polarsys.capella.core.data.la.LogicalComponentPkg;
 import org.polarsys.capella.core.data.la.LogicalFunction;
 
 import com.artal.capella.bridge.core.rules.AbstractMapping;
@@ -93,19 +92,20 @@ public class FunctionalArchitectureMapping extends AbstractMapping {
 		List<Activity> activities = Sysml2CapellaUtils.getActivities(_source, getAlgo().getConfiguration().getActivitiesPath());
 		CapellaUpdateScope targetScope = _mappingExecution.getTargetDataSet();
 		LogicalFunction logicalFunctionRoot = Sysml2CapellaUtils.getLogicalFunctionRoot(targetScope.getProject());
-		LogicalActorPkg logicalActorPkg = Sysml2CapellaUtils.getLogicalActorPkg(targetScope.getProject());
-		LogicalContext logicalContext = Sysml2CapellaUtils.getLogicalContext(targetScope.getProject());
+		LogicalComponentPkg lac = Sysml2CapellaUtils.getRootLogicalComponentPkg(targetScope.getProject());
+		LogicalComponent logicalContext = Sysml2CapellaUtils.getLogicalSystemRoot(targetScope.getProject());
 
 		for (Activity activity : activities) {
 			LogicalFunction evironnement = LaFactory.eINSTANCE.createLogicalFunction();
 			evironnement.setName("Environment");
-			LogicalActor genericActor = LaFactory.eINSTANCE.createLogicalActor();
+			LogicalComponent genericActor = LaFactory.eINSTANCE.createLogicalComponent();
 			genericActor.setName("Generic Actor");
+			genericActor.setActor(true);
 			Part partGenActor = CsFactory.eINSTANCE.createPart();
 			partGenActor.setName(genericActor.getName());
 			partGenActor.setAbstractType(genericActor);
 
-			logicalActorPkg.getOwnedLogicalActors().add(genericActor);
+			lac.getOwnedLogicalComponents().add(genericActor);
 			logicalContext.getOwnedFeatures().add(partGenActor);
 			logicalFunctionRoot.getOwnedFunctions().add(evironnement);
 

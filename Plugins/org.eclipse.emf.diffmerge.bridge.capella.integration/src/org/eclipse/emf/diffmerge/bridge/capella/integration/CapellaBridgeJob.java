@@ -19,10 +19,10 @@ import static org.eclipse.emf.diffmerge.impl.policies.ConfigurableMatchPolicy.Ma
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.diffmerge.api.IDiffPolicy;
-import org.eclipse.emf.diffmerge.api.IMatchPolicy;
-import org.eclipse.emf.diffmerge.api.IMergePolicy;
-import org.eclipse.emf.diffmerge.api.IMergeSelector;
+import org.eclipse.emf.diffmerge.generic.api.IDiffPolicy;
+import org.eclipse.emf.diffmerge.generic.api.IMatchPolicy;
+import org.eclipse.emf.diffmerge.generic.api.IMergePolicy;
+import org.eclipse.emf.diffmerge.generic.api.IMergeSelector;
 import org.eclipse.emf.diffmerge.api.scopes.IEditableModelScope;
 import org.eclipse.emf.diffmerge.bridge.api.IBridge;
 import org.eclipse.emf.diffmerge.bridge.api.IBridgeTrace;
@@ -163,7 +163,7 @@ public class CapellaBridgeJob<SD> extends BridgeJob<SD> {
 	/**
 	 * @return the default configurable diff policy
 	 */
-	protected IDiffPolicy createDiffPolicy() {
+	protected IDiffPolicy<EObject> createDiffPolicy() {
 		return new ConfigurableDiffPolicy();
 	}
 
@@ -203,8 +203,8 @@ public class CapellaBridgeJob<SD> extends BridgeJob<SD> {
    * @param delegate_p the non-null match policy to delegate to
    * @return the delegating match policy.
    */
-  protected IMatchPolicy createDelegatingMatchPolicy(IEditableModelScope createdScope_p, IBridgeTrace createdTrace_p, IBridgeTrace existingTrace_p, IMatchPolicy delegate_p) {
-    IMatchPolicy matchPolicy = new DelegatingTraceBasedMatchPolicy(createdScope_p, createdTrace_p, existingTrace_p, delegate_p);
+  protected IMatchPolicy<EObject> createDelegatingMatchPolicy(IEditableModelScope createdScope_p, IBridgeTrace createdTrace_p, IBridgeTrace existingTrace_p, IMatchPolicy delegate_p) {
+    IMatchPolicy<EObject> matchPolicy = new DelegatingTraceBasedMatchPolicy(createdScope_p, createdTrace_p, existingTrace_p, delegate_p);
     return matchPolicy;
   }
 

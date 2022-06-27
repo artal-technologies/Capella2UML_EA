@@ -16,6 +16,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.diffmerge.api.scopes.IFeaturedModelScope;
+import org.eclipse.emf.diffmerge.generic.api.scopes.ITreeDataScope;
 import org.eclipse.emf.diffmerge.gmf.GMFMergePolicy;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
@@ -49,8 +50,8 @@ public class UMLMergePolicy extends GMFMergePolicy {
    * @see org.eclipse.emf.diffmerge.gmf.GMFMergePolicy#isSingleMandatory(org.eclipse.emf.ecore.EReference)
    */
   @Override
-  protected boolean isSingleMandatory(EReference reference_p) {
-    return super.isSingleMandatory(reference_p) ||
+  protected boolean isSingleMandatory(Object reference_p, ITreeDataScope<EObject> scope_p) {
+    return super.isSingleMandatory(reference_p, scope_p) ||
         reference_p == UMLPackage.eINSTANCE.getTypedElement_Type();
   }
   
@@ -62,7 +63,7 @@ public class UMLMergePolicy extends GMFMergePolicy {
    * @param scope_p a non-null scope
    */
   protected void extendUMLAdditionGroup(Set<EObject> group_p, EObject element_p,
-      IFeaturedModelScope scope_p) {
+      ITreeDataScope<EObject> scope_p) {
     // Annotation -> children
     if (element_p instanceof EAnnotation) {
       group_p.addAll(element_p.eContents());
@@ -104,7 +105,7 @@ public class UMLMergePolicy extends GMFMergePolicy {
    * @see org.eclipse.emf.diffmerge.gmf.GMFMergePolicy#getAdditionGroup(org.eclipse.emf.ecore.EObject, org.eclipse.emf.diffmerge.api.scopes.IFeaturedModelScope)
    */
   @Override
-  public Set<EObject> getAdditionGroup(EObject element_p, IFeaturedModelScope scope_p) {
+  public Set<EObject> getAdditionGroup(EObject element_p, ITreeDataScope<EObject> scope_p) {
     Set<EObject> result = super.getAdditionGroup(element_p, scope_p);
     extendUMLAdditionGroup(result, element_p, scope_p);
     return result;

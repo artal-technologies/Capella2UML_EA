@@ -11,7 +11,8 @@ Require-Bundle: org.eclipse.emf.diffmerge.bridge.interactive,
  org.eclipse.emf.diffmerge.bridge.capella.integration,
  org.eclipse.emf.diffmerge.bridge.uml,
  org.eclipse.osgi.services,
- org.polarsys.capella.core.model.helpers
+ org.polarsys.capella.core.model.helpers,
+ org.eclipse.emf.diffmerge.generic
 Export-Package: com.artal.capella.bridge.core,
  com.artal.capella.bridge.core.mix,
  com.artal.capella.bridge.core.rules,
