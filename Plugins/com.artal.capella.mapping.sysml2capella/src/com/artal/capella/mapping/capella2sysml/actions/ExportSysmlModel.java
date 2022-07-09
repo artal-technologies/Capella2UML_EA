@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019 Artal Technologies.
+ * Copyright (c) 2019 - 2022 Artal Technologies.
  * This program and the accompanying materials are made 
  * available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
@@ -38,9 +38,16 @@ import com.artal.capella.mapping.capella2sysml.Capella2SysmlBridgeJob;
  *
  */
 public class ExportSysmlModel extends AbstractHandler {
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.core.commands.IHandler#execute(org.eclipse.core.commands.
+	 * ExecutionEvent)
+	 */
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-
 		StructuredSelection currentSelection = (StructuredSelection) HandlerUtil.getCurrentSelection(event);
 
 		CapellaSysmlLaunchDialog dialog = new CapellaSysmlLaunchDialog(Display.getCurrent().getActiveShell());
@@ -61,7 +68,7 @@ public class ExportSysmlModel extends AbstractHandler {
 		LogicalArchitecture firstElement = (LogicalArchitecture) currentSelection.getFirstElement();
 		Resource capellaResource = firstElement.eResource();
 		ResourceSet resourceSet = capellaResource.getResourceSet();
-		URI semanticResourceURI = capellaResource.getURI().trimFileExtension().appendFileExtension("melodymodeller");
+		URI semanticResourceURI = capellaResource.getURI().trimFileExtension().appendFileExtension("capella");
 		Resource semanticResource = resourceSet.getResource(semanticResourceURI, false);
 		Project context = null;
 		if (semanticResource != null) {
@@ -98,8 +105,11 @@ public class ExportSysmlModel extends AbstractHandler {
 					MessageDialog.openError(shell, "Mapping error", "file " + filePath + " not found");
 				}
 			}
+		} else {
+			return null;
 		}
 
 		return null;
 	}
+
 }

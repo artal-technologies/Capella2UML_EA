@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019 Artal Technologies.
+ * Copyright (c) 2019 - 2022 Artal Technologies.
  * This program and the accompanying materials are made 
  * available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
@@ -372,10 +372,41 @@ public class Sysml2CapellaUtils {
 	 *            the semantic object
 	 * @return the logical component root
 	 */
+	public static LogicalComponentPkg getLogicalActorPkg(EObject source_p) {
+		ResourceSet resourceSet = source_p.eResource().getResourceSet();
+		URI semanticResourceURI = source_p.eResource().getURI().trimFileExtension()
+				.appendFileExtension("capella");
+		Resource semanticResource = resourceSet.getResource(semanticResourceURI, false);
+		if (semanticResource != null) {
+			EObject root = semanticResource.getContents().get(0);
+			if (root instanceof Project) {
+				EList<ModelRoot> ownedModelRoots = ((Project) root).getOwnedModelRoots();
+				for (ModelRoot modelRoot : ownedModelRoots) {
+					if (modelRoot instanceof SystemEngineering) {
+						EList<ModellingArchitecture> containedLogicalArchitecture = ((SystemEngineering) modelRoot)
+								.getOwnedArchitectures();
+						for (ModellingArchitecture arch : containedLogicalArchitecture) {
+							if (arch instanceof LogicalArchitecture)
+								return ((LogicalArchitecture) arch).getOwnedLogicalComponentPkg();
+						}
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the logical component system root given a semantic object
+	 * 
+	 * @param source_p
+	 *            the semantic object
+	 * @return the logical component root
+	 */
 	public static LogicalComponentPkg getRootLogicalComponentPkg(EObject source_p) {
 		ResourceSet resourceSet = source_p.eResource().getResourceSet();
 		URI semanticResourceURI = source_p.eResource().getURI().trimFileExtension()
-				.appendFileExtension("melodymodeller");
+				.appendFileExtension("capella");
 		Resource semanticResource = resourceSet.getResource(semanticResourceURI, false);
 		if (semanticResource != null) {
 			EObject root = semanticResource.getContents().get(0);
@@ -406,7 +437,7 @@ public class Sysml2CapellaUtils {
 	public static AbstractCapabilityPkg getCapabilityRealizationPkg(EObject source_p) {
 		ResourceSet resourceSet = source_p.eResource().getResourceSet();
 		URI semanticResourceURI = source_p.eResource().getURI().trimFileExtension()
-				.appendFileExtension("melodymodeller");
+				.appendFileExtension("capella");
 		Resource semanticResource = resourceSet.getResource(semanticResourceURI, false);
 		if (semanticResource != null) {
 			EObject root = semanticResource.getContents().get(0);
@@ -430,14 +461,13 @@ public class Sysml2CapellaUtils {
 	/**
 	 * Returns the logical component system root given a semantic object
 	 * 
-	 * @param source_p
-	 *            the semantic object
+	 * @param source_p the semantic object
 	 * @return the logical component root
 	 */
 	public static LogicalComponent getLogicalSystemRoot(EObject source_p) {
 		ResourceSet resourceSet = source_p.eResource().getResourceSet();
 		URI semanticResourceURI = source_p.eResource().getURI().trimFileExtension()
-				.appendFileExtension("melodymodeller");
+				.appendFileExtension("capella");
 		Resource semanticResource = resourceSet.getResource(semanticResourceURI, false);
 		if (semanticResource != null) {
 			EObject root = semanticResource.getContents().get(0);
@@ -468,7 +498,7 @@ public class Sysml2CapellaUtils {
 	public static LogicalArchitecture getLogicalArchitecture(EObject source_p) {
 		ResourceSet resourceSet = source_p.eResource().getResourceSet();
 		URI semanticResourceURI = source_p.eResource().getURI().trimFileExtension()
-				.appendFileExtension("melodymodeller");
+				.appendFileExtension("capella");
 		Resource semanticResource = resourceSet.getResource(semanticResourceURI, false);
 		if (semanticResource != null) {
 			EObject root = semanticResource.getContents().get(0);
@@ -499,7 +529,7 @@ public class Sysml2CapellaUtils {
 	public static DataPkg getDataPkgRoot(EObject source_p) {
 		ResourceSet resourceSet = source_p.eResource().getResourceSet();
 		URI semanticResourceURI = source_p.eResource().getURI().trimFileExtension()
-				.appendFileExtension("melodymodeller");
+				.appendFileExtension("capella");
 		Resource semanticResource = resourceSet.getResource(semanticResourceURI, false);
 		if (semanticResource != null) {
 			EObject root = semanticResource.getContents().get(0);
@@ -530,7 +560,7 @@ public class Sysml2CapellaUtils {
 	public static InterfacePkg getInterfacePkgRoot(EObject source_p) {
 		ResourceSet resourceSet = source_p.eResource().getResourceSet();
 		URI semanticResourceURI = source_p.eResource().getURI().trimFileExtension()
-				.appendFileExtension("melodymodeller");
+				.appendFileExtension("capella");
 		Resource semanticResource = resourceSet.getResource(semanticResourceURI, false);
 		if (semanticResource != null) {
 			EObject root = semanticResource.getContents().get(0);
@@ -573,7 +603,7 @@ public class Sysml2CapellaUtils {
 	public static LogicalFunctionPkg getLogicalFunctionPackage(EObject source_p) {
 		ResourceSet resourceSet = source_p.eResource().getResourceSet();
 		URI semanticResourceURI = source_p.eResource().getURI().trimFileExtension()
-				.appendFileExtension("melodymodeller");
+				.appendFileExtension("capella");
 		Resource semanticResource = resourceSet.getResource(semanticResourceURI, false);
 		LogicalFunctionPkg logicalFunctionPkgTmp = null;
 		if (semanticResource != null) {
@@ -610,7 +640,7 @@ public class Sysml2CapellaUtils {
 	public static DataPkg getDataPkgPredefinedTypeRoot(EObject source_p) {
 		ResourceSet resourceSet = source_p.eResource().getResourceSet();
 		URI semanticResourceURI = source_p.eResource().getURI().trimFileExtension()
-				.appendFileExtension("melodymodeller");
+				.appendFileExtension("capella");
 		Resource semanticResource = resourceSet.getResource(semanticResourceURI, false);
 		if (semanticResource != null) {
 			EObject root = semanticResource.getContents().get(0);

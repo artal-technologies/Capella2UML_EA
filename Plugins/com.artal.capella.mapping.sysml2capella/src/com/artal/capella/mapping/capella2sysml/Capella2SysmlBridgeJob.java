@@ -33,10 +33,6 @@ public class Capella2SysmlBridgeJob extends UMLBridgeJob<Project> {
 		super(sourceDataSet_p, targetURI_p, new Capella2SysmlAlgo());
 	}
 
-//	@Override
-//	protected void setupLogger() {
-//	}
-
 	public void setTargetParentFolder(String folder) {
 		((Capella2SysmlAlgo) getAlgo()).setTargetParentFolder(folder);
 

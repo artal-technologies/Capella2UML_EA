@@ -53,7 +53,7 @@ public class UMLBridge<SD, CD> extends UMLMappingBridge<SD, IEditableModelScope>
 	}
 
 	public MappingExecution createExecution(Editable trace_p) {
-		_capellaMappingExecution = new CapellaMappingExecution(trace_p, getLogger());
+		_capellaMappingExecution = new CapellaMappingExecution(trace_p);
 		return _capellaMappingExecution;
 	};
 

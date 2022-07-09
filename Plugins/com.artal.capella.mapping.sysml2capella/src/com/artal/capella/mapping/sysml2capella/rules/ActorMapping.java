@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019 Artal Technologies.
+ * Copyright (c) 2019 - 2022 Artal Technologies.
  * This program and the accompanying materials are made 
  * available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
@@ -74,21 +74,20 @@ public class ActorMapping extends AbstractMapping {
 		List<Actor> actors = Sysml2CapellaUtils.getActors(_source, getAlgo().getConfiguration().getUseCasesPath());
 		Resource eResource = _source.eResource();
 		CapellaUpdateScope targetScope = _mappingExecution.getTargetDataSet();
-		LogicalComponentPkg logicalActorPkg = Sysml2CapellaUtils.getRootLogicalComponentPkg(targetScope.getProject());
-		LogicalComponent logicalContext = Sysml2CapellaUtils.getLogicalSystemRoot(targetScope.getProject());
+		LogicalComponent logicalComponent = Sysml2CapellaUtils.getLogicalSystemRoot(targetScope.getProject());
 
 		for (Actor actor : actors) {
 			LogicalComponent lActor = LaFactory.eINSTANCE.createLogicalComponent();
 			lActor.setName(actor.getName());
 			lActor.setActor(true);
-			
-			logicalActorPkg.getOwnedLogicalComponents().add(lActor);
+
+			logicalComponent.getOwnedLogicalComponents().add(lActor);
 			Sysml2CapellaUtils.trace(this, eResource, actor, lActor, "LogicalActor_");
 
 			Part partActor = CsFactory.eINSTANCE.createPart();
 			partActor.setAbstractType(lActor);
 			partActor.setName(lActor.getName());
-			logicalContext.getOwnedFeatures().add(partActor);
+			logicalComponent.getOwnedFeatures().add(partActor);
 			Sysml2CapellaUtils.trace(this, eResource, actor, partActor, "LogicalActor_Part_");
 
 			_mapLAtoPart.put(lActor, partActor);

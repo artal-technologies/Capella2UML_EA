@@ -30,10 +30,13 @@ import com.artal.capella.bridge.core.patch.wrappers.RuleIdentifierWrapper;
  * @author Yann BINOT
  */
 public class CapellaMappingExecution extends MappingExecution {
-	public CapellaMappingExecution(org.eclipse.emf.diffmerge.bridge.api.IBridgeTrace.Editable trace_p, Logger logger) {
-		super(trace_p, logger);
+	public CapellaMappingExecution(org.eclipse.emf.diffmerge.bridge.api.IBridgeTrace.Editable trace_p) {
+		super(trace_p, LOGGER);
 	}
 
+	  private static final Logger LOGGER = Logger.getLogger(CapellaMappingExecution.class);
+
+	
 	/**
 	 * Bypass the Mapping bug. This method must return "false" but the variable must
 	 * be set to "true" (default value) to REALLY be tolerant to duplicates
@@ -49,7 +52,7 @@ public class CapellaMappingExecution extends MappingExecution {
 	}
 
 	@SuppressWarnings("rawtypes")
-	public <TRS, T> T getFirst(TRS source_p, IRuleIdentifier<?, TRS, T> realRuleId) {
+	public <S, TRS, T> T getFirst(TRS source_p, IRuleIdentifier<S, TRS,  T> realRuleId) {
 		T result = null;
 
 		for (Entry<IRuleIdentifier<?, ?, ?>, IRule<?, ?, ?>> ruleMapEntry : _ruleMap.entrySet()) {
@@ -57,7 +60,7 @@ public class CapellaMappingExecution extends MappingExecution {
 
 			if (ruleIdWrapper instanceof RuleIdentifierWrapper<?, ?>
 					&& ((RuleIdentifierWrapper) ruleIdWrapper).getRealIdentifier().equals(realRuleId)) {
-				result = get(source_p, (IRuleIdentifier<?, TRS, T>) ruleIdWrapper);
+				result = get(source_p, (IRuleIdentifier<S, TRS, T>) ruleIdWrapper);
 				if (result != null) {
 					return result;
 				}

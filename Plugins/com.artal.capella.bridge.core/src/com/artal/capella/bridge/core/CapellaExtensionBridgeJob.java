@@ -90,8 +90,8 @@ public class CapellaExtensionBridgeJob<SD> extends CapellaBridgeJob<SD> {
 			protected EComparison compare(IEditableModelScope created_p, IEditableModelScope existing_p,
 					IBridgeTrace createdTrace_p, IBridgeTrace existingTrace_p, IProgressMonitor monitor_p) {
 				EComparison comparison = new EComparisonImpl(existing_p, created_p);
-				IMatchPolicy delegate = createMatchPolicyDelegate();
-				IMatchPolicy matchPolicy = createDelegatingMatchPolicy(created_p, createdTrace_p, existingTrace_p,
+				IMatchPolicy<EObject> delegate = createMatchPolicyDelegate();
+				IMatchPolicy<EObject> matchPolicy = createDelegatingMatchPolicy(created_p, createdTrace_p, existingTrace_p,
 						delegate);
 				comparison.compute(matchPolicy, getDiffPolicy(), getMergePolicy(), monitor_p);
 				return comparison;

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019 Artal Technologies.
+ * Copyright (c) 2019 - 2022 Artal Technologies.
  * This program and the accompanying materials are made 
  * available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
@@ -92,8 +92,7 @@ public class FunctionalArchitectureMapping extends AbstractMapping {
 		List<Activity> activities = Sysml2CapellaUtils.getActivities(_source, getAlgo().getConfiguration().getActivitiesPath());
 		CapellaUpdateScope targetScope = _mappingExecution.getTargetDataSet();
 		LogicalFunction logicalFunctionRoot = Sysml2CapellaUtils.getLogicalFunctionRoot(targetScope.getProject());
-		LogicalComponentPkg lac = Sysml2CapellaUtils.getRootLogicalComponentPkg(targetScope.getProject());
-		LogicalComponent logicalContext = Sysml2CapellaUtils.getLogicalSystemRoot(targetScope.getProject());
+		LogicalComponent logicalActorPkg = Sysml2CapellaUtils.getLogicalSystemRoot(targetScope.getProject());
 
 		for (Activity activity : activities) {
 			LogicalFunction evironnement = LaFactory.eINSTANCE.createLogicalFunction();
@@ -105,8 +104,8 @@ public class FunctionalArchitectureMapping extends AbstractMapping {
 			partGenActor.setName(genericActor.getName());
 			partGenActor.setAbstractType(genericActor);
 
-			lac.getOwnedLogicalComponents().add(genericActor);
-			logicalContext.getOwnedFeatures().add(partGenActor);
+			logicalActorPkg.getOwnedLogicalComponents().add(genericActor);
+			logicalActorPkg.getOwnedFeatures().add(partGenActor);
 			logicalFunctionRoot.getOwnedFunctions().add(evironnement);
 
 			ComponentFunctionalAllocation cfa = FaFactory.eINSTANCE.createComponentFunctionalAllocation();

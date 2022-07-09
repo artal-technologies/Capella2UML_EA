@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019 Artal Technologies.
+ * Copyright (c) 2019 - 2022 Artal Technologies.
  * This program and the accompanying materials are made 
  * available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
@@ -135,12 +135,12 @@ public class StateMachineMapping extends AbstractMapping {
 			// transform regions under statemachine
 			RegionsMapping regionsMapping = new RegionsMapping(getAlgo(), sysmlStateMachine, _mappingExecution);
 			_manager.add(
-					regionsMapping.getClass().getName() + Sysml2CapellaUtils.getSysMLID(eResource, sysmlStateMachine),
+					RegionsMapping.class.getName() + Sysml2CapellaUtils.getSysMLID(eResource, sysmlStateMachine),
 					regionsMapping);
 			// transform transitions under statemachine
 			TransitionsMapping transitionsMapping = new TransitionsMapping(getAlgo(), sysmlStateMachine,
 					_mappingExecution);
-			_manager.add(transitionsMapping.getClass().getName()
+			_manager.add(TransitionsMapping.class.getName()
 					+ Sysml2CapellaUtils.getSysMLID(eResource, sysmlStateMachine), transitionsMapping);
 		}
 	}

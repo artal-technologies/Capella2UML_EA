@@ -9,6 +9,9 @@
  *******************************************************************************/
 package com.artal.capella.mapping.capella2sysml.rules;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.api.scopes.IModelScope;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
@@ -133,7 +136,7 @@ public class ComponentBlockMapping extends AbstractMapping {
 		// Allocation LogicalFunction to LogicalComponent.
 		Package behaviorPkg = (Package) MappingRulesManager.getCapellaObjectFromAllRules(_source + "BEHAVIOR_PKG");
 		// for each sub LogicalComponent
-		EList<LogicalComponent> ownedLogicalComponents = parent.getOwnedLogicalComponents();
+		List<LogicalComponent> ownedLogicalComponents = logicalContext.getOwnedLogicalComponents().stream().map(sel->(LogicalComponent) sel).filter(sel-> !sel.isActor()).collect((Collectors.toList()));
 		for (LogicalComponent logicalComponent : ownedLogicalComponents) {
 			// create the class
 			createClass(pkgParent, stereotype, logicalComponent);

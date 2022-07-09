@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019 Artal Technologies.
+ * Copyright (c) 2019 - 2022 Artal Technologies.
  * This program and the accompanying materials are made 
  * available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
@@ -138,7 +138,21 @@ public class VerticesMapping extends AbstractMapping {
 			org.polarsys.capella.core.data.capellacommon.Region region = (org.polarsys.capella.core.data.capellacommon.Region) MappingRulesManager
 					.getCapellaObjectFromAllRules(_source);
 			region.getOwnedStates().add(capellaState);
-
+			region.getInvolvedStates().add(capellaState);
+			if (capellaState instanceof org.polarsys.capella.core.data.capellacommon.State) {
+				Object parent = MappingRulesManager.getCapellaObjectFromAllRules(_source.eContainer());
+				if (parent instanceof IState) {
+					IState state = (IState) parent;
+					List<State> subStates = _source.getOwnedMembers().stream().filter(s -> s instanceof State)
+							.map(s -> (State) s).collect(Collectors.toList());
+					for (State subState : subStates) {
+						Object res = MappingRulesManager.getCapellaObjectFromAllRules(subState);
+						if (res instanceof IState) {
+							state.getReferencedStates().add((IState) res);
+						}
+					}
+				}
+			}
 		}
 	}
 
