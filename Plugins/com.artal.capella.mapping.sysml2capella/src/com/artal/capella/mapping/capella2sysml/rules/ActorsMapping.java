@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019 - 2022 Artal Technologies.
+ * Copyright (c) 2019 Artal Technologies.
  * This program and the accompanying materials are made 
  * available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
@@ -9,7 +9,6 @@
  *******************************************************************************/
 package com.artal.capella.mapping.capella2sysml.rules;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
@@ -21,10 +20,10 @@ import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.la.LogicalComponent;
 import org.polarsys.capella.core.data.la.LogicalComponentPkg;
 
-import com.artal.capella.mapping.CapellaBridgeAlgo;
+import com.artal.capella.bridge.core.CapellaBridgeAlgo;
+import com.artal.capella.bridge.core.rules.AbstractMapping;
+import com.artal.capella.bridge.core.rules.MappingRulesManager;
 import com.artal.capella.mapping.capella2sysml.Capella2SysmlAlgo;
-import com.artal.capella.mapping.rules.AbstractMapping;
-import com.artal.capella.mapping.rules.MappingRulesManager;
 import com.artal.capella.mapping.sysml2capella.utils.Sysml2CapellaUtils;;
 
 /**
@@ -62,8 +61,8 @@ public class ActorsMapping extends AbstractMapping {
 	@Override
 	public void computeMapping() {
 
-		LogicalComponentPkg logicalActorPkg = Sysml2CapellaUtils.getLogicalActorPkg(_source);
-		List<LogicalComponent> ownedLogicalActors = logicalActorPkg.getOwnedLogicalComponents().stream().map(sel->(LogicalComponent) sel).filter(sel-> sel.isActor()).collect((Collectors.toList()));
+		LogicalComponentPkg logicalActorPkg = Sysml2CapellaUtils.getRootLogicalComponentPkg(_source);
+		EList<LogicalComponent> ownedLogicalActors = (EList<LogicalComponent>) logicalActorPkg.getOwnedLogicalComponents().stream().filter(s->s.isActor()).collect(Collectors.toList());
 
 		Package useCasePkg = (Package) MappingRulesManager.getCapellaObjectFromAllRules(_source + "USECASES");
 

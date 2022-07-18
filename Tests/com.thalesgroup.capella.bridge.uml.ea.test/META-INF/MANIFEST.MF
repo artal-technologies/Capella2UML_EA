@@ -15,4 +15,5 @@ Require-Bundle: org.junit,
  org.polarsys.capella.core.compare,
  org.eclipse.emf.diffmerge.bridge.capella.integration,
  com.thalesgroup.capella.bridge.uml.ea.core,
- com.artal.capella.bridge.core
+ com.artal.capella.bridge.core,
+ org.eclipse.emf.diffmerge.generic

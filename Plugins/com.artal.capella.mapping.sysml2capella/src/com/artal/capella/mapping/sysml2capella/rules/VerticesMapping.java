@@ -10,6 +10,7 @@
 package com.artal.capella.mapping.sysml2capella.rules;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.bridge.mapping.api.IMappingExecution;
@@ -22,6 +23,7 @@ import org.eclipse.uml2.uml.PseudostateKind;
 import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.Vertex;
+import org.polarsys.capella.common.data.modellingcore.IState;
 import org.polarsys.capella.core.data.capellacommon.AbstractState;
 import org.polarsys.capella.core.data.capellacommon.CapellacommonFactory;
 import org.polarsys.capella.core.data.capellacommon.Mode;

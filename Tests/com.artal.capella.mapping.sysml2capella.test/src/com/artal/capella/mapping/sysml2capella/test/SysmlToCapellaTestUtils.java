@@ -19,12 +19,12 @@ import java.util.Collection;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.diffmerge.api.IComparison;
-import org.eclipse.emf.diffmerge.api.IMatchPolicy;
-import org.eclipse.emf.diffmerge.api.diff.IAttributeValuePresence;
-import org.eclipse.emf.diffmerge.api.diff.IDifference;
-import org.eclipse.emf.diffmerge.api.diff.IElementPresence;
-import org.eclipse.emf.diffmerge.api.diff.IReferenceValuePresence;
+import org.eclipse.emf.diffmerge.generic.api.IComparison;
+import org.eclipse.emf.diffmerge.generic.api.IMatchPolicy;
+import org.eclipse.emf.diffmerge.generic.api.diff.IAttributeValuePresence;
+import org.eclipse.emf.diffmerge.generic.api.diff.IDifference;
+import org.eclipse.emf.diffmerge.generic.api.diff.IElementPresence;
+import org.eclipse.emf.diffmerge.generic.api.diff.IReferenceValuePresence;
 import org.eclipse.emf.diffmerge.api.scopes.IEditableModelScope;
 import org.eclipse.emf.diffmerge.bridge.api.IBridgeTrace;
 import org.eclipse.emf.diffmerge.bridge.capella.integration.policies.DelegatingTraceBasedMatchPolicy;
@@ -182,31 +182,31 @@ public class SysmlToCapellaTestUtils {
 
 		res.getResourceFactoryRegistry().getExtensionToFactoryMap().put(CapellamodellerPackage.eNS_PREFIX,
 				new CapellamodellerResourceFactoryImpl());
-		res.getResourceFactoryRegistry().getExtensionToFactoryMap().put("melodymodeller",
+		res.getResourceFactoryRegistry().getExtensionToFactoryMap().put("capella",
 				new CapellamodellerResourceFactoryImpl());
 
-		res.getPackageRegistry().put("http://www.polarsys.org/capella/common/libraries/1.2.0",
+		res.getPackageRegistry().put("http://www.polarsys.org/capella/common/libraries/5.0.0",
 				LibrariesPackage.eINSTANCE);
-		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/common/1.2.0",
+		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/common/5.0.0",
 				CapellacommonPackage.eINSTANCE);
-		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/core/1.2.0", CapellacorePackage.eINSTANCE);
-		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/modeller/1.2.0",
+		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/core/5.0.0", CapellacorePackage.eINSTANCE);
+		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/modeller/5.0.0",
 				CapellamodellerPackage.eINSTANCE);
-		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/cs/1.2.0", CsPackage.eINSTANCE);
-		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/ctx/1.2.0", CtxPackage.eINSTANCE);
-		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/fa/1.2.0", FaPackage.eINSTANCE);
-		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/information/1.2.0",
+		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/cs/5.0.0", CsPackage.eINSTANCE);
+		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/ctx/5.0.0", CtxPackage.eINSTANCE);
+		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/fa/5.0.0", FaPackage.eINSTANCE);
+		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/information/5.0.0",
 				InformationPackage.eINSTANCE);
-		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/information/datatype/1.2.0",
+		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/information/datatype/5.0.0",
 				DatatypePackage.eINSTANCE);
-		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/information/datavalue/1.2.0",
+		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/information/datavalue/5.0.0",
 				DatavaluePackage.eINSTANCE);
-		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/la/1.2.0", LaPackage.eINSTANCE);
-		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/oa/1.2.0", OaPackage.eINSTANCE);
-		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/pa/1.2.0", PaPackage.eINSTANCE);
-		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/requirement/1.2.0",
+		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/la/5.0.0", LaPackage.eINSTANCE);
+		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/oa/5.0.0", OaPackage.eINSTANCE);
+		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/pa/5.0.0", PaPackage.eINSTANCE);
+		res.getPackageRegistry().put("http://www.polarsys.org/capella/core/requirement/5.0.0",
 				RequirementPackage.eINSTANCE);
-		res.getPackageRegistry().put("http://www.polarsys.org/kitalpha/patterns/emde/1.2.0", EmdePackage.eINSTANCE);
+		res.getPackageRegistry().put("http://www.polarsys.org/kitalpha/patterns/emde/5.0.0", EmdePackage.eINSTANCE);
 		Resource resource = res.getResource(melodyModeller, true);
 		return resource;
 	}
@@ -292,14 +292,14 @@ public class SysmlToCapellaTestUtils {
 		Collection<IDifference> remainingDifferences = comparison.getRemainingDifferences();
 		for (IDifference iDifference : remainingDifferences) {
 			if (iDifference instanceof IElementPresence) {
-				EObject element = ((IElementPresence) iDifference).getElement();
+				EObject element = (EObject) ((IElementPresence) iDifference).getElement();
 				if (element instanceof NamedElement) {
 					message += ("Element " + ((NamedElement) element).getName()
 							+ " in a scope has no match in the reference model.\n");
 				}
 			}
 			if (iDifference instanceof IReferenceValuePresence) {
-				EObject value = ((IReferenceValuePresence) iDifference).getValue();
+				EObject value = (EObject) ((IReferenceValuePresence) iDifference).getValue();
 				if (value instanceof NamedElement) {
 					message += ("Element " + ((NamedElement) value).getName()
 							+ " references another element in the reference model.\n");

@@ -136,6 +136,7 @@ public class ComponentBlockMapping extends AbstractMapping {
 		// Allocation LogicalFunction to LogicalComponent.
 		Package behaviorPkg = (Package) MappingRulesManager.getCapellaObjectFromAllRules(_source + "BEHAVIOR_PKG");
 		// for each sub LogicalComponent
+		LogicalComponent logicalContext = Sysml2CapellaUtils.getLogicalSystemRoot(parent);
 		List<LogicalComponent> ownedLogicalComponents = logicalContext.getOwnedLogicalComponents().stream().map(sel->(LogicalComponent) sel).filter(sel-> !sel.isActor()).collect((Collectors.toList()));
 		for (LogicalComponent logicalComponent : ownedLogicalComponents) {
 			// create the class

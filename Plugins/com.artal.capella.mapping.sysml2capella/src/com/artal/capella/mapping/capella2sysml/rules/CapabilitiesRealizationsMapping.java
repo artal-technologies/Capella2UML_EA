@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019 - 2022 Artal Technologies.
+ * Copyright (c) 2019 Artal Technologies.
  * This program and the accompanying materials are made 
  * available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
@@ -29,10 +29,10 @@ import org.polarsys.capella.core.data.la.CapabilityRealization;
 import org.polarsys.capella.core.data.la.CapabilityRealizationPkg;
 import org.polarsys.capella.core.data.la.LogicalComponent;
 
-import com.artal.capella.mapping.CapellaBridgeAlgo;
+import com.artal.capella.bridge.core.CapellaBridgeAlgo;
+import com.artal.capella.bridge.core.rules.AbstractMapping;
+import com.artal.capella.bridge.core.rules.MappingRulesManager;
 import com.artal.capella.mapping.capella2sysml.Capella2SysmlAlgo;
-import com.artal.capella.mapping.rules.AbstractMapping;
-import com.artal.capella.mapping.rules.MappingRulesManager;
 import com.artal.capella.mapping.sysml2capella.utils.Sysml2CapellaUtils;
 
 /**
