@@ -16,8 +16,8 @@ Contributors:
 	<version>1.1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<properties>
-		<capella-version>1.4.X</capella-version>
-		<tycho-version>0.26.0</tycho-version>
+		<capella-version>5.1.0</capella-version>
+		<tycho-version>2.3.0</tycho-version>
 		<platform-version-name>mars</platform-version-name>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -35,14 +35,8 @@ Contributors:
 			</url>
 		</repository>
 		<repository>
-			<id>kitalpha</id>
-			<layout>p2</layout>
-			<url>https://download.eclipse.org/kitalpha/updates/release/runtimecore/1.4.0/
-			</url>
-		</repository>
-		<repository>
 			<id>kitalpha-sdk</id>
-			<url>https://download.eclipse.org/kitalpha/updates/release/sdk/5.2.0/
+			<url>https://download.eclipse.org/kitalpha/updates/release/sdk/5.1.0/
 			</url>
 			<layout>p2</layout>
 		</repository>
@@ -101,17 +95,7 @@ Contributors:
 						<environment>
 							<os>linux</os>
 							<ws>gtk</ws>
-							<arch>x86</arch>
-						</environment>
-						<environment>
-							<os>linux</os>
-							<ws>gtk</ws>
 							<arch>x86_64</arch>
-						</environment>
-						<environment>
-							<os>win32</os>
-							<ws>win32</ws>
-							<arch>x86</arch>
 						</environment>
 						<environment>
 							<os>win32</os>
