@@ -33,10 +33,6 @@
          id="org.eclipse.uml2"
          version="0.0.0"/>
 
-   <includes
-         id="com.artal.licensing.feature"
-         version="0.0.0"/>
-
    <plugin
          id="com.artal.capella.mapping.sysml2capella"
          download-size="0"
