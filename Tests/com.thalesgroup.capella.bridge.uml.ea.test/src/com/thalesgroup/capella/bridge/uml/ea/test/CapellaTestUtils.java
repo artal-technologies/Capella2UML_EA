@@ -144,7 +144,7 @@ public class CapellaTestUtils {
 
 		res.getResourceFactoryRegistry().getExtensionToFactoryMap().put(CapellamodellerPackage.eNS_PREFIX,
 				new CapellamodellerResourceFactoryImpl());
-		res.getResourceFactoryRegistry().getExtensionToFactoryMap().put("melodymodeller",
+		res.getResourceFactoryRegistry().getExtensionToFactoryMap().put("capella",
 				new CapellamodellerResourceFactoryImpl());
 
 		res.getPackageRegistry().put(LibrariesPackage.eNS_URI, LibrariesPackage.eINSTANCE);

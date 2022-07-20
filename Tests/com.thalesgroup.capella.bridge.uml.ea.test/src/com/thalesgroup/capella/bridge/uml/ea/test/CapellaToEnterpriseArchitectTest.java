@@ -109,91 +109,91 @@ public class CapellaToEnterpriseArchitectTest {
 
 	@Test
 	public void Test_C2EA_01() throws IOException {
-		launchTest("resources/Test_C2EA_01/Camera SysML2 Example.melodymodeller",
+		launchTest("resources/Test_C2EA_01/Camera SysML2 Example.capella",
 				"resources/Test_C2EA_01/Camera SysML2 Example.xml", "Test_C2EA_01");
 	}
 
 	@Test
 	public void Test_C2EA_02() throws IOException {
-		launchTest("resources/Test_C2EA_02/LogicalActorTest.melodymodeller",
+		launchTest("resources/Test_C2EA_02/LogicalActorTest.capella",
 				"resources/Test_C2EA_02/LogicalActorTest.xml", "Test_C2EA_02");
 	}
 
 	@Test
 	public void Test_C2EA_03() throws IOException {
-		launchTest("resources/Test_C2EA_03/LogicalComponent.melodymodeller",
+		launchTest("resources/Test_C2EA_03/LogicalComponent.capella",
 				"resources/Test_C2EA_03/LogicalComponent.xml", "Test_C2EA_03");
 	}
 
 	@Test
 	public void Test_C2EA_04() throws IOException {
-		launchTest("resources/Test_C2EA_04/ComponentPortTest.melodymodeller",
+		launchTest("resources/Test_C2EA_04/ComponentPortTest.capella",
 				"resources/Test_C2EA_04/ComponentPortTest.xml", "Test_C2EA_04");
 	}
 
 	@Test
 	public void Test_C2EA_05() throws IOException {
-		launchTest("resources/Test_C2EA_05/ComponentExchangeTest.melodymodeller",
+		launchTest("resources/Test_C2EA_05/ComponentExchangeTest.capella",
 				"resources/Test_C2EA_05/ComponentExchangeTest.xml", "Test_C2EA_05");
 	}
 
 	@Test
 	public void Test_C2EA_06() throws IOException {
-		launchTest("resources/Test_C2EA_06/EventExchangeItemTest.melodymodeller",
+		launchTest("resources/Test_C2EA_06/EventExchangeItemTest.capella",
 				"resources/Test_C2EA_06/EventExchangeItemTest.xml", "Test_C2EA_06");
 	}
 
 	@Test
 	public void Test_C2EA_07() throws IOException {
-		launchTest("resources/Test_C2EA_07/EventExchangeItemTest.melodymodeller",
+		launchTest("resources/Test_C2EA_07/EventExchangeItemTest.capella",
 				"resources/Test_C2EA_07/EventExchangeItemTest.xml", "Test_C2EA_07");
 	}
 
 	@Test
 	public void Test_C2EA_08() throws IOException {
-		launchTest("resources/Test_C2EA_08/OperationExchangeItemTest.melodymodeller",
+		launchTest("resources/Test_C2EA_08/OperationExchangeItemTest.capella",
 				"resources/Test_C2EA_08/OperationExchangeItemTest.xml", "Test_C2EA_08");
 	}
 
 	@Test
 	public void Test_C2EA_09() throws IOException {
-		launchTest("resources/Test_C2EA_09/OperationExchangeItemTest.melodymodeller",
+		launchTest("resources/Test_C2EA_09/OperationExchangeItemTest.capella",
 				"resources/Test_C2EA_09/OperationExchangeItemTest.xml", "Test_C2EA_09");
 	}
 
 	@Test
 	public void Test_C2EA_10() throws IOException {
-		launchTest("resources/Test_C2EA_10/InterfaceTest.melodymodeller", "resources/Test_C2EA_10/InterfaceTest.xml",
+		launchTest("resources/Test_C2EA_10/InterfaceTest.capella", "resources/Test_C2EA_10/InterfaceTest.xml",
 				"Test_C2EA_10");
 	}
 
 	@Test
 	public void Test_C2EA_11() throws IOException {
-		launchTest("resources/Test_C2EA_11/DecriptionTest.melodymodeller", "resources/Test_C2EA_11/DecriptionTest.xml",
+		launchTest("resources/Test_C2EA_11/DecriptionTest.capella", "resources/Test_C2EA_11/DecriptionTest.xml",
 				"Test_C2EA_11");
 	}
 
 	@Test
 	public void Test_C2EA_12() throws IOException {
-		launchTest("resources/Test_C2EA_12/ShareDataExchangeItemTest.melodymodeller",
+		launchTest("resources/Test_C2EA_12/ShareDataExchangeItemTest.capella",
 				"resources/Test_C2EA_12/ShareDataExchangeItemTest.xml", "Test_C2EA_12");
 	}
 
 	@Test
 	public void Test_C2EA_13() throws IOException {
-		launchTest("resources/Test_C2EA_13/ShareDataExchangeItemTest.melodymodeller",
+		launchTest("resources/Test_C2EA_13/ShareDataExchangeItemTest.capella",
 				"resources/Test_C2EA_13/ShareDataExchangeItemTest.xml", "Test_C2EA_13");
 	}
 
 	@Test
 	public void Test_C2EA_14() throws IOException {
-		launchTest("resources/Test_C2EA_14/EnumerationTest.melodymodeller",
+		launchTest("resources/Test_C2EA_14/EnumerationTest.capella",
 				"resources/Test_C2EA_14/EnumerationTest.xml", "Test_C2EA_14");
 	}
 
 	@Test
 	public void Test_C2EA_15() throws IOException {
-		launchTest("resources/Test_C2EA_15/PrimitiveTest.melodymodeller", "resources/Test_C2EA_15/PrimitiveTest.xml",
+		launchTest("resources/Test_C2EA_15/PrimitiveTest.capella", "resources/Test_C2EA_15/PrimitiveTest.xml",
 				"Test_C2EA_15");
 	}
 }
