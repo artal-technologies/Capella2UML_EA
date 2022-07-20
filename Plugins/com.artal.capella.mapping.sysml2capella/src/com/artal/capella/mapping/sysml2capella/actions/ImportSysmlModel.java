@@ -36,7 +36,6 @@ import org.polarsys.capella.common.ef.ExecutionManagerRegistry;
 import org.polarsys.capella.core.data.la.LogicalArchitecture;
 
 import com.artal.capella.bridge.core.CapellaExtensionBridgeJob;
-import com.artal.capella.bridge.core.services.BridgeLicenseCheck;
 import com.artal.capella.mapping.sysml2capella.Sysml2CapellaAlgo;
 import com.artal.capella.mapping.sysml2capella.preferences.ConfigParser;
 import com.artal.capella.mapping.sysml2capella.preferences.SysMLConfiguration;
@@ -50,11 +49,7 @@ public class ImportSysmlModel extends AbstractHandler {
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		
-		new BridgeLicenseCheck()
-		{
-			@Override
-			public void action() throws ExecutionException
-			{
+
 				StructuredSelection currentSelection = (StructuredSelection) HandlerUtil.getCurrentSelection(event);
 		
 				LogicalArchitecture firstElement = (LogicalArchitecture) currentSelection.getFirstElement();
@@ -75,7 +70,7 @@ public class ImportSysmlModel extends AbstractHandler {
 		
 				// if no model input, stop the mapping.
 				if (filePath == null || filePath.isEmpty()) {
-					return;
+					return null;
 				}
 		
 				// Create the configuration from configuration file.
@@ -125,8 +120,7 @@ public class ImportSysmlModel extends AbstractHandler {
 				} else {
 					throw new ExecutionException("Execution context not found");
 				}
-			}
-		};
+
 		return null;
 	}
 }
