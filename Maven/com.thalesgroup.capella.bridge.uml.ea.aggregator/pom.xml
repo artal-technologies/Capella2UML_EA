@@ -26,14 +26,13 @@ Contributors:
 			</plugin>
 		</plugins>
 	</build>
-  <modules>
-  		<module>../com.artal.capella.bridge.parent</module>
-  		
+  <modules>  		
   		<module>../../Plugins/com.artal.capella.bridge.core</module>
   		<module>../../Plugins/com.thalesgroup.capella.bridge.uml.ea.core</module>
   		<module>../../Plugins/com.thalesgroup.capella.bridge.uml.ea.model</module>
   		<module>../../Features/com.thalesgroup.capella.bridge.uml.ea.feature</module>
   		<module>../../Sites/com.thalesgroup.capella.bridge.uml.ea.site</module>
   	  	<module>../../Documentations/com.thalesgroup.capella.bridge.uml.ea.doc</module>
+
   	</modules>
 </project>

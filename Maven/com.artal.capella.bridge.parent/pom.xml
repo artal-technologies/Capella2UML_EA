@@ -26,7 +26,7 @@ Contributors:
 		<repository>
 			<id>Neon</id>
 			<layout>p2</layout>
-			<url>http://download.eclipse.org/releases/oxygen/</url>
+			<url>https://download.eclipse.org/releases/2022-06/202206151000/</url>
 		</repository>
 		<repository>
 			<id>capella</id>
@@ -42,7 +42,7 @@ Contributors:
 		</repository>
 		<repository>
 			<id>kitalpha-sdk</id>
-			<url>https://download.eclipse.org/kitalpha/updates/release/sdk/1.4.0/
+			<url>https://download.eclipse.org/kitalpha/updates/release/sdk/5.2.0/
 			</url>
 			<layout>p2</layout>
 		</repository>
@@ -70,18 +70,7 @@ Contributors:
 		</repository>
 
 	</repositories>
-	<dependencies>
-		<dependency>
-			<groupId>CapellaBridge</groupId>
-			<artifactId>org.eclipse.emf.diffmerge.bridge.capella.integration</artifactId>
-			<version>0.13.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>CapellaBridge</groupId>
-			<artifactId>org.eclipse.emf.diffmerge.bridge.uml</artifactId>
-			<version>0.13.1-SNAPSHOT</version>
-		</dependency>
-	</dependencies>
+	
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>

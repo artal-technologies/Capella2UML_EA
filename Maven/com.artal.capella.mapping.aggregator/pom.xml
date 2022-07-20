@@ -9,9 +9,9 @@ Contributors:
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>CapellaMapping</groupId>
+  <groupId>CapellaBridge</groupId>
   <artifactId>com.artal.capella.mapping.aggregator</artifactId>
-  <version>1.0.7-SNAPSHOT</version>
+  <version>1.1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <build>
 		<plugins>
@@ -27,12 +27,10 @@ Contributors:
 		</plugins>
 	</build>
   	<modules>
-  	
-  	<module>../com.artal.capella.mapping.parent</module>
-  	
-  	<module>../../Plugins/com.artal.capella.mapping</module>
+	<module>../../Plugins/com.artal.capella.bridge.core</module>
   	<module>../../Plugins/com.artal.capella.mapping.sysml2capella</module>
-  	
+	<module>../../Plugins/org.eclipse.emf.diffmerge.bridge.capella.integration</module>
+	<module>../../Plugins/org.eclipse.emf.diffmerge.bridge.uml</module>
   	<module>../../Features/com.artal.capella.mapping.sysml2capella.feature</module>
   	<module>../../Sites/com.artal.capella.mapping.sysml2capella.updatesite</module>
   </modules>
