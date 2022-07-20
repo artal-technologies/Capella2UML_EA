@@ -33,6 +33,7 @@ Contributors:
   		<module>../../Features/com.thalesgroup.capella.bridge.uml.ea.feature</module>
   		<module>../../Sites/com.thalesgroup.capella.bridge.uml.ea.site</module>
   	  	<module>../../Documentations/com.thalesgroup.capella.bridge.uml.ea.doc</module>
-
+		<module>../../Plugins/org.eclipse.emf.diffmerge.bridge.capella.integration</module>
+		<module>../../Plugins/org.eclipse.emf.diffmerge.bridge.uml</module>
   	</modules>
 </project>
