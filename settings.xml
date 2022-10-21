@@ -22,8 +22,8 @@
       </activation>
       <repositories>
         <repository>
-          <id>sunshower-github</id>
-          <url>https://maven.pkg.github.com//artal-technologies/Capella2UML_EA/*</url>
+          <id>artal-technologies-github</id>
+          <url>https://maven.pkg.github.com/artal-technologies/Capella2UML_EA/*</url>
           <snapshots>
             <enabled>true</enabled>
           </snapshots>
