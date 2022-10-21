@@ -9,8 +9,8 @@
   <servers>
     <server>
       <id>github</id>
-      <username>packages</username>
-      <password>${ENV.REPO_PASSWORD}</password>
+      <username>${ENV.USER}</username>
+      <password>${ENV.PAT}</password>
     </server>
   </servers>
 
