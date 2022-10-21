@@ -36,7 +36,7 @@ Contributors:
 		</repository>
 		<repository>
 			<id>kitalpha-sdk</id>
-			<url>https://download.eclipse.org/kitalpha/updates/release/sdk/5.1.0/
+			<url>https://download.eclipse.org/kitalpha/updates/releases/sdk/5.2.0/
 			</url>
 			<layout>p2</layout>
 		</repository>
