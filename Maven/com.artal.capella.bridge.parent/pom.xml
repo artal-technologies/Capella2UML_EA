@@ -65,11 +65,31 @@ Contributors:
 
 	</repositories>
 	
-  <distributionManagement>
+    <profiles>
+        <profile>
+            <id>nightly</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+<distributionManagement>
+   <repository>
      <id>github</id>
      <name>GitHub OWNER Apache Maven Packages</name>
      <url>https://maven.pkg.github.com/artal-technologies/Capella2UML_EA/</url>
-  </distributionManagement>
+   </repository>
+</distributionManagement>
+        </profile>
+        <profile>
+            <id>release</id>
+<distributionManagement>
+   <repository>
+     <id>github</id>
+     <name>GitHub OWNER Apache Maven Packages</name>
+     <url>https://maven.pkg.github.com/artal-technologies/Capella2UML_EA/</url>
+   </repository>
+</distributionManagement>
+        </profile>
+    </profiles>
 
 	<build>
 		<sourceDirectory>src</sourceDirectory>
