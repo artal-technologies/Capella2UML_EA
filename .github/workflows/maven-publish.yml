@@ -29,5 +29,6 @@ jobs:
     - name: Publish to GitHub Packages Apache Maven
       env:
         GITHUB_TOKEN: ${{ github.token }}
-      run: mvn deploy --file Maven/com.thalesgroup.capella.bridge.uml.ea.aggregator/pom.xml -s $GITHUB_WORKSPACE/settings.xml
+      run: mvn deploy --file Sites/com.thalesgroup.capella.bridge.uml.ea.site/pom.xml -s $GITHUB_WORKSPACE/settings.xml
+
 
